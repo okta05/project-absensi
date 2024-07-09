@@ -43,7 +43,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{route('admin.view')}}">
                     <i class="bi bi-person-fill"></i>
                     <span>Kelola Data Admin</span>
                 </a>
