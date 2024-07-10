@@ -50,7 +50,7 @@
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{route('siswa.view')}}">
                     <i class="bi bi-people"></i>
                     <span>Kelola Data Siswa</span>
                 </a>

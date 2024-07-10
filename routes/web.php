@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SiswaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,5 +35,15 @@ Route::middleware(['auth:admin,web,kepsek', 'verified'])->group(function () {
         Route::get('/detail', [AdminController::class, 'adminDetail'])->name('admin.detail');
         Route::get('/add', [AdminController::class, 'adminAdd'])->name('admin.add');
         Route::get('/edit', [AdminController::class, 'adminEdit'])->name('admin.edit');
+    });
+});
+
+// Semua route untuk mengelola data siswa
+Route::middleware(['auth:web,admin,kepsek', 'verified'])->group(function () {
+    Route::prefix('siswa')->group(function () {
+        Route::get('/view', [SiswaController::class, 'siswaView'])->name('siswa.view');
+        Route::get('/add', [SiswaController::class, 'siswaAdd'])->name('siswa.add');
+        Route::get('/detail', [SiswaController::class, 'siswaDetail'])->name('siswa.detail');
+        Route::get('/edit', [SiswaController::class, 'siswaEdit'])->name('siswa.edit');
     });
 });
