@@ -22,16 +22,36 @@
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="{{asset('assets/img/profile.jpeg')}}" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">Admin 1
+                    <span class="d-none d-md-block dropdown-toggle ps-2">
+                        @if (Auth::guard('kepsek')->check())
+                        {{ Auth::guard('kepsek')->user()->name }}
+                        @elseif (Auth::guard('admin')->check())
+                        {{ Auth::guard('admin')->user()->name }}
+                        @elseif (Auth::guard('web')->check())
+                        {{ Auth::guard('web')->user()->name }}
+                        @endif
                     </span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Admin 1
+                        <h6>
+                            @if (Auth::guard('kepsek')->check())
+                            {{ Auth::guard('kepsek')->user()->name }}
+                            @elseif (Auth::guard('admin')->check())
+                            {{ Auth::guard('admin')->user()->name }}
+                            @elseif (Auth::guard('web')->check())
+                            {{ Auth::guard('web')->user()->name }}
+                            @endif
                         </h6>
                         <span>
-                           Admin
+                            @if (Auth::guard('kepsek')->check())
+                            Kepsek
+                            @elseif (Auth::guard('admin')->check())
+                            Admin
+                            @elseif (Auth::guard('web')->check())
+                            User
+                            @endif
                         </span>
                     </li>
                     <li>

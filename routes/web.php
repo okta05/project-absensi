@@ -23,12 +23,12 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth:web,kepsek,admin'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin', 'verified'] )->group(function () {
     Route::get('/dashboard', [BerandaController::class, 'index'])->name('dashboard');
 });
 
 // Semua route untuk mengelola data admin
-Route::middleware(['auth:admin,web', 'verified'])->group(function () {
+Route::middleware(['auth:admin,web,kepsek', 'verified'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/view', [AdminController::class, 'adminView'])->name('admin.view');
         Route::get('/detail', [AdminController::class, 'adminDetail'])->name('admin.detail');
