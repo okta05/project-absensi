@@ -67,7 +67,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{route('kurikulum.view')}}">
                             <i class="bi bi-circle"></i><span>Kelola Data Kurikulum</span>
                         </a>
                     </li>

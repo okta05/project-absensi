@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\data_pengguna\KepsekController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\data_pengguna\KepsekController;
+use App\Http\Controllers\data_pengguna\KurikulumController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,5 +57,15 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
         Route::get('/add', [KepsekController::class, 'kepsekAdd'])->name('kepsek.add');
         Route::get('/detail', [KepsekController::class, 'kepsekDetail'])->name('kepsek.detail');
         Route::get('/edit', [KepsekController::class, 'kepsekEdit'])->name('kepsek.edit');
+    });
+});
+
+// Semua route untuk mengelola data kurikulum
+Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+    Route::prefix('data-pengguna/kurikulum')->group(function () {
+        Route::get('/view', [KurikulumController::class, 'kurikulumView'])->name('kurikulum.view');
+        Route::get('/add', [KurikulumController::class, 'kurikulumAdd'])->name('kurikulum.add');
+        Route::get('/detail', [KurikulumController::class, 'kurikulumDetail'])->name('kurikulum.detail');
+        Route::get('/edit', [KurikulumController::class, 'kurikulumEdit'])->name('kurikulum.edit');
     });
 });
