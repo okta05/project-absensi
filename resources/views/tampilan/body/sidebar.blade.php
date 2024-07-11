@@ -82,7 +82,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{route('guru.view')}}">
                             <i class="bi bi-circle"></i><span>Kelola Data Guru</span>
                         </a>
                     </li>
