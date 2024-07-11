@@ -35,12 +35,10 @@
                                     <th>Kelas</th>
                                     <th>NIS</th>
                                     <th>Tanggal Lahir</th>
+                                    <th>Tempat Lahir</th>
                                     <th>Alamat</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Nomor Telepon</th>
-                                    <th>Nama Orang Tua</th>
-                                    <th>Nomor Telepon Orang Tua</th>
-                                    <th>Id Telegram Orang Tua</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -52,12 +50,10 @@
                                     <td>VII A</td>
                                     <td>11111</td>
                                     <td>05 Oktober 1945</td>
+                                    <td>Banyuwangi</td>
                                     <td>Rogojampi</td>
                                     <td>Laki - laki</td>
                                     <td>08xxxx</td>
-                                    <td>Rahasia</td>
-                                    <td>08xxx</td>
-                                    <td>11111</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button"

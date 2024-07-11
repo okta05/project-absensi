@@ -43,7 +43,7 @@
 
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
                             <h5 class="card-title">Catatan</h5>
-                            <p class="small fst-italic">Siswa Ini agak lain, plus ndableg</p>
+                            <p class="small fst-italic">ini catatan</p>
 
                             <h5 class="card-title">Detail Siswa</h5>
 

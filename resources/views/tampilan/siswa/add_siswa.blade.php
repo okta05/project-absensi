@@ -74,6 +74,13 @@
                 </div>
 
                 <div class="row mb-3">
+                    <label for="alamat" class="col-sm-2 col-form-label">Tahun Masuk</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Masukkan tahun masuk">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
                     <label for="alamat" class="col-sm-2 col-form-label">No. Telp</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" placeholder="Masukkan nomor telepon">
