@@ -2,12 +2,12 @@
 @section('tampilan')
 
 <div class="pagetitle">
-    <h1>Tambah Data Admin</h1>
+    <h1>Ubah Data Kepala Sekolah</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{route("admin.view")}}">Data Admin</a></li>
-            <li class="breadcrumb-item active"><a href="#">Tambah Data Admin</a></li>
+            <li class="breadcrumb-item"><a href="{{route("kepsek.view")}}">Data Kepala Sekolah</a></li>
+            <li class="breadcrumb-item active"><a href="#">Ubah Data Kepala Sekolah</a></li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -15,7 +15,7 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Form Tambah Admin</h5>
+            <h5 class="card-title">Form Ubah Data Kepala Sekolah</h5>
 
             <!-- General Form Elements -->
             <form>
@@ -84,7 +84,7 @@
                 <div class="row mb-3">
                     <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="{{route('admin.view')}}" class="btn btn-success">Batal</a>
+                        <a href="{{route('kepsek.view')}}" class="btn btn-success">Batal</a>
                     </div>
                 </div>
 

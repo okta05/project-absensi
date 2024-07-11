@@ -62,7 +62,7 @@
                 </a>
                 <ul id="data-pengguna-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="#">
+                        <a href="{{route('kepsek.view')}}">
                             <i class="bi bi-circle"></i><span>Kelola Data Kepala Sekolah</span>
                         </a>
                     </li>

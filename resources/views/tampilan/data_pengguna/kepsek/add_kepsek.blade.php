@@ -1,13 +1,13 @@
-@extends('beranda.index_master')
-@section('beranda')
+@extends('tampilan.index_master')
+@section('tampilan')
 
 <div class="pagetitle">
-    <h1>Ubah Data Kepala Sekolah</h1>
+    <h1>Tambah Data Kepala Sekolah</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{route("kepsek.view")}}">Data Kepala Sekolah</a></li>
-            <li class="breadcrumb-item active"><a href="#">Ubah Data Kepala Sekolah</a></li>
+            <li class="breadcrumb-item"><a href="{{route("kepsek.view")}}">Data Admin</a></li>
+            <li class="breadcrumb-item active"><a href="#">Tambah Data Admin</a></li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -15,7 +15,7 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Form Ubah Data Kepala Sekolah</h5>
+            <h5 class="card-title">Form Tambah Kepala Sekolah</h5>
 
             <!-- General Form Elements -->
             <form>
