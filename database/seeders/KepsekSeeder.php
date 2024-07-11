@@ -16,7 +16,7 @@ class KepsekSeeder extends Seeder
     {
         //
         DB::table('kepsek')->insert([
-            'name' => Str::random(4),
+            'nama' => Str::random(4),
             'email' => Str::random(4).'@gmail.com',
             'password' => bcrypt('11111111'),
         ]);
