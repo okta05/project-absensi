@@ -10,6 +10,7 @@ use App\Http\Controllers\data_pengguna\KurikulumController;
 use App\Http\Controllers\data_pengguna\BKController;
 use App\Http\Controllers\data_pengguna\WakelController;
 use App\Http\Controllers\data_pengguna\GuruController;
+use App\Http\Controllers\data\KelasController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -100,5 +101,14 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
         Route::get('/add', [GuruController::class, 'guruAdd'])->name('guru.add');
         Route::get('/detail', [GuruController::class, 'guruDetail'])->name('guru.detail');
         Route::get('/edit', [GuruController::class, 'guruEdit'])->name('guru.edit');
+    });
+});
+
+// Semua route untuk mengelola data kelas
+Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+    Route::prefix('data/kelas')->group(function () {
+        Route::get('/view', [KelasController::class, 'kelasView'])->name('kelas.view');
+        Route::get('/add', [KelasController::class, 'kelasAdd'])->name('kelas.add');
+        Route::get('/edit', [KelasController::class, 'kelasEdit'])->name('kelas.edit');
     });
 });

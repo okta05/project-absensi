@@ -22,7 +22,7 @@
                     </li>
                     
                     <li>
-                        <a href="#">
+                        <a href="{{route('kelas.view')}}">
                             <i class="bi bi-circle"></i><span>Kelola Data Kelas</span>
                         </a>
                     </li>
