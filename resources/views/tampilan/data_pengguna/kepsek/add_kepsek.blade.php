@@ -6,8 +6,8 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{route("kepsek.view")}}">Data Kepsek</a></li>
-            <li class="breadcrumb-item active"><a href="#">Tambah Data Kepsek</a></li>
+            <li class="breadcrumb-item"><a href="{{route("kepsek.view")}}">Data Kepala Sekolah</a></li>
+            <li class="breadcrumb-item active"><a href="#">Tambah Data Kepala Sekolah</a></li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
