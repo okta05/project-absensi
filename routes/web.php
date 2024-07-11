@@ -8,6 +8,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\data_pengguna\KepsekController;
 use App\Http\Controllers\data_pengguna\KurikulumController;
 use App\Http\Controllers\data_pengguna\BKController;
+use App\Http\Controllers\data_pengguna\WakelController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -78,5 +79,15 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
         Route::get('/add', [BkController::class, 'bkAdd'])->name('bk.add');
         Route::get('/detail', [BkController::class, 'bkDetail'])->name('bk.detail');
         Route::get('/edit', [BkController::class, 'bkEdit'])->name('bk.edit');
+    });
+});
+
+// Semua route untuk mengelola data wali kelas
+Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+    Route::prefix('data-pengguna/wali-kelas')->group(function () {
+        Route::get('/view', [WakelController::class, 'wakelView'])->name('wakel.view');
+        Route::get('/add', [WakelController::class, 'wakelAdd'])->name('wakel.add');
+        Route::get('/detail', [WakelController::class, 'wakelDetail'])->name('wakel.detail');
+        Route::get('/edit', [WakelController::class, 'wakelEdit'])->name('wakel.edit');
     });
 });
