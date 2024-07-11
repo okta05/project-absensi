@@ -82,7 +82,7 @@ return [
 
         'kepseks' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Kepseks::class),
+            'model' => env('AUTH_MODEL', App\Models\Kepsek::class),
         ],
 
         // 'users' => [
