@@ -1,5 +1,5 @@
-@extends('beranda.index_master')
-@section('beranda')
+@extends('tampilan.index_master')
+@section('tampilan')
 
 <div class="pagetitle">
     <h1>Detail Data BK</h1>
