@@ -24,7 +24,7 @@
                     <img src="{{asset('assets/img/profile.jpeg')}}" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">
                         @if (Auth::guard('kepsek')->check())
-                        {{ Auth::guard('kepsek')->user()->name }}
+                        {{ Auth::guard('kepsek')->user()->nama }}
                         @elseif (Auth::guard('admin')->check())
                         {{ Auth::guard('admin')->user()->name }}
                         @elseif (Auth::guard('web')->check())
@@ -37,7 +37,7 @@
                     <li class="dropdown-header">
                         <h6>
                             @if (Auth::guard('kepsek')->check())
-                            {{ Auth::guard('kepsek')->user()->name }}
+                            {{ Auth::guard('kepsek')->user()->nama }}
                             @elseif (Auth::guard('admin')->check())
                             {{ Auth::guard('admin')->user()->name }}
                             @elseif (Auth::guard('web')->check())

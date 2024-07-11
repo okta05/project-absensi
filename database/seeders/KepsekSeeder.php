@@ -15,8 +15,12 @@ class KepsekSeeder extends Seeder
     public function run(): void
     {
         //
-        DB::table('kepsek')->insert([
+        DB::table('kepseks')->insert([
             'nama' => Str::random(4),
+            'nip' => '11111111',
+            'jns_kelamin' => 'Laki - laki',
+            'alamat' => 'Rogojampi',
+            'no_telp' => '08123456',
             'email' => Str::random(4).'@gmail.com',
             'password' => bcrypt('11111111'),
         ]);
