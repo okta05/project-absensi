@@ -53,6 +53,7 @@ Route::middleware(['auth:web,admin,kepsek', 'verified'])->group(function () {
 Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
     Route::prefix('data-pengguna/kepala-sekolah')->group(function () {
         Route::get('/view', [KepsekController::class, 'kepsekView'])->name('kepsek.view');
+        Route::get('/add', [KepsekController::class, 'kepsekAdd'])->name('kepsek.add');
         Route::get('/detail', [KepsekController::class, 'kepsekDetail'])->name('kepsek.detail');
         Route::get('/edit', [KepsekController::class, 'kepsekEdit'])->name('kepsek.edit');
     });
