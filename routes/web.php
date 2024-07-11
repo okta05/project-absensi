@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\data_pengguna\KepsekController;
 use App\Http\Controllers\data_pengguna\KurikulumController;
+use App\Http\Controllers\data_pengguna\BKController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -67,5 +68,15 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
         Route::get('/add', [KurikulumController::class, 'kurikulumAdd'])->name('kurikulum.add');
         Route::get('/detail', [KurikulumController::class, 'kurikulumDetail'])->name('kurikulum.detail');
         Route::get('/edit', [KurikulumController::class, 'kurikulumEdit'])->name('kurikulum.edit');
+    });
+});
+
+// Semua route untuk mengelola data BK
+Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+    Route::prefix('data-pengguna/bk')->group(function () {
+        Route::get('/view', [BkController::class, 'bkView'])->name('bk.view');
+        Route::get('/add', [BkController::class, 'bkAdd'])->name('bk.add');
+        Route::get('/detail', [BkController::class, 'bkDetail'])->name('bk.detail');
+        Route::get('/edit', [BkController::class, 'bkEdit'])->name('bk.edit');
     });
 });

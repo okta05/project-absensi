@@ -72,7 +72,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{route('bk.view')}}">
                             <i class="bi bi-circle"></i><span>Kelola Data BK</span>
                         </a>
                     </li>
