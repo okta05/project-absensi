@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\data_pengguna\KepsekController;
 use App\Http\Controllers\SiswaController;
 
 Route::get('/', function () {
@@ -45,5 +46,14 @@ Route::middleware(['auth:web,admin,kepsek', 'verified'])->group(function () {
         Route::get('/add', [SiswaController::class, 'siswaAdd'])->name('siswa.add');
         Route::get('/detail', [SiswaController::class, 'siswaDetail'])->name('siswa.detail');
         Route::get('/edit', [SiswaController::class, 'siswaEdit'])->name('siswa.edit');
+    });
+});
+
+// Semua route untuk mengelola data kepala sekolah
+Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+    Route::prefix('data-pengguna/kepala-sekolah')->group(function () {
+        Route::get('/view', [KepsekController::class, 'kepsekView'])->name('kepsek.view');
+        Route::get('/detail', [KepsekController::class, 'kepsekDetail'])->name('kepsek.detail');
+        Route::get('/edit', [KepsekController::class, 'kepsekEdit'])->name('kepsek.edit');
     });
 });
