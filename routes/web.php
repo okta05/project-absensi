@@ -13,6 +13,7 @@ use App\Http\Controllers\data_pengguna\GuruController;
 use App\Http\Controllers\data\KelasController;
 use App\Http\Controllers\data\MapelController;
 use App\Http\Controllers\data\TahpelController;
+use App\Http\Controllers\AbsensiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -130,5 +131,12 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
         Route::get('/view', [TahpelController::class, 'tahpelView'])->name('tahpel.view');
         Route::get('/add', [TahpelController::class, 'tahpelAdd'])->name('tahpel.add');
         Route::get('/edit', [TahpelController::class, 'tahpelEdit'])->name('tahpel.edit');
+    });
+});
+
+// Semua route untuk mengelola absensi
+Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+    Route::prefix('data/absensi')->group(function () {
+        Route::get('/pilih-mapel', [AbsensiController::class, 'pilihMapel'])->name('mapel.absensi');
     });
 });

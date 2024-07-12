@@ -84,7 +84,7 @@
             </li><!-- End Icons Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{route('mapel.absensi')}}">
                     <i class="bi bi-book"></i>
                     <span>Absensi</span>
                 </a>
