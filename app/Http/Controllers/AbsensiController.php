@@ -8,6 +8,6 @@ class AbsensiController extends Controller
 {
     //
     public function pilihMapel() {
-        return view("beranda.data.absensi.view_mapel_absensi");
+        return view("tampilan.absensi.view_mapel_absensi");
     }
 }
