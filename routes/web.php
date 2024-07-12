@@ -11,6 +11,7 @@ use App\Http\Controllers\data_pengguna\BKController;
 use App\Http\Controllers\data_pengguna\WakelController;
 use App\Http\Controllers\data_pengguna\GuruController;
 use App\Http\Controllers\data\KelasController;
+use App\Http\Controllers\data\MapelController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -110,5 +111,14 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
         Route::get('/view', [KelasController::class, 'kelasView'])->name('kelas.view');
         Route::get('/add', [KelasController::class, 'kelasAdd'])->name('kelas.add');
         Route::get('/edit', [KelasController::class, 'kelasEdit'])->name('kelas.edit');
+    });
+});
+
+// Semua route untuk mengelola data mapel
+Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+    Route::prefix('data/mapel')->group(function () {
+        Route::get('/view', [MapelController::class, 'mapelView'])->name('mapel.view');
+        Route::get('/add', [MapelController::class, 'mapelAdd'])->name('mapel.add');
+        Route::get('/edit', [MapelController::class, 'mapelEdit'])->name('mapel.edit');
     });
 });
