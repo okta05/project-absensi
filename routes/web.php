@@ -12,6 +12,7 @@ use App\Http\Controllers\data_pengguna\WakelController;
 use App\Http\Controllers\data_pengguna\GuruController;
 use App\Http\Controllers\data\KelasController;
 use App\Http\Controllers\data\MapelController;
+use App\Http\Controllers\data\TahpelController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -120,5 +121,14 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
         Route::get('/view', [MapelController::class, 'mapelView'])->name('mapel.view');
         Route::get('/add', [MapelController::class, 'mapelAdd'])->name('mapel.add');
         Route::get('/edit', [MapelController::class, 'mapelEdit'])->name('mapel.edit');
+    });
+});
+
+// Semua route untuk mengelola data tahun pelajaran
+Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+    Route::prefix('data/tahun-pelajaran')->group(function () {
+        Route::get('/view', [TahpelController::class, 'tahpelView'])->name('tahpel.view');
+        Route::get('/add', [TahpelController::class, 'tahpelAdd'])->name('tahpel.add');
+        Route::get('/edit', [TahpelController::class, 'tahpelEdit'])->name('tahpel.edit');
     });
 });

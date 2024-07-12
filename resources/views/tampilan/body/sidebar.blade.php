@@ -28,14 +28,8 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="{{route('tahpel.view')}}">
                             <i class="bi bi-circle"></i><span>Kelola Data Tahun Pelajaran</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Kelola Data Absensi</span>
                         </a>
                     </li>
                 </ul>
@@ -88,6 +82,14 @@
                     </li>
                 </ul>
             </li><!-- End Icons Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <i class="bi bi-book"></i>
+                    <span>Absensi</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+
 
         </ul>
 
