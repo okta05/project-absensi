@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama')->nullable();
+            $table->string('nis')->nullable();
+            $table->string('ttl')->nullable();
+            $table->enum('jns_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->string('th_masuk')->nullable();
+            $table->string('foto')->nullable();
+            $table->text('catatan')->nullable();
+            $table->string('nm_ortu')->nullable();
+            $table->string('id_tel_ortu')->nullable();
             $table->timestamps();
         });
     }
