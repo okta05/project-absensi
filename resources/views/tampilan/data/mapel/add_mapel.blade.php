@@ -20,17 +20,17 @@
             <!-- General Form Elements -->
             <form>
                 <div class="row mb-3">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama Kelas</label>
+                    <label for="nama" class="col-sm-2 col-form-label">Nama Mata Pelajaran</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan nama lengkap">
+                        <input type="text" class="form-control" placeholder="Masukkan mata pelajaran">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Tingkat</label>
+                    <label class="col-sm-2 col-form-label">Guru</label>
                     <div class="col-sm-10">
                         <select class="form-select" aria-label="Default select example">
-                            <option selected disabled>Pilih Tingkat</option>
+                            <option selected disabled>Pilih Guru</option>
                             <option value="1">7</option>
                             <option value="2">8</option>
                             <option value="2">8</option>
@@ -39,10 +39,10 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Wali Kelas</label>
+                    <label class="col-sm-2 col-form-label">Tahun Pelajaran</label>
                     <div class="col-sm-10">
                         <select class="form-select" aria-label="Default select example">
-                            <option selected disabled>pilih Wali Kelas</option>
+                            <option selected disabled>Pilih tahun pelajaran</option>
                             <option value="1">Wali Kelas 1</option>
                             <option value="2">Wali Kelas 2</option>
                         </select>
