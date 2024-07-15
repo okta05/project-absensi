@@ -14,7 +14,7 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('bks')->insert([
+        DB::table('admins')->insert([
             'nama' => Str::random(4),
             'nip' => '11111111',
             'jns_kelamin' => 'Laki - laki',
