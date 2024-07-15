@@ -26,7 +26,7 @@
                         @if (Auth::guard('kepsek')->check())
                         {{ Auth::guard('kepsek')->user()->nama }}
                         @elseif (Auth::guard('admin')->check())
-                        {{ Auth::guard('admin')->user()->name }}
+                        {{ Auth::guard('admin')->user()->nama }}
                         @elseif (Auth::guard('web')->check())
                         {{ Auth::guard('web')->user()->name }}
                         @endif
@@ -39,7 +39,7 @@
                             @if (Auth::guard('kepsek')->check())
                             {{ Auth::guard('kepsek')->user()->nama }}
                             @elseif (Auth::guard('admin')->check())
-                            {{ Auth::guard('admin')->user()->name }}
+                            {{ Auth::guard('admin')->user()->nama }}
                             @elseif (Auth::guard('web')->check())
                             {{ Auth::guard('web')->user()->name }}
                             @endif

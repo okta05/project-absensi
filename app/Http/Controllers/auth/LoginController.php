@@ -5,6 +5,7 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -38,7 +39,17 @@ class LoginController extends Controller
 
     public function logout() {
         
-        Auth::logout();
-        return redirect()->Route('login');
+      // Logout from all guards
+      $guards = ['web', 'kepsek', 'admin', 'kurikulum', 'bk', 'wakel', 'guru'];
+      foreach ($guards as $guard) {
+          if (Auth::guard($guard)->check()) {
+              Auth::guard($guard)->logout();
+          }
+      }
+
+      // Clear session
+      Session::flush();
+
+      return redirect()->route('login');
     }
 }
