@@ -5,15 +5,16 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use Illuminate\Support\Str;;
 
-class AdminSeeder extends Seeder
+class BkSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
+        //
         DB::table('bks')->insert([
             'nama' => Str::random(4),
             'nip' => '11111111',
