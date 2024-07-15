@@ -27,6 +27,14 @@
                         {{ Auth::guard('kepsek')->user()->nama }}
                         @elseif (Auth::guard('admin')->check())
                         {{ Auth::guard('admin')->user()->nama }}
+                        @elseif (Auth::guard('kurikulum')->check())
+                        {{ Auth::guard('kurikulum')->user()->nama }}
+                        @elseif (Auth::guard('bk')->check())
+                        {{ Auth::guard('bk')->user()->nama }}
+                        @elseif (Auth::guard('wakel')->check())
+                        {{ Auth::guard('wakel')->user()->nama }}
+                        @elseif (Auth::guard('guru')->check())
+                        {{ Auth::guard('guru')->user()->nama }}
                         @elseif (Auth::guard('web')->check())
                         {{ Auth::guard('web')->user()->name }}
                         @endif
@@ -40,15 +48,31 @@
                             {{ Auth::guard('kepsek')->user()->nama }}
                             @elseif (Auth::guard('admin')->check())
                             {{ Auth::guard('admin')->user()->nama }}
+                            @elseif (Auth::guard('kurikulum')->check())
+                            {{ Auth::guard('kurikulum')->user()->nama }}
+                            @elseif (Auth::guard('bk')->check())
+                            {{ Auth::guard('bk')->user()->nama }}
+                            @elseif (Auth::guard('wakel')->check())
+                            {{ Auth::guard('wakel')->user()->nama }}
+                            @elseif (Auth::guard('guru')->check())
+                            {{ Auth::guard('guru')->user()->nama }}
                             @elseif (Auth::guard('web')->check())
                             {{ Auth::guard('web')->user()->name }}
                             @endif
                         </h6>
                         <span>
                             @if (Auth::guard('kepsek')->check())
-                            Kepsek
+                            Kepala Sekolah
                             @elseif (Auth::guard('admin')->check())
                             Admin
+                            @elseif (Auth::guard('kurikulum')->check())
+                            Kurikulum
+                            @elseif (Auth::guard('bk')->check())
+                            BK
+                            @elseif (Auth::guard('wakel')->check())
+                            Wali Kelas
+                            @elseif (Auth::guard('guru')->check())
+                            Guru
                             @elseif (Auth::guard('web')->check())
                             User
                             @endif
