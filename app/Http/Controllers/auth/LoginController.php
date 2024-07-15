@@ -22,8 +22,15 @@ class LoginController extends Controller
             return redirect()->route('dashboard');
         } elseif (Auth::guard('admin')->attempt($credentials)) {
             return redirect()->route('dashboard');
+        } elseif (Auth::guard('kurikulum')->attempt($credentials)) {
+            return redirect()->route('dashboard');
+        } elseif (Auth::guard('bk')->attempt($credentials)) {
+            return redirect()->route('dashboard');
+        } elseif (Auth::guard('wakel')->attempt($credentials)) {
+            return redirect()->route('dashboard');
+        } elseif (Auth::guard('guru')->attempt($credentials)) {
+            return redirect()->route('dashboard');
         }
-
     return back()->withErrors([
         'email' => 'The provided credentials do not match our records.',
     ]);
