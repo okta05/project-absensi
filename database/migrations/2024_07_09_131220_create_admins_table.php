@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nama');
+            $table->string('nip');
+            $table->string('jns_kelamin');
+            $table->string('alamat');
+            $table->string('no_telp');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('foto')->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
