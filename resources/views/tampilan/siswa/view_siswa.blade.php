@@ -45,15 +45,15 @@
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
                                 <tr>
-                                    <td>1</td>
-                                    <td>Oktaviano Kurniawan</td>
-                                    <td>VII A</td>
-                                    <td>11111</td>
-                                    <td>05 Oktober 1945</td>
-                                    <td>Banyuwangi</td>
-                                    <td>Rogojampi</td>
-                                    <td>Laki - laki</td>
-                                    <td>08xxxx</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button"
