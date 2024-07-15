@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Siswa;
 
 use Illuminate\Http\Request;
 
@@ -8,7 +9,8 @@ class SiswaController extends Controller
 {
     //
     public function siswaView() {
-        return view('tampilan.siswa.view_siswa');
+        $data['allDataSiswa']=Siswa::all();
+        return view('tampilan.siswa.view_siswa', $data);
     }
 
     public function siswaDetail() {
