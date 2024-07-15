@@ -50,6 +50,26 @@ return [
             'driver' => 'session',
             'provider' => 'kepseks',
         ],
+
+        'kurikulum' => [
+            'driver' => 'session',
+            'provider' => 'kurikulums',
+        ],
+
+        'bk' => [
+            'driver' => 'session',
+            'provider' => 'bks',
+        ],
+
+        'wakel' => [
+            'driver' => 'session',
+            'provider' => 'wakels',
+        ],
+
+        'guru' => [
+            'driver' => 'session',
+            'provider' => 'gurus',
+        ],
     ],
 
     /*
@@ -83,6 +103,26 @@ return [
         'kepseks' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Kepsek::class),
+        ],
+
+        'kurikulums' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Kurikulum::class),
+        ],
+
+        'bks' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Bk::class),
+        ],
+
+        'wakels' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Wakel::class),
+        ],
+
+        'gurus' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Guru::class),
         ],
 
         // 'users' => [
@@ -127,6 +167,34 @@ return [
 
         'kepseks' => [
             'provider' => 'kepseks',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'kurikulums' => [
+            'provider' => 'kurikulums',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'bks' => [
+            'provider' => 'bks',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'wakels' => [
+            'provider' => 'wakels',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'gurus' => [
+            'provider' => 'gurus',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,
