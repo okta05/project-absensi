@@ -40,7 +40,7 @@
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
-                                @foreach ( $allDataAdmin as $key => $kepsek )
+                                @foreach ( $allDataKepsek as $key => $kepsek )
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$kepsek->nama}}</td>

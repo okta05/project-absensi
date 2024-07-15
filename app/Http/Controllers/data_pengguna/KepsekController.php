@@ -10,7 +10,7 @@ class KepsekController extends Controller
 {
     //
     public function kepsekView () {
-        $data['allDataAdmin']=Kepsek::all();
+        $data['allDataKepsek']=Kepsek::all();
         return view("tampilan.data_pengguna.kepsek.view_kepsek", $data);
     }
     public function kepsekAdd () {
