@@ -33,12 +33,12 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth:web,kepsek,admin', 'verified'] )->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'] )->group(function () {
     Route::get('/dashboard', [BerandaController::class, 'index'])->name('dashboard');
 });
 
 // Semua route untuk mengelola data admin
-Route::middleware(['auth:admin,web,kepsek', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/view', [AdminController::class, 'adminView'])->name('admin.view');
         Route::get('/detail', [AdminController::class, 'adminDetail'])->name('admin.detail');
@@ -48,7 +48,7 @@ Route::middleware(['auth:admin,web,kepsek', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola data siswa
-Route::middleware(['auth:web,admin,kepsek', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('siswa')->group(function () {
         Route::get('/view', [SiswaController::class, 'siswaView'])->name('siswa.view');
         Route::get('/add', [SiswaController::class, 'siswaAdd'])->name('siswa.add');
@@ -58,7 +58,7 @@ Route::middleware(['auth:web,admin,kepsek', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola data kepala sekolah
-Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data-pengguna/kepala-sekolah')->group(function () {
         Route::get('/view', [KepsekController::class, 'kepsekView'])->name('kepsek.view');
         Route::get('/add', [KepsekController::class, 'kepsekAdd'])->name('kepsek.add');
@@ -68,7 +68,7 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola data kurikulum
-Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data-pengguna/kurikulum')->group(function () {
         Route::get('/view', [KurikulumController::class, 'kurikulumView'])->name('kurikulum.view');
         Route::get('/add', [KurikulumController::class, 'kurikulumAdd'])->name('kurikulum.add');
@@ -78,7 +78,7 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola data BK
-Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data-pengguna/bk')->group(function () {
         Route::get('/view', [BkController::class, 'bkView'])->name('bk.view');
         Route::get('/add', [BkController::class, 'bkAdd'])->name('bk.add');
@@ -88,7 +88,7 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola data wali kelas
-Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data-pengguna/wali-kelas')->group(function () {
         Route::get('/view', [WakelController::class, 'wakelView'])->name('wakel.view');
         Route::get('/add', [WakelController::class, 'wakelAdd'])->name('wakel.add');
@@ -98,7 +98,7 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola data guru
-Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data-pengguna/guru')->group(function () {
         Route::get('/view', [GuruController::class, 'guruView'])->name('guru.view');
         Route::get('/add', [GuruController::class, 'guruAdd'])->name('guru.add');
