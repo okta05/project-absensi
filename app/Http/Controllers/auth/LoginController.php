@@ -5,7 +5,6 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -39,17 +38,21 @@ class LoginController extends Controller
 
     public function logout() {
         
-      // Logout from all guards
-      $guards = ['web', 'kepsek', 'admin', 'kurikulum', 'bk', 'wakel', 'guru'];
-      foreach ($guards as $guard) {
-          if (Auth::guard($guard)->check()) {
-              Auth::guard($guard)->logout();
-          }
-      }
-
-      // Clear session
-      Session::flush();
-
-      return redirect()->route('login');
+        if (Auth::guard('kepsek')->check()){
+            Auth::guard('kepsek')->logout();
+        } elseif(Auth::guard('admin')->check()){
+            Auth::guard('admin')->logout();
+        } elseif(Auth::guard('kurikulum')->check()){
+            Auth::guard('kurikulum')->logout();
+        } elseif(Auth::guard('bk')->check()){
+            Auth::guard('bk')->logout();
+        } elseif(Auth::guard('wakel')->check()){
+            Auth::guard('wakel')->logout();
+        } elseif(Auth::guard('guru')->check()){
+            Auth::guard('guru')->logout();
+        } elseif(Auth::guard('web')->check()){
+            Auth::guard('web')->logout();
+        }
+        return redirect('/');
     }
 }

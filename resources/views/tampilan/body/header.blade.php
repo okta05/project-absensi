@@ -93,7 +93,7 @@
                     </li>
 
                     <li>
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="get" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="dropdown-item d-flex align-items-center">
                                 <i class="bi bi-box-arrow-right"></i>
