@@ -26,6 +26,7 @@ class Kepsek extends Authenticatable
         'jns_kelamin',
         'alamat',
         'no_telp',
+        'foto',
         'email',
         'password',
     ];
