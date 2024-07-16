@@ -65,15 +65,15 @@
     <script src="{{asset('assets/js/main.js')}}"></script>
 
     <script>
-    const inputFoto = document.querySelector('#formFile');
-    const previewFoto = document.querySelector('#previewFoto');
+    const inputFoto_siswa = document.querySelector('#foto_siswa');
+    const previewFoto_siswa = document.querySelector('#previewFoto_siswa');
 
-    inputFoto.addEventListener('change', function() {
-        const file = inputFoto.files[0];
+    inputFoto_siswa.addEventListener('change', function() {
+        const file = inputFoto_siswa.files[0];
         const reader = new FileReader();
 
         reader.onload = function(e) {
-            previewFoto.src = e.target.result;
+            previewFoto_siswa.src = e.target.result;
         }
 
         reader.readAsDataURL(file);
