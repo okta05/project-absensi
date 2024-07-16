@@ -51,8 +51,9 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('siswa')->group(function () {
         Route::get('/view', [SiswaController::class, 'siswaView'])->name('siswa.view');
-        Route::get('/add', [SiswaController::class, 'siswaAdd'])->name('siswa.add');
         Route::get('/detail', [SiswaController::class, 'siswaDetail'])->name('siswa.detail');
+        Route::get('/add', [SiswaController::class, 'siswaAdd'])->name('siswa.add');
+        Route::post('/simpan', [SiswaController::class, 'siswaStore'])->name('siswa.store');
         Route::get('/edit', [SiswaController::class, 'siswaEdit'])->name('siswa.edit');
     });
 });

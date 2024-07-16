@@ -18,7 +18,8 @@
             <h5 class="card-title">Form Tambah Data Siswa</h5>
 
             <!-- General Form Elements -->
-            <form>
+            <form method="post" action="{{route('siswa.store')}}">
+                @csrf
                 <div class="row mb-3">
                     <label for="textNama" class="col-sm-2 col-form-label">Nama Siswa</label>
                     <div class="col-sm-10">
