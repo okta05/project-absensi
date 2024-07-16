@@ -20,30 +20,30 @@
             <!-- General Form Elements -->
             <form>
                 <div class="row mb-3">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama Siswa</label>
+                    <label for="textNama" class="col-sm-2 col-form-label">Nama Siswa</label>
                     <div class="col-sm-10">
-                        <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama lengkap">
+                        <input type="text" name="textNama" id="textNama" class="form-control" placeholder="Masukkan nama lengkap">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="nis" class="col-sm-2 col-form-label">NIS</label>
+                    <label for="textNIS" class="col-sm-2 col-form-label">NIS</label>
                     <div class="col-sm-10">
-                        <input type="text" name="nis" id="nis" class="form-control" placeholder="Masukkan NIS">
+                        <input type="text" name="textNIS" id="textNIS" class="form-control" placeholder="Masukkan NIS">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="tpt_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                    <label for="text_tpt_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
                     <div class="col-sm-10">
-                        <input type="text" name="tpt_lahir" id="tpt_lahir" class="form-control" placeholder="Masukkan tempat lahir">
+                        <input type="text" name="text_tpt_lahir" id="text_tpt_lahir" class="form-control" placeholder="Masukkan tempat lahir">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="tgl_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                    <label for="text_tgl_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                     <div class="col-sm-10">
-                        <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" placeholder="Masukkan tempat lahir">
+                        <input type="date" name="text_tgl_lahir" id="text_tgl_lahir" class="form-control" placeholder="Masukkan tempat lahir">
                     </div>
                 </div>
 
@@ -51,16 +51,16 @@
                     <legend class="col-form-label col-sm-2 pt-0">Jenis Kelamin</legend>
                     <div class="col-sm-10">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jns_kelamin" id="jns_kelamin"
+                            <input class="form-check-input" type="radio" name="text_jns_kelamin" id="text_jns_kelamin"
                                 value="Laki-laki">
-                            <label class="form-check-label" for="Laki-laki">
+                            <label class="form-check-label" for="text_jns_kelamin">
                                 Laki - laki
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jns_kelamin" id="jns_kelamin"
+                            <input class="form-check-input" type="radio" name="text_jns_kelamin" id="text_jns_kelamin"
                                 value="Perempuan">
-                            <label class="form-check-label" for="Perempuan">
+                            <label class="form-check-label" for="text_jns_kelamin">
                                 Perempuan
                             </label>
                         </div>
@@ -68,23 +68,23 @@
                 </fieldset>
 
                 <div class="row mb-3">
-                    <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                    <label for="textAlamat" class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Masukkan alamat">
+                        <input type="text" class="form-control" name="textAlamat" id="textAlamat" placeholder="Masukkan alamat">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="th_masuk" class="col-sm-2 col-form-label">Tahun Masuk</label>
+                    <label for="text_th_masuk" class="col-sm-2 col-form-label">Tahun Masuk</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="th_masuk" id="th_masuk" placeholder="Masukkan tahun masuk">
+                        <input type="text" class="form-control" name="text_th_masuk" id="text_th_masuk" placeholder="Masukkan tahun masuk">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="no_telp" class="col-sm-2 col-form-label">No. Telp</label>
+                    <label for="text_no_telp" class="col-sm-2 col-form-label">No. Telp</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="Masukkan nomor telepon">
+                        <input type="number" class="form-control" name="text_no_telp" id="text_no_telp" placeholder="Masukkan nomor telepon">
                     </div>
                 </div>
 
@@ -103,23 +103,23 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label for="catatan" class="col-sm-2 col-form-label">Catatan</label>
+                  <label for="textCatatan" class="col-sm-2 col-form-label">Catatan</label>
                   <div class="col-sm-10">
-                    <textarea class="form-control" name="catatan" id="catatan" style="height: 100px" placeholder="Masukan catatan (jika ada)"></textarea>
+                    <textarea class="form-control" name="textCatatan" id="textCatatan" style="height: 100px" placeholder="Masukan catatan (jika ada)"></textarea>
                   </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="nm_ortu" class="col-sm-2 col-form-label">Nama Orang Tua</label>
+                    <label for="text_nm_ortu" class="col-sm-2 col-form-label">Nama Orang Tua</label>
                     <div class="col-sm-10">
-                        <input type="text" name="nm_ortu" id="nm_ortu" class="form-control" placeholder="Masukkan nama lengkap">
+                        <input type="text" name="text_nm_ortu" id="text_nm_ortu" class="form-control" placeholder="Masukkan nama lengkap">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="id_tel_ortu" class="col-sm-2 col-form-label">Id Telegram Orang Tua</label>
+                    <label for="text_id_tel_ortu" class="col-sm-2 col-form-label">Id Telegram Orang Tua</label>
                     <div class="col-sm-10">
-                        <input type="text" name="id_tel_ortu" id="id_tel_ortu" class="form-control" placeholder="Masukkan id telegram">
+                        <input type="text" name="text_id_tel_ortu" id="text_id_tel_ortu" class="form-control" placeholder="Masukkan id telegram">
                     </div>
                 </div>
 
