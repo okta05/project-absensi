@@ -53,6 +53,6 @@ class LoginController extends Controller
         } elseif(Auth::guard('web')->check()){
             Auth::guard('web')->logout();
         }
-        return redirect('/');
+        return redirect('/login');
     }
 }
