@@ -43,7 +43,32 @@ class SiswaController extends Controller
         return redirect()->route('siswa.view')->with('message','Berhasil menambahkan Siswa');
     }
 
-    public function siswaEdit() {
-        return view('tampilan.siswa.edit_siswa');
+    public function siswaEdit($id) {
+
+        $editDataSiswa = Siswa::find($id);
+        return view('tampilan.siswa.edit_siswa', compact('editDataSiswa'));
+    }
+
+    public function siswaUpdate(Request $request, $id) {
+
+        $validateData=$request->validate([
+            'textNama' => 'required',
+        ]); 
+
+        $data = Siswa::find($id);
+        $data->nama=$request->textNama;
+        $data->nis=$request->textNIS;
+        $data->tgl_lahir=$request->text_tgl_lahir;
+        $data->tpt_lahir=$request->text_tpt_lahir;
+        $data->jns_kelamin=$request->text_jns_kelamin;
+        $data->alamat=$request->textAlamat;
+        $data->no_telp=$request->text_no_telp;
+        $data->th_masuk=$request->text_th_masuk;
+        $data->catatan=$request->textCatatan;
+        $data->nm_ortu=$request->text_nm_ortu;
+        $data->id_tel_ortu=$request->text_id_tel_ortu;
+        $data->save();
+
+        return redirect()->route('siswa.view')->with('message','Berhasil menambahkan Siswa');
     }
 }

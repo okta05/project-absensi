@@ -54,7 +54,8 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
         Route::get('/detail', [SiswaController::class, 'siswaDetail'])->name('siswa.detail');
         Route::get('/add', [SiswaController::class, 'siswaAdd'])->name('siswa.add');
         Route::post('/simpan', [SiswaController::class, 'siswaStore'])->name('siswa.store');
-        Route::get('/edit', [SiswaController::class, 'siswaEdit'])->name('siswa.edit');
+        Route::get('/edit/{id}', [SiswaController::class, 'siswaEdit'])->name('siswa.edit');
+        Route::post('/update/{id}', [SiswaController::class, 'siswaUpdate'])->name('siswa.update');
     });
 });
 

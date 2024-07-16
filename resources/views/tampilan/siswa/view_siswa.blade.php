@@ -67,7 +67,7 @@
                                                         href="{{route('siswa.detail')}}">Detail</a>
                                                 </li>
                                                 <li><a class="dropdown-item text-warning"
-                                                        href="{{route('siswa.edit')}}">Edit</a></li>
+                                                        href="{{route('siswa.edit', $siswa->id)}}">Edit</a></li>
                                                 <li><a class="dropdown-item text-danger" href="#">Hapus</a></li>
                                             </ul>
                                         </div>
