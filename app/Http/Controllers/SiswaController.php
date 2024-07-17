@@ -77,11 +77,7 @@ class SiswaController extends Controller
     $deleteDataSiswa = Siswa::find($id);
     $deleteDataSiswa->delete();    
         
-    $notifikasi = array(
-        'pesan' => 'berhasil hapus data',
-        'alert' => 'succes',
-    );
-    return redirect()->route('siswa.view')->with($notifikasi);
+    return redirect()->route('siswa.view')->with('message','Berhasil menghapus Siswa');
     }
 
 }   
