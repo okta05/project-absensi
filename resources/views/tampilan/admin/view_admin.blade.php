@@ -44,11 +44,11 @@
                                  
                                 <tr>
                                     <td>{{$key+1}}</td>
-                                    <td>{{$admin->name}}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$admin->nama}}</td>
+                                    <td>{{$admin->nip}}</td>
+                                    <td>{{$admin->jns_kelamin}}</td>
+                                    <td>{{$admin->alamat}}</td>
+                                    <td>{{$admin->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-primary" href="{{ route('admin.detail') }}">
