@@ -69,6 +69,15 @@ class SiswaController extends Controller
         $data->id_tel_ortu=$request->text_id_tel_ortu;
         $data->save();
 
-        return redirect()->route('siswa.view')->with('message','Berhasil menambahkan Siswa');
+        return redirect()->route('siswa.view')->with('message','Berhasil mengubah Siswa');
     }
-}
+
+    public function siswaDelete($id) {
+
+    $deleteDataSiswa = Siswa::find($id);
+    $deleteDataSiswa->delete();    
+
+    return redirect()->route('siswa.view')->with('message','Berhasil menghapus Siswa');
+    }
+
+}   
