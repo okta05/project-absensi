@@ -66,9 +66,15 @@
                                                 <li><a class="dropdown-item text-primary"
                                                         href="{{route('siswa.detail')}}">Detail</a>
                                                 </li>
-                                                <li><a class="dropdown-item text-warning"
-                                                        href="{{route('siswa.edit', $siswa->id)}}">Edit</a></li>
-                                                <li><a class="dropdown-item text-danger" href="{{route('siswa.delete', $siswa->id)}}">Hapus</a></li>
+                                                <li>
+                                                    <a class="dropdown-item text-warning"
+                                                        href="{{route('siswa.edit', $siswa->id)}}">Edit</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item text-danger"
+                                                        href="{{route('siswa.delete', $siswa->id)}}"
+                                                        id="delete">Hapus</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </td>

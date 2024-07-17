@@ -28,6 +28,9 @@
     <link href="{{asset('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
     <!-- Template Main CSS File -->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
@@ -63,6 +66,54 @@
 
     <!-- Template Main JS File -->
     <script src="{{asset('assets/js/main.js')}}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/toastr/build/toastr.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('#delete').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const url = this.getAttribute('href');
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger"
+                    },
+                    buttonsStyling: false
+                });
+                swalWithBootstrapButtons.fire({
+                    title: "Apakah anda yakin?",
+                    text: "Data tidak akan dikembalikan setelah dihapus!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Ya, hapus data!",
+                    cancelButtonText: "Tidak, batalkan!",
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                        swalWithBootstrapButtons.fire({
+                            title: 'Terhapus!',
+                            text: "Data berhasil dihapus.",
+                            icon: "success"
+                        });
+                    } else if (
+                        /* Read more about handling dismissals below */
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire({
+                            title: "Dibatalkan",
+                            text: "Data kembali disimpan",
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+        });
+    });
+    </script>
 
     <script>
     const inputFoto_siswa = document.querySelector('#foto_siswa');
