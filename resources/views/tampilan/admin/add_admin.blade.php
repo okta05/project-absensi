@@ -67,6 +67,21 @@
                     </div>
                 </div>
 
+                
+                <div class="row mb-3">
+                    <label for="foto_admin" class="col-sm-2 col-form-label">Upload Foto</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="file" name="foto_admin" id="foto_admin">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="foto_admin" class="col-sm-2 col-form-label">Preview</label>
+                    <div class="col-sm-10">
+                        <img id="previewFoto_admin" src="#" alt="Preview Foto" style="max-width: 200px;">
+                    </div>
+                </div>
+
                 <div class="row mb-3">
                     <label for="nm_ortu" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">

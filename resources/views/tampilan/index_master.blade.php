@@ -131,6 +131,23 @@
     });
     </script>
 
+<script>
+    const inputFoto_admin = document.querySelector('#foto_admin');
+    const previewFoto_admin = document.querySelector('#previewFoto_admin');
+
+    inputFoto_admin.addEventListener('change', function() {
+        const file = inputFoto_admin.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            previewFoto_admin.src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    });
+    </script>
+
+
 
 </body>
 
