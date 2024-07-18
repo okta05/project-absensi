@@ -2,8 +2,8 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="{{route('dashboard')}}" class="logo d-flex align-items-center">
-            <img src="{{asset('assets/img/logo-rev1.png')}}" alt="" style="height: 200px;">
+        <a href="{{ route('dashboard') }}" class="logo d-flex align-items-center">
+            <img src="{{ asset('assets/img/logo-rev1.png') }}" alt="" style="height: 200px;">
             <span class="d-none d-lg-block">Absensi SMPN 2 SEMPU</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -21,7 +21,24 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="{{asset('assets/img/profile.jpeg')}}" alt="Profile" class="rounded-circle">
+                    <!-- Menampilkan Foto Profil -->
+                    <img src="
+                        @if (Auth::guard('kepsek')->check())
+                            {{ asset('storage/' . Auth::guard('kepsek')->user()->foto) }}
+                        @elseif (Auth::guard('admin')->check())
+                            {{ asset('storage/' . Auth::guard('admin')->user()->foto_admin) }}
+                        @elseif (Auth::guard('kurikulum')->check())
+                            {{ asset('storage/' . Auth::guard('kurikulum')->user()->foto) }}
+                        @elseif (Auth::guard('bk')->check())
+                            {{ asset('storage/' . Auth::guard('bk')->user()->foto) }}
+                        @elseif (Auth::guard('wakel')->check())
+                            {{ asset('storage/' . Auth::guard('wakel')->user()->foto) }}
+                        @elseif (Auth::guard('guru')->check())
+                            {{ asset('storage/' . Auth::guard('guru')->user()->foto) }}
+                        @elseif (Auth::guard('web')->check())
+                            {{ asset('storage/' . Auth::guard('web')->user()->foto) }}
+                        @endif
+                    " alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">
                         @if (Auth::guard('kepsek')->check())
                         {{ Auth::guard('kepsek')->user()->nama }}
@@ -39,7 +56,7 @@
                         {{ Auth::guard('web')->user()->name }}
                         @endif
                     </span>
-                </a><!-- End Profile Iamge Icon -->
+                </a><!-- End Profile Image Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
