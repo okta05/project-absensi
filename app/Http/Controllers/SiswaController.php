@@ -101,9 +101,19 @@ class SiswaController extends Controller
     public function siswaDelete($id) {
 
     $deleteDataSiswa = Siswa::find($id);
-    $deleteDataSiswa->delete();    
-        
-    return redirect()->route('siswa.view')->with('message','Berhasil menghapus Siswa');
+    if ($deleteDataSiswa) {
+        // Delete the photo from storage if exists
+        if ($deleteDataSiswa->foto && Storage::disk('public')->exists($deleteDataSiswa->foto)) {
+            Storage::disk('public')->delete($deleteDataSiswa->foto);
+        }
+
+        // Delete the siswa data from database
+        $deleteDataSiswa->delete();
+
+        return redirect()->route('siswa.view')->with('message', 'Berhasil menghapus Siswa');
+    } else {
+        return redirect()->route('siswa.view')->with('error', 'Siswa tidak ditemukan');
+    }
     }
 
 }   
