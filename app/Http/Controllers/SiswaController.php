@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class SiswaController extends Controller
 {
@@ -12,8 +14,9 @@ class SiswaController extends Controller
         return view('tampilan.siswa.view_siswa', $data);
     }
 
-    public function siswaDetail() {
-        return view('tampilan.siswa.detail_siswa');
+    public function siswaDetail($id) {
+        $viewDataSiswa = Siswa::find($id);
+        return view('tampilan.siswa.detail_siswa', compact('viewDataSiswa'));
     }
 
     public function siswaAdd() {
@@ -24,6 +27,8 @@ class SiswaController extends Controller
 
         $validateData=$request->validate([
             'textNama' => 'required',
+            'foto_siswa' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // menambahkan validasi untuk file image
+         
         ]); 
 
         $data = new Siswa();
@@ -34,6 +39,14 @@ class SiswaController extends Controller
         $data->jns_kelamin=$request->text_jns_kelamin;
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
+
+        if ($request->file('foto_siswa')) {
+            $foto_siswa = $request->file('foto_siswa')->store('siswa/foto_siswa', 'public');
+            $data->foto = $foto_siswa;
+        } else {
+            $data->foto = '';
+        }
+
         $data->th_masuk=$request->text_th_masuk;
         $data->catatan=$request->textCatatan;
         $data->nm_ortu=$request->text_nm_ortu;
@@ -53,6 +66,7 @@ class SiswaController extends Controller
 
         $validateData=$request->validate([
             'textNama' => 'required',
+            'foto_siswa' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' // Menambahkan validasi untuk file image
         ]); 
 
         $data = Siswa::find($id);
@@ -63,6 +77,18 @@ class SiswaController extends Controller
         $data->jns_kelamin=$request->text_jns_kelamin;
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
+
+        if ($request->file('foto_siswa')) {
+            // Delete the old photo if exists
+            if ($data->foto && Storage::disk('public')->exists($data->foto)) {
+                Storage::disk('public')->delete($data->foto);
+            }
+    
+            // Store the new photo
+            $foto_siswa = $request->file('foto_siswa')->store('siswa/foto_siswa', 'public');
+            $data->foto = $foto_siswa;
+        }
+
         $data->th_masuk=$request->text_th_masuk;
         $data->catatan=$request->textCatatan;
         $data->nm_ortu=$request->text_nm_ortu;

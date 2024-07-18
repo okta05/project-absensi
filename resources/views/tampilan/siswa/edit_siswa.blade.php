@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Ubah Data Siswa</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('siswa.update', $editDataSiswa->id)}}">
+            <form method="post" action="{{route('siswa.update', $editDataSiswa->id)}}" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
                     <label for="textNama" class="col-sm-2 col-form-label">Nama Siswa</label>
@@ -98,14 +98,14 @@
                 <div class="row mb-3">
                     <label for="foto_siswa" class="col-sm-2 col-form-label">File Upload</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="file" name="foto_siswa" id="foto_siswa">
+                        <input class="form-control" type="file" accept="image/*" name="foto_siswa" id="foto_siswa">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="foto_siswa" class="col-sm-2 col-form-label">Preview Foto</label>
                     <div class="col-sm-10">
-                        <img id="previewFoto_siswa" src="#" alt="Preview Foto" style="max-width: 200px;">
+                        <img id="previewFoto_siswa" src="{{ asset('storage/' . $editDataSiswa->foto) }}" alt="Preview Foto" style="max-width: 200px;">
                     </div>
                 </div>
 

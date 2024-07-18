@@ -64,7 +64,7 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                 <li><a class="dropdown-item text-primary"
-                                                        href="{{route('siswa.detail')}}">Detail</a>
+                                                        href="{{route('siswa.detail', $siswa->id)}}">Detail</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item text-warning"

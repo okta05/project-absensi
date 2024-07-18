@@ -14,16 +14,18 @@
 
 <section class="section profile">
     <div class="row">
-        <div class="col-xl-4">
 
+
+
+
+        <div class="col-xl-4">
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img src="{{asset('assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
-                    <h2>Oktaviano Kurniawan</h2>
+                    <img src="{{asset('storage/'. $viewDataSiswa->foto)}}" alt="Profile" class="rounded-circle">
+                    <h2>{{$viewDataSiswa->nama}}</h2>
                     <h3>Kelas</h3>
                 </div>
             </div>
-
         </div>
 
         <div class="col-xl-8">
@@ -43,18 +45,18 @@
 
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
                             <h5 class="card-title">Catatan</h5>
-                            <p class="small fst-italic">ini catatan</p>
+                            <p class="small fst-italic">{{$viewDataSiswa->catatan}}</p>
 
                             <h5 class="card-title">Detail Siswa</h5>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                                <div class="col-lg-9 col-md-8">Oktaviano Kurniawan</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->nama}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">NIS</div>
-                                <div class="col-lg-9 col-md-8">11111111</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->nis}}</div>
                             </div>
 
                             <div class="row">
@@ -64,37 +66,37 @@
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Tahun Masuk</div>
-                                <div class="col-lg-9 col-md-8">2020</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->th_masuk}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Tempat, Tanggal Lahir</div>
-                                <div class="col-lg-9 col-md-8">Banyuwangi, 5 Oktober 1945</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->tpt_lahir}}, {{$viewDataSiswa->tgl_lahir}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Jenis Kelamin</div>
-                                <div class="col-lg-9 col-md-8">Laki - Laki</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->jns_kelamin}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Alamat</div>
-                                <div class="col-lg-9 col-md-8">Smebarang</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->alamat}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">No Telpon</div>
-                                <div class="col-lg-9 col-md-8">08xxxx</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->no_telp}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Nama Orang Tua</div>
-                                <div class="col-lg-9 col-md-8">Orang tua</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->nm_ortu}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Id Telegram Orang Tua</div>
-                                <div class="col-lg-9 col-md-8">111111111</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->id_tel_ortu}}</div>
                             </div>
 
                         </div>
@@ -103,8 +105,10 @@
 
                 </div>
             </div>
-
         </div>
+
+
+
     </div>
 </section>
 

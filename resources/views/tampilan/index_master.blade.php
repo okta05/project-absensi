@@ -131,22 +131,6 @@
     });
     </script>
 
-    <script>
-    const inputFoto2 = document.querySelector('#formFile2');
-    const previewFoto2 = document.querySelector('#previewFoto2');
-
-    inputFoto2.addEventListener('change', function() {
-        const file = inputFoto2.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            previewFoto2.src = e.target.result;
-        }
-
-        reader.readAsDataURL(file);
-    });
-    </script>
-
 
 </body>
 
