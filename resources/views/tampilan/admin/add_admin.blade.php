@@ -18,18 +18,21 @@
             <h5 class="card-title">Form Tambah Admin</h5>
 
             <!-- General Form Elements -->
-            <form>
+            <form method="post" action="{{route('admin.store')}}" enctype="multipart/form-data">
+                @csrf
+
                 <div class="row mb-3">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                    <label for="textNama" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan nama lengkap">
+                        <input type="text" name="textNama" id="textNama" class="form-control"
+                            placeholder="Masukkan nama lengkap">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="nis" class="col-sm-2 col-form-label">NIP</label>
+                    <label for="textNIP" class="col-sm-2 col-form-label">NIP</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan NIP">
+                        <input type="text" name="textNIP" id="textNIP" class="form-control" placeholder="Masukkan NIP">
                     </div>
                 </div>
 
@@ -37,16 +40,16 @@
                     <legend class="col-form-label col-sm-2 pt-0">Jenis Kelamin</legend>
                     <div class="col-sm-10">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki"
-                                value="laki-laki">
-                            <label class="form-check-label" for="laki-laki">
+                            <input class="form-check-input" type="radio" name="text_jns_kelamin" id="text_jns_kelamin"
+                                value="Laki-laki">
+                            <label class="form-check-label" for="text_jns_kelamin">
                                 Laki - laki
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan"
-                                value="perempuan">
-                            <label class="form-check-label" for="perempuan">
+                            <input class="form-check-input" type="radio" name="text_jns_kelamin" id="text_jns_kelamin"
+                                value="Perempuan">
+                            <label class="form-check-label" for="text_jns_kelamin">
                                 Perempuan
                             </label>
                         </div>
@@ -54,20 +57,22 @@
                 </fieldset>
 
                 <div class="row mb-3">
-                    <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                    <label for="textAlamat" class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan alamat">
+                        <input type="text" name="textAlamat" id="textAlamat" class="form-control"
+                            placeholder="Masukkan alamat">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="alamat" class="col-sm-2 col-form-label">Nomor Telepon</label>
+                    <label for="text_no_telp" class="col-sm-2 col-form-label">Nomor Telepon</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" placeholder="Masukkan nomor telepon">
+                        <input type="number" name="text_no_telp" id="text_no_telp" class="form-control"
+                            placeholder="Masukkan nomor telepon">
                     </div>
                 </div>
 
-                
+
                 <div class="row mb-3">
                     <label for="foto_admin" class="col-sm-2 col-form-label">Upload Foto</label>
                     <div class="col-sm-10">
@@ -83,16 +88,18 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="nm_ortu" class="col-sm-2 col-form-label">Username</label>
+                    <label for="email" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" placeholder="Masukkan username">
+                        <input type="email" name="email" id="email" class="form-control"
+                            placeholder="Masukkan username">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="id_tel_ortu" class="col-sm-2 col-form-label">Password</label>
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" placeholder="Masukkan password">
+                        <input type="password" name="password" id="password" class="form-control"
+                            placeholder="Masukkan password">
                     </div>
                 </div>
 
