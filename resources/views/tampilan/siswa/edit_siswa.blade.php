@@ -96,14 +96,14 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="foto_siswa" class="col-sm-2 col-form-label">File Upload</label>
+                    <label for="foto_siswa" class="col-sm-2 col-form-label">Upload Foto</label>
                     <div class="col-sm-10">
                         <input class="form-control" type="file" accept="image/*" name="foto_siswa" id="foto_siswa">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="foto_siswa" class="col-sm-2 col-form-label">Preview Foto</label>
+                    <label for="foto_siswa" class="col-sm-2 col-form-label">Preview</label>
                     <div class="col-sm-10">
                         <img id="previewFoto_siswa" src="{{ asset('storage/' . $editDataSiswa->foto) }}" alt="Preview Foto" style="max-width: 200px;">
                     </div>
