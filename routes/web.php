@@ -44,7 +44,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
         Route::get('/detail', [AdminController::class, 'adminDetail'])->name('admin.detail');
         Route::get('/add', [AdminController::class, 'adminAdd'])->name('admin.add');
         Route::post('/simpan', [AdminController::class, 'adminStore'])->name('admin.store');
-        Route::get('/edit', [AdminController::class, 'adminEdit'])->name('admin.edit');
+        Route::get('/edit/{id}', [AdminController::class, 'adminEdit'])->name('admin.edit');
     });
 });
 

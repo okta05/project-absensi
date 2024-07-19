@@ -110,10 +110,8 @@ class SiswaController extends Controller
         // Delete the siswa data from database
         $deleteDataSiswa->delete();
 
-        return redirect()->route('siswa.view')->with('message', 'Berhasil menghapus Siswa');
-    } else {
-        return redirect()->route('siswa.view')->with('error', 'Siswa tidak ditemukan');
-    }
+        return redirect()->route('siswa.view');
+    } 
     }
 
 }   

@@ -54,7 +54,7 @@
                                             <a class="btn btn-primary" href="{{ route('admin.detail') }}">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a class="btn btn-warning" href="{{ route('admin.edit') }}">
+                                            <a class="btn btn-warning" href="{{ route('admin.edit', $admin->id) }}">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <a class="btn btn-danger" href="#">

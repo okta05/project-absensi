@@ -51,7 +51,8 @@ class AdminController extends Controller
         return redirect()->route('admin.view')->with('message','Berhasil menambahkan Siswa');
     }
 
-    public function adminEdit() {
-        return view('tampilan.admin.edit_admin');
+    public function adminEdit($id) {
+        $editDataAdmin = Admin::find($id);
+        return view('tampilan.admin.edit_admin', compact('editDataAdmin'));
     }
 }
