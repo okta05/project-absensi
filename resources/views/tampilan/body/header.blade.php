@@ -39,6 +39,7 @@
                             {{ asset('storage/' . Auth::guard('web')->user()->foto) }}
                         @endif
                     " alt="Profile" class="rounded-circle">
+
                     <span class="d-none d-md-block dropdown-toggle ps-2">
                         @if (Auth::guard('kepsek')->check())
                         {{ Auth::guard('kepsek')->user()->nama }}
