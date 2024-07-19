@@ -38,7 +38,7 @@
                         @elseif (Auth::guard('web')->check())
                             {{ asset('storage/' . Auth::guard('web')->user()->foto) }}
                         @endif
-                    " alt="Profile" class="rounded-circle">
+                    " alt="" class="rounded-circle">
 
                     <span class="d-none d-md-block dropdown-toggle ps-2">
                         @if (Auth::guard('kepsek')->check())
