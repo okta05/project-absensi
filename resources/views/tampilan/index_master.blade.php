@@ -68,7 +68,7 @@
     <script src="{{asset('assets/js/main.js')}}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/toastr/build/toastr.min.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -131,7 +131,7 @@
     });
     </script>
 
-<script>
+    <script>
     const inputFoto_admin = document.querySelector('#foto_admin');
     const previewFoto_admin = document.querySelector('#previewFoto_admin');
 
@@ -146,6 +146,24 @@
         reader.readAsDataURL(file);
     });
     </script>
+
+
+    <script>
+    const inputFoto_kepsek = document.querySelector('#foto_kepsek');
+    const previewFoto_kepsek = document.querySelector('#previewFoto_kepsek');
+
+    inputFoto_kepsek.addEventListener('change', function() {
+        const file = inputFoto_kepsek.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            previewFoto_kepsek.src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    });
+    </script>
+   
 
 
 
