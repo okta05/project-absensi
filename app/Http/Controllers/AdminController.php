@@ -70,7 +70,7 @@ class AdminController extends Controller
         $data->jns_kelamin=$request->text_jns_kelamin;
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
-        
+
         if ($request->file('foto_admin')) {
             // Delete the old photo if exists
             if ($data->foto_admin && Storage::disk('public')->exists($data->foto_admin)) {
@@ -79,7 +79,7 @@ class AdminController extends Controller
     
             // Store the new photo
             $foto_admin = $request->file('foto_admin')->store('siswa/foto_admin', 'public');
-            $data->foto = $foto_admin;
+            $data->foto_admin = $foto_admin;
         }
 
         $data->email=$request->email;
@@ -89,5 +89,20 @@ class AdminController extends Controller
         return redirect()->route('admin.view');
     }
 
+    public function adminDelete($id) {
+
+        $deleteDataAdmin = Admin::find($id);
+        if ($deleteDataAdmin) {
+            // Delete the photo from storage if exists
+            if ($deleteDataAdmin->foto_admin && Storage::disk('public')->exists($deleteDataAdmin->foto_admin)) {
+                Storage::disk('public')->delete($deleteDataAdmin->foto_admin);
+            }
+    
+            // Delete the siswa data from database
+            $deleteDataAdmin->delete();
+    
+            return redirect()->route('admin.view');
+        } 
+        }
 
 }
