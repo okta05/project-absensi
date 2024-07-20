@@ -57,7 +57,7 @@
                                             <a class="btn btn-warning" href="{{ route('admin.edit', $admin->id) }}">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a class="btn btn-danger" href="{{ route('admin.delete', $admin->id) }}">
+                                            <a class="btn btn-danger" id="delete" href="{{ route('admin.delete', $admin->id) }}">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </div>
