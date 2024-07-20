@@ -68,6 +68,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
     Route::prefix('data-pengguna/kepala-sekolah')->group(function () {
         Route::get('/view', [KepsekController::class, 'kepsekView'])->name('kepsek.view');
         Route::get('/add', [KepsekController::class, 'kepsekAdd'])->name('kepsek.add');
+        Route::post('/simpan', [KepsekController::class, 'kepsekStore'])->name('kepsek.store');
         Route::get('/detail', [KepsekController::class, 'kepsekDetail'])->name('kepsek.detail');
         Route::get('/edit', [KepsekController::class, 'kepsekEdit'])->name('kepsek.edit');
     });

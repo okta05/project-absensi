@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Tambah Kepala Sekolah</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="#" enctype="multipart/form-data">
+            <form method="post" action="{{route('kepsek.store')}}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row mb-3">
@@ -71,7 +71,7 @@
                             placeholder="Masukkan nomor telepon">
                     </div>
                 </div>
-                
+
                 <div class="row mb-3">
                     <label for="foto_kepsek" class="col-sm-2 col-form-label">Upload Foto</label>
                     <div class="col-sm-10">
@@ -83,6 +83,14 @@
                     <label for="foto_kepsek" class="col-sm-2 col-form-label">Preview</label>
                     <div class="col-sm-10">
                         <img id="previewFoto_kepsek" src="#" alt="Preview Foto" style="max-width: 200px;">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="email" class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="email" name="email" id="email" class="form-control"
+                            placeholder="Masukkan username">
                     </div>
                 </div>
 

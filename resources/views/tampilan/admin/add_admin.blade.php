@@ -72,7 +72,6 @@
                     </div>
                 </div>
 
-
                 <div class="row mb-3">
                     <label for="foto_admin" class="col-sm-2 col-form-label">Upload Foto</label>
                     <div class="col-sm-10">

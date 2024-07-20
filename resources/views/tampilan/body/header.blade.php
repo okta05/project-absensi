@@ -24,7 +24,7 @@
                     <!-- Menampilkan Foto Profil -->
                     <img src="
                         @if (Auth::guard('kepsek')->check())
-                            {{ asset('storage/' . Auth::guard('kepsek')->user()->foto) }}
+                            {{ asset('storage/' . Auth::guard('kepsek')->user()->foto_kepsek) }}
                         @elseif (Auth::guard('admin')->check())
                             {{ asset('storage/' . Auth::guard('admin')->user()->foto_admin) }}
                         @elseif (Auth::guard('kurikulum')->check())
