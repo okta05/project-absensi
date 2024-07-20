@@ -23,31 +23,32 @@
                 <div class="row mb-3">
                     <label for="textNama" class="col-sm-2 col-form-label">Nama Siswa</label>
                     <div class="col-sm-10">
-                        <input type="text" name="textNama" value="{{$editDataSiswa->nama}}" id="textNama" class="form-control"
-                            placeholder="Masukkan nama lengkap">
+                        <input type="text" name="textNama" value="{{$editDataSiswa->nama}}" id="textNama"
+                            class="form-control" placeholder="Masukkan nama lengkap">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="textNIS" class="col-sm-2 col-form-label">NIS</label>
                     <div class="col-sm-10">
-                        <input type="text" name="textNIS" id="textNIS"  value="{{$editDataSiswa->nis}}" class="form-control" placeholder="Masukkan NIS">
+                        <input type="text" name="textNIS" id="textNIS" value="{{$editDataSiswa->nis}}"
+                            class="form-control" placeholder="Masukkan NIS">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="text_tpt_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
                     <div class="col-sm-10">
-                        <input type="text" name="text_tpt_lahir"  value="{{$editDataSiswa->tpt_lahir}}" id="text_tpt_lahir" class="form-control"
-                            placeholder="Masukkan tempat lahir">
+                        <input type="text" name="text_tpt_lahir" value="{{$editDataSiswa->tpt_lahir}}"
+                            id="text_tpt_lahir" class="form-control" placeholder="Masukkan tempat lahir">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="text_tgl_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                     <div class="col-sm-10">
-                        <input type="date" name="text_tgl_lahir"  value="{{$editDataSiswa->tgl_lahir}}" id="text_tgl_lahir" class="form-control"
-                            placeholder="Masukkan tempat lahir">
+                        <input type="date" name="text_tgl_lahir" value="{{$editDataSiswa->tgl_lahir}}"
+                            id="text_tgl_lahir" class="form-control" placeholder="Masukkan tempat lahir">
                     </div>
                 </div>
 
@@ -55,16 +56,16 @@
                     <legend class="col-form-label col-sm-2 pt-0">Jenis Kelamin</legend>
                     <div class="col-sm-10">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="text_jns_kelamin"  value="{{$editDataSiswa->jns_kelamin}}" id="text_jns_kelamin"
-                                value="Laki-laki">
-                            <label class="form-check-label" for="text_jns_kelamin">
+                            <input class="form-check-input" type="radio" name="text_jns_kelamin" value="Laki-laki"
+                                id="text_jns_kelamin1" @if($editDataSiswa->jns_kelamin == 'Laki-laki') checked @endif>
+                            <label class="form-check-label" for="text_jns_kelamin1">
                                 Laki - laki
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="text_jns_kelamin"  value="{{$editDataSiswa->jns_kelamin}}" id="text_jns_kelamin"
-                                value="Perempuan">
-                            <label class="form-check-label" for="text_jns_kelamin">
+                            <input class="form-check-input" type="radio" name="text_jns_kelamin" value="Perempuan"
+                                id="text_jns_kelamin2" @if($editDataSiswa->jns_kelamin == 'Perempuan') checked @endif>
+                            <label class="form-check-label" for="text_jns_kelamin2">
                                 Perempuan
                             </label>
                         </div>
@@ -74,24 +75,24 @@
                 <div class="row mb-3">
                     <label for="textAlamat" class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="textAlamat"  value="{{$editDataSiswa->alamat}}" id="textAlamat"
-                            placeholder="Masukkan alamat">
+                        <input type="text" class="form-control" name="textAlamat" value="{{$editDataSiswa->alamat}}"
+                            id="textAlamat" placeholder="Masukkan alamat">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="text_th_masuk" class="col-sm-2 col-form-label">Tahun Masuk</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="text_th_masuk"  value="{{$editDataSiswa->th_masuk}}" id="text_th_masuk"
-                            placeholder="Masukkan tahun masuk">
+                        <input type="text" class="form-control" name="text_th_masuk"
+                            value="{{$editDataSiswa->th_masuk}}" id="text_th_masuk" placeholder="Masukkan tahun masuk">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="text_no_telp" class="col-sm-2 col-form-label">No. Telp</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="text_no_telp"  value="{{$editDataSiswa->no_telp}}" id="text_no_telp"
-                            placeholder="Masukkan nomor telepon">
+                        <input type="number" class="form-control" name="text_no_telp"
+                            value="{{$editDataSiswa->no_telp}}" id="text_no_telp" placeholder="Masukkan nomor telepon">
                     </div>
                 </div>
 
@@ -105,14 +106,16 @@
                 <div class="row mb-3">
                     <label for="foto_siswa" class="col-sm-2 col-form-label">Preview</label>
                     <div class="col-sm-10">
-                        <img id="previewFoto_siswa" src="{{ asset('storage/' . $editDataSiswa->foto) }}" alt="Preview Foto" style="max-width: 200px;">
+                        <img id="previewFoto_siswa" src="{{ asset('storage/' . $editDataSiswa->foto) }}"
+                            alt="Preview Foto" style="max-width: 200px;">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="textCatatan" class="col-sm-2 col-form-label">Catatan</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="textCatatan" id="textCatatan"  value="{{$editDataSiswa->catatan}}" style="height: 100px"
+                        <textarea class="form-control" name="textCatatan" id="textCatatan"
+                            value="{{$editDataSiswa->catatan}}" style="height: 100px"
                             placeholder="Masukan catatan (jika ada)"></textarea>
                     </div>
                 </div>
@@ -120,15 +123,16 @@
                 <div class="row mb-3">
                     <label for="text_nm_ortu" class="col-sm-2 col-form-label">Nama Orang Tua</label>
                     <div class="col-sm-10">
-                        <input type="text" name="text_nm_ortu" id="text_nm_ortu"  value="{{$editDataSiswa->nm_ortu}}" class="form-control"
-                            placeholder="Masukkan nama lengkap">
+                        <input type="text" name="text_nm_ortu" id="text_nm_ortu" value="{{$editDataSiswa->nm_ortu}}"
+                            class="form-control" placeholder="Masukkan nama lengkap">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="text_id_tel_ortu" class="col-sm-2 col-form-label">Id Telegram Orang Tua</label>
                     <div class="col-sm-10">
-                        <input type="text" name="text_id_tel_ortu" id="text_id_tel_ortu"  value="{{$editDataSiswa->id_tel_ortu}}" class="form-control"
+                        <input type="text" name="text_id_tel_ortu" id="text_id_tel_ortu"
+                            value="{{$editDataSiswa->id_tel_ortu}}" class="form-control"
                             placeholder="Masukkan id telegram">
                     </div>
                 </div>
