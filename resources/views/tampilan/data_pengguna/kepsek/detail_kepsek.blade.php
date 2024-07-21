@@ -18,8 +18,8 @@
 
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img src="{{asset('backend/assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
-                    <h2>Oktaviano Kurniawan</h2>
+                    <img src="{{asset('storage/'. $viewDataKepsek->foto_kepsek)}}" alt="Profile" class="rounded-circle">
+                    <h2>{{$viewDataKepsek->nama}}</h2>
                 </div>
             </div>
 
@@ -46,27 +46,27 @@
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                                <div class="col-lg-9 col-md-8">Oktaviano Kurniawan</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataKepsek->nama}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">NIP</div>
-                                <div class="col-lg-9 col-md-8">11111111</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataKepsek->nip}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Jenis Kelamin</div>
-                                <div class="col-lg-9 col-md-8">Laki - Laki</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataKepsek->jns_kelamin}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Alamat</div>
-                                <div class="col-lg-9 col-md-8">Smebarang</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataKepsek->alamat}}</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">No Telpon</div>
-                                <div class="col-lg-9 col-md-8">08xxxx</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataKepsek->no_telp}}</div>
                             </div>
 
                         </div>

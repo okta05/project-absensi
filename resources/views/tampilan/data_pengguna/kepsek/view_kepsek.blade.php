@@ -50,10 +50,10 @@
                                     <td>{{$kepsek->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('kepsek.detail') }}"><i
+                                            <a class="btn btn-primary" href="{{ route('kepsek.detail', $kepsek->id) }}"><i
                                                     class="bi bi-eye"></i></a>
 
-                                            <a class="btn btn-warning" href="{{ route('kepsek.edit') }}"><i
+                                            <a class="btn btn-warning" href="{{ route('kepsek.edit', $kepsek->id) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
                                         </div>
                                     </td>

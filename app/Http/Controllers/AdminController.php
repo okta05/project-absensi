@@ -44,6 +44,7 @@ class AdminController extends Controller
         } else {
             $data->foto_admin = '';
         }
+        
         $data->email=$request->email;
         $data->password = bcrypt($request->password);
         $data->save();
