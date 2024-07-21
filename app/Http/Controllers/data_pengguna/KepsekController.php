@@ -89,4 +89,21 @@ class KepsekController extends Controller
 
         return redirect()->route('kepsek.view');
     }
+
+    public function kepsekDelete($id) {
+        
+        $deleteDataKepsek = Kepsek::find($id);
+        if ($deleteDataKepsek) {
+            // Delete the photo from storage if exists
+            if ($deleteDataKepsek->foto_kepsek && Storage::disk('public')->exists($deleteDataKepsek->foto_kepsek)) {
+                Storage::disk('public')->delete($deleteDataKepsek->foto_kepsek);
+            }
+    
+            // Delete the siswa data from database
+            $deleteDataKepsek->delete();
+    
+            return redirect()->route('kepsek.view');
+        } 
+        
+    }
 }

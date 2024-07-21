@@ -72,6 +72,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
         Route::post('/simpan', [KepsekController::class, 'kepsekStore'])->name('kepsek.store');
         Route::get('/edit/{id}', [KepsekController::class, 'kepsekEdit'])->name('kepsek.edit');
         Route::post('/update/{id}', [KepsekController::class, 'kepsekUpdate'])->name('kepsek.update');
+        Route::get('/delete/{id}', [KepsekController::class, 'kepsekDelete'])->name('kepsek.delete');
     });
 });
 
