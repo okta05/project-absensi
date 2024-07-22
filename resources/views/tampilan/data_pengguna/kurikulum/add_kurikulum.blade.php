@@ -6,8 +6,8 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{route("kurikulum.view")}}">Data Kepala Sekolah</a></li>
-            <li class="breadcrumb-item active"><a href="#">Tambah Data Kepala Sekolah</a></li>
+            <li class="breadcrumb-item"><a href="{{route("kurikulum.view")}}">Data Kurikulum</a></li>
+            <li class="breadcrumb-item active"><a href="#">Tambah Data Kurikulum</a></li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -15,7 +15,7 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Form Tambah Kepala Sekolah</h5>
+            <h5 class="card-title">Form Tambah Kurikulum</h5>
 
             <!-- General Form Elements -->
             <form method="post" action="{{route('kurikulum.store')}}" enctype="multipart/form-data">
