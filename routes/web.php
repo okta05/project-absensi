@@ -80,10 +80,11 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data-pengguna/kurikulum')->group(function () {
         Route::get('/view', [KurikulumController::class, 'kurikulumView'])->name('kurikulum.view');
+        Route::get('/detail', [KurikulumController::class, 'kurikulumDetail'])->name('kurikulum.detail');
         Route::get('/add', [KurikulumController::class, 'kurikulumAdd'])->name('kurikulum.add');
         Route::post('/store', [KurikulumController::class, 'kurikulumStore'])->name('kurikulum.store');
-        Route::get('/detail', [KurikulumController::class, 'kurikulumDetail'])->name('kurikulum.detail');
-        Route::get('/edit', [KurikulumController::class, 'kurikulumEdit'])->name('kurikulum.edit');
+        Route::get('/edit/{id}', [KurikulumController::class, 'kurikulumEdit'])->name('kurikulum.edit');
+        Route::post('/update/{id}', [KurikulumController::class, 'kurikulumUpdate'])->name('kurikulum.update');
     });
 });
 
