@@ -79,7 +79,7 @@ class AdminController extends Controller
             }
     
             // Store the new photo
-            $foto_admin = $request->file('foto_admin')->store('siswa/foto_admin', 'public');
+            $foto_admin = $request->file('foto_admin')->store('admin/foto_admin', 'public');
             $data->foto_admin = $foto_admin;
         }
 
