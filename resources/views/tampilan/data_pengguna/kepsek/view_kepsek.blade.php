@@ -41,6 +41,7 @@
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
                                 @foreach ( $allDataKepsek as $key => $kepsek )
+                                
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$kepsek->nama}}</td>
@@ -64,6 +65,7 @@
                                     </td>
                                 </tr>
                                 @endforeach
+
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
