@@ -163,6 +163,22 @@
         reader.readAsDataURL(file);
     });
     </script>
+
+<script>
+    const inputFoto_kurikulum = document.querySelector('#foto_kurikulum');
+    const previewFoto_kurikulum = document.querySelector('#previewFoto_kurikulum');
+
+    inputFoto_kurikulum.addEventListener('change', function() {
+        const file = inputFoto_kurikulum.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            previewFoto_kurikulum.src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    });
+    </script>
    
 
 
