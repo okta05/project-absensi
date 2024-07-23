@@ -106,7 +106,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data-pengguna/wali-kelas')->group(function () {
         Route::get('/view', [WakelController::class, 'wakelView'])->name('wakel.view');
-        Route::get('/detail', [WakelController::class, 'wakelDetail'])->name('wakel.detail');
+        Route::get('/detail/{id}', [WakelController::class, 'wakelDetail'])->name('wakel.detail');
         Route::get('/add', [WakelController::class, 'wakelAdd'])->name('wakel.add');
         Route::post('/simpan', [WakelController::class, 'wakelStore'])->name('wakel.store');
         Route::get('/edit', [WakelController::class, 'wakelEdit'])->name('wakel.edit');

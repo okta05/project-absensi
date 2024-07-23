@@ -50,7 +50,7 @@
                                     <td>{{$wakel->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('wakel.detail') }}"><i
+                                            <a class="btn btn-primary" href="{{ route('wakel.detail', $wakel->id) }}"><i
                                                     class="bi bi-eye"></i></a>
 
                                             <a class="btn btn-warning" href="{{ route('wakel.edit') }}"><i

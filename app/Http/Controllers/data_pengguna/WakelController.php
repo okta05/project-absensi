@@ -15,8 +15,9 @@ class WakelController extends Controller
         return view("tampilan.data_pengguna.wakel.view_wakel", $data);
     }
 
-    public function wakelDetail () {
-        return view("tampilan.data_pengguna.wakel.detail_wakel");
+    public function wakelDetail ($id) {
+        $viewDataWakel = Wakel::find($id);
+        return view("tampilan.data_pengguna.wakel.detail_wakel", compact('viewDataWakel'));
     }
 
     public function wakelAdd () {
