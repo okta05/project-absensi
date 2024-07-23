@@ -93,7 +93,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data-pengguna/bk')->group(function () {
         Route::get('/view', [BkController::class, 'bkView'])->name('bk.view');
-        Route::get('/detail', [BkController::class, 'bkDetail'])->name('bk.detail');
+        Route::get('/detail/{id}', [BkController::class, 'bkDetail'])->name('bk.detail');
         Route::get('/add', [BkController::class, 'bkAdd'])->name('bk.add');
         Route::post('/simpan', [BkController::class, 'bkStore'])->name('bk.store');
         Route::get('/edit/{id}', [BkController::class, 'bkEdit'])->name('bk.edit');

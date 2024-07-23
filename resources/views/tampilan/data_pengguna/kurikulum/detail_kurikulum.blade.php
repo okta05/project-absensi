@@ -6,7 +6,7 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{route("kepsek.view")}}">Data Kurikulum</a></li>
+            <li class="breadcrumb-item"><a href="{{route("kurikulum.view")}}">Data Kurikulum</a></li>
             <li class="breadcrumb-item active"><a href="#">Detail Data Kurikulum</a></li>
         </ol>
     </nav>

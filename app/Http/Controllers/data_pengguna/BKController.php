@@ -15,8 +15,9 @@ class BKController extends Controller
         return view("tampilan.data_pengguna.bk.view_bk", $data);
     }
 
-    public function bkDetail () {
-        return view("tampilan.data_pengguna.bk.detail_bk");
+    public function bkDetail ($id) {
+        $viewDataBk = Bk::find($id);
+        return view("tampilan.data_pengguna.bk.detail_bk", compact('viewDataBk'));
     }
     
     public function bkAdd () {
