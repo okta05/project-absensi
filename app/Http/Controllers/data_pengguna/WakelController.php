@@ -4,12 +4,15 @@ namespace App\Http\Controllers\data_pengguna;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Wakel;
+use Illuminate\Support\Facades\Storage;
 
 class WakelController extends Controller
 {
     //
     public function wakelView () {
-        return view("tampilan.data_pengguna.wakel.view_wakel");
+        $data['allDataWakel']=Wakel::all();
+        return view("tampilan.data_pengguna.wakel.view_wakel", $data);
     }
 
     public function wakelAdd () {
