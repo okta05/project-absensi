@@ -28,7 +28,7 @@
                         @elseif (Auth::guard('admin')->check())
                             {{ asset('storage/' . Auth::guard('admin')->user()->foto_admin) }}
                         @elseif (Auth::guard('kurikulum')->check())
-                            {{ asset('storage/' . Auth::guard('kurikulum')->user()->foto) }}
+                            {{ asset('storage/' . Auth::guard('kurikulum')->user()->foto_kurikulum) }}
                         @elseif (Auth::guard('bk')->check())
                             {{ asset('storage/' . Auth::guard('bk')->user()->foto) }}
                         @elseif (Auth::guard('wakel')->check())
