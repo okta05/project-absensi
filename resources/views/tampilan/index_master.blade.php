@@ -212,6 +212,22 @@
     });
     </script>
 
+    <script>
+    const inputFoto_guru = document.querySelector('#foto_guru');
+    const previewFoto_guru = document.querySelector('#previewFoto_guru');
+
+    inputFoto_guru.addEventListener('change', function() {
+        const file = inputFoto_guru.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            previewFoto_guru.src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    });
+    </script>
+
 
 
 </body>

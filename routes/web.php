@@ -121,6 +121,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
         Route::get('/view', [GuruController::class, 'guruView'])->name('guru.view');
         Route::get('/detail/{id}', [GuruController::class, 'guruDetail'])->name('guru.detail');
         Route::get('/add', [GuruController::class, 'guruAdd'])->name('guru.add');
+        Route::post('/simpan', [GuruController::class, 'guruStore'])->name('guru.store');
         Route::get('/edit', [GuruController::class, 'guruEdit'])->name('guru.edit');
     });
 });
