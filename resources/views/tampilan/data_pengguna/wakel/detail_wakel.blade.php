@@ -2,12 +2,12 @@
 @section('tampilan')
 
 <div class="pagetitle">
-    <h1>Detail Data Kepala Sekolah</h1>
+    <h1>Detail Data Wali Kelas</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{route("wakel.view")}}">Data Wakel</a></li>
-            <li class="breadcrumb-item active"><a href="#">Detail Data Wakel</a></li>
+            <li class="breadcrumb-item"><a href="{{route("wakel.view")}}">Data Wali Kelas</a></li>
+            <li class="breadcrumb-item active"><a href="#">Detail Data Wali Kelas</a></li>
         </ol>
     </nav>
 </div><!-- End Page Title -->

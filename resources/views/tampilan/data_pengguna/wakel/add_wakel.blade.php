@@ -2,12 +2,12 @@
 @section('tampilan')
 
 <div class="pagetitle">
-    <h1>Tambah Data Admin</h1>
+    <h1>Tambah Data Wali Kelas</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{route("wakel.view")}}">Data Wakel</a></li>
-            <li class="breadcrumb-item active"><a href="#">Tambah Data Wakel</a></li>
+            <li class="breadcrumb-item"><a href="{{route("wakel.view")}}">Data Wali Kelas</a></li>
+            <li class="breadcrumb-item active"><a href="#">Tambah Data Wali Kelas</a></li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -15,7 +15,7 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Form Tambah Wakel</h5>
+            <h5 class="card-title">Form Tambah Wali Kelas</h5>
 
             <!-- General Form Elements -->
             <form method="post" action="{{route('wakel.store')}}" enctype="multipart/form-data">
