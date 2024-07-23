@@ -119,8 +119,8 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data-pengguna/guru')->group(function () {
         Route::get('/view', [GuruController::class, 'guruView'])->name('guru.view');
-        Route::get('/add', [GuruController::class, 'guruAdd'])->name('guru.add');
         Route::get('/detail', [GuruController::class, 'guruDetail'])->name('guru.detail');
+        Route::get('/add', [GuruController::class, 'guruAdd'])->name('guru.add');
         Route::get('/edit', [GuruController::class, 'guruEdit'])->name('guru.edit');
     });
 });

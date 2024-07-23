@@ -40,13 +40,15 @@
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
+
+                                @foreach ($allDataGuru as $key => $guru )
                                 <tr>
-                                    <td>1</td>
-                                    <td>Oktaviano Kurniawan</td>
-                                    <td>11111</td>
-                                    <td>Laki - laki</td>
-                                    <td>Rogojampi</td>
-                                    <td>08xxxx</td>
+                                    <td>{{$key+1}}</td>
+                                    <td>{{$guru->nama}}</td>
+                                    <td>{{$guru->nip}}</td>
+                                    <td>{{$guru->jns_kelamin}}</td>
+                                    <td>{{$guru->alamat}}</td>
+                                    <td>{{$guru->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-primary" href="{{ route('guru.detail') }}"><i
@@ -59,6 +61,8 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
