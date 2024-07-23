@@ -4,12 +4,15 @@ namespace App\Http\Controllers\data_pengguna;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Bk;
+use Illuminate\Support\Facades\Storage;
 
 class BKController extends Controller
 {
      //
      public function bkView () {
-        return view("tampilan.data_pengguna.bk.view_bk");
+        $data['allDataBk']=Bk::all();
+        return view("tampilan.data_pengguna.bk.view_bk", $data);
     }
     
     public function bkAdd () {

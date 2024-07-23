@@ -41,13 +41,14 @@
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
+                                @foreach ( $allDataBk as $key => $bk )
                                 <tr>
-                                    <td>1</td>
-                                    <td>Oktaviano Kurniawan</td>
-                                    <td>11111</td>
-                                    <td>Laki - laki</td>
-                                    <td>Rogojampi</td>
-                                    <td>08xxxx</td>
+                                    <td>{{$key+1}}</td>
+                                    <td>{{$bk->nama}}</td>
+                                    <td>{{$bk->nip}}</td>
+                                    <td>{{$bk->jns_kelamin}}</td>
+                                    <td>{{$bk->alamat}}</td>
+                                    <td>{{$bk->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-primary" href="{{ route('bk.detail') }}"><i
@@ -60,6 +61,8 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
