@@ -196,6 +196,22 @@
     });
     </script>
 
+    <script>
+    const inputFoto_wakel = document.querySelector('#foto_wakel');
+    const previewFoto_wakel = document.querySelector('#previewFoto_wakel');
+
+    inputFoto_wakel.addEventListener('change', function() {
+        const file = inputFoto_wakel.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            previewFoto_wakel.src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    });
+    </script>
+
 
 
 </body>
