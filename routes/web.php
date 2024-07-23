@@ -85,6 +85,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
         Route::post('/store', [KurikulumController::class, 'kurikulumStore'])->name('kurikulum.store');
         Route::get('/edit/{id}', [KurikulumController::class, 'kurikulumEdit'])->name('kurikulum.edit');
         Route::post('/update/{id}', [KurikulumController::class, 'kurikulumUpdate'])->name('kurikulum.update');
+        Route::get('/delete/{id}', [KurikulumController::class, 'kurikulumDelete'])->name('kurikulum.delete');
     });
 });
 

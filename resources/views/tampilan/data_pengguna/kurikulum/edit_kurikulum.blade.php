@@ -77,14 +77,14 @@
                 <div class="row mb-3">
                     <label for="foto_kepsek" class="col-sm-2 col-form-label">Upload Foto</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="file" name="foto_kepsek" id="foto_kepsek">
+                        <input class="form-control" type="file" name="foto_kurikulum" id="foto_kurikulum">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="foto_kepsek" class="col-sm-2 col-form-label">Preview</label>
+                    <label for="foto_kurikulum" class="col-sm-2 col-form-label">Preview</label>
                     <div class="col-sm-10">
-                        <img id="previewFoto_kepsek" src="{{ asset('storage/' . $editDataKurikulum->foto_kepsek) }}"
+                        <img id="previewFoto_kurikulum" src="{{ asset('storage/' . $editDataKurikulum->foto_kepsek) }}"
                             alt="Preview Foto" style="max-width: 200px;">
                     </div>
                 </div>

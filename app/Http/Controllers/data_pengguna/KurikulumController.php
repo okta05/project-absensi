@@ -88,4 +88,21 @@ class KurikulumController extends Controller
 
         return redirect()->route('kurikulum.view');
     }
+
+    public function kurikulumDelete($id) {
+        
+        $deleteDataKurikulum = Kurikulum::find($id);
+        if ($deleteDataKurikulum) {
+            // Delete the photo from storage if exists
+            if ($deleteDataKurikulum->foto_kurikulum && Storage::disk('public')->exists($deleteDataKurikulum->foto_kurikulum)) {
+                Storage::disk('public')->delete($deleteDataKurikulum->foto_kurikulum);
+            }
+    
+            // Delete the siswa data from database
+            $deleteDataKurikulum->delete();
+    
+            return redirect()->route('kurikulum.view');
+        } 
+        
+    }
 }
