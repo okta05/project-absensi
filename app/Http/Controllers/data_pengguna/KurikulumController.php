@@ -15,8 +15,9 @@ class KurikulumController extends Controller
         return view("tampilan.data_pengguna.kurikulum.view_kurikulum", $data);
     }
 
-    public function kurikulumDetail () {
-        return view("tampilan.data_pengguna.kurikulum.detail_kurikulum");
+    public function kurikulumDetail ($id) {
+        $viewDataKurikulum = Kurikulum::find($id);
+        return view("tampilan.data_pengguna.kurikulum.detail_kurikulum", compact('viewDataKurikulum'));
     }
 
     public function kurikulumAdd () {

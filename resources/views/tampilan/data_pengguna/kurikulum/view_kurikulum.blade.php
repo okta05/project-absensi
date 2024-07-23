@@ -51,7 +51,7 @@
                                     <td>{{$kurikulum->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('kurikulum.detail') }}"><i
+                                            <a class="btn btn-primary" href="{{ route('kurikulum.detail', $kurikulum->id) }}"><i
                                                     class="bi bi-eye"></i></a>
 
                                             <a class="btn btn-warning" href="{{ route('kurikulum.edit', $kurikulum->id) }}"><i
