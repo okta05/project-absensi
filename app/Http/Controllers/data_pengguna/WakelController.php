@@ -90,4 +90,21 @@ class WakelController extends Controller
         return redirect()->route('wakel.view');
     }
 
+    public function wakelDelete($id) {
+        
+        $deleteDataWakel = Wakel::find($id);
+        if ($deleteDataWakel) {
+            // Delete the photo from storage if exists
+            if ($deleteDataWakel->foto_wakel && Storage::disk('public')->exists($deleteDataWakel->foto_wakel)) {
+                Storage::disk('public')->delete($deleteDataWakel->foto_wakel);
+            }
+    
+            // Delete the siswa data from database
+            $deleteDataWakel->delete();
+    
+            return redirect()->route('wakel.view');
+        } 
+        
+    }
+
 }

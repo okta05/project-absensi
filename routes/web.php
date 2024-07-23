@@ -111,6 +111,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
         Route::post('/simpan', [WakelController::class, 'wakelStore'])->name('wakel.store');
         Route::get('/edit/{id}', [WakelController::class, 'wakelEdit'])->name('wakel.edit');
         Route::post('/update/{id}', [WakelController::class, 'wakelUpdate'])->name('wakel.update');
+        Route::get('/delete/{id}', [WakelController::class, 'wakelDelete'])->name('wakel.delete');
     });
 });
 
