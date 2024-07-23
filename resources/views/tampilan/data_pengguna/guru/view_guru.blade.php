@@ -51,7 +51,7 @@
                                     <td>{{$guru->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('guru.detail') }}"><i
+                                            <a class="btn btn-primary" href="{{ route('guru.detail', $guru->id) }}"><i
                                                     class="bi bi-eye"></i></a>
 
                                             <a class="btn btn-warning" href="{{ route('guru.edit') }}"><i
