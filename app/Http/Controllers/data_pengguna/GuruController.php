@@ -89,4 +89,21 @@ class GuruController extends Controller
 
         return redirect()->route('guru.view');
     }
+
+    public function guruDelete($id) {
+        
+        $deleteDataGuru = Guru::find($id);
+        if ($deleteDataGuru) {
+            // Delete the photo from storage if exists
+            if ($deleteDataGuru->foto_guru && Storage::disk('public')->exists($deleteDataGuru->foto_guru)) {
+                Storage::disk('public')->delete($deleteDataGuru->foto_guru);
+            }
+    
+            // Delete the siswa data from database
+            $deleteDataGuru->delete();
+    
+            return redirect()->route('wakel.view');
+        } 
+        
+    }
 }

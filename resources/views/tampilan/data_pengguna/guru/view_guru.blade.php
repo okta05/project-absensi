@@ -57,7 +57,7 @@
                                             <a class="btn btn-warning" href="{{ route('guru.edit', $guru->id) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" href="#"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('guru.delete', $guru->id) }}"><i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
