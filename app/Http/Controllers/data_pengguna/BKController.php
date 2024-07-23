@@ -88,4 +88,21 @@ class BKController extends Controller
 
         return redirect()->route('bk.view');
     }
+
+    public function bkDelete($id) {
+        
+        $deleteDataBk = Bk::find($id);
+        if ($deleteDataBk) {
+            // Delete the photo from storage if exists
+            if ($deleteDataBk->foto_bk && Storage::disk('public')->exists($deleteDataBk->foto_bk)) {
+                Storage::disk('public')->delete($deleteDataBk->foto_bk);
+            }
+    
+            // Delete the siswa data from database
+            $deleteDataBk->delete();
+    
+            return redirect()->route('bk.view');
+        } 
+        
+    }
 }

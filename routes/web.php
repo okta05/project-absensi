@@ -98,6 +98,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
         Route::post('/simpan', [BkController::class, 'bkStore'])->name('bk.store');
         Route::get('/edit/{id}', [BkController::class, 'bkEdit'])->name('bk.edit');
         Route::post('/update/{id}', [BkController::class, 'bkUpdate'])->name('bk.update');
+        Route::get('/delete/{id}', [BkController::class, 'bkDelete'])->name('bk.delete');
     });
 });
 
