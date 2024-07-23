@@ -54,7 +54,7 @@
                                             <a class="btn btn-primary" href="{{ route('guru.detail', $guru->id) }}"><i
                                                     class="bi bi-eye"></i></a>
 
-                                            <a class="btn btn-warning" href="{{ route('guru.edit') }}"><i
+                                            <a class="btn btn-warning" href="{{ route('guru.edit', $guru->id) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
                                             <a class="btn btn-danger" href="#"><i class="bi bi-trash"></i></a>

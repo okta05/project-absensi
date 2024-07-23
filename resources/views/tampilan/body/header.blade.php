@@ -34,7 +34,7 @@
                         @elseif (Auth::guard('wakel')->check())
                             {{ asset('storage/' . Auth::guard('wakel')->user()->foto_wakel) }}
                         @elseif (Auth::guard('guru')->check())
-                            {{ asset('storage/' . Auth::guard('guru')->user()->foto) }}
+                            {{ asset('storage/' . Auth::guard('guru')->user()->foto_guru) }}
                         @elseif (Auth::guard('web')->check())
                             {{ asset('storage/' . Auth::guard('web')->user()->foto) }}
                         @endif
