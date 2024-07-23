@@ -164,7 +164,7 @@
     });
     </script>
 
-<script>
+    <script>
     const inputFoto_kurikulum = document.querySelector('#foto_kurikulum');
     const previewFoto_kurikulum = document.querySelector('#previewFoto_kurikulum');
 
@@ -179,7 +179,22 @@
         reader.readAsDataURL(file);
     });
     </script>
-   
+
+    <script>
+    const inputFoto_bk = document.querySelector('#foto_bk');
+    const previewFoto_bk = document.querySelector('#previewFoto_bk');
+
+    inputFoto_bk.addEventListener('change', function() {
+        const file = inputFoto_bk.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            previewFoto_bk.src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    });
+    </script>
 
 
 
