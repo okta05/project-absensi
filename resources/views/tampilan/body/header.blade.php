@@ -30,7 +30,7 @@
                         @elseif (Auth::guard('kurikulum')->check())
                             {{ asset('storage/' . Auth::guard('kurikulum')->user()->foto_kurikulum) }}
                         @elseif (Auth::guard('bk')->check())
-                            {{ asset('storage/' . Auth::guard('bk')->user()->foto) }}
+                            {{ asset('storage/' . Auth::guard('bk')->user()->foto_bk) }}
                         @elseif (Auth::guard('wakel')->check())
                             {{ asset('storage/' . Auth::guard('wakel')->user()->foto) }}
                         @elseif (Auth::guard('guru')->check())

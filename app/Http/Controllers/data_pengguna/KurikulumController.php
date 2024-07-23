@@ -54,7 +54,7 @@ class KurikulumController extends Controller
 
     public function kurikulumEdit ($id) {
         $editDataKurikulum = Kurikulum::find($id);
-        return view("tampilan.data_pengguna.kurikulum.Edit_kurikulum", compact('editDataKurikulum'));
+        return view("tampilan.data_pengguna.kurikulum.edit_kurikulum", compact('editDataKurikulum'));
     }
 
     public function kurikulumUpdate(Request $request, $id) {

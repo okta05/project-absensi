@@ -51,7 +51,41 @@ class BKController extends Controller
         return redirect()->route('bk.view');
     }
 
-    public function bkEdit () {
-        return view("tampilan.data_pengguna.bk.Edit_bk");
+    public function bkEdit ($id) {
+        $editDataBk = Bk::find($id);
+        return view("tampilan.data_pengguna.bk.edit_bk", compact('editDataBk'));
+    }
+
+    public function bkUpdate(Request $request, $id) {
+
+        $validateData=$request->validate([
+            'textNama' => 'required',
+            'foto_bk' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // menambahkan validasi untuk file image
+         
+        ]); 
+
+        $data = Bk::find($id);
+        $data->nama=$request->textNama;
+        $data->nip=$request->textNIP;
+        $data->jns_kelamin=$request->text_jns_kelamin;
+        $data->alamat=$request->textAlamat;
+        $data->no_telp=$request->text_no_telp;
+
+        if ($request->file('foto_bk')) {
+            // Delete the old photo if exists
+            if ($data->foto_bk && Storage::disk('public')->exists($data->foto_bk)) {
+                Storage::disk('public')->delete($data->foto_bk);
+            }
+    
+            // Store the new photo
+            $foto_bk = $request->file('foto_bk')->store('data_pengguna/foto_bk', 'public');
+            $data->foto_bk = $foto_bk;
+        }
+
+        $data->email=$request->email;
+        $data->password = bcrypt($request->password);
+        $data->save();
+
+        return redirect()->route('bk.view');
     }
 }
