@@ -41,7 +41,7 @@
                                     <td>
                                         <div class="dropdown">
 
-                                            <a class="btn btn-warning" href="{{ route('tahpel.edit') }}"><i
+                                            <a class="btn btn-warning" href="{{ route('tahpel.edit', $tahpel->id) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
                                             <a class="btn btn-danger" href="#"><i class="bi bi-trash"></i></a>

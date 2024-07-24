@@ -152,7 +152,8 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
         Route::get('/view', [TahpelController::class, 'tahpelView'])->name('tahpel.view');
         Route::get('/add', [TahpelController::class, 'tahpelAdd'])->name('tahpel.add');
         Route::post('/simpan', [TahpelController::class, 'tahpelStore'])->name('tahpel.store');
-        Route::get('/edit', [TahpelController::class, 'tahpelEdit'])->name('tahpel.edit');
+        Route::get('/edit/{id}', [TahpelController::class, 'tahpelEdit'])->name('tahpel.edit');
+        Route::post('/update/{id}', [TahpelController::class, 'tahpelUpdate'])->name('tahpel.update');
     });
 });
 

@@ -18,11 +18,15 @@
             <h5 class="card-title">Form Ubah Data Tahun Pelajaran</h5>
 
             <!-- General Form Elements -->
-            <form>
+            <form method="post" action="{{route('tahpel.update', $editDataTahpel->id)}}">
+                @csrf
+
                 <div class="row mb-3">
-                    <label for="nama" class="col-sm-2 col-form-label">Tahun Pelajaran</label>
+                    <label for="text_thn_pelajaran" class="col-sm-2 col-form-label">Tahun Pelajaran</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan tahun pelajaran">
+                        <input type="text" name="text_thn_pelajaran" id="text_thn_pelajaran"
+                            value="{{$editDataTahpel->th_pelajaran}}" class="form-control"
+                            placeholder="Masukkan tahun pelajaran">
                     </div>
                 </div>
 

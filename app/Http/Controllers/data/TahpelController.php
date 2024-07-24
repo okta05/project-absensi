@@ -30,7 +30,21 @@ class TahpelController extends Controller
         return redirect()->route('tahpel.view');
     }
 
-    public function tahpelEdit() {
-        return view("tampilan.data.tahun_pelajaran.edit_tahpel");
+    public function tahpelEdit($id) {
+        $editDataTahpel = Tahpel::find($id);
+        return view("tampilan.data.tahun_pelajaran.edit_tahpel", compact('editDataTahpel'));
     }
+
+    public function tahpelUpdate(Request $request, $id) {
+        $validateData=$request->validate([
+            'text_thn_pelajaran' => 'required',
+        ]); 
+
+        $data = Tahpel::find($id);
+        $data->th_pelajaran=$request->text_thn_pelajaran;
+        $data->save();
+
+        return redirect()->route('tahpel.view');
+    }
+
 }
