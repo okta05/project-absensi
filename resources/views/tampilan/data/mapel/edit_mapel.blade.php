@@ -51,13 +51,14 @@
                         <select class="form-select" name="text_id_tahpel" value="{{$editDataMapel->id_th_pelajaran}}"
                             id="text_id_tahpel" aria-label="Default select example">
                             <option selected disabled>Pilih tahun pelajaran</option>
-                            @foreach($tahpels as $tahpel)
 
+                            @foreach($tahpels as $tahpel)
                             <option value="{{$tahpel->th_pelajaran}}"
                                 {{$editDataMapel->id_th_pelajaran=="$tahpel->th_pelajaran"? "selected":""}}>
                                 {{$tahpel->th_pelajaran}}
                             </option>
                             @endforeach
+
                         </select>
                     </div>
                 </div>
