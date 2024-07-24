@@ -52,7 +52,7 @@
                                             <a class="btn btn-warning" href="{{ route('mapel.edit', $mapel->id) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" href="#"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('mapel.delete', $mapel->id) }}"><i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

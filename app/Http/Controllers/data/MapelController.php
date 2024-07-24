@@ -56,4 +56,11 @@ class MapelController extends Controller
 
         return redirect()->route('mapel.view');
     }
+
+    public function mapelDelete ($id) {
+        $deleteDataMapel = Mapel::find($id);
+        $deleteDataMapel->delete();
+
+        return redirect()->route('mapel.view');
+    }
 }
