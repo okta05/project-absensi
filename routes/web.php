@@ -143,7 +143,8 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
         Route::get('/view', [MapelController::class, 'mapelView'])->name('mapel.view');
         Route::get('/add', [MapelController::class, 'mapelAdd'])->name('mapel.add');
         Route::post('/simpan', [MapelController::class, 'mapelStore'])->name('mapel.store');
-        Route::get('/edit', [MapelController::class, 'mapelEdit'])->name('mapel.edit');
+        Route::get('/edit{id}', [MapelController::class, 'mapelEdit'])->name('mapel.edit');
+        Route::post('/update/{id}', [MapelController::class, 'mapelUpdate'])->name('mapel.update');
     });
 });
 

@@ -19,7 +19,7 @@ class MapelController extends Controller
     }
 
     public function mapelStore(Request $request) {
-        
+
         $validateData=$request->validate([
             'textNM_Mapel' => 'required',
             'text_id_guru' => 'required',
@@ -35,7 +35,25 @@ class MapelController extends Controller
         return redirect()->route('mapel.view');
     }
 
-    public function mapeledit() {
-        return view("tampilan.data.mapel.edit_mapel");
+    public function mapeledit($id) {
+        $editDataMapel = Mapel::find($id);
+        return view("tampilan.data.mapel.edit_mapel", compact('editDataMapel'));
+    }
+
+    public function mapelUpdate(Request $request, $id) {
+
+        $validateData=$request->validate([
+            'textNM_Mapel' => 'required',
+            'text_id_guru' => 'required',
+         
+        ]); 
+
+        $data = Mapel::find($id);
+        $data->nm_mapel=$request->textNM_Mapel;
+        $data->id_guru=$request->text_id_guru;
+        $data->id_th_pelajaran=$request->text_id_tahpel;
+        $data->save();
+
+        return redirect()->route('mapel.view');
     }
 }
