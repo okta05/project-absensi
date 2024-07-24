@@ -147,7 +147,7 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola data tahun pelajaran
-Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data/tahun-pelajaran')->group(function () {
         Route::get('/view', [TahpelController::class, 'tahpelView'])->name('tahpel.view');
         Route::get('/add', [TahpelController::class, 'tahpelAdd'])->name('tahpel.add');
