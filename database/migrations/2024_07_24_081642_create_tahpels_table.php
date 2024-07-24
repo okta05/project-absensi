@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('tahpels', function (Blueprint $table) {
             $table->id();
-            $table->string('nm_mapel')->nullable();
-            $table->string('id_guru')->nullable();
-            $table->string('id_th_pelajaran')->nullable();
+            $table->string('th_pelajaran')->nullable();
             $table->timestamps();
         });
     }
