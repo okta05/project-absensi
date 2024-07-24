@@ -5,6 +5,7 @@ namespace App\Http\Controllers\data;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Mapel;
+use App\Models\Tahpel;
 
 class MapelController extends Controller
 {
@@ -15,7 +16,10 @@ class MapelController extends Controller
     }
 
     public function mapelAdd() {
-        return view("tampilan.data.mapel.add_mapel");
+        // Mengambil semua user dengan relasi role
+        $tahpels = Tahpel::all();
+
+        return view("tampilan.data.mapel.add_mapel", compact('tahpels'));
     }
 
     public function mapelStore(Request $request) {
@@ -36,8 +40,9 @@ class MapelController extends Controller
     }
 
     public function mapeledit($id) {
+        $tahpels = Tahpel::all();
         $editDataMapel = Mapel::find($id);
-        return view("tampilan.data.mapel.edit_mapel", compact('editDataMapel'));
+        return view("tampilan.data.mapel.edit_mapel", compact('editDataMapel', 'tahpels'));
     }
 
     public function mapelUpdate(Request $request, $id) {

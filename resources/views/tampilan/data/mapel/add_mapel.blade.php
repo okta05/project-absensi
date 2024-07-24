@@ -48,8 +48,11 @@
                         <select class="form-select" name="text_id_tahpel" id="text_id_tahpel"
                             aria-label="Default select example">
                             <option selected disabled>Pilih tahun pelajaran</option>
-                            <option value="2022/2023">2022/2023</option>
-                            <option value="2023/2024">2023/2024</option>
+                            @foreach($tahpels as $tahpel)
+
+                            <option value="{{$tahpel->th_pelajaran}}">{{$tahpel->th_pelajaran}}</option>
+
+                            @endforeach
                         </select>
                     </div>
                 </div>
