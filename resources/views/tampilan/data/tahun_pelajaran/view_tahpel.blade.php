@@ -34,9 +34,10 @@
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
+                                @foreach ( $allDataTahpel as $key => $tahpel )
                                 <tr>
-                                    <td>1</td>
-                                    <td>2024/2025</td>
+                                <td>{{$key+1}}</td>
+                                <td>{{$tahpel->th_pelajaran}}</td>
                                     <td>
                                         <div class="dropdown">
 
@@ -47,6 +48,8 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
