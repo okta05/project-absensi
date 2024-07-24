@@ -18,6 +18,23 @@ class MapelController extends Controller
         return view("tampilan.data.mapel.add_mapel");
     }
 
+    public function mapelStore(Request $request) {
+        
+        $validateData=$request->validate([
+            'textNM_Mapel' => 'required',
+            'text_id_guru' => 'required',
+         
+        ]); 
+
+        $data = new Mapel();
+        $data->nm_mapel=$request->textNM_Mapel;
+        $data->id_guru=$request->text_id_guru;
+        $data->id_th_pelajaran=$request->text_id_tahpel;
+        $data->save();
+
+        return redirect()->route('mapel.view');
+    }
+
     public function mapeledit() {
         return view("tampilan.data.mapel.edit_mapel");
     }

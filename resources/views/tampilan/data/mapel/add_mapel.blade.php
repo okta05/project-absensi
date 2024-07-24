@@ -18,22 +18,26 @@
             <h5 class="card-title">Form Tambah Mata Pelajaran</h5>
 
             <!-- General Form Elements -->
-            <form>
+            <form method="post" action="{{route('mapel.store')}}">
+                @csrf
+
                 <div class="row mb-3">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama Mata Pelajaran</label>
+                    <label for="textNM_Mapel" class="col-sm-2 col-form-label">Nama Mata Pelajaran</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan mata pelajaran">
+                        <input type="text" class="form-control" name="textNM_Mapel" id="textNM_Mapel"
+                            placeholder="Masukkan mata pelajaran">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Guru</label>
                     <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="text_id_guru" id="text_id_guru"
+                            aria-label="Default select example">
                             <option selected disabled>Pilih Guru</option>
-                            <option value="1">7</option>
-                            <option value="2">8</option>
-                            <option value="2">8</option>
+                            <option value="Guru 1">Guru 1</option>
+                            <option value="Guru 2">Guru 2</option>
+                            <option value="Guru 3">Guru 3</option>
                         </select>
                     </div>
                 </div>
@@ -41,10 +45,11 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Tahun Pelajaran</label>
                     <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="text_id_tahpel" id="text_id_tahpel"
+                            aria-label="Default select example">
                             <option selected disabled>Pilih tahun pelajaran</option>
-                            <option value="1">Wali Kelas 1</option>
-                            <option value="2">Wali Kelas 2</option>
+                            <option value="2022/2023">2022/2023</option>
+                            <option value="2023/2024">2023/2024</option>
                         </select>
                     </div>
                 </div>
