@@ -18,11 +18,14 @@
             <h5 class="card-title">Form Tambah Tahun Pelajaran</h5>
 
             <!-- General Form Elements -->
-            <form>
+            <form method="post" action="{{route('tahpel.store')}}">
+                @csrf
+
                 <div class="row mb-3">
-                    <label for="nama" class="col-sm-2 col-form-label">Tahun Pelajaran</label>
+                    <label for="text_thn_pelajaran" class="col-sm-2 col-form-label">Tahun Pelajaran</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan tahun pelajaran">
+                        <input type="text" class="form-control" name="text_thn_pelajaran" id="text_thn_pelajaran"
+                            placeholder="2020/2021">
                     </div>
                 </div>
 
