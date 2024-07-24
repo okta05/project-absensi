@@ -47,4 +47,10 @@ class TahpelController extends Controller
         return redirect()->route('tahpel.view');
     }
 
+    public function tahpelDelete ($id) {
+        $deleteDataTahpel = Tahpel::find($id);
+        $deleteDataTahpel->delete();
+
+        return redirect()->route('tahpel.view');
+    }
 }
