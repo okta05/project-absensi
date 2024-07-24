@@ -39,11 +39,13 @@
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
+                                @foreach ( $allDataMapel as $key => $mapel )
+
                                 <tr>
-                                    <td>1</td>
-                                    <td>Bahasa Indonesia</td>
-                                    <td>Oktaviano</td>
-                                    <td>2024/2025</td>
+                                    <td>{{$key+1}}</td>
+                                    <td>{{$mapel->nm_mapel}}</td>
+                                    <td>{{$mapel->id_guru}}</td>
+                                    <td>{{$mapel->id_th_pelajaran}}</td>
                                     <td>
                                         <div class="dropdown">
 
@@ -54,23 +56,8 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
 
-                                <!-- Data siswa ditampilkan di sini -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>Matematika</td>
-                                    <td>Oktaviano</td>
-                                    <td>2024/2025</td>
-                                    <td>
-                                        <div class="dropdown">
-
-                                            <a class="btn btn-warning" href="{{ route('mapel.edit') }}"><i
-                                                    class="bi bi-pencil-square"></i></a>
-
-                                            <a class="btn btn-danger" href="#"><i class="bi bi-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->

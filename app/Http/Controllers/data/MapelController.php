@@ -4,12 +4,14 @@ namespace App\Http\Controllers\data;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Mapel;
 
 class MapelController extends Controller
 {
     //
     public function mapelView() {
-        return view("tampilan.data.mapel.view_mapel");
+        $data['allDataMapel']=Mapel::all();
+        return view("tampilan.data.mapel.view_mapel", $data);
     }
 
     public function mapelAdd() {
