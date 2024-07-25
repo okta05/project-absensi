@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Ubah Kelas</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('wakel.update', $editDataKelas->id)}}">
+            <form method="post" action="{{route('kelas.update', $editDataKelas->id)}}">
                 @csrf
 
                 <div class="row mb-3">

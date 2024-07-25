@@ -44,7 +44,7 @@ class KelasController extends Controller
         return view("tampilan.data.kelas.edit_kelas", compact('editDataKelas', 'wakels'));
     }
 
-    public function wakelUpdate(Request $request, $id) {
+    public function kelasUpdate(Request $request, $id) {
 
         $validateData=$request->validate([
             'textNM_kelas' => 'required',
@@ -57,6 +57,13 @@ class KelasController extends Controller
         $data->tingkat=$request->textTingkat;
         $data->id_wakel=$request->textWakel;
         $data->save();
+
+        return redirect()->route('kelas.view');
+    }
+
+    public function kelasDelete ($id) {
+        $deleteDataKelas = Kelas::find($id);
+        $deleteDataKelas->delete();
 
         return redirect()->route('kelas.view');
     }

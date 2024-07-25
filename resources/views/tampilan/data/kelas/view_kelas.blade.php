@@ -52,7 +52,7 @@
                                             <a class="btn btn-warning" href="{{ route('kelas.edit', $kelas->id) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" href="#"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('kelas.delete', $kelas->id) }}"><i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
