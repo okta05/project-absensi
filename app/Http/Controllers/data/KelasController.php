@@ -4,12 +4,14 @@ namespace App\Http\Controllers\data;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Kelas;
 
 class KelasController extends Controller
 {
     //
     public function kelasView() {
-        return view("tampilan.data.kelas.view_kelas");
+        $data['allDataKelas']=Kelas::all();
+        return view("tampilan.data.kelas.view_kelas", $data);
     }
 
     public function kelasAdd() {

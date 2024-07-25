@@ -32,16 +32,20 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Kelas</th>
+                                    <th>Tingkat</th>
                                     <th>Wali Kelas</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
+                                @foreach ( $allDataKelas as $key => $kelas )
+
                                 <tr>
-                                    <td>1</td>
-                                    <td>VII A</td>
-                                    <td>Oktaviano</td>
+                                    <td>{{$key+1}}</td>
+                                    <td>{{$kelas->nm_kelas}}</td>
+                                    <td>{{$kelas->tingkat}}</td>
+                                    <td>{{$kelas->id_wakel}}</td>
                                     <td>
                                         <div class="dropdown">
 
@@ -52,6 +56,8 @@
                                         </div>
                                     </td>
                                 </tr>
+
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
