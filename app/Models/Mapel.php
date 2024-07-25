@@ -13,4 +13,9 @@ class Mapel extends Model
     {
         return $this->belongsTo(Tahpel::class);
     }
+
+    public function guru()
+    {
+        return $this->hasMany(Guru::class);
+    }
 }

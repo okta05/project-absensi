@@ -35,9 +35,11 @@
                         <select class="form-select" name="text_id_guru" id="text_id_guru"
                             aria-label="Default select example">
                             <option selected disabled>Pilih Guru</option>
-                            <option value="Guru 1">Guru 1</option>
-                            <option value="Guru 2">Guru 2</option>
-                            <option value="Guru 3">Guru 3</option>
+
+                            @foreach($gurus as $guru)
+                            <option value="{{$guru->nama}}">{{$guru->nama}}</option>
+                            @endforeach
+
                         </select>
                     </div>
                 </div>

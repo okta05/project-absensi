@@ -53,4 +53,9 @@ class Guru extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class);
+    }
 }

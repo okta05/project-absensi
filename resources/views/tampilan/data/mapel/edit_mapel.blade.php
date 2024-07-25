@@ -35,12 +35,14 @@
                         <select class="form-select" name="text_id_guru" value="{{$editDataMapel->id_guru}}"
                             id="text_id_guru" aria-label="Default select example">
                             <option selected disabled>Pilih Guru</option>
-                            <option value="Guru 1" {{($editDataMapel->id_guru=="Guru 1"? "selected":"")}}>Guru 1
+
+                            @foreach($gurus as $guru)
+                            <option value="{{$guru->nama}}"
+                                {{$editDataMapel->id_guru=="$guru->nama"? "selected":""}}>
+                                {{$guru->nama}}
                             </option>
-                            <option value="Guru 2" {{($editDataMapel->id_guru=="Guru 2"? "selected":"")}}>Guru 2
-                            </option>
-                            <option vvalue="Guru 3" {{($editDataMapel->id_guru=="Guru 3"? "selected":"")}}>Guru 3
-                            </option>
+                            @endforeach
+
                         </select>
                     </div>
                 </div>
