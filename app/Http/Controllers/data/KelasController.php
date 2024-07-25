@@ -38,7 +38,26 @@ class KelasController extends Controller
         return redirect()->route('kelas.view');
     }
 
-    public function kelasEdit() {
-        return view("tampilan.data.kelas.edit_kelas");
+    public function kelasEdit($id) {
+        $wakels = Wakel::all();
+        $editDataKelas = Kelas::find($id);
+        return view("tampilan.data.kelas.edit_kelas", compact('editDataKelas', 'wakels'));
+    }
+
+    public function wakelUpdate(Request $request, $id) {
+
+        $validateData=$request->validate([
+            'textNM_kelas' => 'required',
+            'textWakel' => 'required',
+         
+        ]); 
+
+        $data = Kelas::find($id);
+        $data->nm_kelas=$request->textNM_kelas;
+        $data->tingkat=$request->textTingkat;
+        $data->id_wakel=$request->textWakel;
+        $data->save();
+
+        return redirect()->route('kelas.view');
     }
 }

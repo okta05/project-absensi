@@ -18,22 +18,26 @@
             <h5 class="card-title">Form Ubah Kelas</h5>
 
             <!-- General Form Elements -->
-            <form>
+            <form method="post" action="{{route('wakel.update', $editDataKelas->id)}}">
+                @csrf
+
                 <div class="row mb-3">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama Kelas</label>
+                    <label for="textNM_kelas" class="col-sm-2 col-form-label">Nama Kelas</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan nama kelas">
+                        <input type="text" class="form-control" value="{{$editDataKelas->nm_kelas}}" name="textNM_kelas" id="textNM_kelas"
+                            placeholder="Masukkan nama kelas">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Tingkat</label>
                     <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled>Pilih Tingkat Telas</option>
-                            <option value="1">7</option>
-                            <option value="2">8</option>
-                            <option value="2">8</option>
+                        <select class="form-select" name="textTingkat" id="textTingkat"
+                            aria-label="Default select example">
+                            <option selected disabled>Pilih Tingkat</option>
+                            <option value="7" {{($editDataKelas->tingkat==="7"? "selected":"")}}>7</option>
+                            <option value="8" {{($editDataKelas->tingkat=="8"? "selected":"")}}>8</option>
+                            <option value="9" {{($editDataKelas->tingkat=="9"? "selected":"")}}>9</option>
                         </select>
                     </div>
                 </div>
@@ -41,10 +45,16 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Wali Kelas</label>
                     <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="textWakel" id="textWakel" aria-label="Default select example">
                             <option selected disabled>pilih Wali Kelas</option>
-                            <option value="1">Wali Kelas 1</option>
-                            <option value="2">Wali Kelas 2</option>
+
+                            @foreach($wakels as $wakel)
+                            <option value="{{$wakel->nama}}"
+                                {{$editDataKelas->id_wakel=="$wakel->nama"? "selected":""}}>
+                                {{$wakel->nama}}
+                            </option>
+                            @endforeach
+
                         </select>
                     </div>
                 </div>

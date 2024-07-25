@@ -37,7 +37,7 @@
                             <option selected disabled>Pilih Tingkat</option>
                             <option value="7">7</option>
                             <option value="8">8</option>
-                            <option value="9">8</option>
+                            <option value="9">9</option>
                         </select>
                     </div>
                 </div>
