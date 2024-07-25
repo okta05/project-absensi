@@ -134,6 +134,7 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
         Route::get('/view', [KelasController::class, 'kelasView'])->name('kelas.view');
         Route::get('/add', [KelasController::class, 'kelasAdd'])->name('kelas.add');
         Route::get('/edit', [KelasController::class, 'kelasEdit'])->name('kelas.edit');
+        Route::post('/simpan', [KelasController::class, 'wakelStore'])->name('wakel.store');
     });
 });
 

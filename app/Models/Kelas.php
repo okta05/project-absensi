@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     use HasFactory;
+
+    public function wakel()
+    {
+        return $this->belongsTo(Wakel::class);
+    }
 }
