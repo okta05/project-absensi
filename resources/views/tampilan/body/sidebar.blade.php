@@ -71,7 +71,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('wakel.view')}}">
+                        <a href="#">
                             <i class="bi bi-circle"></i><span>Kelola Data Wali Kelas</span>
                         </a>
                     </li>
