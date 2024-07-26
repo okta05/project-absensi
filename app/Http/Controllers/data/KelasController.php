@@ -20,7 +20,7 @@ class KelasController extends Controller
         return view("tampilan.data.kelas.add_kelas", compact('wakels'));
     }
 
-    public function wakelStore(Request $request) {
+    public function kelasStore(Request $request) {
 
         $validateData=$request->validate([
             'textNM_kelas' => 'required',

@@ -52,4 +52,9 @@ class Wakel extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }

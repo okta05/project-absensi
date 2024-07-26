@@ -131,7 +131,7 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
     Route::prefix('data/kelas')->group(function () {
         Route::get('/view', [KelasController::class, 'kelasView'])->name('kelas.view');
         Route::get('/add', [KelasController::class, 'kelasAdd'])->name('kelas.add');
-        Route::post('/simpan', [KelasController::class, 'wakelStore'])->name('kelas.store');
+        Route::post('/simpan', [KelasController::class, 'kelasStore'])->name('kelas.store');
         Route::get('/edit/{id}', [KelasController::class, 'kelasEdit'])->name('kelas.edit');
         Route::post('/update/{id}', [KelasController::class, 'kelasUpdate'])->name('kelas.update');
         Route::get('/delete/{id}', [KelasController::class, 'kelasDelete'])->name('kelas.delete');

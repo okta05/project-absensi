@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Tambah Kelas</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('wakel.store')}}">
+            <form method="post" action="{{route('kelas.store')}}">
                 @csrf
 
                 <div class="row mb-3">
