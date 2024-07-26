@@ -14,6 +14,7 @@ class KepsekController extends Controller
         $data['allDataKepsek']=Kepsek::all();
         return view("tampilan.data_pengguna.kepsek.view_kepsek", $data);
     }
+    
     public function kepsekAdd () {
         return view("tampilan.data_pengguna.kepsek.add_kepsek");
     }

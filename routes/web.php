@@ -102,6 +102,15 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
     });
 });
 
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+    Route::prefix('data-pengguna/wali-kelas')->group(function () {
+        Route::get('/view', [WakelController::class, 'wakelView'])->name('wakel.view');
+        Route::get('/add', [WakelController::class, 'wakelAdd'])->name('wakel.add');
+        Route::post('/simpan', [WakelController::class, 'wakelStore'])->name('wakel.store');
+        Route::get('/edit', [WakelController::class, 'wakelEdit'])->name('wakel.edit');
+    });
+});
+
 // Semua route untuk mengelola data guru
 Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data-pengguna/guru')->group(function () {
@@ -120,7 +129,7 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
     Route::prefix('data/kelas')->group(function () {
         Route::get('/view', [KelasController::class, 'kelasView'])->name('kelas.view');
         Route::get('/add', [KelasController::class, 'kelasAdd'])->name('kelas.add');
-        Route::post('/simpan', [KelasController::class, 'wakelStore'])->name('wakel.store');
+        Route::post('/simpan', [KelasController::class, 'wakelStore'])->name('kelas.store');
         Route::get('/edit/{id}', [KelasController::class, 'kelasEdit'])->name('kelas.edit');
         Route::post('/update/{id}', [KelasController::class, 'kelasUpdate'])->name('kelas.update');
         Route::get('/delete/{id}', [KelasController::class, 'kelasDelete'])->name('kelas.delete');
