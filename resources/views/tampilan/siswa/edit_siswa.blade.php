@@ -81,6 +81,14 @@
                 </div>
 
                 <div class="row mb-3">
+                    <label for="text_no_telp" class="col-sm-2 col-form-label">No. Telp</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="text_no_telp"
+                            value="{{$editDataSiswa->no_telp}}" id="text_no_telp" placeholder="Masukkan nomor telepon">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
                     <label for="text_th_masuk" class="col-sm-2 col-form-label">Tahun Masuk</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="text_th_masuk"
@@ -89,10 +97,19 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="text_no_telp" class="col-sm-2 col-form-label">No. Telp</label>
+                    <label class="col-sm-2 col-form-label">Kelas</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="text_no_telp"
-                            value="{{$editDataSiswa->no_telp}}" id="text_no_telp" placeholder="Masukkan nomor telepon">
+                        <select class="form-select" name="textKelas" id="textKelas" aria-label="Default select example">
+                            <option selected disabled>pilih kelas</option>
+
+                            @foreach($idKelas as $kelas)
+                            <option value="{{$kelas->nm_kelas}}"
+                                {{$editDataSiswa->kelas=="$kelas->nm_kelas"? "selected":""}}>
+                                {{$kelas->nm_kelas}}
+                            </option>
+                            @endforeach
+
+                        </select>
                     </div>
                 </div>
 

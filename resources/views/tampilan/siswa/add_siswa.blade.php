@@ -80,6 +80,15 @@
                 </div>
 
                 <div class="row mb-3">
+                    <label for="text_no_telp" class="col-sm-2 col-form-label">No. Telp</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="text_no_telp" id="text_no_telp"
+                            placeholder="Masukkan nomor telepon">
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
                     <label for="text_th_masuk" class="col-sm-2 col-form-label">Tahun Masuk</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="text_th_masuk" id="text_th_masuk"
@@ -98,14 +107,6 @@
                             @endforeach
 
                         </select>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="text_no_telp" class="col-sm-2 col-form-label">No. Telp</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" name="text_no_telp" id="text_no_telp"
-                            placeholder="Masukkan nomor telepon">
                     </div>
                 </div>
 

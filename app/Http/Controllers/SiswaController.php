@@ -41,6 +41,7 @@ class SiswaController extends Controller
         $data->jns_kelamin=$request->text_jns_kelamin;
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
+        $data->kelas=$request->textKelas;
 
         if ($request->file('foto_siswa')) {
             $foto_siswa = $request->file('foto_siswa')->store('siswa/foto_siswa', 'public');
@@ -59,9 +60,9 @@ class SiswaController extends Controller
     }
 
     public function siswaEdit($id) {
-
+        $idKelas = Kelas::all();
         $editDataSiswa = Siswa::find($id);
-        return view('tampilan.siswa.edit_siswa', compact('editDataSiswa'));
+        return view('tampilan.siswa.edit_siswa', compact('editDataSiswa', 'idKelas'));
     }
 
     public function siswaUpdate(Request $request, $id) {
@@ -79,6 +80,7 @@ class SiswaController extends Controller
         $data->jns_kelamin=$request->text_jns_kelamin;
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
+        $data->kelas=$request->textKelas;
 
         if ($request->file('foto_siswa')) {
             // Delete the old photo if exists

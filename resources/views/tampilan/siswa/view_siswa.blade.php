@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$siswa->nama}}</td>
-                                    <td></td>
+                                    <td>{{$siswa->kelas}}</td>
                                     <td>{{$siswa->nis}}</td>
                                     <td>{{$siswa->tgl_lahir}}</td>
                                     <td>{{$siswa->tpt_lahir}}</td>
