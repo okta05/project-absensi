@@ -72,8 +72,9 @@ class AdminController extends Controller
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
 
+        // Cek apakah ada file foto yang diupload
         if ($request->file('foto_admin')) {
-            // Delete the old photo if exists
+            // Hapus foto lama jika ada
             if ($data->foto_admin && Storage::disk('public')->exists($data->foto_admin)) {
                 Storage::disk('public')->delete($data->foto_admin);
             }
@@ -85,7 +86,7 @@ class AdminController extends Controller
 
         $data->email=$request->email;
 
-        // untuk memeriksa apakah kolom password di isi atau tidak
+        // Cek apakah field password diisi
         if ($request->filled('password')) {
             $data->password = bcrypt($request->password);
         }
@@ -99,12 +100,12 @@ class AdminController extends Controller
 
         $deleteDataAdmin = Admin::find($id);
         if ($deleteDataAdmin) {
-            // Delete the photo from storage if exists
+            // hapus foto dari penyimpanan
             if ($deleteDataAdmin->foto_admin && Storage::disk('public')->exists($deleteDataAdmin->foto_admin)) {
                 Storage::disk('public')->delete($deleteDataAdmin->foto_admin);
             }
     
-            // Delete the siswa data from database
+            // hapus data dari database
             $deleteDataAdmin->delete();
     
             return redirect()->route('admin.view');

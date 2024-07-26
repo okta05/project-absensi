@@ -73,18 +73,19 @@ class KepsekController extends Controller
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
 
+        // Cek apakah ada file foto yang diupload
         if ($request->file('foto_kepsek')) {
-            // Delete the old photo if exists
+            // Hapus foto lama jika ada
             if ($data->foto_kepsek && Storage::disk('public')->exists($data->foto_kepsek)) {
                 Storage::disk('public')->delete($data->foto_admin);
             }
     
-            // Store the new photo
             $foto_kepsek = $request->file('foto_kepsek')->store('data_pengguna/foto_kepsek', 'public');
             $data->foto_kepsek = $foto_kepsek;
         }
 
         $data->email=$request->email;
+        // Cek apakah field password diisi
         if ($request->filled('password')) {
             $data->password = bcrypt($request->password);
         }
@@ -97,12 +98,12 @@ class KepsekController extends Controller
         
         $deleteDataKepsek = Kepsek::find($id);
         if ($deleteDataKepsek) {
-            // Delete the photo from storage if exists
+            // hapus foto dari penyimpanan
             if ($deleteDataKepsek->foto_kepsek && Storage::disk('public')->exists($deleteDataKepsek->foto_kepsek)) {
                 Storage::disk('public')->delete($deleteDataKepsek->foto_kepsek);
             }
     
-            // Delete the siswa data from database
+            // hapus data dari database
             $deleteDataKepsek->delete();
     
             return redirect()->route('kepsek.view');

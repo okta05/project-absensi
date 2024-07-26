@@ -72,18 +72,19 @@ class BKController extends Controller
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
 
+        // Cek apakah ada file foto yang diupload
         if ($request->file('foto_bk')) {
-            // Delete the old photo if exists
+            // Hapus foto lama jika ada
             if ($data->foto_bk && Storage::disk('public')->exists($data->foto_bk)) {
                 Storage::disk('public')->delete($data->foto_bk);
             }
     
-            // Store the new photo
             $foto_bk = $request->file('foto_bk')->store('data_pengguna/foto_bk', 'public');
             $data->foto_bk = $foto_bk;
         }
 
         $data->email=$request->email;
+        // Cek apakah field password diisi
         if ($request->filled('password')) {
             $data->password = bcrypt($request->password);
         }
@@ -96,12 +97,12 @@ class BKController extends Controller
         
         $deleteDataBk = Bk::find($id);
         if ($deleteDataBk) {
-            // Delete the photo from storage if exists
+            // hapus foto dari penyimpanan
             if ($deleteDataBk->foto_bk && Storage::disk('public')->exists($deleteDataBk->foto_bk)) {
                 Storage::disk('public')->delete($deleteDataBk->foto_bk);
             }
     
-            // Delete the siswa data from database
+            // hapus data dari database
             $deleteDataBk->delete();
     
             return redirect()->route('bk.view');

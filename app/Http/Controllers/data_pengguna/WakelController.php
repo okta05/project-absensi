@@ -73,18 +73,19 @@ class WakelController extends Controller
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
 
+        // Cek apakah ada file foto yang diupload
         if ($request->file('foto_wakel')) {
-            // Delete the old photo if exists
+            // Hapus foto lama jika ada
             if ($data->foto_wakel && Storage::disk('public')->exists($data->foto_wakel)) {
                 Storage::disk('public')->delete($data->foto_wakel);
             }
     
-            // Store the new photo
             $foto_wakel = $request->file('foto_wakel')->store('data_pengguna/foto_wakel', 'public');
             $data->foto_wakel = $foto_wakel;
         }
 
         $data->email=$request->email;
+        // Cek apakah field password diisi
         if ($request->filled('password')) {
             $data->password = bcrypt($request->password);
         }
@@ -97,12 +98,13 @@ class WakelController extends Controller
 
         $deleteDataWakel = Wakel::find($id);
         if ($deleteDataWakel) {
-            // Delete the photo from storage if exists
+            
+            // hapus foto dari penyimpanan
             if ($deleteDataWakel->foto_wakel && Storage::disk('public')->exists($deleteDataWakel->foto_wakel)) {
                 Storage::disk('public')->delete($deleteDataWakel->foto_wakel);
             }
     
-            // Delete the siswa data from database
+            // hapus data dari database
             $deleteDataWakel->delete();
     
             return redirect()->route('wakel.view');

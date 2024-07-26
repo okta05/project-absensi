@@ -72,18 +72,19 @@ class GuruController extends Controller
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
 
+        // Cek apakah ada file foto yang diupload
         if ($request->file('foto_guru')) {
-            // Delete the old photo if exists
+            // Hapus foto lama jika ada
             if ($data->foto_guru && Storage::disk('public')->exists($data->foto_guru)) {
                 Storage::disk('public')->delete($data->foto_guru);
             }
     
-            // Store the new photo
             $foto_guru = $request->file('foto_guru')->store('data_pengguna/foto_guru', 'public');
             $data->foto_guru = $foto_guru;
         }
 
         $data->email=$request->email;
+        // Cek apakah field password diisi
         if ($request->filled('password')) {
             $data->password = bcrypt($request->password);
         }
@@ -96,12 +97,12 @@ class GuruController extends Controller
         
         $deleteDataGuru = Guru::find($id);
         if ($deleteDataGuru) {
-            // Delete the photo from storage if exists
+            // hapus foto dari penyimpanan
             if ($deleteDataGuru->foto_guru && Storage::disk('public')->exists($deleteDataGuru->foto_guru)) {
                 Storage::disk('public')->delete($deleteDataGuru->foto_guru);
             }
     
-            // Delete the siswa data from database
+            /// hapus data dari database
             $deleteDataGuru->delete();
     
             return redirect()->route('wakel.view');

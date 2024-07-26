@@ -72,18 +72,20 @@ class KurikulumController extends Controller
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
 
+        // Cek apakah ada file foto yang diupload
         if ($request->file('foto_kurikulum')) {
-            // Delete the old photo if exists
+            // Hapus foto lama jika ada
             if ($data->foto_kurikulum && Storage::disk('public')->exists($data->foto_kurikulum)) {
                 Storage::disk('public')->delete($data->foto_kurikulum);
             }
     
-            // Store the new photo
             $foto_kurikulum = $request->file('foto_kurikulum')->store('data_pengguna/foto_kurikulum', 'public');
             $data->foto_kurikulum = $foto_kurikulum;
         }
 
         $data->email=$request->email;
+        
+        // Cek apakah field password diisi
         if ($request->filled('password')) {
             $data->password = bcrypt($request->password);
         }
@@ -96,12 +98,12 @@ class KurikulumController extends Controller
         
         $deleteDataKurikulum = Kurikulum::find($id);
         if ($deleteDataKurikulum) {
-            // Delete the photo from storage if exists
+            // hapus foto dari penyimpanan
             if ($deleteDataKurikulum->foto_kurikulum && Storage::disk('public')->exists($deleteDataKurikulum->foto_kurikulum)) {
                 Storage::disk('public')->delete($deleteDataKurikulum->foto_kurikulum);
             }
     
-            // Delete the siswa data from database
+            // hapus data dari database
             $deleteDataKurikulum->delete();
     
             return redirect()->route('kurikulum.view');
