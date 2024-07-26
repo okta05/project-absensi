@@ -111,7 +111,7 @@
                 <div class="row mb-3">
                     <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="{{route('bk.view')}}" class="btn btn-success">Batal</a>
+                        <a href="{{route('wakel.view')}}" class="btn btn-success">Batal</a>
                     </div>
                 </div>
 
