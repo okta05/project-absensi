@@ -131,11 +131,11 @@
                 <div class="row mb-3">
                     <label for="textCatatan" class="col-sm-2 col-form-label">Catatan</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="textCatatan" id="textCatatan"
-                            value="{{$editDataSiswa->catatan}}" style="height: 100px"
-                            placeholder="Masukan catatan (jika ada)"></textarea>
+                        <textarea class="form-control" name="textCatatan" id="textCatatan" style="height: 100px"
+                            placeholder="Masukan catatan (jika ada)">{{$editDataSiswa->catatan}}</textarea>
                     </div>
                 </div>
+
 
                 <div class="row mb-3">
                     <label for="text_nm_ortu" class="col-sm-2 col-form-label">Nama Orang Tua</label>
