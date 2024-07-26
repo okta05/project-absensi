@@ -85,7 +85,9 @@ class WakelController extends Controller
         }
 
         $data->email=$request->email;
-        $data->password = bcrypt($request->password);
+        if ($request->filled('password')) {
+            $data->password = bcrypt($request->password);
+        }
         $data->save();
 
         return redirect()->route('wakel.view');
