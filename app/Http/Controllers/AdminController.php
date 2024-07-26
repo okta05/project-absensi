@@ -85,10 +85,10 @@ class AdminController extends Controller
 
         $data->email=$request->email;
 
-         // untuk memeriksa apakah kolom password di isi atau tidak
-            if ($request->filled('password')) {
+        // untuk memeriksa apakah kolom password di isi atau tidak
+        if ($request->filled('password')) {
             $data->password = bcrypt($request->password);
-         }
+        }
 
         $data->save();
 
