@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Siswa;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,7 +21,8 @@ class SiswaController extends Controller
     }
 
     public function siswaAdd() {
-        return view('tampilan.siswa.add_siswa');
+        $idKelas = Kelas::all();
+        return view('tampilan.siswa.add_siswa', compact('idKelas'));
     }
 
     public function siswaStore(Request $request) {

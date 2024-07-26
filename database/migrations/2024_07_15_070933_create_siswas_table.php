@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama')->nullable();
             $table->string('nis')->nullable();
+            $table->string('kelas')->nullable();
             $table->string('tgl_lahir')->nullable(); //tgl_lahir : tanggal lahir
             $table->string('tpt_lahir')->nullable(); //tpt_lahir : tempat lahir
             $table->enum('jns_kelamin', ['Laki-laki', 'Perempuan'])->nullable();

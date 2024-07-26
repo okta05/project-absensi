@@ -88,6 +88,20 @@
                 </div>
 
                 <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Kelas</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" name="textKelas" id="textKelas" aria-label="Default select example">
+                            <option selected disabled>pilih kelas</option>
+
+                            @foreach($idKelas as $kelas)
+                            <option value="{{$kelas->nm_kelas}}">{{$kelas->nm_kelas}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
                     <label for="text_no_telp" class="col-sm-2 col-form-label">No. Telp</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" name="text_no_telp" id="text_no_telp"

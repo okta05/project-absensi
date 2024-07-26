@@ -17,7 +17,6 @@ class KelasController extends Controller
 
     public function kelasAdd() {
         $wakels = Wakel::all();
-
         return view("tampilan.data.kelas.add_kelas", compact('wakels'));
     }
 
