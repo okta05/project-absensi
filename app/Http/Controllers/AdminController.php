@@ -84,7 +84,11 @@ class AdminController extends Controller
         }
 
         $data->email=$request->email;
-        $data->password = bcrypt($request->password);
+         // Check if the password field is filled
+            if ($request->filled('password')) {
+            $data->password = bcrypt($request->password);
+         }
+
         $data->save();
 
         return redirect()->route('admin.view');
