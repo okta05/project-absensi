@@ -18,13 +18,12 @@
             <h5 class="card-title">Form Ubah Admin</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('admin.update', $editDataAdmin->id)}}" enctype="multipart/form-data">
-                @csrf
+            <form method="post" action="#" enctype="multipart/form-data">
 
                 <div class="row mb-3">
                     <label for="textNama" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" name="textNama" value="{{$editDataAdmin->nama}}" id="textNama"
+                        <input type="text" name="textNama" value="#" id="textNama"
                             class="form-control" placeholder="Masukkan nama lengkap">
                     </div>
                 </div>
@@ -32,7 +31,7 @@
                 <div class="row mb-3">
                     <label for="textNIP" class="col-sm-2 col-form-label">NIP</label>
                     <div class="col-sm-10">
-                        <input type="text" name="textNIP" value="{{$editDataAdmin->nip}}" id="textNIP"
+                        <input type="text" name="textNIP" value="#" id="textNIP"
                             class="form-control" placeholder="Masukkan NIP">
                     </div>
                 </div>
@@ -42,14 +41,14 @@
                     <div class="col-sm-10">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="text_jns_kelamin" value="Laki-laki"
-                                id="text_jns_kelamin1" @if($editDataAdmin->jns_kelamin == 'Laki-laki') checked @endif>
+                                id="text_jns_kelamin1">
                             <label class="form-check-label" for="text_jns_kelamin1">
                                 Laki - laki
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="text_jns_kelamin" value="Perempuan"
-                                id="text_jns_kelamin2" @if($editDataAdmin->jns_kelamin == 'Perempuan') checked @endif>
+                                id="text_jns_kelamin2">
                             <label class="form-check-label" for="text_jns_kelamin2">
                                 Perempuan
                             </label>
@@ -60,7 +59,7 @@
                 <div class="row mb-3">
                     <label for="textAlamat" class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <input type="text" name="textAlamat" value="{{$editDataAdmin->alamat}}" id="textAlamat"
+                        <input type="text" name="textAlamat" value="#" id="textAlamat"
                             class="form-control" placeholder="Masukkan alamat">
                     </div>
                 </div>
@@ -68,7 +67,7 @@
                 <div class="row mb-3">
                     <label for="text_no_telp" class="col-sm-2 col-form-label">Nomor Telepon</label>
                     <div class="col-sm-10">
-                        <input type="number" name="text_no_telp" value="{{$editDataAdmin->no_telp}}" id="text_no_telp"
+                        <input type="number" name="text_no_telp" value="#" id="text_no_telp"
                             class="form-control" placeholder="Masukkan nomor telepon">
                     </div>
                 </div>
@@ -84,7 +83,7 @@
                 <div class="row mb-3">
                     <label for="foto_admin" class="col-sm-2 col-form-label">Preview</label>
                     <div class="col-sm-10">
-                        <img id="previewFoto_admin" src="{{ asset('storage/' . $editDataAdmin->foto_admin) }}"
+                        <img id="previewFoto_admin" src="#"
                             alt="Preview Foto" style="max-width: 200px;">
                     </div>
                 </div>
@@ -92,7 +91,7 @@
                 <div class="row mb-3">
                     <label for="email" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                        <input type="email" name="email" value="{{$editDataAdmin->email}}" id="email"
+                        <input type="email" name="email" value="#" id="email"
                             class="form-control" placeholder="Masukkan username">
                     </div>
                 </div>
