@@ -14,6 +14,7 @@ use App\Http\Controllers\data\KelasController;
 use App\Http\Controllers\data\MapelController;
 use App\Http\Controllers\data\TahpelController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -128,7 +129,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 });
 
 // Semua route untuk mengelola data kelas
-Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data/kelas')->group(function () {
         Route::get('/view', [KelasController::class, 'kelasView'])->name('kelas.view');
         Route::get('/add', [KelasController::class, 'kelasAdd'])->name('kelas.add');
@@ -140,7 +141,7 @@ Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola data mapel
-Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data/mapel')->group(function () {
         Route::get('/view', [MapelController::class, 'mapelView'])->name('mapel.view');
         Route::get('/add', [MapelController::class, 'mapelAdd'])->name('mapel.add');
@@ -164,8 +165,14 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 });
 
 // Semua route untuk mengelola absensi
-Route::middleware(['auth:web,kepsek,admin', 'verified'])->group(function () {
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data/absensi')->group(function () {
         Route::get('/pilih-mapel', [AbsensiController::class, 'pilihMapel'])->name('mapel.absensi');
+    });
+});
+
+Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+    Route::prefix('Profile')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'profileView'])->name('profile.view');
     });
 });
