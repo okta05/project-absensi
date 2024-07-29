@@ -18,109 +18,73 @@
 
             <!-- Profile Edit Form -->
             <form>
+
                 <div class="row mb-3">
-                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                    <label for="textNama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                     <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile">
-                        <div class="pt-2">
-                            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i
-                                    class="bi bi-upload"></i></a>
-                            <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
-                                    class="bi bi-trash"></i></a>
-                        </div>
+                        <input name="textNama" type="text" class="form-control" id="textNama" value="Kevin Anderson">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                    <label for="textNIP" class="col-md-4 col-lg-3 col-form-label">NIP</label>
                     <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                        <input name="textNIP" type="text" class="form-control" id="textNIP" value="121313">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                    <label for="text_jns_kelamin" class="col-md-4 col-lg-3 col-form-label">Jenis Kelamin</label>
                     <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about"
-                            style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                        <input name="text_jns_kelamin" type="text" class="form-control" id="text_jns_kelamin" value="Lakin-Laki">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+                    <label for="textAlamat" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
                     <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company"
-                            value="Lueilwitz, Wisoky and Leuschke">
+                        <input name="textAlamat" type="text" class="form-control" id="textAlamat" value="Rogojampi">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                    <label for="text_no_telp" class="col-md-4 col-lg-3 col-form-label">No Telpon</label>
                     <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
+                        <input name="text_no_telp" type="number" class="form-control" id="text_no_telp" value="028829831">
+                    </div>
+                </div>
+
+                
+                <div class="row mb-3">
+                    <label for="foto_profile" class="col-md-4 col-lg-3 col-form-label">Upload Foto</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input name="foto_profile" type="file" class="form-control" id="foto_profile" value="028829831">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                    <label for="foto_profile" class="col-md-4 col-lg-3 col-form-label">Preview</label>
                     <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" class="form-control" id="Country" value="USA">
+                        <img id="previewFoto_profile" src="#" alt="Preview Foto" style="max-width: 200px;">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                    <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                     <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address"
-                            value="A108 Adam Street, New York, NY 535022">
+                        <input name="email" type="email" class="form-control" id="email" value="k.anderson@example.com">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                    <label for="password" class="col-md-4 col-lg-3 col-form-label">Password</label>
                     <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                        <input name="password" type="password" class="form-control" id="password"
+                            value="k.anderson@example.com">
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                    <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
-                    </div>
-                </div>
 
-                <div class="row mb-3">
-                    <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
-                    <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="Twitter"
-                            value="https://twitter.com/#">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
-                    <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="Facebook"
-                            value="https://facebook.com/#">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
-                    <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram"
-                            value="https://instagram.com/#">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
-                    <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin"
-                            value="https://linkedin.com/#">
-                    </div>
-                </div>
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Save Changes</button>

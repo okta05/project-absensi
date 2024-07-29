@@ -228,6 +228,22 @@
     });
     </script>
 
+<script>
+    const inputFoto_profile = document.querySelector('#foto_profile');
+    const previewFoto_profile = document.querySelector('#previewFoto_profile');
+
+    inputFoto_profile.addEventListener('change', function() {
+        const file = inputFoto_profile.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            previewFoto_profile.src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    });
+    </script>
+
 
 
 </body>
