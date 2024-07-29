@@ -23,6 +23,14 @@
                       {{asset('storage/'. $profileData->foto_kepsek)}}
                     @elseif (Auth::guard('admin')->check())
                       {{asset('storage/'. $profileData->foto_admin)}}
+                         @elseif (Auth::guard('kurikulum')->check())
+                      {{asset('storage/'. $profileData->foto_kurikulum)}}
+                         @elseif (Auth::guard('bk')->check())
+                      {{asset('storage/'. $profileData->foto_bk)}}
+                         @elseif (Auth::guard('wakel')->check())
+                      {{asset('storage/'. $profileData->foto_wakel)}}
+                         @elseif (Auth::guard('guru')->check())
+                      {{asset('storage/'. $profileData->foto_guru)}}
                     @endif
                     " alt="Profile" class="rounded-circle">
                     <h2>{{ $profileData->nama ?? 'nama' }}</h2>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Kepsek;
+use App\Models\Bk;
 use App\Models\Kurikulum;
 use App\Models\Wakel;
 use App\Models\Guru;
@@ -23,29 +24,35 @@ class ProfileController extends Controller
         $foto = null;
 
         if ($user->is_admin) {
-            $profileData = Admin::where('user_id', $user->id)->first();
+            $profileData = $user->admin;
             $role = 'admin';
             $foto = $profileData->foto_admin;
         } elseif ($user->is_kepsek) {
-            $profileData = Kepsek::where('user_id', $user->id)->first();
+            $profileData = $user->kepsek;
             $role = 'kepsek';
             $foto = $profileData->foto_kepsek;
         } elseif ($user->is_kurikulum) {
-            $profileData = Kurikulum::where('user_id', $user->id)->first();
+            $profileData = $user->kurikulum;
             $role = 'kurikulum';
             $foto = $profileData->foto_kurikulum;
-        } elseif ($user->is_wali_kelas) {
-            $profileData = Wakel::where('user_id', $user->id)->first();
+        } elseif ($user->is_bk) {
+            $profileData = $user->bk;
+            $role = 'bk';
+            $foto = $profileData->foto_bk;
+        } elseif ($user->is_wakel) {
+            $profileData = $user->wakel;
             $role = 'wakel';
             $foto = $profileData->foto_wakel;
         } elseif ($user->is_guru) {
-            $profileData = Guru::where('user_id', $user->id)->first();
+            $profileData = $user->guru;
             $role = 'guru';
             $foto = $profileData->foto_guru;
         } else {
             $profileData = $user;
             $role = 'user';
+            $foto = null; // atau foto default jika ada
         }
+        
         return view("tampilan.profile.view_profile", compact('profileData', 'role', 'foto'));
     }
 }
