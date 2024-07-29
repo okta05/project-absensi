@@ -173,6 +173,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 
 Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('Profile')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'profileView'])->name('profile.view');
+        Route::get('/view', [ProfileController::class, 'profileView'])->name('profile.view');
+        Route::get('/edit', [ProfileController::class, 'profileEdit'])->name('profile.edit');
     });
 });

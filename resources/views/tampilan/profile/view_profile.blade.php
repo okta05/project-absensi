@@ -81,6 +81,12 @@
                                 <div class="col-lg-9 col-md-8">{{ $profileData->no_telp ?? 'No_Telpon' }}</div>
                             </div>
 
+                            <div class="row col-lg-1">
+                                <a href="{{route("profile.edit")}}" class="btn btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </div>
+
                         </div>
 
                     </div><!-- End Bordered Tabs -->

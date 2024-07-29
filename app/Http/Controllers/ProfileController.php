@@ -55,4 +55,8 @@ class ProfileController extends Controller
         
         return view("tampilan.profile.view_profile", compact('profileData', 'role', 'foto'));
     }
+
+    public function profileEdit (){
+        return view('tampilan.profile.edit_profile');
+    }
 }

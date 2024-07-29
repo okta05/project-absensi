@@ -12,7 +12,6 @@
 </div><!-- End Page Title -->
 
 <div class="row">
-    <!-- Button to add ticket -->
     <div class="col-12 d-flex justify-content-start">
         <a href="{{route("bk.add")}}" class="btn btn-success">
             <i class="bi bi-person-plus"></i> Tambah
@@ -57,7 +56,8 @@
                                             <a class="btn btn-warning" href="{{ route('bk.edit', $bk->id) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" id="delete" href="{{ route('bk.delete', $bk->id) }}"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete"
+                                                href="{{ route('bk.delete', $bk->id) }}"><i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
