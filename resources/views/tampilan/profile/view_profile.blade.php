@@ -22,7 +22,7 @@
                     @if (Auth::guard('kepsek')->check())
                       {{asset('storage/'. $profileData->foto_kepsek)}}
                     @elseif (Auth::guard('admin')->check())
-                      {{asset('storage/'. $profileData->foto_admin)}}
+                      {{asset('storage/'. $profileData->foto)}}
                          @elseif (Auth::guard('kurikulum')->check())
                       {{asset('storage/'. $profileData->foto_kurikulum)}}
                          @elseif (Auth::guard('bk')->check())

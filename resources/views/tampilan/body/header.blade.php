@@ -20,7 +20,7 @@
                         @if (Auth::guard('kepsek')->check())
                             {{ asset('storage/' . Auth::guard('kepsek')->user()->foto_kepsek) }}
                         @elseif (Auth::guard('admin')->check())
-                            {{ asset('storage/' . Auth::guard('admin')->user()->foto_admin) }}
+                            {{ asset('storage/' . Auth::guard('admin')->user()->foto) }}
                         @elseif (Auth::guard('kurikulum')->check())
                             {{ asset('storage/' . Auth::guard('kurikulum')->user()->foto_kurikulum) }}
                         @elseif (Auth::guard('bk')->check())

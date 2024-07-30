@@ -40,9 +40,9 @@ class AdminController extends Controller
 
         if ($request->file('foto_admin')) {
             $foto_admin = $request->file('foto_admin')->store('admin/foto_admin', 'public');
-            $data->foto_admin = $foto_admin;
+            $data->foto = $foto_admin;
         } else {
-            $data->foto_admin = '';
+            $data->foto = '';
         }
         
         $data->email=$request->email;
@@ -75,13 +75,13 @@ class AdminController extends Controller
         // Cek apakah ada file foto yang diupload
         if ($request->file('foto_admin')) {
             // Hapus foto lama jika ada
-            if ($data->foto_admin && Storage::disk('public')->exists($data->foto_admin)) {
-                Storage::disk('public')->delete($data->foto_admin);
+            if ($data->foto && Storage::disk('public')->exists($data->foto)) {
+                Storage::disk('public')->delete($data->foto);
             }
     
             // Store the new photo
             $foto_admin = $request->file('foto_admin')->store('admin/foto_admin', 'public');
-            $data->foto_admin = $foto_admin;
+            $data->foto = $foto_admin;
         }
 
         $data->email=$request->email;
