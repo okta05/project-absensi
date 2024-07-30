@@ -175,5 +175,6 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
     Route::prefix('Profile')->group(function () {
         Route::get('/view', [ProfileController::class, 'profileView'])->name('profile.view');
         Route::get('/edit', [ProfileController::class, 'profileEdit'])->name('profile.edit');
+        Route::post('update', [ProfileController::class, 'profileUpdate'])->name('profile.update');
     });
 });

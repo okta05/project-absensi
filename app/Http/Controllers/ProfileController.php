@@ -11,6 +11,7 @@ use App\Models\Bk;
 use App\Models\Kurikulum;
 use App\Models\Wakel;
 use App\Models\Guru;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProfileController extends Controller
@@ -56,7 +57,117 @@ class ProfileController extends Controller
         return view("tampilan.profile.view_profile", compact('profileData', 'role', 'foto'));
     }
 
-    public function profileEdit (){
-        return view('tampilan.profile.edit_profile');
+    public function profileEdit() {
+        $user = Auth::user();
+        $profileData = null;
+        $fotoColumn = 'foto'; // Default column name
+        $foto = null;
+        $role = null;
+    
+        // Determine the correct profile model and photo column
+        if ($user->is_admin) {
+            $profileData = $user->admin;
+            $fotoColumn = 'foto_admin';
+            $role = 'admin';
+        } elseif ($user->is_kepsek) {
+            $profileData = $user->kepsek;
+            $fotoColumn = 'foto_kepsek';
+            $role = 'kepsek';
+        } elseif ($user->is_kurikulum) {
+            $profileData = $user->kurikulum;
+            $fotoColumn = 'foto_kurikulum';
+            $role = 'kurikulum';
+        } elseif ($user->is_bk) {
+            $profileData = $user->bk;
+            $fotoColumn = 'foto_bk';
+            $role = 'bk';
+        } elseif ($user->is_wakel) {
+            $profileData = $user->wakel;
+            $fotoColumn = 'foto_wakel';
+            $role = 'wakel';
+        } elseif ($user->is_guru) {
+            $profileData = $user->guru;
+            $fotoColumn = 'foto_guru';
+            $role = 'guru';
+        } else {
+            $profileData = $user;
+        }
+    
+        // Get the existing photo path
+        $foto_profile = $profileData ? $profileData->$fotoColumn : null;
+    
+        return view('tampilan.profile.edit_profile', compact('profileData', 'fotoColumn', 'role'));
     }
+    
+
+    public function profileUpdate(Request $request) {
+        $user = Auth::user();
+        $profileData = null;
+        $fotoColumn = 'foto'; // Default column name
+    
+        // Determine the correct profile model and photo column
+        if ($user->is_admin) {
+            $profileData = $user->admin;
+            $fotoColumn = 'foto_admin';
+        } elseif ($user->is_kepsek) {
+            $profileData = $user->kepsek;
+            $fotoColumn = 'foto_kepsek';
+        } elseif ($user->is_kurikulum) {
+            $profileData = $user->kurikulum;
+            $fotoColumn = 'foto_kurikulum';
+        } elseif ($user->is_bk) {
+            $profileData = $user->bk;
+            $fotoColumn = 'foto_bk';
+        } elseif ($user->is_wakel) {
+            $profileData = $user->wakel;
+            $fotoColumn = 'foto_wakel';
+        } elseif ($user->is_guru) {
+            $profileData = $user->guru;
+            $fotoColumn = 'foto_guru';
+        } else {
+            $profileData = $user;
+        }
+    
+        // Validate input
+        $request->validate([
+            'textNama' => 'required|string|max:255',
+            'textNIP' => 'required|string|max:255',
+            'text_jns_kelamin' => 'required|string|max:10',
+            'textAlamat' => 'required|string|max:255',
+            'text_no_telp' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+    
+        // Update profile data
+        $profileData->nama = $request->input('textNama');
+        $profileData->nip = $request->input('textNIP');
+        $profileData->jns_kelamin = $request->input('text_jns_kelamin');
+        $profileData->alamat = $request->input('textAlamat');
+        $profileData->no_telp = $request->input('text_no_telp');
+        $profileData->email = $request->input('email');
+    
+        if ($request->filled('password')) {
+            $profileData->password = bcrypt($request->input('password'));
+        }
+        
+        // Handle file upload and update foto column
+        if ($request->hasFile('foto_profile')) {
+            // Delete the old photo if exists
+            if ($profileData->$fotoColumn && Storage::disk('public')->exists($profileData->$fotoColumn)) {
+                Storage::disk('public')->delete($profileData->$fotoColumn);
+            }
+    
+            // Store the new photo
+            $fotoFile = $request->file('foto_profile')->store($fotoColumn, 'public');
+            $profileData->$fotoColumn = $fotoFile;
+        }
+    
+        // Save updated profile
+        $profileData->save();
+    
+        return redirect()->route('profile.view')->with('success', 'Profile updated successfully');
+    }
+    
+    
 }
