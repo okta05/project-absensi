@@ -42,9 +42,9 @@ class KepsekController extends Controller
 
         if ($request->file('foto_kepsek')) {
             $foto_kepsek = $request->file('foto_kepsek')->store('data_pengguna/foto_kepsek', 'public');
-            $data->foto_kepsek = $foto_kepsek;
+            $data->foto = $foto_kepsek;
         } else {
-            $data->foto_kepsek = '';
+            $data->foto = '';
         }
         $data->email=$request->email;
         $data->password = bcrypt($request->password);
@@ -76,12 +76,12 @@ class KepsekController extends Controller
         // Cek apakah ada file foto yang diupload
         if ($request->file('foto_kepsek')) {
             // Hapus foto lama jika ada
-            if ($data->foto_kepsek && Storage::disk('public')->exists($data->foto_kepsek)) {
-                Storage::disk('public')->delete($data->foto_admin);
+            if ($data->foto && Storage::disk('public')->exists($data->foto)) {
+                Storage::disk('public')->delete($data->foto);
             }
     
             $foto_kepsek = $request->file('foto_kepsek')->store('data_pengguna/foto_kepsek', 'public');
-            $data->foto_kepsek = $foto_kepsek;
+            $data->foto = $foto_kepsek;
         }
 
         $data->email=$request->email;

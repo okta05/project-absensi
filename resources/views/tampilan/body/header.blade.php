@@ -18,17 +18,17 @@
                     <!-- Menampilkan Foto Profil -->
                     <img src="
                         @if (Auth::guard('kepsek')->check())
-                            {{ asset('storage/' . Auth::guard('kepsek')->user()->foto_kepsek) }}
+                            {{ asset('storage/' . Auth::guard('kepsek')->user()->foto) }}
                         @elseif (Auth::guard('admin')->check())
                             {{ asset('storage/' . Auth::guard('admin')->user()->foto) }}
                         @elseif (Auth::guard('kurikulum')->check())
-                            {{ asset('storage/' . Auth::guard('kurikulum')->user()->foto_kurikulum) }}
+                            {{ asset('storage/' . Auth::guard('kurikulum')->user()->foto) }}
                         @elseif (Auth::guard('bk')->check())
-                            {{ asset('storage/' . Auth::guard('bk')->user()->foto_bk) }}
+                            {{ asset('storage/' . Auth::guard('bk')->user()->foto) }}
                         @elseif (Auth::guard('wakel')->check())
-                            {{ asset('storage/' . Auth::guard('wakel')->user()->foto_wakel) }}
+                            {{ asset('storage/' . Auth::guard('wakel')->user()->foto) }}
                         @elseif (Auth::guard('guru')->check())
-                            {{ asset('storage/' . Auth::guard('guru')->user()->foto_guru) }}
+                            {{ asset('storage/' . Auth::guard('guru')->user()->foto) }}
                         @elseif (Auth::guard('web')->check())
                             {{ asset('storage/' . Auth::guard('web')->user()->foto) }}
                         @endif

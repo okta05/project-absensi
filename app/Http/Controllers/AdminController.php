@@ -101,8 +101,8 @@ class AdminController extends Controller
         $deleteDataAdmin = Admin::find($id);
         if ($deleteDataAdmin) {
             // hapus foto dari penyimpanan
-            if ($deleteDataAdmin->foto_admin && Storage::disk('public')->exists($deleteDataAdmin->foto_admin)) {
-                Storage::disk('public')->delete($deleteDataAdmin->foto_admin);
+            if ($deleteDataAdmin->foto && Storage::disk('public')->exists($deleteDataAdmin->foto)) {
+                Storage::disk('public')->delete($deleteDataAdmin->foto);
             }
     
             // hapus data dari database

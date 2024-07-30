@@ -20,17 +20,17 @@
                     <img src=" 
                     
                     @if (Auth::guard('kepsek')->check())
-                      {{asset('storage/'. $profileData->foto_kepsek)}}
+                      {{asset('storage/'. $profileData->foto)}}
                     @elseif (Auth::guard('admin')->check())
                       {{asset('storage/'. $profileData->foto)}}
                          @elseif (Auth::guard('kurikulum')->check())
-                      {{asset('storage/'. $profileData->foto_kurikulum)}}
+                      {{asset('storage/'. $profileData->foto)}}
                          @elseif (Auth::guard('bk')->check())
-                      {{asset('storage/'. $profileData->foto_bk)}}
+                      {{asset('storage/'. $profileData->foto)}}
                          @elseif (Auth::guard('wakel')->check())
-                      {{asset('storage/'. $profileData->foto_wakel)}}
+                      {{asset('storage/'. $profileData->foto)}}
                          @elseif (Auth::guard('guru')->check())
-                      {{asset('storage/'. $profileData->foto_guru)}}
+                      {{asset('storage/'. $profileData->foto)}}
                     @endif
                     " alt="Profile" class="rounded-circle">
                     <h2>{{ $profileData->nama ?? 'nama' }}</h2>
