@@ -27,27 +27,27 @@ class ProfileController extends Controller
         if ($user->is_admin) {
             $profileData = $user->admin;
             $role = 'admin';
-            $foto = $profileData->foto_admin;
+            $foto = $profileData->foto;
         } elseif ($user->is_kepsek) {
             $profileData = $user->kepsek;
             $role = 'kepsek';
-            $foto = $profileData->foto_kepsek;
+            $foto = $profileData->foto;
         } elseif ($user->is_kurikulum) {
             $profileData = $user->kurikulum;
             $role = 'kurikulum';
-            $foto = $profileData->foto_kurikulum;
+            $foto = $profileData->foto;
         } elseif ($user->is_bk) {
             $profileData = $user->bk;
             $role = 'bk';
-            $foto = $profileData->foto_bk;
+            $foto = $profileData->foto;
         } elseif ($user->is_wakel) {
             $profileData = $user->wakel;
             $role = 'wakel';
-            $foto = $profileData->foto_wakel;
+            $foto = $profileData->foto;
         } elseif ($user->is_guru) {
             $profileData = $user->guru;
             $role = 'guru';
-            $foto = $profileData->foto_guru;
+            $foto = $profileData->foto;
         } else {
             $profileData = $user;
             $role = 'user';
@@ -67,27 +67,27 @@ class ProfileController extends Controller
         // Determine the correct profile model and photo column
         if ($user->is_admin) {
             $profileData = $user->admin;
-            $fotoColumn = 'foto_admin';
+            $fotoColumn = 'foto';
             $role = 'admin';
         } elseif ($user->is_kepsek) {
             $profileData = $user->kepsek;
-            $fotoColumn = 'foto_kepsek';
+            $fotoColumn = 'foto';
             $role = 'kepsek';
         } elseif ($user->is_kurikulum) {
             $profileData = $user->kurikulum;
-            $fotoColumn = 'foto_kurikulum';
+            $fotoColumn = 'foto';
             $role = 'kurikulum';
         } elseif ($user->is_bk) {
             $profileData = $user->bk;
-            $fotoColumn = 'foto_bk';
+            $fotoColumn = 'foto';
             $role = 'bk';
         } elseif ($user->is_wakel) {
             $profileData = $user->wakel;
-            $fotoColumn = 'foto_wakel';
+            $fotoColumn = 'foto';
             $role = 'wakel';
         } elseif ($user->is_guru) {
             $profileData = $user->guru;
-            $fotoColumn = 'foto_guru';
+            $fotoColumn = 'foto';
             $role = 'guru';
         } else {
             $profileData = $user;
@@ -108,22 +108,22 @@ class ProfileController extends Controller
         // Determine the correct profile model and photo column
         if ($user->is_admin) {
             $profileData = $user->admin;
-            $fotoColumn = 'foto_admin';
+            $fotoColumn = 'foto';
         } elseif ($user->is_kepsek) {
             $profileData = $user->kepsek;
-            $fotoColumn = 'foto_kepsek';
+            $fotoColumn = 'foto';
         } elseif ($user->is_kurikulum) {
             $profileData = $user->kurikulum;
-            $fotoColumn = 'foto_kurikulum';
+            $fotoColumn = 'foto';
         } elseif ($user->is_bk) {
             $profileData = $user->bk;
-            $fotoColumn = 'foto_bk';
+            $fotoColumn = 'foto';
         } elseif ($user->is_wakel) {
             $profileData = $user->wakel;
-            $fotoColumn = 'foto_wakel';
+            $fotoColumn = 'foto';
         } elseif ($user->is_guru) {
             $profileData = $user->guru;
-            $fotoColumn = 'foto_guru';
+            $fotoColumn = 'foto';
         } else {
             $profileData = $user;
         }
