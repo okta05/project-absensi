@@ -169,5 +169,43 @@ class ProfileController extends Controller
         return redirect()->route('profile.view')->with('success', 'Profile updated successfully');
     }
     
+    public function profileDelete()
+    {
+        $user = Auth::user();
+        $profileData = null;
+        $fotoColumn = 'foto'; // Default column name
+
+        // Determine the correct profile model and photo column
+        if ($user->is_admin) {
+            $profileData = $user->admin;
+            $fotoColumn = 'foto';
+        } elseif ($user->is_kepsek) {
+            $profileData = $user->kepsek;
+            $fotoColumn = 'foto';
+        } elseif ($user->is_kurikulum) {
+            $profileData = $user->kurikulum;
+            $fotoColumn = 'foto';
+        } elseif ($user->is_bk) {
+            $profileData = $user->bk;
+            $fotoColumn = 'foto';
+        } elseif ($user->is_wakel) {
+            $profileData = $user->wakel;
+            $fotoColumn = 'foto';
+        } elseif ($user->is_guru) {
+            $profileData = $user->guru;
+            $fotoColumn = 'foto';
+        } else {
+            $profileData = $user;
+        }
+
+        // Delete the photo if it exists
+        if ($profileData && $profileData->$fotoColumn && Storage::disk('public')->exists($profileData->$fotoColumn)) {
+            Storage::disk('public')->delete($profileData->$fotoColumn);
+            $profileData->$fotoColumn = null;
+            $profileData->save();
+        }
+
+        return redirect()->route('profile.view')->with('success', 'Profile photo deleted successfully');
+    }
     
 }

@@ -14,7 +14,6 @@
 <section class="section profile">
     <div class="row">
         <div class="col-xl-4">
-
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                     <img src=" 
@@ -36,64 +35,56 @@
                     <h2>{{ $profileData->nama ?? 'nama' }}</h2>
                 </div>
             </div>
-
         </div>
 
         <div class="col-xl-8">
-
             <div class="card">
                 <div class="card-body pt-3">
                     <!-- Bordered Tabs -->
                     <ul class="nav nav-tabs nav-tabs-bordered">
-
                         <li class="nav-item">
                             <button class="nav-link active" data-bs-toggle="tab"
                                 data-bs-target="#profile-overview">Profile</button>
                         </li>
-
                     </ul>
                     <div class="tab-content pt-2">
-
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
-
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
                                 <div class="col-lg-9 col-md-8">{{ $profileData->nama ?? 'Nama' }}</div>
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">NIP</div>
                                 <div class="col-lg-9 col-md-8">{{ $profileData->nip ?? 'NIP' }}</div>
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Jenis Kelamin</div>
                                 <div class="col-lg-9 col-md-8">{{ $profileData->jns_kelamin ?? 'Jenis_kelamin' }}</div>
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Alamat</div>
                                 <div class="col-lg-9 col-md-8">{{ $profileData->alamat ?? 'Alamat' }}</div>
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">No Telpon</div>
                                 <div class="col-lg-9 col-md-8">{{ $profileData->no_telp ?? 'No_Telpon' }}</div>
                             </div>
 
-                            <div class="row col-lg-1">
-                                <a href="{{route("profile.edit")}}" class="btn btn-warning">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-start">
+                                    <a href="{{route("profile.edit")}}" class="btn btn-warning me-2">
+                                        <i class="bi bi-pencil-square"></i> Edit Profile
+                                    </a>
+
+                                    <a href="{{route("profile.delete")}}" class="btn btn-danger me-2">
+                                        <i class="bi bi-trash"></i> Hapus Foto
+                                    </a>
+                                </div>
                             </div>
-
                         </div>
-
                     </div><!-- End Bordered Tabs -->
-
                 </div>
             </div>
-
         </div>
     </div>
 </section>
