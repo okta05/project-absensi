@@ -84,7 +84,7 @@
                 <div class="row mb-3">
                     <label for="foto_kepsek" class="col-sm-2 col-form-label">Preview</label>
                     <div class="col-sm-10">
-                        <img id="previewFoto_kepsek" src="{{ asset('storage/' . $editDataKepsek->foto_kepsek) }}"
+                        <img id="previewFoto_kepsek" src="{{ asset('storage/' . $editDataKepsek->foto) }}"
                             alt="Preview Foto" style="max-width: 200px;">
                     </div>
                 </div>

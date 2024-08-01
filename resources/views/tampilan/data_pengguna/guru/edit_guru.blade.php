@@ -80,7 +80,7 @@
                 <div class="row mb-3">
                     <label for="foto_guru" class="col-sm-2 col-form-label">Upload Foto</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="file" name="foto_guru" id="foto_guru">
+                        <input class="form-control" type="file" name="foto_guru" id="foto">
                     </div>
                 </div>
 
