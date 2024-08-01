@@ -41,9 +41,9 @@ class BKController extends Controller
 
         if ($request->file('foto_bk')) {
             $foto_bk = $request->file('foto_bk')->store('data_pengguna/foto_bk', 'public');
-            $data->foto_bk = $foto_bk;
+            $data->foto = $foto_bk;
         } else {
-            $data->foto_bk = '';
+            $data->foto = '';
         }
         $data->email=$request->email;
         $data->password = bcrypt($request->password);
@@ -75,12 +75,12 @@ class BKController extends Controller
         // Cek apakah ada file foto yang diupload
         if ($request->file('foto_bk')) {
             // Hapus foto lama jika ada
-            if ($data->foto_bk && Storage::disk('public')->exists($data->foto_bk)) {
-                Storage::disk('public')->delete($data->foto_bk);
+            if ($data->foto && Storage::disk('public')->exists($data->foto)) {
+                Storage::disk('public')->delete($data->foto);
             }
     
             $foto_bk = $request->file('foto_bk')->store('data_pengguna/foto_bk', 'public');
-            $data->foto_bk = $foto_bk;
+            $data->foto = $foto_bk;
         }
 
         $data->email=$request->email;
@@ -98,8 +98,8 @@ class BKController extends Controller
         $deleteDataBk = Bk::find($id);
         if ($deleteDataBk) {
             // hapus foto dari penyimpanan
-            if ($deleteDataBk->foto_bk && Storage::disk('public')->exists($deleteDataBk->foto_bk)) {
-                Storage::disk('public')->delete($deleteDataBk->foto_bk);
+            if ($deleteDataBk->foto && Storage::disk('public')->exists($deleteDataBk->foto)) {
+                Storage::disk('public')->delete($deleteDataBk->foto);
             }
     
             // hapus data dari database

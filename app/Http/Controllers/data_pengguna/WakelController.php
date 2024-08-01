@@ -42,9 +42,9 @@ class WakelController extends Controller
 
         if ($request->file('foto_wakel')) {
             $foto_wakel = $request->file('foto_wakel')->store('data_pengguna/foto_wakel', 'public');
-            $data->foto_wakel = $foto_wakel;
+            $data->foto = $foto_wakel;
         } else {
-            $data->foto_wakel = '';
+            $data->foto = '';
         }
         $data->email=$request->email;
         $data->password = bcrypt($request->password);
@@ -76,12 +76,12 @@ class WakelController extends Controller
         // Cek apakah ada file foto yang diupload
         if ($request->file('foto_wakel')) {
             // Hapus foto lama jika ada
-            if ($data->foto_wakel && Storage::disk('public')->exists($data->foto_wakel)) {
-                Storage::disk('public')->delete($data->foto_wakel);
+            if ($data->foto && Storage::disk('public')->exists($data->foto)) {
+                Storage::disk('public')->delete($data->foto);
             }
     
             $foto_wakel = $request->file('foto_wakel')->store('data_pengguna/foto_wakel', 'public');
-            $data->foto_wakel = $foto_wakel;
+            $data->foto = $foto_wakel;
         }
 
         $data->email=$request->email;
@@ -100,8 +100,8 @@ class WakelController extends Controller
         if ($deleteDataWakel) {
             
             // hapus foto dari penyimpanan
-            if ($deleteDataWakel->foto_wakel && Storage::disk('public')->exists($deleteDataWakel->foto_wakel)) {
-                Storage::disk('public')->delete($deleteDataWakel->foto_wakel);
+            if ($deleteDataWakel->foto && Storage::disk('public')->exists($deleteDataWakel->foto)) {
+                Storage::disk('public')->delete($deleteDataWakel->foto);
             }
     
             // hapus data dari database

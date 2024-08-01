@@ -41,9 +41,9 @@ class KurikulumController extends Controller
 
         if ($request->file('foto_kurikulum')) {
             $foto_kurikulum = $request->file('foto_kurikulum')->store('data_pengguna/foto_kurikulum', 'public');
-            $data->foto_kurikulum = $foto_kurikulum;
+            $data->foto = $foto_kurikulum;
         } else {
-            $data->foto_kurikulum = '';
+            $data->foto = '';
         }
         $data->email=$request->email;
         $data->password = bcrypt($request->password);
@@ -75,12 +75,12 @@ class KurikulumController extends Controller
         // Cek apakah ada file foto yang diupload
         if ($request->file('foto_kurikulum')) {
             // Hapus foto lama jika ada
-            if ($data->foto_kurikulum && Storage::disk('public')->exists($data->foto_kurikulum)) {
-                Storage::disk('public')->delete($data->foto_kurikulum);
+            if ($data->foto && Storage::disk('public')->exists($data->foto)) {
+                Storage::disk('public')->delete($data->foto);
             }
     
             $foto_kurikulum = $request->file('foto_kurikulum')->store('data_pengguna/foto_kurikulum', 'public');
-            $data->foto_kurikulum = $foto_kurikulum;
+            $data->foto = $foto_kurikulum;
         }
 
         $data->email=$request->email;
@@ -99,8 +99,8 @@ class KurikulumController extends Controller
         $deleteDataKurikulum = Kurikulum::find($id);
         if ($deleteDataKurikulum) {
             // hapus foto dari penyimpanan
-            if ($deleteDataKurikulum->foto_kurikulum && Storage::disk('public')->exists($deleteDataKurikulum->foto_kurikulum)) {
-                Storage::disk('public')->delete($deleteDataKurikulum->foto_kurikulum);
+            if ($deleteDataKurikulum->foto && Storage::disk('public')->exists($deleteDataKurikulum->foto)) {
+                Storage::disk('public')->delete($deleteDataKurikulum->foto);
             }
     
             // hapus data dari database

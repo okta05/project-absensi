@@ -99,8 +99,8 @@ class KepsekController extends Controller
         $deleteDataKepsek = Kepsek::find($id);
         if ($deleteDataKepsek) {
             // hapus foto dari penyimpanan
-            if ($deleteDataKepsek->foto_kepsek && Storage::disk('public')->exists($deleteDataKepsek->foto_kepsek)) {
-                Storage::disk('public')->delete($deleteDataKepsek->foto_kepsek);
+            if ($deleteDataKepsek->foto && Storage::disk('public')->exists($deleteDataKepsek->foto)) {
+                Storage::disk('public')->delete($deleteDataKepsek->foto);
             }
     
             // hapus data dari database

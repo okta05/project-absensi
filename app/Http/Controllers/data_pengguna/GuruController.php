@@ -41,9 +41,9 @@ class GuruController extends Controller
 
         if ($request->file('foto_guru')) {
             $foto_guru = $request->file('foto_guru')->store('data_pengguna/foto_guru', 'public');
-            $data->foto_guru = $foto_guru;
+            $data->foto = $foto_guru;
         } else {
-            $data->foto_guru = '';
+            $data->foto = '';
         }
         $data->email=$request->email;
         $data->password = bcrypt($request->password);
@@ -75,8 +75,8 @@ class GuruController extends Controller
         // Cek apakah ada file foto yang diupload
         if ($request->file('foto_guru')) {
             // Hapus foto lama jika ada
-            if ($data->foto_guru && Storage::disk('public')->exists($data->foto_guru)) {
-                Storage::disk('public')->delete($data->foto_guru);
+            if ($data->foto && Storage::disk('public')->exists($data->foto)) {
+                Storage::disk('public')->delete($data->foto);
             }
     
             $foto_guru = $request->file('foto_guru')->store('data_pengguna/foto_guru', 'public');
@@ -98,8 +98,8 @@ class GuruController extends Controller
         $deleteDataGuru = Guru::find($id);
         if ($deleteDataGuru) {
             // hapus foto dari penyimpanan
-            if ($deleteDataGuru->foto_guru && Storage::disk('public')->exists($deleteDataGuru->foto_guru)) {
-                Storage::disk('public')->delete($deleteDataGuru->foto_guru);
+            if ($deleteDataGuru->foto && Storage::disk('public')->exists($deleteDataGuru->foto)) {
+                Storage::disk('public')->delete($deleteDataGuru->foto);
             }
     
             /// hapus data dari database
