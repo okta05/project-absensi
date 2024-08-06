@@ -33,42 +33,6 @@
         </div>
         <!-- bahasa indonesia -->
 
-        <!-- Matematika -->
-        <div class="col-xxl-4 col-md-6">
-            <div class="card info-card sales-card">
-                <a href="{{ route('siswa.view') }}" class="stretched-link"></a>
-
-                <div class="card-body text-center">
-                    <h5 class="card-title">Matematika</h5>
-
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-book-half"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Matematika -->
-
-        <!-- IPA -->
-        <div class="col-xxl-4 col-md-6">
-            <div class="card info-card sales-card">
-                <a href="{{ route('siswa.view') }}" class="stretched-link"></a>
-
-                <div class="card-body text-center">
-                    <h5 class="card-title">IPA</h5>
-
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-book-half"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- IPA -->
-
     </div>
 
 </section>
