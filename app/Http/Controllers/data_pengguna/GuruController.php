@@ -80,7 +80,7 @@ class GuruController extends Controller
             }
     
             $foto_guru = $request->file('foto_guru')->store('data_pengguna/foto_guru', 'public');
-            $data->foto_guru = $foto_guru;
+            $data->foto = $foto_guru;
         }
 
         $data->email=$request->email;
