@@ -54,8 +54,13 @@ class Guru extends Authenticatable
         ];
     }
 
-    public function mapel()
+    public function mapels()
     {
-        return $this->belongsTo(Mapel::class);
+        return $this->hasMany(Mapel::class, 'id_guru', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('mapels', function (Blueprint $table) {
             $table->id();
             $table->string('nm_mapel')->nullable();
-            $table->string('id_guru')->nullable();
+            $table->unsignedBigInteger('id_guru')->nullable();
             $table->string('id_th_pelajaran')->nullable();
             $table->timestamps();
+            
+            // Tambahkan foreign key constraint jika diperlukan
+            $table->foreign('id_guru')->references('id')->on('gurus')->onDelete('set null');
         });
     }
 

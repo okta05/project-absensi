@@ -87,7 +87,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(Wakel::class);
     }
-    public function Guru()
+    public function guru() // Use lowercase for consistency
     {
         return $this->hasOne(Guru::class);
     }
