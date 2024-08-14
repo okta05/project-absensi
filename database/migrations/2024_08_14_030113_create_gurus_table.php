@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('gurus', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable(); // Hubungkan dengan tabel users
             $table->string('nama')->nullable();
             $table->string('nip')->nullable();
             $table->string('jns_kelamin')->nullable();
@@ -27,10 +26,6 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-
         });
     }
 

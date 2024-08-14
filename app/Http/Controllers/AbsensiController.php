@@ -12,10 +12,10 @@ class AbsensiController extends Controller
 {
     //
         public function pilihMapel() {
-            $user = Auth::user();
-            Log::info('User yang login: ' . $user->id);
+            $guru = Auth::user();
+            Log::info('User yang login: ' . $guru->id);
         
-            $guru = Guru::where('id', $user->id)->first();
+            $guru = Guru::where('id', $guru->id)->first();
             
             if ($guru) {
                 Log::info('Guru ditemukan: ' . $guru->id);
