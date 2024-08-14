@@ -19,7 +19,7 @@ class Guru extends Authenticatable
     use TwoFactorAuthenticatable;
 
     protected $tabel = "gurus";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_guru";
    
     protected $fillable = [
         'nama',
@@ -52,11 +52,6 @@ class Guru extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function mapels()
-    {
-        return $this->hasMany(Mapel::class, 'id_guru', 'id');
     }
 
     public function user()

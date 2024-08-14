@@ -37,9 +37,9 @@
                             <option selected disabled>Pilih Guru</option>
 
                             @foreach($gurus as $guru)
-                            <option value="{{$guru->id}}"
-                                {{$editDataMapel->id_guru=="$guru->id"? "selected":""}}>
-                                {{$guru->id}}
+                            <option value="{{$guru->id_guru}}"
+                                {{$editDataMapel->id_guru=="$guru->id_guru"? "selected":""}}>
+                                {{$guru->id_guru}}
                             </option>
                             @endforeach
 

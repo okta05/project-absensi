@@ -51,13 +51,13 @@
                                     <td>{{$guru->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('guru.detail', $guru->id) }}"><i
+                                            <a class="btn btn-primary" href="{{ route('guru.detail', $guru->id_guru) }}"><i
                                                     class="bi bi-eye"></i></a>
 
-                                            <a class="btn btn-warning" href="{{ route('guru.edit', $guru->id) }}"><i
+                                            <a class="btn btn-warning" href="{{ route('guru.edit', $guru->id_guru) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" id="delete" href="{{ route('guru.delete', $guru->id) }}"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('guru.delete', $guru->id_guru) }}"><i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

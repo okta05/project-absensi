@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Ubah Guru</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('guru.update', $editDataGuru->id)}}"
+            <form method="post" action="{{route('guru.update', $editDataGuru->id_guru)}}"
                 enctype="multipart/form-data">
                 @csrf
 

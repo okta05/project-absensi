@@ -12,16 +12,16 @@ class AbsensiController extends Controller
 {
     //
         public function pilihMapel() {
-            $guru = Auth::user();
-            Log::info('User yang login: ' . $guru->id);
+            $user = Auth::user();
+            Log::info('User yang login: ' . $user->id_guru);
         
-            $guru = Guru::where('id', $guru->id)->first();
+            $guru = Guru::where('id_guru', $user->id_guru)->first();
             
             if ($guru) {
-                Log::info('Guru ditemukan: ' . $guru->id);
+                Log::info('Guru ditemukan: ' . $guru->id_guru);
         
                 // Ambil mata pelajaran yang dipegang guru yang login
-                $mapels = Mapel::where('id_guru', $guru->id)->get();
+                $mapels = Mapel::where('id_guru', $guru->id_guru)->get();
                 Log::info('Mapel yang diambil: ' . $mapels->pluck('nm_mapel')->toJson());
             } else {
                 Log::info('Guru tidak ditemukan, mengambil semua mapel');

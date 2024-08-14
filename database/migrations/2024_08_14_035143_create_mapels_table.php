@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
             
             // Tambahkan foreign key constraint jika diperlukan
-            $table->foreign('id_guru')->references('id')->on('gurus')->onDelete('set null');
+            $table->foreign('id_guru')->references('id_guru')->on('gurus')->onDelete('set null');
         });
     }
 
