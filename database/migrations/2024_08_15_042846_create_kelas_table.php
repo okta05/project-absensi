@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mapels', function (Blueprint $table) {
-            $table->id();
-            $table->string('nm_mapel')->nullable();
-            $table->unsignedBigInteger('id_guru')->nullable();
-            $table->string('id_th_pelajaran')->nullable();
+        Schema::create('kelas', function (Blueprint $table) {
+            $table->id('id_kelas');
+            $table->string('nm_kelas')->nullable();
+            $table->string('tingkat')->nullable();
+            $table->unsignedBigInteger('id_wakel')->nullable();
             $table->timestamps();
-            
+
             // Tambahkan foreign key constraint jika diperlukan
-            $table->foreign('id_guru')->references('id_guru')->on('gurus')->onDelete('set null');
+            $table->foreign('id_wakel')->references('id_wakel')->on('wakels')->onDelete('set null');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mapels');
+        Schema::dropIfExists('kelas');
     }
 };

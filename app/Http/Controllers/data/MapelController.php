@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Mapel;
 use App\Models\Tahpel;
 use App\Models\Guru;
+use App\Models\Kelas;
 
 class MapelController extends Controller
 {
@@ -20,8 +21,9 @@ class MapelController extends Controller
         // Mengambil semua user dengan relasi role
         $tahpels = Tahpel::all();
         $gurus = Guru::all();
+        $kelas = Kelas::all();
 
-        return view("tampilan.data.mapel.add_mapel", compact('tahpels', 'gurus'));
+        return view("tampilan.data.mapel.add_mapel", compact('tahpels', 'gurus', 'kelas'));
     }
 
     public function mapelStore(Request $request) {

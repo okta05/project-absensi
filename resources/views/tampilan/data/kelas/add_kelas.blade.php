@@ -49,7 +49,7 @@
                             <option selected disabled>pilih Wali Kelas</option>
 
                             @foreach($wakels as $wakel)
-                            <option value="{{$wakel->nama}}">{{$wakel->nama}}</option>
+                            <option value="{{$wakel->id_wakel}}">{{$wakel->nama}}</option>
                             @endforeach
 
                         </select>

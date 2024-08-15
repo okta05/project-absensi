@@ -11,7 +11,7 @@ class KelasController extends Controller
 {
     //
     public function kelasView() {
-        $data['allDataKelas']=Kelas::all();
+        $data['allDataKelas']=Kelas::with('wakel')->get();
         return view("tampilan.data.kelas.view_kelas", $data);
     }
 

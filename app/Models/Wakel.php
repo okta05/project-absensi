@@ -18,7 +18,7 @@ class Wakel extends Authenticatable
     use TwoFactorAuthenticatable;
 
     protected $tabel = "wakels";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_wakel";
    
     protected $fillable = [
         'nama',
@@ -55,6 +55,6 @@ class Wakel extends Authenticatable
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->hasMany(Kelas::class, 'id_wakel');
     }
 }

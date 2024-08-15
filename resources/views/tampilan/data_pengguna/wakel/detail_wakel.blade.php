@@ -18,7 +18,7 @@
 
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img src="{{asset('storage/'. $viewDataWakel->foto_wakel)}}" alt="Profile" class="rounded-circle">
+                    <img src="{{asset('storage/'. $viewDataWakel->foto)}}" alt="Profile" class="rounded-circle">
                     <h2>{{$viewDataWakel->nama}}</h2>
                 </div>
             </div>
@@ -42,7 +42,7 @@
 
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
-                            <h5 class="card-title">Detail Kurikulum</h5>
+                            <h5 class="card-title">Detail Wali Kelas</h5>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>

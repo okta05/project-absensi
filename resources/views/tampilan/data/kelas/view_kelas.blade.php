@@ -45,14 +45,14 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$kelas->nm_kelas}}</td>
                                     <td>{{$kelas->tingkat}}</td>
-                                    <td>{{$kelas->id_wakel}}</td>
+                                    <td>{{$kelas->wakel->nama ?? 'Tidak Ditemukan'}}</td>
                                     <td>
                                         <div class="dropdown">
 
-                                            <a class="btn btn-warning" href="{{ route('kelas.edit', $kelas->id) }}"><i
+                                            <a class="btn btn-warning" href="{{ route('kelas.edit', $kelas->id_kelas) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" id="delete" href="{{ route('kelas.delete', $kelas->id) }}"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('kelas.delete', $kelas->id_kelas) }}"><i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

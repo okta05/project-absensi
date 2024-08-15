@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Ubah Kelas</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('kelas.update', $editDataKelas->id)}}">
+            <form method="post" action="{{route('kelas.update', $editDataKelas->id_kelas)}}">
                 @csrf
 
                 <div class="row mb-3">
@@ -49,8 +49,8 @@
                             <option selected disabled>pilih Wali Kelas</option>
 
                             @foreach($wakels as $wakel)
-                            <option value="{{$wakel->nama}}"
-                                {{$editDataKelas->id_wakel=="$wakel->nama"? "selected":""}}>
+                            <option value="{{$wakel->id_wakel}}"
+                                {{$editDataKelas->id_wakel=="$wakel->id_wakel"? "selected":""}}>
                                 {{$wakel->nama}}
                             </option>
                             @endforeach

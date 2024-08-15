@@ -45,6 +45,21 @@
                 </div>
 
                 <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Kelas</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" name="text_id_kelas" id="text_id_kelas"
+                            aria-label="Default select example">
+                            <option selected disabled>Pilih Kelas</option>
+
+                            @foreach($kelas as $kelas)
+                            <option value="{{$kelas->id_kelas}}">{{$kelas->nm_kelas}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Tahun Pelajaran</label>
                     <div class="col-sm-10">
                         <select class="form-select" name="text_id_tahpel" id="text_id_tahpel"
