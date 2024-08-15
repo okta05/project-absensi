@@ -44,7 +44,7 @@
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$mapel->nm_mapel}}</td>
-                                    <td>{{$mapel->id_guru}}</td>
+                                    <td>{{$mapel->guru->nama ?? 'Tidak Ditemukan'}}</td>
                                     <td>{{$mapel->id_th_pelajaran}}</td>
                                     <td>
                                         <div class="dropdown">

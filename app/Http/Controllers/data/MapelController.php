@@ -12,7 +12,7 @@ class MapelController extends Controller
 {
     //
     public function mapelView() {
-        $data['allDataMapel']=Mapel::all();
+        $data['allDataMapel']=Mapel::with('guru')->get();
         return view("tampilan.data.mapel.view_mapel", $data);
     }
 

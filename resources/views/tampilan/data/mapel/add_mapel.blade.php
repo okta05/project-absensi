@@ -37,7 +37,7 @@
                             <option selected disabled>Pilih Guru</option>
 
                             @foreach($gurus as $guru)
-                            <option value="{{$guru->id_guru}}">{{$guru->id_guru}}</option>
+                            <option value="{{$guru->id_guru}}">{{$guru->nama}}</option>
                             @endforeach
 
                         </select>
