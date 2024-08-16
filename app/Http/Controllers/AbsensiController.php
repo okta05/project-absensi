@@ -21,11 +21,11 @@ class AbsensiController extends Controller
                 Log::info('Guru ditemukan: ' . $guru->id_guru);
         
                 // Ambil mata pelajaran yang dipegang guru yang login
-                $mapels = Mapel::where('id_guru', $guru->id_guru)->get();
+                $mapels = Mapel::where('id_guru', $guru->id_guru)->with('kelas')->get();
                 Log::info('Mapel yang diambil: ' . $mapels->pluck('nm_mapel')->toJson());
             } else {
                 Log::info('Guru tidak ditemukan, mengambil semua mapel');
-                $mapels = Mapel::all();
+                $mapels = Mapel::with('kelas')->get();
             }
         
             return view("tampilan.absensi.view_mapel_absensi", compact('mapels'));

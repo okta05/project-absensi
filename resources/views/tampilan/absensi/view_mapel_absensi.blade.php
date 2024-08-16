@@ -26,6 +26,7 @@
                             <i class="bi bi-book-half"></i>
                         </div>
                     </div>
+                    <h5 class="card-title">{{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }}</h5> <!-- Nama mata pelajaran -->
                 </div>
             </div>
         </div>
