@@ -13,7 +13,7 @@ class MapelController extends Controller
 {
     //
     public function mapelView() {
-        $data['allDataMapel']=Mapel::with('guru')->get();
+        $data['allDataMapel']=Mapel::with('guru', 'kelas')->get();
         return view("tampilan.data.mapel.view_mapel", $data);
     }
 
@@ -30,13 +30,13 @@ class MapelController extends Controller
 
         $validateData=$request->validate([
             'textNM_Mapel' => 'required',
-            'text_id_guru' => 'required',
          
         ]); 
 
         $data = new Mapel();
         $data->nm_mapel=$request->textNM_Mapel;
         $data->id_guru=$request->text_id_guru;
+        $data->id_kelas=$request->text_id_kelas;
         $data->id_th_pelajaran=$request->text_id_tahpel;
         $data->save();
 
@@ -46,22 +46,23 @@ class MapelController extends Controller
     public function mapeledit($id) {
         $tahpels = Tahpel::all();
         $gurus = Guru::all();
+        $kelas = Kelas::all();
 
         $editDataMapel = Mapel::find($id);
-        return view("tampilan.data.mapel.edit_mapel", compact('editDataMapel', 'tahpels', 'gurus'));
+        return view("tampilan.data.mapel.edit_mapel", compact('editDataMapel', 'tahpels', 'gurus', 'kelas'));
     }
 
     public function mapelUpdate(Request $request, $id) {
 
         $validateData=$request->validate([
             'textNM_Mapel' => 'required',
-            'text_id_guru' => 'required',
          
         ]); 
 
         $data = Mapel::find($id);
         $data->nm_mapel=$request->textNM_Mapel;
         $data->id_guru=$request->text_id_guru;
+        $data->id_kelas=$request->text_id_kelas;
         $data->id_th_pelajaran=$request->text_id_tahpel;
         $data->save();
 

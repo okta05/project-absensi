@@ -48,6 +48,24 @@
                 </div>
 
                 <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Kelas</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" name="text_id_kelas" value="{{$editDataMapel->id_kelas}}"
+                            id="text_id_kelas" aria-label="Default select example">
+                            <option selected disabled>Pilih Guru</option>
+
+                            @foreach($kelas as $kelas)
+                            <option value="{{$kelas->id_kelas}}"
+                                {{$editDataMapel->id_kelas=="$kelas->id_kelas"? "selected":""}}>
+                                {{$kelas->nm_kelas}}
+                            </option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Tahun Pelajaran</label>
                     <div class="col-sm-10">
                         <select class="form-select" name="text_id_tahpel" value="{{$editDataMapel->id_th_pelajaran}}"

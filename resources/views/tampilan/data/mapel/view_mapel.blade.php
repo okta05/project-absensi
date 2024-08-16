@@ -33,6 +33,7 @@
                                     <th>No</th>
                                     <th>Mata Pejaran</th>
                                     <th>Guru</th>
+                                    <th>Kelas</th>
                                     <th>Tahun Pelajaran</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -45,6 +46,7 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$mapel->nm_mapel}}</td>
                                     <td>{{$mapel->guru->nama ?? 'Tidak Ditemukan'}}</td>
+                                    <td>{{$mapel->kelas->nm_kelas ?? 'Tidak Ditemukan'}}</td>
                                     <td>{{$mapel->id_th_pelajaran}}</td>
                                     <td>
                                         <div class="dropdown">
