@@ -28,6 +28,6 @@ class AbsensiController extends Controller
                 $mapels = Mapel::with('kelas')->get();
             }
         
-            return view("tampilan.absensi.view_mapel_absensi", compact('mapels'));
+            return view("tampilan.absensi.pilih_mapel_absensi", compact('mapels'));
 }
 }
