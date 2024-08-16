@@ -18,7 +18,7 @@
         @foreach($mapels as $mapel)
         <div class="col-xxl-4 col-md-6">
             <div class="card info-card sales-card">
-                <a href="{{ route('siswa.view') }}" class="stretched-link"></a>
+                <a href="{{ route('pilih_data.absensi') }}" class="stretched-link"></a>
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ $mapel->nm_mapel }}</h5> <!-- Nama mata pelajaran -->
                     <div class="d-flex align-items-center justify-content-center">

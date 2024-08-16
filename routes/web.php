@@ -168,6 +168,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('data/absensi')->group(function () {
         Route::get('/pilih-mapel', [AbsensiController::class, 'pilihMapel'])->name('mapel.absensi');
+        Route::get('/pilih-data-absensi', [AbsensiController::class, 'pilihDataAbsensi'])->name('pilih_data.absensi');
     });
 });
 

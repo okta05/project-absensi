@@ -30,4 +30,9 @@ class AbsensiController extends Controller
         
             return view("tampilan.absensi.pilih_mapel_absensi", compact('mapels'));
 }
+
+public function pilihDataAbsensi() {
+
+    return view("tampilan.absensi.pilih_data_absensi");
+}
 }
