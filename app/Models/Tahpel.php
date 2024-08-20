@@ -9,6 +9,7 @@ class Tahpel extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = "id_tahpel";
     public function mapel()
     {
         return $this->hasMany(Mapel::class);

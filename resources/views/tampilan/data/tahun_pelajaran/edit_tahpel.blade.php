@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Ubah Data Tahun Pelajaran</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('tahpel.update', $editDataTahpel->id)}}">
+            <form method="post" action="{{route('tahpel.update', $editDataTahpel->id_tahpel)}}">
                 @csrf
 
                 <div class="row mb-3">

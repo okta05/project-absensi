@@ -41,10 +41,10 @@
                                     <td>
                                         <div class="dropdown">
 
-                                            <a class="btn btn-warning" href="{{ route('tahpel.edit', $tahpel->id) }}"><i
+                                            <a class="btn btn-warning" href="{{ route('tahpel.edit', $tahpel->id_tahpel) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" id="delete" href="{{ route('tahpel.delete', $tahpel->id) }}"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('tahpel.delete', $tahpel->id_tahpel) }}"><i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
