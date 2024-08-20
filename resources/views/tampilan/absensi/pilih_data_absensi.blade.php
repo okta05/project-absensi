@@ -7,12 +7,81 @@
         <h1>Absensi</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a></li>
+                <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a>
+                </li>
                 <li class="breadcrumb-item"><a href="{{route("mapel.absensi")}}">Pilih Mapel</a></li>
                 <li class="breadcrumb-item"><a href="#">Pilih Data Absensi</a></li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
+
+    <div class="row align-items-top">
+        <!-- Default Card -->
+        <div class="card" style="height: auto; padding: 10px;">
+            <div class="card-body">
+                <div class="col-8 border border-3 p-3 mt-3 rounded shadow-sm">
+                    <div class="tab-content pt-1">
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
+                                <div class="col-lg-9 col-md-8">los</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
+                                <div class="col-lg-9 col-md-8">los</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
+                                <div class="col-lg-9 col-md-8">los</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
+                                <div class="col-lg-9 col-md-8">los</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="card-body mt-3">
+                    <div class="table-responsive">
+                        <!-- Table with stripped rows -->
+                        <table class="table table-striped datatable">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>NIP</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Alamat</th>
+                                    <th>Nomor Telepon</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data siswa ditampilkan di sini -->
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Default Card -->
+    </div>
+
+
+
 
 
 </section>
