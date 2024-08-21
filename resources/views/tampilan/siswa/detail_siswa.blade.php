@@ -71,7 +71,7 @@
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Tempat, Tanggal Lahir</div>
-                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->tpt_lahir,}} {{$viewDataSiswa->tgl_lahir}}</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->tpt_lahir}}, {{$viewDataSiswa->tgl_lahir}}</div>
                             </div>
 
                             <div class="row">
