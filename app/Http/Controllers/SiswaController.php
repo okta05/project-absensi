@@ -11,7 +11,7 @@ class SiswaController extends Controller
 {
     //
     public function siswaView() {
-        $data['allDataSiswa']=Siswa::all();
+        $data['allDataSiswa']=Siswa::with('kelas')->get();
         return view('tampilan.siswa.view_siswa', $data);
     }
 
@@ -41,7 +41,7 @@ class SiswaController extends Controller
         $data->jns_kelamin=$request->text_jns_kelamin;
         $data->alamat=$request->textAlamat;
         $data->no_telp=$request->text_no_telp;
-        $data->kelas=$request->textKelas;
+        $data->id_kelas=$request->textKelas;
 
         if ($request->file('foto_siswa')) {
             $foto_siswa = $request->file('foto_siswa')->store('siswa/foto_siswa', 'public');

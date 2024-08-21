@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$siswa->nama}}</td>
-                                    <td>{{$siswa->kelas}}</td>
+                                    <td>{{$siswa->kelas->nm_kelas ?? 'Tidak Ditemukan'}}</td>
                                     <td>{{$siswa->nis}}</td>
                                     <td>{{$siswa->tgl_lahir}}</td>
                                     <td>{{$siswa->tpt_lahir}}</td>
@@ -64,15 +64,15 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                 <li><a class="dropdown-item text-primary"
-                                                        href="{{route('siswa.detail', $siswa->id)}}">Detail</a>
+                                                        href="{{route('siswa.detail', $siswa->id_siswa)}}">Detail</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item text-warning"
-                                                        href="{{route('siswa.edit', $siswa->id)}}">Edit</a>
+                                                        href="{{route('siswa.edit', $siswa->id_siswa)}}">Edit</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item text-danger"
-                                                        href="{{route('siswa.delete', $siswa->id)}}"
+                                                        href="{{route('siswa.delete', $siswa->id_siswa)}}"
                                                         id="delete">Hapus</a>
                                                 </li>
                                             </ul>

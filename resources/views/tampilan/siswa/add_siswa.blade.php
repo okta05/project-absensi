@@ -103,7 +103,7 @@
                             <option selected disabled>pilih kelas</option>
 
                             @foreach($idKelas as $kelas)
-                            <option value="{{$kelas->nm_kelas}}">{{$kelas->nm_kelas}}</option>
+                            <option value="{{$kelas->id_kelas}}">{{$kelas->nm_kelas}}</option>
                             @endforeach
 
                         </select>

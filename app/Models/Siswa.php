@@ -9,8 +9,9 @@ class Siswa extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = "id_siswa";
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class, 'id_kelas');
     }
 }
