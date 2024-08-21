@@ -12,16 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mapels', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_mapel');
             $table->string('nm_mapel')->nullable();
+            $table->string('kd_mapel')->nullable();
             $table->unsignedBigInteger('id_guru')->nullable();
             $table->unsignedBigInteger('id_kelas')->nullable();
-            $table->string('id_th_pelajaran')->nullable();
+            $table->unsignedBigInteger('id_tahpel')->nullable();
             $table->timestamps();
             
             // Tambahkan foreign key constraint jika diperlukan
             $table->foreign('id_guru')->references('id_guru')->on('gurus')->onDelete('set null');
             $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onDelete('set null');
+            $table->foreign('id_tahpel')->references('id_tahpel')->on('tahpels')->onDelete('set null');
         });
     }
 

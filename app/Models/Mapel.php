@@ -11,7 +11,7 @@ class Mapel extends Model
 
     public function tahpel()
     {
-        return $this->belongsTo(Tahpel::class);
+        return $this->belongsTo(Tahpel::class, 'id_tahpel');
     }
 
     public function guru()
@@ -24,4 +24,5 @@ class Mapel extends Model
         return $this->belongsTo(Kelas::class, 'id_kelas');
     }
 }
+
 
