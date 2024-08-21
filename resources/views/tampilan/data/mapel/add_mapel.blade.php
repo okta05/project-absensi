@@ -30,6 +30,14 @@
                 </div>
 
                 <div class="row mb-3">
+                    <label for="textKd_Mapel" class="col-sm-2 col-form-label">Kode Mata Pelajaran</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="textKd_Mapel" id="textKd_Mapel"
+                            placeholder="Masukkan kode mata pelajaran">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Guru</label>
                     <div class="col-sm-10">
                         <select class="form-select" name="text_id_guru" id="text_id_guru"
@@ -67,7 +75,7 @@
                             <option selected disabled>Pilih tahun pelajaran</option>
                             @foreach($tahpels as $tahpel)
 
-                            <option value="{{$tahpel->th_pelajaran}}">{{$tahpel->th_pelajaran}}</option>
+                            <option value="{{$tahpel->id_tahpel}}">{{$tahpel->th_pelajaran}}</option>
 
                             @endforeach
                         </select>

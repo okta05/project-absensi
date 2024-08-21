@@ -32,6 +32,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Mata Pejaran</th>
+                                    <th>Kode</th>
                                     <th>Guru</th>
                                     <th>Kelas</th>
                                     <th>Tahun Pelajaran</th>
@@ -45,16 +46,17 @@
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$mapel->nm_mapel}}</td>
+                                    <td>{{$mapel->kd_mapel}}</td>
                                     <td>{{$mapel->guru->nama ?? 'Tidak Ditemukan'}}</td>
                                     <td>{{$mapel->kelas->nm_kelas ?? 'Tidak Ditemukan'}}</td>
-                                    <td>{{$mapel->id_th_pelajaran}}</td>
+                                    <td>{{$mapel->tahpel->th_pelajaran ?? 'Tidak Ditemukan'}}</td>
                                     <td>
                                         <div class="dropdown">
 
-                                            <a class="btn btn-warning" href="{{ route('mapel.edit', $mapel->id) }}"><i
+                                            <a class="btn btn-warning" href="{{ route('mapel.edit', $mapel->id_mapel) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" id="delete" href="{{ route('mapel.delete', $mapel->id) }}"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('mapel.delete', $mapel->id_mapel) }}"><i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

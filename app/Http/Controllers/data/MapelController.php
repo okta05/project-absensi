@@ -13,7 +13,7 @@ class MapelController extends Controller
 {
     //
     public function mapelView() {
-        $data['allDataMapel']=Mapel::with('guru', 'kelas')->get();
+        $data['allDataMapel']=Mapel::with('guru', 'kelas', 'tahpel')->get();
         return view("tampilan.data.mapel.view_mapel", $data);
     }
 
@@ -35,9 +35,10 @@ class MapelController extends Controller
 
         $data = new Mapel();
         $data->nm_mapel=$request->textNM_Mapel;
+        $data->kd_mapel=$request->textKd_Mapel;
         $data->id_guru=$request->text_id_guru;
         $data->id_kelas=$request->text_id_kelas;
-        $data->id_th_pelajaran=$request->text_id_tahpel;
+        $data->id_tahpel=$request->text_id_tahpel;
         $data->save();
 
         return redirect()->route('mapel.view');
