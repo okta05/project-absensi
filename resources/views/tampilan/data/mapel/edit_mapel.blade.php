@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Ubah Mata Pelajaran</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('mapel.update', $editDataMapel->id)}}">
+            <form method="post" action="{{route('mapel.update', $editDataMapel->id_mapel)}}">
                 @csrf
 
                 <div class="row mb-3">
@@ -28,6 +28,15 @@
                             value="{{$editDataMapel->nm_mapel}}" placeholder="Masukkan mata pelajaran">
                     </div>
                 </div>
+
+                <div class="row mb-3">
+                    <label for="textKd_Mapel" class="col-sm-2 col-form-label">Kode Mata Pelajaran</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="textKd_Mapel" id="textKd_Mapel"
+                            value="{{$editDataMapel->kd_mapel}}" placeholder="Masukkan kode mata pelajaran">
+                    </div>
+                </div>
+
 
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Guru</label>
@@ -68,13 +77,13 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Tahun Pelajaran</label>
                     <div class="col-sm-10">
-                        <select class="form-select" name="text_id_tahpel" value="{{$editDataMapel->id_th_pelajaran}}"
+                        <select class="form-select" name="text_id_tahpel" value="{{$editDataMapel->id_tahpel}}"
                             id="text_id_tahpel" aria-label="Default select example">
                             <option selected disabled>Pilih tahun pelajaran</option>
 
                             @foreach($tahpels as $tahpel)
-                            <option value="{{$tahpel->th_pelajaran}}"
-                                {{$editDataMapel->id_th_pelajaran=="$tahpel->th_pelajaran"? "selected":""}}>
+                            <option value="{{$tahpel->id_tahpel}}"
+                                {{$editDataMapel->id_tahpel=="$tahpel->id_tahpel"? "selected":""}}>
                                 {{$tahpel->th_pelajaran}}
                             </option>
                             @endforeach

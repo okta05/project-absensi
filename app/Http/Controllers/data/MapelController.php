@@ -62,9 +62,10 @@ class MapelController extends Controller
 
         $data = Mapel::find($id);
         $data->nm_mapel=$request->textNM_Mapel;
+        $data->kd_mapel=$request->textKd_Mapel;
         $data->id_guru=$request->text_id_guru;
         $data->id_kelas=$request->text_id_kelas;
-        $data->id_th_pelajaran=$request->text_id_tahpel;
+        $data->id_tahpel=$request->text_id_tahpel;
         $data->save();
 
         return redirect()->route('mapel.view');
