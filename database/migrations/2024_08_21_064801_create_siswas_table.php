@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_siswa');
             $table->string('nama')->nullable();
             $table->string('nis')->nullable();
-            $table->string('kelas')->nullable();
+            $table->unsignedBigInteger('id_kelas')->nullable();
             $table->string('tgl_lahir')->nullable(); //tgl_lahir : tanggal lahir
             $table->string('tpt_lahir')->nullable(); //tpt_lahir : tempat lahir
             $table->enum('jns_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('nm_ortu')->nullable();
             $table->string('id_tel_ortu')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onDelete('set null');
         });
     }
 
