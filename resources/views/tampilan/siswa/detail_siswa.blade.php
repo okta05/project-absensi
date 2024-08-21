@@ -23,7 +23,7 @@
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                     <img src="{{asset('storage/'. $viewDataSiswa->foto)}}" alt="Profile" class="rounded-circle">
                     <h2>{{$viewDataSiswa->nama}}</h2>
-                    <h3>{{$viewDataSiswa->kelas}}</h3>
+                    <h3>{{$viewDataSiswa->kelas->nm_kelas}}</h3>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Kelas</div>
-                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->kelas}}</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->kelas->nm_kelas}}</div>
                             </div>
 
                             <div class="row">
@@ -71,7 +71,7 @@
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Tempat, Tanggal Lahir</div>
-                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->tpt_lahir}}, {{$viewDataSiswa->tgl_lahir}}</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->tpt_lahir,}} {{$viewDataSiswa->tgl_lahir}}</div>
                             </div>
 
                             <div class="row">
