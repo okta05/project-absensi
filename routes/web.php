@@ -42,7 +42,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'] 
 Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/view', [AdminController::class, 'adminView'])->name('admin.view');
-        Route::get('/detail', [AdminController::class, 'adminDetail'])->name('admin.detail');
+        Route::get('/detail/{id}', [AdminController::class, 'adminDetail'])->name('admin.detail');
         Route::get('/add', [AdminController::class, 'adminAdd'])->name('admin.add');
         Route::post('/simpan', [AdminController::class, 'adminStore'])->name('admin.store');
         Route::get('/edit/{id}', [AdminController::class, 'adminEdit'])->name('admin.edit');

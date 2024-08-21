@@ -15,8 +15,9 @@ class AdminController extends Controller
         
     }
 
-    public function adminDetail() {
-        return view('tampilan.admin.detail_admin');
+    public function adminDetail($id) {
+        $viewDataAdmin = Admin::find($id);
+        return view('tampilan.admin.detail_admin', compact('viewDataAdmin'));
     }
 
     public function adminAdd() {

@@ -18,7 +18,7 @@
 
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img src="{{asset('storage/'. $viewDataKurikulum->foto_kurikulum)}}" alt="Profile" class="rounded-circle">
+                    <img src="{{asset('storage/'. $viewDataKurikulum->foto)}}" alt="Profile" class="rounded-circle">
                     <h2>{{$viewDataKurikulum->nama}}</h2>
                 </div>
             </div>
