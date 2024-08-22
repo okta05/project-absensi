@@ -55,11 +55,11 @@ class AbsensiController extends Controller
                     ->get();
                 
                 $data['mapel'] = null;
-    }
+                }
 
-    // Render view dengan data absensi dan mapel
-    return view("tampilan.absensi.pilih_data_absensi", $data);
-        }
+                // Render view dengan data absensi dan mapel
+                return view("tampilan.absensi.pilih_data_absensi", $data);
+            }
 
         public function absensiAdd(Request $request) {
             $mapel_id = $request->input('id_mapel');
