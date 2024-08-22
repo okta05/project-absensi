@@ -41,14 +41,14 @@ class AbsensiController extends Controller
                 // Mengambil data absensi berdasarkan id_mapel dan menampilkan semua entri dengan tanggal dan jam yang sama
                 $data['allDataAbsensi'] = Absensi::where('id_mapel', $mapel_id)
                     ->with('guru', 'kelas', 'tahpel', 'mapel')
-                    ->get(); // Hapus `groupBy` untuk menampilkan semua data
+                    ->get();
         
                 // Mengambil data mapel berdasarkan id_mapel
                 $data['mapel'] = Mapel::find($mapel_id);
             } else {
                 // Jika id_mapel tidak ada, ambil semua data absensi tanpa pengelompokan
                 $data['allDataAbsensi'] = Absensi::with('guru', 'kelas', 'tahpel', 'mapel')
-                    ->get(); // Hapus `groupBy` untuk menampilkan semua data
+                    ->get(); 
         
                 $data['mapel'] = null;
             }
