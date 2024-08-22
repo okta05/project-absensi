@@ -18,7 +18,7 @@ class Kelas extends Model
 
     public function siswa()
     {
-        return $this->hasMany(Siswa::class);
+        return $this->hasMany(Siswa::class, 'id_kelas');
     }
 
     public function mapel()

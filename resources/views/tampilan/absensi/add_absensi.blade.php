@@ -83,13 +83,16 @@
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
 
+                                @foreach ($siswas as $key => $siswa)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $siswa->nama }}</td>
+                                    <td>{{ $siswa->nis }}</td>
+                                    <td>
+                                        <!-- Status kehadiran dapat diisi di sini -->
+                                    </td>
                                 </tr>
+                                @endforeach
 
                             </tbody>
                         </table>
