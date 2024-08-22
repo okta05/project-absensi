@@ -19,7 +19,7 @@
     <div class="row mb-2">
         <div class="col-12 d-flex justify-content-start">
             <a href="{{ route('pilih_data.absensi', ['id_mapel' => $mapel->id_mapel]) }}" class="btn btn-success">
-                <i class="bi bi-arrow-left-square-fill"></i> Kembali
+                <i class="bi bi-arrow-left-square"></i> Kembali
             </a>
         </div>
     </div>
