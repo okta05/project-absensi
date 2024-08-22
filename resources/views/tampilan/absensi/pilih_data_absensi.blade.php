@@ -51,6 +51,13 @@
                                 </div>
                                 <div class="col-lg-8 col-md-7">{{ $mapel->guru->nama ?? 'Guru Tidak Ditemukan' }}</div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                    <span class="text-nowrap">Tahun Pelajaran</span>
+                                    <span class="text-nowrap">:</span>
+                                </div>
+                                <div class="col-lg-8 col-md-7">{{ $mapel->tahpel->th_pelajaran?? 'Guru Tidak Ditemukan' }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
