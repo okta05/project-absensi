@@ -25,4 +25,9 @@ class Kelas extends Model
     {
         return $this->hasMany(Mapel::class);
     }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_kelas', 'id_kelas');
+    }
 }

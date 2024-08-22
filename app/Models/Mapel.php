@@ -24,6 +24,11 @@ class Mapel extends Model
     {
         return $this->belongsTo(Kelas::class, 'id_kelas');
     }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_mapel', 'id_mapel');
+    }
 }
 
 

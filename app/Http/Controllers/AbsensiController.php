@@ -32,7 +32,7 @@ class AbsensiController extends Controller
 }
 
 public function pilihDataAbsensi() {
-
+    $data['allDataBk']=Bk::all();
     return view("tampilan.absensi.pilih_data_absensi");
 }
 }
