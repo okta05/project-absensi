@@ -23,20 +23,32 @@
                     <div class="tab-content pt-1">
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">Mata Pelajaran</div>
-                                <div class="col-lg-9 col-md-8">Mapel 1</div>
+                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                    <span class="text-nowrap">Mata Pelajaran</span>
+                                    <span class="text-nowrap">:</span>
+                                </div>
+                                <div class="col-lg-8 col-md-7">Mapel 1</div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">Kode Mata Pelajaran</div>
-                                <div class="col-lg-9 col-md-8">111</div>
+                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                    <span class="text-nowrap">Kode Mata Pelajaran</span>
+                                    <span class="text-nowrap">:</span>
+                                </div>
+                                <div class="col-lg-8 col-md-7">111</div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">Kelas</div>
-                                <div class="col-lg-9 col-md-8">VII A</div>
+                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                    <span class="text-nowrap">Kelas</span>
+                                    <span class="text-nowrap">:</span>
+                                </div>
+                                <div class="col-lg-8 col-md-7">VII A</div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">Guru</div>
-                                <div class="col-lg-9 col-md-8">Guru 1</div>
+                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                    <span class="text-nowrap">Guru</span>
+                                    <span class="text-nowrap">:</span>
+                                </div>
+                                <div class="col-lg-8 col-md-7">Guru 1</div>
                             </div>
                         </div>
                     </div>
