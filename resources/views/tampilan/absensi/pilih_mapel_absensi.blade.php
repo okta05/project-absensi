@@ -27,6 +27,7 @@
                         </div>
                     </div>
                     <h5 class="card-title">{{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }}</h5>
+                    <h5 class="card-title">{{ $mapel->guru->nama ?? 'Kelas Tidak Ditemukan' }}</h5>
                 </div>
             </div>
         </div>

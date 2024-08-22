@@ -21,7 +21,7 @@ class AbsensiController extends Controller
                 Log::info('Guru ditemukan: ' . $guru->id_guru);
         
                 // Ambil mata pelajaran yang dipegang guru yang login
-                $mapels = Mapel::where('id_guru', $guru->id_guru)->with('kelas')->get();
+                $mapels = Mapel::where('id_guru', $guru->id_guru)->with('kelas', 'guru')->get();
                 Log::info('Mapel yang diambil: ' . $mapels->pluck('nm_mapel')->toJson());
             } else {
                 Log::info('Guru tidak ditemukan, mengambil semua mapel');
