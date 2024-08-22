@@ -42,7 +42,8 @@
                                     <span class="text-nowrap">Kelas</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">{{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }}</div>
+                                <div class="col-lg-8 col-md-7">{{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }}
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-5 d-flex justify-content-between">
@@ -56,7 +57,8 @@
                                     <span class="text-nowrap">Tahun Pelajaran</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">{{ $mapel->tahpel->th_pelajaran?? 'Guru Tidak Ditemukan' }}</div>
+                                <div class="col-lg-8 col-md-7">
+                                    {{ $mapel->tahpel->th_pelajaran?? 'Guru Tidak Ditemukan' }}</div>
                             </div>
                         </div>
                     </div>
@@ -87,14 +89,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Data siswa ditampilkan di sini -->
-                                @foreach ( $allDataAbsensi as $key => $absen )
+                                @foreach ($allDataAbsensi as $key => $absen)
                                 <tr>
-                                    <td>{{$key+1}}</td>
-                                    <td>{{$absen->tanggal}}</td>
-                                    <td>{{$absen->mapel->nm_mapel ?? 'tidak ditemukan'}}</td>
-                                    <td>{{$absen->mapel->kd_mapel ?? 'tidak ditemukan'}}</td>
-                                    <td>{{$absen->jam}}</td>
+                                    <td>{{ $key+1 }}</td>
+                                    <td>{{ $absen->tanggal }}</td>
+                                    <td>{{ $absen->mapel->nm_mapel ?? 'tidak ditemukan' }}</td>
+                                    <td>{{ $absen->mapel->kd_mapel ?? 'tidak ditemukan' }}</td>
+                                    <td>{{ $absen->jam }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-primary" href="#">
@@ -118,12 +119,9 @@
             </div>
         </div><!-- End Default Card -->
     </div>
-
-
     @else
     <p>Silakan pilih mata pelajaran terlebih dahulu.</p>
     @endif
-
 
 </section>
 

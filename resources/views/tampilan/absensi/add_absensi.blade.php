@@ -34,7 +34,7 @@
                     <input type="hidden" name="id_mapel" value="{{ $mapel->id_mapel }}">
                     <input type="hidden" name="nm_mapel" value="{{ $mapel->nm_mapel }}">
                     <input type="hidden" name="kd_mapel" value="{{ $mapel->kd_mapel }}">
-                    <input type="hidden" name="kelas" value="{{ $mapel->kelas->nm_kelas ?? '' }}">
+                    <input type="hidden" name="id_kelas" value="{{ $mapel->kelas->id_kelas ?? '' }}">
                     <input type="hidden" name="id_guru" value="{{ $mapel->guru->id_guru ?? '' }}">
                     <input type="hidden" name="id_tahpel" value="{{ $mapel->tahpel->id_tahpel ?? '' }}">
 
