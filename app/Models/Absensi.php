@@ -20,6 +20,10 @@ class Absensi extends Model
         'catatan',
     ];
 
+    public function details()
+    {
+        return $this->hasMany(Absensi_Detail::class, 'id_absensi');
+    }
     public function mapel()
     {
         return $this->belongsTo(Mapel::class, 'id_mapel', 'id_mapel');

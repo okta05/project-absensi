@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log; // Import Log facade
 use App\Models\Absensi;
+use App\Models\Absensi_Detail;
 use App\Models\Guru;
 use App\Models\Mapel;
 
@@ -80,18 +81,29 @@ class AbsensiController extends Controller
             $kelas_id = $request->input('id_kelas');
             $tahpel_id = $request->input('id_tahpel');
             $guru_id = $request->input('id_guru');
+            $tanggal = now()->toDateString();
+            $jam = now()->toTimeString();
+        
+            // Buat atau ambil absensi per pertemuan
+            $absensi = Absensi::firstOrCreate(
+                [
+                    'id_mapel' => $mapel_id,
+                    'id_kelas' => $kelas_id,
+                    'id_tahpel' => $tahpel_id,
+                    'id_guru' => $guru_id,
+                    'tanggal' => $tanggal,
+                    'jam' => $jam,
+                ]
+            );
         
             // Iterasi data kehadiran siswa
             foreach ($request->input('stts_kehadiran') as $siswa_id => $status) {
                 $catatan = $request->input('catatan')[$siswa_id] ?? null;
         
-                // Simpan absensi
-                Absensi::updateOrCreate(
-                    ['id_siswa' => $siswa_id, 'id_mapel' => $mapel_id],
+                // Simpan absensi detail untuk setiap siswa
+                Absensi_Detail::updateOrCreate(
+                    ['id_absensi' => $absensi->id_absensi, 'id_siswa' => $siswa_id],
                     [
-                        'id_kelas' => $kelas_id,
-                        'id_tahpel' => $tahpel_id,
-                        'id_guru' => $guru_id,
                         'stts_kehadiran' => $status,
                         'catatan' => $catatan
                     ]
@@ -102,6 +114,7 @@ class AbsensiController extends Controller
             return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id])
                 ->with('success', 'Absensi berhasil disimpan');
         }
+        
         
         
 }
