@@ -170,6 +170,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
         Route::get('/pilih-mapel', [AbsensiController::class, 'pilihMapel'])->name('mapel.absensi');
         Route::get('/pilih-data-absensi', [AbsensiController::class, 'pilihDataAbsensi'])->name('pilih_data.absensi');
         Route::get('/add', [AbsensiController::class, 'absensiAdd'])->name('add.absensi');
+        Route::post('/simpan', [AbsensiController::class, 'absensiStore'])->name('absensi.store');
     });
 });
 

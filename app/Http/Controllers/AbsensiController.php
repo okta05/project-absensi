@@ -68,4 +68,40 @@ class AbsensiController extends Controller
             return view("tampilan.absensi.add_absensi", $data);
         
         }
+
+        public function absensiStore(Request $request) {
+            // Validasi data absensi
+            $validateData = $request->validate([
+                'stts_kehadiran.*' => 'required|in:ijin,sakit,alpa', // Gunakan 'stts_kehadiran.*'
+            ]);
+        
+            // Ambil data label dari request
+            $mapel_id = $request->input('id_mapel');
+            $kelas_id = $request->input('id_kelas');
+            $tahpel_id = $request->input('id_tahpel');
+            $guru_id = $request->input('id_guru');
+        
+            // Iterasi data kehadiran siswa
+            foreach ($request->input('stts_kehadiran') as $siswa_id => $status) {
+                $catatan = $request->input('catatan')[$siswa_id] ?? null;
+        
+                // Simpan absensi
+                Absensi::updateOrCreate(
+                    ['id_siswa' => $siswa_id, 'id_mapel' => $mapel_id],
+                    [
+                        'id_kelas' => $kelas_id,
+                        'id_tahpel' => $tahpel_id,
+                        'id_guru' => $guru_id,
+                        'stts_kehadiran' => $status,
+                        'catatan' => $catatan
+                    ]
+                );
+            }
+        
+            // Redirect ke halaman yang sesuai
+            return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id])
+                ->with('success', 'Absensi berhasil disimpan');
+        }
+        
+        
 }

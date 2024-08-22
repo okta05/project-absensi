@@ -10,6 +10,16 @@ class Absensi extends Model
     use HasFactory;
     protected $primaryKey = "id_absensi";
 
+    protected $fillable = [
+        'id_mapel',
+        'id_kelas',
+        'id_siswa',
+        'id_tahpel',
+        'id_guru',
+        'stts_kehadiran',
+        'catatan',
+    ];
+
     public function mapel()
     {
         return $this->belongsTo(Mapel::class, 'id_mapel', 'id_mapel');
