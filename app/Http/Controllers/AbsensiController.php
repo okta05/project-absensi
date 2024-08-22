@@ -48,4 +48,11 @@ class AbsensiController extends Controller
         
             return view("tampilan.absensi.pilih_data_absensi", $data);
         }
+
+        public function absensiAdd(Request $request) {
+            // Mengambil semua user dengan relasi role
+           
+            return view("tampilan.absensi.add_absensi");
+        
+        }
 }

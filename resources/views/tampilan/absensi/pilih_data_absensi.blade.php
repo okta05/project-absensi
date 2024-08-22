@@ -59,7 +59,7 @@
 
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
-                        <a href="#" class="btn btn-success">
+                        <a href="{{ route('add.absensi') }}" class="btn btn-success">
                             <i class="bi bi-journal-plus"></i> Tambah
                         </a>
                     </div>
