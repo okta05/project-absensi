@@ -33,7 +33,7 @@ class AbsensiController extends Controller
         }
 
         public function pilihDataAbsensi(Request $request) {
-            $mapel_id = $request->input('id_mapel');
+            $mapel_id = $request->input('id_mapel')?? session('current_mapel_id');
 
             if ($mapel_id) {
                 $data['allDataAbsensi'] = Absensi::where('id_mapel', $mapel_id)

@@ -16,7 +16,14 @@
         </nav>
     </div><!-- End Page Title -->
 
-   
+    <div class="row mb-2">
+        <div class="col-12 d-flex justify-content-start">
+            <a href="{{ route('pilih_data.absensi', ['id_mapel' => $mapel->id_mapel]) }}" class="btn btn-success">
+                <i class="bi bi-arrow-left-square-fill"></i> Kembali
+            </a>
+        </div>
+    </div>
+
     <div class="row align-items-top">
         <!-- Default Card -->
         <div class="card" style="height: auto; padding: 10px;">
@@ -29,7 +36,8 @@
                                     <span class="text-nowrap">Mata Pelajaran</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">{{ $mapel->nm_mapel ?? 'Mata Pelajaran Tidak Ditemukan' }}</div>
+                                <div class="col-lg-8 col-md-7">
+                                    {{ $mapel->nm_mapel ?? 'Mata Pelajaran Tidak Ditemukan' }}</div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-5 d-flex justify-content-between">
@@ -43,14 +51,16 @@
                                     <span class="text-nowrap">Kelas</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7"> {{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }} </div>
+                                <div class="col-lg-8 col-md-7"> {{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }}
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-5 d-flex justify-content-between">
                                     <span class="text-nowrap">Guru</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7"> {{ $mapel->guru->nama ?? 'Guru Tidak Ditemukan' }} </div>
+                                <div class="col-lg-8 col-md-7"> {{ $mapel->guru->nama ?? 'Guru Tidak Ditemukan' }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -72,15 +82,15 @@
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
-                              
+
                                 <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                   
+
                                 </tr>
-                      
+
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
