@@ -34,32 +34,29 @@ class AbsensiController extends Controller
         }
 
         public function pilihDataAbsensi(Request $request) {
-              // Ambil id_mapel dari request atau session
+            // Ambil id_mapel dari request atau session
             $mapel_id = $request->input('id_mapel') ?? session('current_mapel_id');
-
+        
             if ($mapel_id) {
-                // Mengelompokkan data absensi berdasarkan id_mapel, tanggal, dan jam
-                $data['allDataAbsensi'] = Absensi::select('id_mapel', 'tanggal', 'jam')
-                    ->where('id_mapel', $mapel_id)
-                    ->with('guru', 'kelas', 'tahpel', 'mapel') // Tidak perlu load siswa di sini
-                    ->groupBy('id_mapel', 'tanggal', 'jam')
-                    ->get();
-                
+                // Mengambil data absensi berdasarkan id_mapel dan menampilkan semua entri dengan tanggal dan jam yang sama
+                $data['allDataAbsensi'] = Absensi::where('id_mapel', $mapel_id)
+                    ->with('guru', 'kelas', 'tahpel', 'mapel')
+                    ->get(); // Hapus `groupBy` untuk menampilkan semua data
+        
                 // Mengambil data mapel berdasarkan id_mapel
                 $data['mapel'] = Mapel::find($mapel_id);
             } else {
-                // Jika id_mapel tidak ada, ambil semua data absensi dan kelompokkan
-                $data['allDataAbsensi'] = Absensi::select('id_mapel', 'tanggal', 'jam')
-                    ->with('guru', 'kelas', 'tahpel', 'mapel') // Tidak perlu load siswa di sini
-                    ->groupBy('id_mapel', 'tanggal', 'jam')
-                    ->get();
-                
+                // Jika id_mapel tidak ada, ambil semua data absensi tanpa pengelompokan
+                $data['allDataAbsensi'] = Absensi::with('guru', 'kelas', 'tahpel', 'mapel')
+                    ->get(); // Hapus `groupBy` untuk menampilkan semua data
+        
                 $data['mapel'] = null;
-                }
-
-                // Render view dengan data absensi dan mapel
-                return view("tampilan.absensi.pilih_data_absensi", $data);
             }
+        
+            // Render view dengan data absensi dan mapel
+            return view("tampilan.absensi.pilih_data_absensi", $data);
+        }
+        
 
         public function absensiAdd(Request $request) {
             $mapel_id = $request->input('id_mapel');
