@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log; // Import Log facade
+use App\Models\Absensi;
 use App\Models\Guru;
 use App\Models\Mapel;
 
@@ -32,7 +33,7 @@ class AbsensiController extends Controller
 }
 
 public function pilihDataAbsensi() {
-    $data['allDataBk']=Bk::all();
-    return view("tampilan.absensi.pilih_data_absensi");
+    $data['allDataAbsensi']=Absensi::with('guru', 'kelas', 'tahpel', 'mapel', 'siswa')->get();
+    return view("tampilan.absensi.pilih_data_absensi", $data);
 }
 }

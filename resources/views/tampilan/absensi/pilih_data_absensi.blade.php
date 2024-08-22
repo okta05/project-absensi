@@ -56,6 +56,14 @@
 
                 <hr class="my-4">
 
+                <div class="row mb-2">
+                    <div class="col-12 d-flex justify-content-start">
+                        <a href="#" class="btn btn-success">
+                            <i class="bi bi-journal-plus"></i> Tambah
+                        </a>
+                    </div>
+                </div>
+
                 <div class="card-body mt-3">
                     <div class="table-responsive">
                         <!-- Table with stripped rows -->
@@ -72,15 +80,28 @@
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
+                                @foreach ( $allDataAbsensi as $key => $absen )
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$key+1}}</td>
+                                    <td>{{$absen->tanggal}}</td>
+                                    <td>{{$absen->mapel->nm_mapel ?? 'tidak ditemukan'}}</td>
+                                    <td>{{$absen->mapel->kd_mapel ?? 'tidak ditemukan'}}</td>
+                                    <td>{{$absen->jam}}</td>
                                     <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-primary" href="#">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a class="btn btn-warning" href="#">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <a class="btn btn-danger" id="delete" href="#">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
