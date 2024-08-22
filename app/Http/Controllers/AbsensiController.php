@@ -30,10 +30,22 @@ class AbsensiController extends Controller
             }
         
             return view("tampilan.absensi.pilih_mapel_absensi", compact('mapels'));
-}
+        }
 
-public function pilihDataAbsensi() {
-    $data['allDataAbsensi']=Absensi::with('guru', 'kelas', 'tahpel', 'mapel', 'siswa')->get();
-    return view("tampilan.absensi.pilih_data_absensi", $data);
-}
+        public function pilihDataAbsensi(Request $request) {
+            $mapel_id = $request->input('id_mapel');
+
+            if ($mapel_id) {
+                $data['allDataAbsensi'] = Absensi::where('id_mapel', $mapel_id)
+                    ->with('guru', 'kelas', 'tahpel', 'mapel', 'siswa')
+                    ->get();
+                
+                $data['mapel'] = Mapel::find($mapel_id);
+            } else {
+                $data['allDataAbsensi'] = Absensi::with('guru', 'kelas', 'tahpel', 'mapel', 'siswa')->get();
+                $data['mapel'] = null;
+            }
+        
+            return view("tampilan.absensi.pilih_data_absensi", $data);
+        }
 }

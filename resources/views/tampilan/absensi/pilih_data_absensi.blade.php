@@ -15,6 +15,7 @@
         </nav>
     </div><!-- End Page Title -->
 
+    @if($mapel)
     <div class="row align-items-top">
         <!-- Default Card -->
         <div class="card" style="height: auto; padding: 10px;">
@@ -27,28 +28,28 @@
                                     <span class="text-nowrap">Mata Pelajaran</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">Mapel 1</div>
+                                <div class="col-lg-8 col-md-7">{{ $mapel->nm_mapel }}</div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-5 d-flex justify-content-between">
                                     <span class="text-nowrap">Kode Mata Pelajaran</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">111</div>
+                                <div class="col-lg-8 col-md-7">{{ $mapel->kd_mapel }}</div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-5 d-flex justify-content-between">
                                     <span class="text-nowrap">Kelas</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">VII A</div>
+                                <div class="col-lg-8 col-md-7">{{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }}</div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-5 d-flex justify-content-between">
                                     <span class="text-nowrap">Guru</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">Guru 1</div>
+                                <div class="col-lg-8 col-md-7">{{ $mapel->guru->nama ?? 'Guru Tidak Ditemukan' }}</div>
                             </div>
                         </div>
                     </div>
@@ -112,7 +113,9 @@
     </div>
 
 
-
+    @else
+    <p>Silakan pilih mata pelajaran terlebih dahulu.</p>
+    @endif
 
 
 </section>
