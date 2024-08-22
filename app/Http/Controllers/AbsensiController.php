@@ -92,12 +92,14 @@ class AbsensiController extends Controller
             $kelas_id = $request->input('id_kelas');
             $tahpel_id = $request->input('id_tahpel');
             $guru_id = $request->input('id_guru');
-        
+            $tanggal = $request->input('tanggal');
+            $jam = $request->input('jam');
+
             // Ambil siswa pertama dari inputan absensi
             $first_siswa_id = array_key_first($request->input('stts_kehadiran'));
             $status = $request->input('stts_kehadiran')[$first_siswa_id];
             $catatan = $request->input('catatan')[$first_siswa_id] ?? null;
-        
+
             // Simpan hanya satu absensi untuk siswa pertama
             Absensi::create([
                 'id_siswa' => $first_siswa_id,
@@ -105,10 +107,12 @@ class AbsensiController extends Controller
                 'id_kelas' => $kelas_id,
                 'id_tahpel' => $tahpel_id,
                 'id_guru' => $guru_id,
+                'tanggal' => $tanggal,
+                'jam' => $jam,
                 'stts_kehadiran' => $status,
                 'catatan' => $catatan
             ]);
-        
+
             // Redirect ke halaman yang sesuai
             return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id])
                 ->with('success', 'Absensi berhasil disimpan');

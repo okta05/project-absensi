@@ -92,6 +92,22 @@
 
                     <hr class="my-4">
 
+                    <!-- Input Tanggal -->
+                    <div class="row mb-3">
+                        <label for="tanggal" class="col-lg-4 col-md-5 col-form-label">Tanggal</label>
+                        <div class="col-lg-8 col-md-7">
+                            <input type="date" name="tanggal" id="tanggal" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <!-- Input Jam -->
+                    <div class="row mb-3">
+                        <label for="jam" class="col-lg-4 col-md-5 col-form-label">Jam</label>
+                        <div class="col-lg-8 col-md-7">
+                            <input type="time" name="jam" id="jam" class="form-control" required>
+                        </div>
+                    </div>
+
                     <div class="card-body mt-3">
                         <div class="table-responsive">
                             <!-- Table with stripped rows -->
