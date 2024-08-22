@@ -51,8 +51,16 @@ class AbsensiController extends Controller
 
         public function absensiAdd(Request $request) {
             // Mengambil semua user dengan relasi role
-           
-            return view("tampilan.absensi.add_absensi");
+            $mapel_id = $request->input('id_mapel');
+
+            $data = [];
+            if ($mapel_id) {
+                $data['mapel'] = Mapel::with('guru', 'kelas')->find($mapel_id);
+            } else {
+                $data['mapel'] = null;
+            }
+
+            return view("tampilan.absensi.add_absensi", $data);
         
         }
 }

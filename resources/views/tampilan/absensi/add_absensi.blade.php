@@ -1,33 +1,68 @@
 @extends('tampilan.index_master')
 @section('tampilan')
 
-<div class="pagetitle">
-    <h1>Data Admin</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a></li>
-            <li class="breadcrumb-item active"><a href="#">Tambah Absensi</a></li>
-        </ol>
-    </nav>
-</div><!-- End Page Title -->
+<section class="section dashboard">
 
-<div class="row mb-2">
-    <div class="col-12 d-flex justify-content-start">
-        <a href="#" class="btn btn-success">
-            <i class="bi bi-person-plus"></i> Tambah
-        </a>
-    </div>
-</div>
+    <div class="pagetitle">
+        <h1>Absensi</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a>
+                </li>
+                <li class="breadcrumb-item"><a href="{{route("mapel.absensi")}}">Pilih Mapel</a></li>
+                <li class="breadcrumb-item"><a href="{{route("pilih_data.absensi")}}">Absensi</a></li>
+                <li class="breadcrumb-item"><a href="#">Tambah Absensi</a></li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-<section class="section">
-    <div class="container mt-4">
-        <div class="row">
-            <div class="card">
-                <div class="card-body">
+   
+    <div class="row align-items-top">
+        <!-- Default Card -->
+        <div class="card" style="height: auto; padding: 10px;">
+            <div class="card-body">
+                <div class="col-8 border border-3 p-3 mt-3 rounded shadow-sm">
+                    <div class="tab-content pt-1">
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                    <span class="text-nowrap">Mata Pelajaran</span>
+                                    <span class="text-nowrap">:</span>
+                                </div>
+                                <div class="col-lg-8 col-md-7">{{ $mapel->nm_mapel ?? 'Mata Pelajaran Tidak Ditemukan' }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                    <span class="text-nowrap">Kode Mata Pelajaran</span>
+                                    <span class="text-nowrap">:</span>
+                                </div>
+                                <div class="col-lg-8 col-md-7"> {{ $mapel->kd_mapel ?? 'Kode Tidak Ditemukan' }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                    <span class="text-nowrap">Kelas</span>
+                                    <span class="text-nowrap">:</span>
+                                </div>
+                                <div class="col-lg-8 col-md-7"> {{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }} </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                    <span class="text-nowrap">Guru</span>
+                                    <span class="text-nowrap">:</span>
+                                </div>
+                                <div class="col-lg-8 col-md-7"> {{ $mapel->guru->nama ?? 'Guru Tidak Ditemukan' }} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="card-body mt-3">
                     <div class="table-responsive">
                         <!-- Table with stripped rows -->
-                        <table class="table datatable">
-                            <thead class="table-primary">
+                        <table class="table table-striped datatable">
+                            <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
@@ -37,25 +72,25 @@
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
-                                 
-                                 
+                              
                                 <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
+                                   
                                 </tr>
-                                <!-- Data siswa lainnya -->
-                               
+                      
                             </tbody>
                         </table>
-
                         <!-- End Table with stripped rows -->
                     </div>
                 </div>
             </div>
-        </div>
+        </div><!-- End Default Card -->
     </div>
+
+
 </section>
 
 @endsection

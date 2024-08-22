@@ -10,7 +10,7 @@
                 <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{route("mapel.absensi")}}">Pilih Mapel</a></li>
-                <li class="breadcrumb-item"><a href="#">Pilih Data Absensi</a></li>
+                <li class="breadcrumb-item"><a href="#">Absensi</a></li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -59,7 +59,7 @@
 
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
-                        <a href="{{ route('add.absensi') }}" class="btn btn-success">
+                        <a href="{{ route('add.absensi', ['id_mapel' => $mapel->id_mapel]) }}" class="btn btn-success">
                             <i class="bi bi-journal-plus"></i> Tambah
                         </a>
                     </div>
