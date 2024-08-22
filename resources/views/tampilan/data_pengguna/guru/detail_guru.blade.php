@@ -18,7 +18,7 @@
 
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img src="{{asset('storage/'. $viewDataGuru->foto_guru)}}" alt="Profile" class="rounded-circle">
+                    <img src="{{asset('storage/'. $viewDataGuru->foto)}}" alt="Profile" class="rounded-circle">
                     <h2>{{$viewDataGuru->nama}}</h2>
                 </div>
             </div>
