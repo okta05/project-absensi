@@ -78,6 +78,7 @@
                                     <th>Nama</th>
                                     <th>NIS</th>
                                     <th>Status Kehadiran</th>
+                                    <th>Catatan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,12 +90,30 @@
                                     <td>{{ $siswa->nama }}</td>
                                     <td>{{ $siswa->nis }}</td>
                                     <td>
-                                        <!-- Status kehadiran dapat diisi di sini -->
+                                        <select name="status_kehadiran[{{ $siswa->id_siswa }}]" class="form-select">
+                                            <option selected disabled>pilih status Kehadiran</option>
+                                            <option value="ijin">Ijin</option>
+                                            <option value="sakit">Sakit</option>
+                                            <option value="alpa">Alpa</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <textarea name="catatan[{{ $siswa->id_siswa }}]" class="form-control" rows="2"
+                                            placeholder="Masukkan catatan"></textarea>
                                     </td>
                                 </tr>
                                 @endforeach
 
                             </tbody>
+
+                            <div class="row mb-2">
+                                <div class="col-12 d-flex justify-content-start">
+                                    <a href="#" class="btn btn-primary">
+                                        <i class="bi bi-save"></i> Simpan
+                                    </a>
+                                </div>
+                            </div>
+                            
                         </table>
                         <!-- End Table with stripped rows -->
                     </div>
