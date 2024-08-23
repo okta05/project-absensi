@@ -34,11 +34,8 @@
                                     <th>Nama</th>
                                     <th>Kelas</th>
                                     <th>NIS</th>
-                                    <th>Tanggal Lahir</th>
-                                    <th>Tempat Lahir</th>
                                     <th>Alamat</th>
                                     <th>Jenis Kelamin</th>
-                                    <th>Nomor Telepon</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -50,11 +47,8 @@
                                     <td>{{$siswa->nama}}</td>
                                     <td>{{$siswa->kelas->nm_kelas ?? 'Tidak Ditemukan'}}</td>
                                     <td>{{$siswa->nis}}</td>
-                                    <td>{{$siswa->tgl_lahir}}</td>
-                                    <td>{{$siswa->tpt_lahir}}</td>
                                     <td>{{$siswa->alamat}}</td>
                                     <td>{{$siswa->jns_kelamin}}</td>
-                                    <td>{{$siswa->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button"
