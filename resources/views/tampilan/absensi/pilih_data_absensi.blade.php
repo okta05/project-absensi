@@ -7,9 +7,9 @@
         <h1>Absensi</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house-door-fill"></i></a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{route("mapel.absensi")}}">Pilih Mapel</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
                 <li class="breadcrumb-item"><a href="#">Absensi</a></li>
             </ol>
         </nav>
@@ -58,7 +58,7 @@
                                     <span class="text-nowrap">:</span>
                                 </div>
                                 <div class="col-lg-8 col-md-7">
-                                    {{ $mapel->tahpel->th_pelajaran?? 'Guru Tidak Ditemukan' }}</div>
+                                    {{ $mapel->tahpel->th_pelajaran ?? 'Tahun Pelajaran Tidak Ditemukan' }}</div>
                             </div>
                         </div>
                     </div>
@@ -91,14 +91,15 @@
                             <tbody>
                                 @foreach ($allDataAbsensi as $key => $absen)
                                 <tr>
-                                    <td>{{ $key+1 }}</td>
+                                    <td>{{ $key + 1 }}</td>
                                     <td>{{ $absen->tanggal }}</td>
-                                    <td>{{ $absen->mapel->nm_mapel ?? 'tidak ditemukan' }}</td>
-                                    <td>{{ $absen->mapel->kd_mapel ?? 'tidak ditemukan' }}</td>
+                                    <td>{{ $absen->mapel->nm_mapel ?? 'Tidak Ditemukan' }}</td>
+                                    <td>{{ $absen->mapel->kd_mapel ?? 'Tidak Ditemukan' }}</td>
                                     <td>{{ $absen->jam }}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('absensi.detail', $absen->id_absensi) }}">
+                                            <a class="btn btn-primary"
+                                                href="{{ route('absensi.detail', $absen->id_absensi) }}">
                                                 <i class="bi bi-eye"></i>
                                             </a>
                                             <a class="btn btn-warning" href="#">
