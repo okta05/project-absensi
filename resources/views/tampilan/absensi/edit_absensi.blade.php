@@ -32,7 +32,7 @@
                 <!-- Form untuk mengedit absensi -->
                 <form action="{{ route('absensi.update', $absensi->id_absensi) }}" method="POST">
                     @csrf
-                    
+
                     <input type="hidden" name="id_mapel" value="{{ $absensi->id_mapel }}">
                     <input type="hidden" name="nm_mapel" value="{{ $absensi->mapel->nm_mapel }}">
                     <input type="hidden" name="kd_mapel" value="{{ $absensi->mapel->kd_mapel }}">
@@ -150,7 +150,7 @@
                                         </td>
                                         <td>
                                             <textarea name="catatan[{{ $siswa->id_siswa }}]" class="form-control"
-                                                rows="2" placeholder="Masukkan catatan">{{ $siswa->catatan }}</textarea>
+                                               placeholder="Masukkan catatan">{{ $siswa->catatan }}</textarea>
                                         </td>
                                     </tr>
                                     @endforeach

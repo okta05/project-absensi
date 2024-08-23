@@ -124,26 +124,33 @@ class AbsensiController extends Controller
                 ->with('success', 'Absensi berhasil disimpan');
         }
 
+       // Controller
         public function absensiEdit($id)
         {
-            // Ambil data absensi berdasarkan ID
+            // Ambil data absensi berdasarkan ID beserta relasi yang diperlukan
             $absensi = Absensi::with(['mapel', 'kelas.siswa', 'guru', 'tahpel'])->findOrFail($id);
-        
-            // Ambil data siswa berdasarkan kelas yang terkait dengan absensi dan urutkan berdasarkan no_absen
+
+            // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
             $siswas = $absensi->kelas->siswa->sortBy('no_absen');
-        
-            // Ambil data absensi detail untuk setiap siswa
-            $absensiDetails = Absensi::where('id_absensi', $id)->get();
-        
-            // Gabungkan data siswa dengan data absensi detail
+
+            // Ambil data absensi terkait siswa
+            $absensiSiswa = $absensi->whereIn('id_siswa', $siswas->pluck('id_siswa'))->get()->keyBy('id_siswa');
+
+            // Gabungkan data siswa dengan data absensi
             foreach ($siswas as $siswa) {
-                $siswa->stts_kehadiran = $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran ?? null;
-                $siswa->catatan = $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->catatan ?? null;
+                if (isset($absensiSiswa[$siswa->id_siswa])) {
+                    $siswa->stts_kehadiran = $absensiSiswa[$siswa->id_siswa]->stts_kehadiran;
+                    $siswa->catatan = $absensiSiswa[$siswa->id_siswa]->catatan;
+                } else {
+                    $siswa->stts_kehadiran = null;
+                    $siswa->catatan = null;
+                }
             }
-        
+
             // Render view dengan data absensi dan siswa
             return view('tampilan.absensi.edit_absensi', compact('absensi', 'siswas'));
         }
+
         
         public function updateAbsensi(Request $request, $id)
         {
@@ -154,28 +161,43 @@ class AbsensiController extends Controller
                 'stts_kehadiran.*' => 'required|in:hadir,ijin,sakit,alpa',
                 'catatan.*' => 'nullable|string',
             ]);
-
+        
             // Ambil data absensi berdasarkan ID
             $absensi = Absensi::findOrFail($id);
-
-            // Update data absensi
+        
+            // Debugging: log data yang akan diperbarui
+            Log::info('Data Absensi untuk diperbarui', [
+                'id' => $id,
+                'tanggal' => $request->tanggal,
+                'jam' => $request->jam,
+                'stts_kehadiran' => $request->stts_kehadiran,
+                'catatan' => $request->catatan,
+            ]);
+        
+            // Update data absensi secara umum (tanggal dan jam) - jika diperlukan
             $absensi->update([
                 'tanggal' => $request->tanggal,
                 'jam' => $request->jam,
             ]);
-
-            // Loop melalui setiap siswa dan update status kehadiran dan catatan
+        
+            // Update status kehadiran dan catatan untuk setiap siswa
             foreach ($request->stts_kehadiran as $id_siswa => $status) {
-                Absensi::where('id_absensi', $id)
-                    ->where('id_siswa', $id_siswa)
-                    ->update([
+                // Pastikan absensi untuk siswa tersebut sudah ada atau buat jika belum ada
+                Absensi::updateOrCreate(
+                    [
+                        'id_absensi' => $id,
+                        'id_siswa' => $id_siswa
+                    ],
+                    [
                         'stts_kehadiran' => $status,
                         'catatan' => $request->catatan[$id_siswa] ?? null,
-                    ]);
+                    ]
+                );
             }
-
+        
             return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel])
-                            ->with('success', 'Data absensi berhasil diperbarui.');
+                ->with('success', 'Data absensi berhasil diperbarui.');
         }
+        
         
 }
