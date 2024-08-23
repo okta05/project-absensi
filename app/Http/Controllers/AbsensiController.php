@@ -81,7 +81,7 @@ class AbsensiController extends Controller
         public function absensiStore(Request $request) {
             // Validasi data absensi
             $validateData = $request->validate([
-                'stts_kehadiran.*' => 'required|in:ijin,sakit,alpa',
+                'stts_kehadiran.*' => 'required|in:ijin,sakit,alpa,hadir',
             ]);
         
             // Ambil data label dari request
