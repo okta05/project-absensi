@@ -57,8 +57,13 @@ class AbsensiController extends Controller
             return view("tampilan.absensi.pilih_data_absensi", $data);
         }
 
-        public function absensiDetail(Request $request) {
-           return view('tampilan.absensi.detail_absensi');
+        public function absensiDetail($id) {
+            $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')->findOrFail($id);
+    
+           // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
+            $siswas = $absensi->kelas->siswa->sortBy('no_absen');
+            
+            return view('tampilan.absensi.detail_absensi', compact('absensi', 'siswas'));
         }
         
 
