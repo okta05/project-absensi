@@ -56,6 +56,10 @@ class AbsensiController extends Controller
             // Render view dengan data absensi dan mapel
             return view("tampilan.absensi.pilih_data_absensi", $data);
         }
+
+        public function absensiDetail(Request $request) {
+           return view('tampilan.absensi.detail_absensi');
+        }
         
 
         public function absensiAdd(Request $request) {

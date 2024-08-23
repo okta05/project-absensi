@@ -98,7 +98,7 @@
                                     <td>{{ $absen->jam }}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="#">
+                                            <a class="btn btn-primary" href="{{ route('absensi.detail') }}">
                                                 <i class="bi bi-eye"></i>
                                             </a>
                                             <a class="btn btn-warning" href="#">
