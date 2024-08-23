@@ -123,5 +123,59 @@ class AbsensiController extends Controller
             return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id])
                 ->with('success', 'Absensi berhasil disimpan');
         }
+
+        public function absensiEdit($id)
+        {
+            // Ambil data absensi berdasarkan ID
+            $absensi = Absensi::with(['mapel', 'kelas.siswa', 'guru', 'tahpel'])->findOrFail($id);
+        
+            // Ambil data siswa berdasarkan kelas yang terkait dengan absensi dan urutkan berdasarkan no_absen
+            $siswas = $absensi->kelas->siswa->sortBy('no_absen');
+        
+            // Ambil data absensi detail untuk setiap siswa
+            $absensiDetails = Absensi::where('id_absensi', $id)->get();
+        
+            // Gabungkan data siswa dengan data absensi detail
+            foreach ($siswas as $siswa) {
+                $siswa->stts_kehadiran = $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran ?? null;
+                $siswa->catatan = $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->catatan ?? null;
+            }
+        
+            // Render view dengan data absensi dan siswa
+            return view('tampilan.absensi.edit_absensi', compact('absensi', 'siswas'));
+        }
+        
+        public function updateAbsensi(Request $request, $id)
+        {
+            // Validasi data
+            $request->validate([
+                'tanggal' => 'required|date',
+                'jam' => 'required|date_format:H:i',
+                'stts_kehadiran.*' => 'required|in:hadir,ijin,sakit,alpa',
+                'catatan.*' => 'nullable|string',
+            ]);
+
+            // Ambil data absensi berdasarkan ID
+            $absensi = Absensi::findOrFail($id);
+
+            // Update data absensi
+            $absensi->update([
+                'tanggal' => $request->tanggal,
+                'jam' => $request->jam,
+            ]);
+
+            // Loop melalui setiap siswa dan update status kehadiran dan catatan
+            foreach ($request->stts_kehadiran as $id_siswa => $status) {
+                Absensi::where('id_absensi', $id)
+                    ->where('id_siswa', $id_siswa)
+                    ->update([
+                        'stts_kehadiran' => $status,
+                        'catatan' => $request->catatan[$id_siswa] ?? null,
+                    ]);
+            }
+
+            return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel])
+                            ->with('success', 'Data absensi berhasil diperbarui.');
+        }
         
 }
