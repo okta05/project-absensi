@@ -66,14 +66,14 @@ class AbsensiController extends Controller
                 // Ambil mata pelajaran dan kelas yang terkait
                 $mapel = Mapel::with(['guru', 'kelas.siswa'])->find($mapel_id);
                 $data['mapel'] = $mapel;
-
-                // Ambil siswa sesuai dengan kelas
-                $data['siswas'] = $mapel->kelas->siswa;
+        
+                // Ambil siswa sesuai dengan kelas dan urutkan berdasarkan no_absen
+                $data['siswas'] = $mapel->kelas->siswa->sortBy('no_absen');
             } else {
                 $data['mapel'] = null;
                 $data['siswas'] = [];
             }
-
+        
             return view("tampilan.absensi.add_absensi", $data);
         
         }

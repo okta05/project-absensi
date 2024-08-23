@@ -114,7 +114,7 @@
                             <table class="table table-striped datatable">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th>No Absen</th>
                                         <th>Nama</th>
                                         <th>NIS</th>
                                         <th>Status Kehadiran</th>
@@ -124,7 +124,7 @@
                                 <tbody>
                                     @foreach ($siswas as $key => $siswa)
                                     <tr>
-                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $siswa->no_absen }}</td>
                                         <td>{{ $siswa->nama }}</td>
                                         <td>{{ $siswa->nis }}</td>
                                         <td>

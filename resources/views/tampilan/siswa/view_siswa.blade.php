@@ -31,6 +31,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>No Absen</th>
                                     <th>Nama</th>
                                     <th>Kelas</th>
                                     <th>NIS</th>
@@ -43,7 +44,8 @@
                                 <!-- Data siswa ditampilkan di sini -->
                                 @foreach ( $allDataSiswa as $key => $siswa )
                                 <tr>
-                                    <td>{{ $siswa->no_absen }}</td>
+                                    <td>{{$key+1}}</td>
+                                    <td>{{$siswa->no_absen}}</td>
                                     <td>{{$siswa->nama}}</td>
                                     <td>{{$siswa->kelas->nm_kelas ?? 'Tidak Ditemukan'}}</td>
                                     <td>{{$siswa->nis}}</td>
