@@ -105,16 +105,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($siswas as $siswa)
-                                @php
-                                $absensiSiswa = $dataAbsensi->firstWhere('id_siswa', $siswa->id_siswa);
-                                @endphp
+                                @foreach ($siswas as $key => $siswa)
                                 <tr>
                                     <td>{{ $siswa->no_absen }}</td>
                                     <td>{{ $siswa->nama }}</td>
                                     <td>{{ $siswa->nis }}</td>
-                                    <td>{{ $absensiSiswa->stts_kehadiran ?? 'Belum Absen' }}</td>
-                                    <td>{{ $absensiSiswa->catatan ?? '-' }}</td>
+                                    <td>{{ $absensi->stts_kehadiran }}</td>
+                                    <td>{{ $absensi->catatan }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
