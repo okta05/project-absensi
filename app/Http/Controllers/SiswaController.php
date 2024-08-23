@@ -34,6 +34,7 @@ class SiswaController extends Controller
         ]); 
 
         $data = new Siswa();
+        $data->no_absen=$request->text_no_absen;
         $data->nama=$request->textNama;
         $data->nis=$request->textNIS;
         $data->tgl_lahir=$request->text_tgl_lahir;
@@ -73,6 +74,7 @@ class SiswaController extends Controller
         ]); 
 
         $data = Siswa::find($id);
+        $data->no_absen=$request->text_no_absen;
         $data->nama=$request->textNama;
         $data->nis=$request->textNIS;
         $data->tgl_lahir=$request->text_tgl_lahir;

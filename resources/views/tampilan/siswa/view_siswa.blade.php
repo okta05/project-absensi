@@ -43,7 +43,7 @@
                                 <!-- Data siswa ditampilkan di sini -->
                                 @foreach ( $allDataSiswa as $key => $siswa )
                                 <tr>
-                                    <td>{{$key+1}}</td>
+                                    <td>{{ $siswa->no_absen }}</td>
                                     <td>{{$siswa->nama}}</td>
                                     <td>{{$siswa->kelas->nm_kelas ?? 'Tidak Ditemukan'}}</td>
                                     <td>{{$siswa->nis}}</td>
