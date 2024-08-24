@@ -60,18 +60,6 @@ class AbsensiController extends Controller
         }
         
 
-        public function absensiDetail($id) {
-            $absensi = Absensi::with(['mapel', 'kelas.siswa', 'guru', 'tahpel'])
-                              ->findOrFail($id);
-        
-            // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
-            $siswas = $absensi->kelas->siswa->sortBy('no_absen');
-        
-            return view('tampilan.absensi.detail_absensi', compact('absensi', 'siswas'));
-        }
-        
-        
-
         public function absensiAdd(Request $request) {
             $mapel_id = $request->input('id_mapel');
 
