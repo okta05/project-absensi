@@ -82,6 +82,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Tanggal</th>
+                                    <th>Kelas</th>
                                     <th>Mata Pelajaran</th>
                                     <th>Kode Mata Pelajaran</th>
                                     <th>Jam</th>
@@ -93,6 +94,7 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td>{{ $absen->tanggal }}</td>
+                                    <td>{{ $absen->kelas->nm_kelas }}</td>
                                     <td>{{ $absen->mapel->nm_mapel ?? 'tidak ditemukan' }}</td>
                                     <td>{{ $absen->mapel->kd_mapel ?? 'tidak ditemukan' }}</td>
                                     <td>{{ $absen->jam }}</td>
