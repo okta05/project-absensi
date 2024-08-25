@@ -101,27 +101,28 @@ class AbsensiController extends Controller
             $tanggal = $request->input('tanggal');
             $jam = $request->input('jam');
 
-            // Ambil siswa pertama dari inputan absensi
-            $first_siswa_id = array_key_first($request->input('stts_kehadiran'));
-            $status = $request->input('stts_kehadiran')[$first_siswa_id];
-            $catatan = $request->input('catatan')[$first_siswa_id] ?? null;
-
-            // Simpan hanya satu absensi untuk siswa pertama
-            Absensi::create([
-                'id_siswa' => $first_siswa_id,
-                'id_mapel' => $mapel_id,
-                'id_kelas' => $kelas_id,
-                'id_tahpel' => $tahpel_id,
-                'id_guru' => $guru_id,
-                'tanggal' => $tanggal,
-                'jam' => $jam,
-                'stts_kehadiran' => $status,
-                'catatan' => $catatan
-            ]);
-
-            // Redirect ke halaman yang sesuai
-            return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id])
-                ->with('success', 'Absensi berhasil disimpan');
-        }
+             // Ambil semua data kehadiran dan catatan dari request
+             $kehadiran = $request->input('stts_kehadiran');
+             $catatan = $request->input('catatan') ?? [];
+         
+             // Loop melalui setiap siswa dan simpan data absensi
+             foreach ($kehadiran as $siswa_id => $status) {
+                 Absensi::create([
+                     'id_siswa' => $siswa_id,
+                     'id_mapel' => $mapel_id,
+                     'id_kelas' => $kelas_id,
+                     'id_tahpel' => $tahpel_id,
+                     'id_guru' => $guru_id,
+                     'tanggal' => $tanggal,
+                     'jam' => $jam,
+                     'stts_kehadiran' => $status,
+                     'catatan' => $catatan[$siswa_id] ?? null,
+                 ]);
+             }
+         
+             // Redirect ke halaman yang sesuai
+             return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id])
+                 ->with('success', 'Absensi berhasil disimpan');
+         }
         
 }
