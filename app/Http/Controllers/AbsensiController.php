@@ -9,6 +9,7 @@ use App\Models\Absensi;
 use App\Models\Absensi_Detail;
 use App\Models\Guru;
 use App\Models\Mapel;
+use DB;
 
 class AbsensiController extends Controller
 {
@@ -39,9 +40,12 @@ class AbsensiController extends Controller
         
             if ($mapel_id) {
                 // Mengambil data absensi berdasarkan id_mapel dan menampilkan semua entri dengan tanggal dan jam yang sama
-                $data['allDataAbsensi'] = Absensi::where('id_mapel', $mapel_id)
-                    ->with('guru', 'kelas', 'tahpel', 'mapel')
-                    ->get();
+                $data['allDataAbsensi'] = Absensi::select('id_mapel', 'tanggal', 'jam', DB::raw('MAX(id_absensi) as id_absensi'))
+                ->where('id_mapel', $mapel_id)
+                ->with('guru', 'kelas', 'tahpel', 'mapel')
+                ->groupBy('id_mapel', 'tanggal', 'jam')
+                ->get();
+
         
                 // Mengambil data mapel berdasarkan id_mapel
                 $data['mapel'] = Mapel::find($mapel_id);
