@@ -38,25 +38,32 @@ class AbsensiController extends Controller
             $mapel_id = $request->input('id_mapel') ?? session('current_mapel_id');
         
             if ($mapel_id) {
-                // Mengambil data absensi berdasarkan id_mapel, mengelompokkan berdasarkan tanggal dan jam
+                // Mengambil data absensi berdasarkan id_mapel dan menampilkan semua entri dengan tanggal dan jam yang sama
                 $data['allDataAbsensi'] = Absensi::where('id_mapel', $mapel_id)
                     ->with('guru', 'kelas', 'tahpel', 'mapel')
-                    ->select('tanggal', 'jam', 'id_kelas', 'id_mapel') // Pilih kolom yang relevan
-                    ->groupBy('tanggal', 'jam', 'id_kelas', 'id_mapel') // Kelompokkan berdasarkan tanggal dan jam
                     ->get();
-                
+        
                 // Mengambil data mapel berdasarkan id_mapel
                 $data['mapel'] = Mapel::find($mapel_id);
             } else {
                 // Jika id_mapel tidak ada, ambil semua data absensi tanpa pengelompokan
                 $data['allDataAbsensi'] = Absensi::with('guru', 'kelas', 'tahpel', 'mapel')
                     ->get(); 
-                
+        
                 $data['mapel'] = null;
             }
         
             // Render view dengan data absensi dan mapel
             return view("tampilan.absensi.pilih_data_absensi", $data);
+        }
+
+        public function absensiDetail($id) {
+            $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')->findOrFail($id);
+    
+           // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
+            $siswas = $absensi->kelas->siswa->sortBy('no_absen');
+            
+            return view('tampilan.absensi.detail_absensi', compact('absensi', 'siswas'));
         }
         
 
@@ -93,30 +100,28 @@ class AbsensiController extends Controller
             $guru_id = $request->input('id_guru');
             $tanggal = $request->input('tanggal');
             $jam = $request->input('jam');
-        
-            // Ambil semua data kehadiran dan catatan dari request
-            $kehadiran = $request->input('stts_kehadiran');
-            $catatan = $request->input('catatan') ?? [];
-        
-            // Loop melalui setiap siswa dan simpan data absensi
-            foreach ($kehadiran as $siswa_id => $status) {
-                Absensi::create([
-                    'id_siswa' => $siswa_id,
-                    'id_mapel' => $mapel_id,
-                    'id_kelas' => $kelas_id,
-                    'id_tahpel' => $tahpel_id,
-                    'id_guru' => $guru_id,
-                    'tanggal' => $tanggal,
-                    'jam' => $jam,
-                    'stts_kehadiran' => $status,
-                    'catatan' => $catatan[$siswa_id] ?? null,
-                ]);
-            }
-        
+
+            // Ambil siswa pertama dari inputan absensi
+            $first_siswa_id = array_key_first($request->input('stts_kehadiran'));
+            $status = $request->input('stts_kehadiran')[$first_siswa_id];
+            $catatan = $request->input('catatan')[$first_siswa_id] ?? null;
+
+            // Simpan hanya satu absensi untuk siswa pertama
+            Absensi::create([
+                'id_siswa' => $first_siswa_id,
+                'id_mapel' => $mapel_id,
+                'id_kelas' => $kelas_id,
+                'id_tahpel' => $tahpel_id,
+                'id_guru' => $guru_id,
+                'tanggal' => $tanggal,
+                'jam' => $jam,
+                'stts_kehadiran' => $status,
+                'catatan' => $catatan
+            ]);
+
             // Redirect ke halaman yang sesuai
             return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id])
                 ->with('success', 'Absensi berhasil disimpan');
         }
-        
         
 }

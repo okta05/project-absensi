@@ -4,18 +4,19 @@
 <section class="section dashboard">
 
     <div class="pagetitle">
-        <h1>Absensi</h1>
+        <h1>Detail Absensi</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house-door-fill"></i></a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{route("mapel.absensi")}}">Pilih Mapel</a></li>
-                <li class="breadcrumb-item"><a href="#">Absensi</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]) }}">Absensi</a></li>
+                <li class="breadcrumb-item"><a href="#">Detail Absensi</a></li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
 
-    @if($mapel)
     <div class="row align-items-top">
         <!-- Default Card -->
         <div class="card" style="height: auto; padding: 10px;">
@@ -28,21 +29,26 @@
                                     <span class="text-nowrap">Mata Pelajaran</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">{{ $mapel->nm_mapel }}</div>
+                                <div class="col-lg-8 col-md-7">
+                                    {{ $absensi->mapel->nm_mapel ?? 'Mata Pelajaran Tidak Ditemukan' }}
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-5 d-flex justify-content-between">
                                     <span class="text-nowrap">Kode Mata Pelajaran</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">{{ $mapel->kd_mapel }}</div>
+                                <div class="col-lg-8 col-md-7">
+                                    {{ $absensi->mapel->kd_mapel ?? 'Kode Tidak Ditemukan' }}
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-5 d-flex justify-content-between">
                                     <span class="text-nowrap">Kelas</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">{{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }}
+                                <div class="col-lg-8 col-md-7">
+                                    {{ $absensi->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }}
                                 </div>
                             </div>
                             <div class="row">
@@ -50,7 +56,9 @@
                                     <span class="text-nowrap">Guru</span>
                                     <span class="text-nowrap">:</span>
                                 </div>
-                                <div class="col-lg-8 col-md-7">{{ $mapel->guru->nama ?? 'Guru Tidak Ditemukan' }}</div>
+                                <div class="col-lg-8 col-md-7">
+                                    {{ $absensi->guru->nama ?? 'Guru Tidak Ditemukan' }}
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-5 d-flex justify-content-between">
@@ -58,7 +66,8 @@
                                     <span class="text-nowrap">:</span>
                                 </div>
                                 <div class="col-lg-8 col-md-7">
-                                    {{ $mapel->tahpel->th_pelajaran?? 'Guru Tidak Ditemukan' }}</div>
+                                    {{ $absensi->tahpel->th_pelajaran ?? 'Tahun Pelajaran Tidak Ditemukan' }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -66,11 +75,19 @@
 
                 <hr class="my-4">
 
-                <div class="row mb-2">
-                    <div class="col-12 d-flex justify-content-start">
-                        <a href="{{ route('add.absensi', ['id_mapel' => $mapel->id_mapel]) }}" class="btn btn-success">
-                            <i class="bi bi-journal-plus"></i> Tambah
-                        </a>
+                <div class="row mb-3">
+                    <label for="tanggal" class="col-lg-4 col-md-5 col-form-label">Tanggal</label>
+                    <div class="col-lg-8 col-md-7">
+                        <input type="text" name="tanggal" id="tanggal" class="form-control"
+                            value="{{ $absensi->tanggal }}" disabled>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="jam" class="col-lg-4 col-md-5 col-form-label">Jam</label>
+                    <div class="col-lg-8 col-md-7">
+                        <input type="text" name="jam" id="jam" class="form-control" value="{{ $absensi->jam }}"
+                            disabled>
                     </div>
                 </div>
 
@@ -80,49 +97,31 @@
                         <table class="table table-striped datatable">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Tanggal</th>
-                                    <th>Mata Pelajaran</th>
-                                    <th>Kode Mata Pelajaran</th>
-                                    <th>Jam</th>
-                                    <th>Aksi</th>
+                                    <th>No Absen</th>
+                                    <th>Nama</th>
+                                    <th>NIS</th>
+                                    <th>Status Kehadiran</th>
+                                    <th>Catatan</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($allDataAbsensi as $key => $absen)
+                                @foreach ($siswas as $key => $siswa)
                                 <tr>
-                                    <td>{{ $key+1 }}</td>
-                                    <td>{{ $absen->tanggal }}</td>
-                                    <td>{{ $absen->mapel->nm_mapel ?? 'tidak ditemukan' }}</td>
-                                    <td>{{ $absen->mapel->kd_mapel ?? 'tidak ditemukan' }}</td>
-                                    <td>{{ $absen->jam }}</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <a class="btn btn-primary"
-                                                href="{{ route('absensi.detail', $absen->id_absensi) }}">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a class="btn btn-warning" href="#">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </a>
-                                            <a class="btn btn-danger" id="delete" href="#">
-                                                <i class="bi bi-trash"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    <td>{{ $siswa->no_absen }}</td>
+                                    <td>{{ $siswa->nama }}</td>
+                                    <td>{{ $siswa->nis }}</td>
+                                    <td>{{ $absensi->stts_kehadiran }}</td>
+                                    <td>{{ $absensi->catatan }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        <!-- End Table with stripped rows -->
                     </div>
                 </div>
+
             </div>
         </div><!-- End Default Card -->
     </div>
-    @else
-    <p>Silakan pilih mata pelajaran terlebih dahulu.</p>
-    @endif
 
 </section>
 
