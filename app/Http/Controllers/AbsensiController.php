@@ -133,11 +133,44 @@ class AbsensiController extends Controller
                 ->with('success', 'Absensi berhasil disimpan');
         }
         
-        public function absensiEdit() {
-            return view('tampilan.absensi.edit_absensi');
+        public function absensiEdit($id)
+        {
+            // Ambil data absensi berdasarkan ID
+            $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
+                ->findOrFail($id);
+
+            // Ambil data absensi yang sesuai dengan tanggal dan jam untuk ditampilkan di form edit
+            $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
+                ->where('tanggal', $absensi->tanggal)
+                ->where('jam', $absensi->jam)
+                ->get();
+
+            // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
+            $siswas = $absensi->kelas->siswa->sortBy('no_absen');
+
+            return view('tampilan.absensi.edit_absensi', compact('absensi', 'absensiDetails', 'siswas'));
         }
 
-        public function absensiupdate() {
-            
+
+        public function absensiUpdate(Request $request, $id)
+        {
+            $validateData = $request->validate([
+                'stts_kehadiran.*' => 'required|in:ijin,sakit,alpa,hadir',
+            ]);
+        
+            // Ambil data absensi yang akan diperbarui
+            $absensi = Absensi::findOrFail($id);
+        
+            // Perbarui data absensi berdasarkan input
+            foreach ($request->input('stts_kehadiran') as $siswa_id => $status) {
+                $absensi->update([
+                    'stts_kehadiran' => $status,
+                    'catatan' => $request->input('catatan')[$siswa_id] ?? null,
+                ]);
+            }
+        
+            return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel])
+                ->with('success', 'Absensi berhasil diperbarui');
         }
+        
 }
