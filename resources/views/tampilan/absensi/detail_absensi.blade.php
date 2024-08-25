@@ -105,13 +105,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($siswas as $key => $siswa)
+                                @foreach ($siswas as $siswa)
                                 <tr>
                                     <td>{{ $siswa->no_absen }}</td>
                                     <td>{{ $siswa->nama }}</td>
                                     <td>{{ $siswa->nis }}</td>
-                                    <td>{{ $absensi->stts_kehadiran }}</td>
-                                    <td>{{ $absensi->catatan }}</td>
+                                    <td>
+                                        @foreach ($absensiDetails as $detail)
+                                        @if ($detail->id_siswa == $siswa->id_siswa)
+                                        {{ $detail->stts_kehadiran }}
+                                        @endif
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @foreach ($absensiDetails as $detail)
+                                        @if ($detail->id_siswa == $siswa->id_siswa)
+                                        {{ $detail->catatan }}
+                                        @endif
+                                        @endforeach
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
