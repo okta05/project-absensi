@@ -102,7 +102,7 @@
                                                 href="{{ route('absensi.detail', $absen->id_absensi) }}">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a class="btn btn-warning" href="#">
+                                            <a class="btn btn-warning" href="{{ route('edit.absensi') }}">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <a class="btn btn-danger" id="delete" href="#">

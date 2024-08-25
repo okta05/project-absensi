@@ -133,5 +133,11 @@ class AbsensiController extends Controller
                 ->with('success', 'Absensi berhasil disimpan');
         }
         
-        
+        public function absensiEdit() {
+            return view('tampilan.absensi.edit_absensi');
+        }
+
+        public function absensiupdate() {
+            
+        }
 }
