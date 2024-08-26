@@ -172,11 +172,9 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
         Route::get('/detail/{id}', [AbsensiController::class, 'absensiDetail'])->name('absensi.detail');
         Route::get('/add', [AbsensiController::class, 'absensiAdd'])->name('add.absensi');
         Route::post('/simpan', [AbsensiController::class, 'absensiStore'])->name('absensi.store');
-        // Route untuk menampilkan halaman edit absensi
         Route::get('/absensi/edit/{id}', [AbsensiController::class, 'absensiEdit'])->name('absensi.edit');
-
-        // Route untuk memperbarui data absensi
         Route::post('/absensi/update/{id}', [AbsensiController::class, 'absensiUpdate'])->name('absensi.update');
+        Route::get('/delete/{id}', [AbsensiController::class, 'absensiDelete'])->name('absensi.delete');
 
     });
 });

@@ -179,5 +179,23 @@ class AbsensiController extends Controller
                 ->with('success', 'Absensi berhasil diperbarui');
         }
         
+        public function absensiDelete($id)
+            {
+                // Temukan data absensi berdasarkan ID
+                $absensi = Absensi::findOrFail($id);
+                
+                // Ambil tanggal dan jam dari data absensi
+                $tanggal = $absensi->tanggal;
+                $jam = $absensi->jam;
+
+                // Hapus semua data absensi yang memiliki tanggal dan jam yang sama
+                Absensi::where('tanggal', $tanggal)
+                    ->where('jam', $jam)
+                    ->delete();
+                
+                // Redirect dengan pesan sukses
+                return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel])
+                    ->with('success', 'Semua absensi pada tanggal dan jam tersebut berhasil dihapus');
+            }
         
 }
