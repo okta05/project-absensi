@@ -10,6 +10,7 @@ use App\Models\Absensi_Detail;
 use App\Models\Guru;
 use App\Models\Mapel;
 use DB;
+use App\Helpers\TelegramHelper;
 
 class AbsensiController extends Controller
 {
@@ -116,7 +117,7 @@ class AbsensiController extends Controller
             $catatan = $request->input('catatan') ?? [];
         
             foreach ($kehadiran as $siswa_id => $status) {
-                Absensi::create([
+                $absensi = Absensi::create([
                     'id_siswa' => $siswa_id,
                     'id_mapel' => $mapel_id,
                     'id_kelas' => $kelas_id,
@@ -127,6 +128,15 @@ class AbsensiController extends Controller
                     'stts_kehadiran' => $status,
                     'catatan' => $catatan[$siswa_id] ?? null,
                 ]);
+        
+                // Kirim pesan ke Telegram setelah menyimpan absensi
+                $siswa = $absensi->siswa;
+                $chatId = $siswa->id_tel_ortu;
+                $message = "Absensi: {$siswa->nama}\nTanggal: {$absensi->tanggal}\nJam: {$absensi->jam}\nStatus Kehadiran: {$absensi->stts_kehadiran}";
+        
+                if ($chatId) {
+                    TelegramHelper::sendMessage($chatId, $message);
+                }
             }
         
             return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id])
