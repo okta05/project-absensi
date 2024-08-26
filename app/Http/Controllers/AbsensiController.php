@@ -158,19 +158,26 @@ class AbsensiController extends Controller
                 'stts_kehadiran.*' => 'required|in:ijin,sakit,alpa,hadir',
             ]);
         
-            // Ambil data absensi yang akan diperbarui
+            // Ambil data absensi berdasarkan ID absensi yang akan diperbarui
             $absensi = Absensi::findOrFail($id);
         
-            // Perbarui data absensi berdasarkan input
+            // Loop melalui input status kehadiran dan catatan untuk setiap siswa
             foreach ($request->input('stts_kehadiran') as $siswa_id => $status) {
-                $absensi->update([
-                    'stts_kehadiran' => $status,
-                    'catatan' => $request->input('catatan')[$siswa_id] ?? null,
-                ]);
+                // Perbarui data absensi untuk setiap siswa berdasarkan id_siswa
+                Absensi::where('id_mapel', $absensi->id_mapel)
+                    ->where('id_kelas', $absensi->id_kelas)
+                    ->where('tanggal', $absensi->tanggal)
+                    ->where('jam', $absensi->jam)
+                    ->where('id_siswa', $siswa_id)
+                    ->update([
+                        'stts_kehadiran' => $status,
+                        'catatan' => $request->input('catatan')[$siswa_id] ?? null,
+                    ]);
             }
         
             return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel])
                 ->with('success', 'Absensi berhasil diperbarui');
         }
+        
         
 }

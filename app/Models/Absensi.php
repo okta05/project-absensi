@@ -39,7 +39,7 @@ class Absensi extends Model
 
     public function tahpel()
     {
-        return $this->belongsTo(Tahpel::class, 'id_tahpel', 'id_tahpel');
+        return $this->belongsTo(Tahpel::class, 'id_tahpel', 'id_tahpel'); //id pertama untuk fk dari model tahpel id kedua untuk pk dari model tahpel
     }
 
     public function guru()
