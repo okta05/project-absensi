@@ -52,7 +52,7 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola data siswa
-Route::middleware(['auth:admin', 'verified'])->group(function () {
+Route::middleware(['auth:admin,kepsek', 'verified'])->group(function () {
     Route::prefix('siswa')->group(function () {
         Route::get('/view', [SiswaController::class, 'siswaView'])->name('siswa.view');
         Route::get('/detail/{id}', [SiswaController::class, 'siswaDetail'])->name('siswa.detail');
@@ -165,7 +165,7 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola absensi
-Route::middleware(['auth:admin', 'verified'])->group(function () {
+Route::middleware(['auth:admin,kepsek', 'verified'])->group(function () {
     Route::prefix('data/absensi')->group(function () {
         Route::get('/pilih-mapel', [AbsensiController::class, 'pilihMapel'])->name('mapel.absensi');
         Route::get('/pilih-data-absensi', [AbsensiController::class, 'pilihDataAbsensi'])->name('pilih_data.absensi');

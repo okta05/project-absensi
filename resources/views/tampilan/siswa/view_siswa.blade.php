@@ -53,12 +53,14 @@
                                     <td>{{$siswa->jns_kelamin}}</td>
                                     <td>
                                         <div class="dropdown">
+                                            @if(auth('admin')->check() || auth('kepsek')->check())
                                             <button class="btn btn-secondary dropdown-toggle" type="button"
                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
                                                 aria-expanded="false">
                                                 Aksi
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                @if(auth('admin')->check())
                                                 <li><a class="dropdown-item text-primary"
                                                         href="{{route('siswa.detail', $siswa->id_siswa)}}">Detail</a>
                                                 </li>
@@ -71,7 +73,15 @@
                                                         href="{{route('siswa.delete', $siswa->id_siswa)}}"
                                                         id="delete">Hapus</a>
                                                 </li>
+                                                @endif
+
+                                                @if(auth('kepsek')->check())
+                                                <li><a class="dropdown-item text-primary"
+                                                        href="{{route('siswa.detail', $siswa->id_siswa)}}">Detail</a>
+                                                </li>
+                                                @endif
                                             </ul>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

@@ -57,7 +57,7 @@
             </li><!-- End Profile Page Nav -->
             @endif
 
-            @if(auth('admin')->check())
+            @if(auth('admin')->check() || auth('kepsek')->check())
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('siswa.view')}}">
                     <i class="bi bi-people"></i>
@@ -66,7 +66,7 @@
             </li><!-- End Profile Page Nav -->
             @endif
 
-            @if(auth('admin')->check() || auth('kepsek')->check() || auth('guru')->check())
+            @if(auth('admin')->check())
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#data-pengguna-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-person"></i><span>Data Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -101,7 +101,7 @@
             </li><!-- End Icons Nav -->
             @endif
 
-            @if(auth('admin')->check())
+            @if(auth('admin')->check() || auth('kepsek')->check())
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('mapel.absensi')}}">
                     <i class="bi bi-book"></i>
