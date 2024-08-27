@@ -11,6 +11,7 @@
     </nav>
 </div><!-- End Page Title -->
 
+@if(auth('admin')->check())
 <div class="row mb-2">
     <div class="col-12 d-flex justify-content-start">
         <a href="{{route("siswa.add")}}" class="btn btn-success">
@@ -18,6 +19,7 @@
         </a>
     </div>
 </div>
+@endif
 
 <section class="section">
     <div class="container mt-4">
@@ -54,7 +56,8 @@
                                     <td>
                                         <div class="dropdown">
                                             @if(auth('admin')->check() || auth('kepsek')->check() ||
-                                            auth('kurikulum')->check() || auth('bk')->check() || auth('wakel')->check())
+                                            auth('kurikulum')->check() || auth('bk')->check() || auth('wakel')->check()
+                                            || auth('guru')->check())
                                             <button class="btn btn-secondary dropdown-toggle" type="button"
                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
                                                 aria-expanded="false">
@@ -77,7 +80,7 @@
                                                 @endif
 
                                                 @if(auth('kepsek')->check() || auth('kurikulum')->check() ||
-                                                auth('bk')->check() || auth('wakel')->check())
+                                                auth('bk')->check() || auth('wakel')->check() || auth('guru')->check())
                                                 <li><a class="dropdown-item text-primary"
                                                         href="{{route('siswa.detail', $siswa->id_siswa)}}">Detail</a>
                                                 </li>

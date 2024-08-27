@@ -66,7 +66,7 @@
 
                 <hr class="my-4">
 
-                @if(auth('admin')->check() || auth('bk')->check() || auth('wakel')->check())
+                @if(auth('admin')->check() || auth('bk')->check() || auth('wakel')->check() || auth('guru')->check())
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
                         <a href="{{ route('add.absensi', ['id_mapel' => $mapel->id_mapel]) }}" class="btn btn-success">
@@ -100,9 +100,9 @@
                                     <td>{{ $absen->jam }}</td>
                                     <td>
                                         @if(auth('admin')->check() || auth('kepsek')->check() || auth('bk')->check() ||
-                                        auth('wakel')->check())
+                                        auth('wakel')->check() || auth('guru')->check())
                                         <div class="dropdown">
-                                            @if(auth('admin')->check() || auth('bk')->check() || auth('wakel')->check())
+                                            @if(auth('admin')->check() || auth('bk')->check() || auth('wakel')->check() || auth('guru')->check())
                                             <a class="btn btn-primary"
                                                 href="{{ route('absensi.detail', $absen->id_absensi) }}">
                                                 <i class="bi bi-eye"></i>
