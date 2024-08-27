@@ -34,12 +34,12 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'] )->group(function () {
+Route::middleware(['auth:kepsek,admin,kurikulum,bk,wakel,guru', 'verified'] )->group(function () {
     Route::get('/dashboard', [BerandaController::class, 'index'])->name('dashboard');
 });
 
 // Semua route untuk mengelola data admin
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/view', [AdminController::class, 'adminView'])->name('admin.view');
         Route::get('/detail/{id}', [AdminController::class, 'adminDetail'])->name('admin.detail');
@@ -52,7 +52,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 });
 
 // Semua route untuk mengelola data siswa
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('siswa')->group(function () {
         Route::get('/view', [SiswaController::class, 'siswaView'])->name('siswa.view');
         Route::get('/detail/{id}', [SiswaController::class, 'siswaDetail'])->name('siswa.detail');
@@ -78,7 +78,7 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola data kurikulum
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('data-pengguna/kurikulum')->group(function () {
         Route::get('/view', [KurikulumController::class, 'kurikulumView'])->name('kurikulum.view');
         Route::get('/detail/{id}', [KurikulumController::class, 'kurikulumDetail'])->name('kurikulum.detail');
@@ -91,7 +91,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 });
 
 // Semua route untuk mengelola data BK
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('data-pengguna/bk')->group(function () {
         Route::get('/view', [BkController::class, 'bkView'])->name('bk.view');
         Route::get('/detail/{id}', [BkController::class, 'bkDetail'])->name('bk.detail');
@@ -103,7 +103,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
     });
 });
 
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('data-pengguna/wali-kelas')->group(function () {
         Route::get('/view', [WakelController::class, 'wakelView'])->name('wakel.view');
         Route::get('/detail/{id}', [WakelController::class, 'wakelDetail'])->name('wakel.detail');
@@ -116,7 +116,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 });
 
 // Semua route untuk mengelola data guru
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('data-pengguna/guru')->group(function () {
         Route::get('/view', [GuruController::class, 'guruView'])->name('guru.view');
         Route::get('/detail/{id}', [GuruController::class, 'guruDetail'])->name('guru.detail');
@@ -129,7 +129,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 });
 
 // Semua route untuk mengelola data kelas
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin,kurikulum', 'verified'])->group(function () {
     Route::prefix('data/kelas')->group(function () {
         Route::get('/view', [KelasController::class, 'kelasView'])->name('kelas.view');
         Route::get('/add', [KelasController::class, 'kelasAdd'])->name('kelas.add');
@@ -141,7 +141,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 });
 
 // Semua route untuk mengelola data mapel
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('data/mapel')->group(function () {
         Route::get('/view', [MapelController::class, 'mapelView'])->name('mapel.view');
         Route::get('/add', [MapelController::class, 'mapelAdd'])->name('mapel.add');
@@ -153,7 +153,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 });
 
 // Semua route untuk mengelola data tahun pelajaran
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('data/tahun-pelajaran')->group(function () {
         Route::get('/view', [TahpelController::class, 'tahpelView'])->name('tahpel.view');
         Route::get('/add', [TahpelController::class, 'tahpelAdd'])->name('tahpel.add');
@@ -165,7 +165,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 });
 
 // Semua route untuk mengelola absensi
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('data/absensi')->group(function () {
         Route::get('/pilih-mapel', [AbsensiController::class, 'pilihMapel'])->name('mapel.absensi');
         Route::get('/pilih-data-absensi', [AbsensiController::class, 'pilihDataAbsensi'])->name('pilih_data.absensi');
