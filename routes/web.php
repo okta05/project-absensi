@@ -165,7 +165,7 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
 });
 
 // Semua route untuk mengelola absensi
-Route::middleware(['auth:admin,kepsek', 'verified'])->group(function () {
+Route::middleware(['auth:admin,kepsek,kurikulum', 'verified'])->group(function () {
     Route::prefix('data/absensi')->group(function () {
         Route::get('/pilih-mapel', [AbsensiController::class, 'pilihMapel'])->name('mapel.absensi');
         Route::get('/pilih-data-absensi', [AbsensiController::class, 'pilihDataAbsensi'])->name('pilih_data.absensi');
