@@ -66,6 +66,7 @@
 
                 <hr class="my-4">
 
+                @if(auth('admin')->check() || auth('bk')->check())
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
                         <a href="{{ route('add.absensi', ['id_mapel' => $mapel->id_mapel]) }}" class="btn btn-success">
@@ -73,6 +74,7 @@
                         </a>
                     </div>
                 </div>
+                @endif
 
                 <div class="card-body mt-3">
                     <div class="table-responsive">
@@ -97,10 +99,9 @@
                                     <td>{{ $absen->mapel->kd_mapel ?? 'tidak ditemukan' }}</td>
                                     <td>{{ $absen->jam }}</td>
                                     <td>
-                                        @if(auth('admin')->check() || auth('kepsek')->check() ||
-                                        auth('kurikulum')->check() || auth('bk')->check())
+                                        @if(auth('admin')->check() || auth('kepsek')->check() || auth('bk')->check())
                                         <div class="dropdown">
-                                            @if(auth('admin')->check())
+                                            @if(auth('admin')->check() || auth('bk')->check())
                                             <a class="btn btn-primary"
                                                 href="{{ route('absensi.detail', $absen->id_absensi) }}">
                                                 <i class="bi bi-eye"></i>
@@ -115,17 +116,10 @@
                                             </a>
                                             @endif
 
-                                            @if(auth('kepsek')->check() || auth('bk')->check())
+                                            @if(auth('kepsek')->check())
                                             <a class="btn btn-primary"
                                                 href="{{ route('absensi.detail', $absen->id_absensi) }}">
                                                 <i class="bi bi-eye"></i>
-                                            </a>
-                                            @endif
-
-                                            @if( auth('bk')->check())
-                                            <a class="btn btn-warning"
-                                                href="{{ route('absensi.edit', $absen->id_absensi) }}">
-                                                <i class="bi bi-pencil-square"></i>
                                             </a>
                                             @endif
                                         </div>
