@@ -65,7 +65,7 @@ Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])
 });
 
 // Semua route untuk mengelola data kepala sekolah
-Route::middleware(['auth:web,kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
+Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('data-pengguna/kepala-sekolah')->group(function () {
         Route::get('/view', [KepsekController::class, 'kepsekView'])->name('kepsek.view');
         Route::get('/detail/{id}', [KepsekController::class, 'kepsekDetail'])->name('kepsek.detail');
