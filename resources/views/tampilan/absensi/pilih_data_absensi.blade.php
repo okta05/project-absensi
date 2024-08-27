@@ -115,10 +115,17 @@
                                             </a>
                                             @endif
 
-                                            @if(auth('kepsek')->check())
+                                            @if(auth('kepsek')->check() || auth('bk')->check())
                                             <a class="btn btn-primary"
                                                 href="{{ route('absensi.detail', $absen->id_absensi) }}">
                                                 <i class="bi bi-eye"></i>
+                                            </a>
+                                            @endif
+
+                                            @if( auth('bk')->check())
+                                            <a class="btn btn-warning"
+                                                href="{{ route('absensi.edit', $absen->id_absensi) }}">
+                                                <i class="bi bi-pencil-square"></i>
                                             </a>
                                             @endif
                                         </div>
