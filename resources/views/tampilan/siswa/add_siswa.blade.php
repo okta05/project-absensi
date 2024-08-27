@@ -17,7 +17,6 @@
         <div class="card-body">
             <h5 class="card-title">Form Tambah Data Siswa</h5>
 
-            <!-- General Form Elements -->
             <form method="post" action="{{route('siswa.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
@@ -96,7 +95,7 @@
                     </div>
                 </div>
 
-                
+
                 <div class="row mb-3">
                     <label for="text_no_absen" class="col-sm-2 col-form-label">Masukan No Absen</label>
                     <div class="col-sm-10">
@@ -164,7 +163,7 @@
                     </div>
                 </div>
 
-            </form><!-- End General Form Elements -->
+            </form>
 
         </div>
     </div>
