@@ -97,18 +97,32 @@
                                     <td>{{ $absen->mapel->kd_mapel ?? 'tidak ditemukan' }}</td>
                                     <td>{{ $absen->jam }}</td>
                                     <td>
+                                        @if(auth('admin')->check() || auth('kepsek')->check() ||
+                                        auth('kurikulum')->check() || auth('bk')->check())
                                         <div class="dropdown">
+                                            @if(auth('admin')->check())
                                             <a class="btn btn-primary"
                                                 href="{{ route('absensi.detail', $absen->id_absensi) }}">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a class="btn btn-warning" href="{{ route('absensi.edit', $absen->id_absensi) }}">
+                                            <a class="btn btn-warning"
+                                                href="{{ route('absensi.edit', $absen->id_absensi) }}">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a class="btn btn-danger" id="delete" href="{{ route('absensi.delete', $absen->id_absensi) }}">
+                                            <a class="btn btn-danger" id="delete"
+                                                href="{{ route('absensi.delete', $absen->id_absensi) }}">
                                                 <i class="bi bi-trash"></i>
                                             </a>
+                                            @endif
+
+                                            @if(auth('kepsek')->check())
+                                            <a class="btn btn-primary"
+                                                href="{{ route('absensi.detail', $absen->id_absensi) }}">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            @endif
                                         </div>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

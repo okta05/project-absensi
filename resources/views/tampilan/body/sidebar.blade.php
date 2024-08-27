@@ -57,7 +57,7 @@
             </li><!-- End Profile Page Nav -->
             @endif
 
-            @if(auth('admin')->check() || auth('kepsek')->check() || auth('kurikulum')->check())
+            @if(auth('admin')->check() || auth('kepsek')->check() || auth('kurikulum')->check() || auth('bk')->check())
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('siswa.view')}}">
                     <i class="bi bi-people"></i>
@@ -101,7 +101,7 @@
             </li><!-- End Icons Nav -->
             @endif
 
-            @if(auth('admin')->check() || auth('kepsek')->check() || auth('kurikulum')->check())
+            @if(auth('admin')->check() || auth('kepsek')->check() || auth('kurikulum')->check() ||  auth('bk')->check())
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('mapel.absensi')}}">
                     <i class="bi bi-book"></i>
