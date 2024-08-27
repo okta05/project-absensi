@@ -53,7 +53,7 @@
                                     <td>{{$siswa->jns_kelamin}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            @if(auth('admin')->check() || auth('kepsek')->check())
+                                            @if(auth('admin')->check() || auth('kepsek')->check() || auth('kurikulum')->check())
                                             <button class="btn btn-secondary dropdown-toggle" type="button"
                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
                                                 aria-expanded="false">
@@ -75,7 +75,7 @@
                                                 </li>
                                                 @endif
 
-                                                @if(auth('kepsek')->check())
+                                                @if(auth('kepsek')->check() || auth('kurikulum')->check())
                                                 <li><a class="dropdown-item text-primary"
                                                         href="{{route('siswa.detail', $siswa->id_siswa)}}">Detail</a>
                                                 </li>

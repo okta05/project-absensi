@@ -100,7 +100,7 @@
                     <label for="text_no_absen" class="col-sm-2 col-form-label">Masukan No Absen</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" name="text_no_absen" id="text_no_absen"
-                        value="{{$editDataSiswa->no_absen}}"   placeholder="Masukkan no absen">
+                        value="{{$editDataSiswa->no_absen}}" placeholder="Masukkan no absen">
                     </div>
                 </div>
 
