@@ -116,7 +116,7 @@
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                             <a class="btn btn-secondary"
-                                                href="{{ route('pilih.unduhan') }}">
+                                                href="{{ route('pilih.unduhan', $absen->id_absensi) }}">
                                                 <i class="bi bi-download"></i>
                                             </a>
                                             @endif

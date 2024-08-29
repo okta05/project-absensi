@@ -209,8 +209,22 @@ class AbsensiController extends Controller
                     ->with('success', 'Semua absensi pada tanggal dan jam tersebut berhasil dihapus');
             }
 
-        public function unduhPilihan () {
-            return view('tampilan.absensi.pilih_unduh_absensi');
+        public function unduhPilihan ($id) {
+
+            $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
+            ->findOrFail($id);
+    
+        // Ambil data absensi yang sesuai dengan tanggal dan jam
+        $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
+            ->where('tanggal', $absensi->tanggal)
+            ->where('jam', $absensi->jam)
+            ->with('siswa')
+            ->get();
+    
+        // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
+        $siswas = $absensi->kelas->siswa->sortBy('no_absen');
+
+            return view('tampilan.absensi.pilih_unduh_absensi', compact('absensi', 'absensiDetails', 'siswas'));
         }
         
 }
