@@ -50,8 +50,8 @@
                 <td>{{ $detail->siswa->no_absen ?? '-' }}</td>
                 <td>{{ $detail->siswa->nama ?? '-' }}</td>
                 <td>{{ $detail->siswa->nis ?? '-' }}</td>
-                <td>{{ $detail->stts_kehadiran }}</td>
-                <td>{{ $detail->catatan }}</td>
+                <td>{{ $detail->stts_kehadiran ?? '-'}}</td>
+                <td>{{ $detail->catatan ?? '-'}}</td>
             </tr>
             @endforeach
         </tbody>

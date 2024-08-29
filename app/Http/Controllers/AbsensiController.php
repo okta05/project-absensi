@@ -244,7 +244,7 @@ class AbsensiController extends Controller
 
             $pdf = Pdf::loadView('tampilan.absensi.tampilan_absensi_pilihan', compact('absensi', 'absensiDetails', 'siswas'));
 
-            return $pdf->download('detail_absensi.pdf');
+            return $pdf->download('Laporan-Absensi.pdf');
         }
 
        
