@@ -226,5 +226,52 @@ class AbsensiController extends Controller
 
             return view('tampilan.absensi.pilih_unduh_absensi', compact('absensi', 'absensiDetails', 'siswas'));
         }
+
+        public function unduhAbsensiCsv($id) {
+            // Ambil data absensi yang diperlukan
+            $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
+                ->findOrFail($id);
+        
+            // Ambil data absensi yang sesuai dengan tanggal dan jam
+            $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
+                ->where('tanggal', $absensi->tanggal)
+                ->where('jam', $absensi->jam)
+                ->with('siswa')
+                ->get();
+        
+            // Definisikan nama file CSV yang akan diunduh
+            $filename = 'absensi_' . $absensi->tanggal . '_' . $absensi->jam . '.csv';
+        
+            // Menentukan header CSV
+            $header = ['Nama Siswa', 'Tanggal', 'Jam', 'Status Kehadiran', 'Catatan'];
+        
+            // Buat stream untuk output CSV
+            $handle = fopen('php://output', 'w');
+        
+            // Header response untuk download CSV
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename="' . $filename . '"');
+        
+            // Tulis header ke file CSV
+            fputcsv($handle, $header);
+        
+            // Tulis data absensi ke file CSV
+            foreach ($absensiDetails as $absensiDetail) {
+                fputcsv($handle, [
+                    $absensiDetail->siswa->nama,
+                    $absensiDetail->tanggal,
+                    $absensiDetail->jam,
+                    $absensiDetail->stts_kehadiran,
+                    $absensiDetail->catatan,
+                ]);
+            }
+        
+            // Tutup stream
+            fclose($handle);
+        
+            // Stop eksekusi untuk menghindari keluaran tambahan
+            exit;
+        }
+        
         
 }

@@ -24,9 +24,11 @@
 
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
-                        <a href="#" class="btn btn-success">
-                            <i class="bi bi-download"></i> Unduh
+                        <a href="{{ route('absensi.unduhCsv', ['id' => $absensi->id_absensi]) }}"
+                            class="btn btn-success">
+                            <i class="bi bi-download"></i> Unduh CSV
                         </a>
+
                     </div>
                 </div>
 
