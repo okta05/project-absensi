@@ -21,6 +21,15 @@
         <!-- Default Card -->
         <div class="card" style="height: auto; padding: 10px;">
             <div class="card-body">
+
+                <div class="row mb-2">
+                    <div class="col-12 d-flex justify-content-start">
+                        <a href="#" class="btn btn-success">
+                            <i class="bi bi-download"></i> Unduh
+                        </a>
+                    </div>
+                </div>
+
                 <div class="col-8 border border-3 p-3 mt-3 rounded shadow-sm">
                     <div class="tab-content pt-1">
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
