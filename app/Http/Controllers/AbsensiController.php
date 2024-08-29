@@ -231,25 +231,21 @@ class AbsensiController extends Controller
         {
             Log::info("Metode unduhAbsensiPilihanPDF dipanggil dengan ID: " . $id);
             
-            // Ambil data absensi berdasarkan id_mapel
             $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
                 ->findOrFail($id);
-        
-            // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
+
             $siswas = $absensi->kelas->siswa->sortBy('no_absen');
-        
-            // Ambil data absensi detail
+
             $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
                 ->where('tanggal', $absensi->tanggal)
                 ->where('jam', $absensi->jam)
                 ->with('siswa')
                 ->get();
-        
-            // Buat PDF dari tampilan
+
             $pdf = Pdf::loadView('tampilan.absensi.tampilan_absensi_pilihan', compact('absensi', 'absensiDetails', 'siswas'));
-        
-            // Unduh PDF
+
             return $pdf->download('detail_absensi.pdf');
         }
+
        
 }
