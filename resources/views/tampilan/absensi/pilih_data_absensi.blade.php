@@ -115,6 +115,10 @@
                                                 href="{{ route('absensi.delete', $absen->id_absensi) }}">
                                                 <i class="bi bi-trash"></i>
                                             </a>
+                                            <a class="btn btn-secondary" id="delete"
+                                                href="#">
+                                                <i class="bi bi-download"></i>
+                                            </a>
                                             @endif
 
                                             @if(auth('kepsek')->check())
