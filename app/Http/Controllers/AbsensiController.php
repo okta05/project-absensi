@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use App\Models\Absensi;
@@ -12,6 +11,7 @@ use App\Models\Absensi_Detail;
 use App\Models\Guru;
 use App\Models\Mapel;
 use App\Helpers\TelegramHelper;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AbsensiController extends Controller
 {
@@ -227,51 +227,29 @@ class AbsensiController extends Controller
             return view('tampilan.absensi.pilih_unduh_absensi', compact('absensi', 'absensiDetails', 'siswas'));
         }
 
-        public function unduhAbsensiCsv($id) {
-            // Ambil data absensi yang diperlukan
+        public function unduhAbsensiPilihanPDF($id)
+        {
+            Log::info("Metode unduhAbsensiPilihanPDF dipanggil dengan ID: " . $id);
+            
+            // Ambil data absensi berdasarkan id_mapel
             $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
                 ->findOrFail($id);
         
-            // Ambil data absensi yang sesuai dengan tanggal dan jam
+            // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
+            $siswas = $absensi->kelas->siswa->sortBy('no_absen');
+        
+            // Ambil data absensi detail
             $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
                 ->where('tanggal', $absensi->tanggal)
                 ->where('jam', $absensi->jam)
                 ->with('siswa')
                 ->get();
         
-            // Definisikan nama file CSV yang akan diunduh
-            $filename = 'absensi_' . $absensi->tanggal . '_' . $absensi->jam . '.csv';
+            // Buat PDF dari tampilan
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_absensi_pilihan', compact('absensi', 'absensiDetails', 'siswas'));
         
-            // Menentukan header CSV
-            $header = ['Nama Siswa', 'Tanggal', 'Jam', 'Status Kehadiran', 'Catatan'];
-        
-            // Buat stream untuk output CSV
-            $handle = fopen('php://output', 'w');
-        
-            // Header response untuk download CSV
-            header('Content-Type: text/csv');
-            header('Content-Disposition: attachment; filename="' . $filename . '"');
-        
-            // Tulis header ke file CSV
-            fputcsv($handle, $header);
-        
-            // Tulis data absensi ke file CSV
-            foreach ($absensiDetails as $absensiDetail) {
-                fputcsv($handle, [
-                    $absensiDetail->siswa->nama,
-                    $absensiDetail->tanggal,
-                    $absensiDetail->jam,
-                    $absensiDetail->stts_kehadiran,
-                    $absensiDetail->catatan,
-                ]);
-            }
-        
-            // Tutup stream
-            fclose($handle);
-        
-            // Stop eksekusi untuk menghindari keluaran tambahan
-            exit;
+            // Unduh PDF
+            return $pdf->download('detail_absensi.pdf');
         }
-        
-        
+       
 }
