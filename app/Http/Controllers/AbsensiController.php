@@ -208,5 +208,9 @@ class AbsensiController extends Controller
                 return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel])
                     ->with('success', 'Semua absensi pada tanggal dan jam tersebut berhasil dihapus');
             }
+
+        public function unduhPilihan () {
+            return view('tampilan.absensi.pilih_unduh_absensi');
+        }
         
 }

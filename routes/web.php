@@ -175,7 +175,7 @@ Route::middleware(['auth:admin,kepsek,bk,wakel,guru', 'verified'])->group(functi
         Route::get('/absensi/edit/{id}', [AbsensiController::class, 'absensiEdit'])->name('absensi.edit');
         Route::post('/absensi/update/{id}', [AbsensiController::class, 'absensiUpdate'])->name('absensi.update');
         Route::get('/delete/{id}', [AbsensiController::class, 'absensiDelete'])->name('absensi.delete');
-
+        Route::get('/pilih-unduh-absensi', [AbsensiController::class, 'unduhPilihan'])->name('pilih.unduhan');
     });
 });
 

@@ -115,8 +115,8 @@
                                                 href="{{ route('absensi.delete', $absen->id_absensi) }}">
                                                 <i class="bi bi-trash"></i>
                                             </a>
-                                            <a class="btn btn-secondary" id="delete"
-                                                href="#">
+                                            <a class="btn btn-secondary"
+                                                href="{{ route('pilih.unduhan') }}">
                                                 <i class="bi bi-download"></i>
                                             </a>
                                             @endif
