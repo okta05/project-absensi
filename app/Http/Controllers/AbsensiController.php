@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log; // Import Log facade
+use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 use App\Models\Absensi;
 use App\Models\Absensi_Detail;
 use App\Models\Guru;
 use App\Models\Mapel;
-use DB;
 use App\Helpers\TelegramHelper;
 
 class AbsensiController extends Controller
