@@ -1,46 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <title>Detail Absensi</title>
     <style>
-    /* Tambahkan CSS untuk format PDF jika diperlukan */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: left;
+    }
+
+    .header {
+        font-weight: bold;
+    }
     </style>
 </head>
 
 <body>
-    <h1>Detail Absensi</h1>
-    <!-- Tambahkan konten yang ingin ditampilkan di PDF -->
+    <h2>Detail Absensi</h2>
+    <p>Mata Pelajaran: {{ $absensi->mapel->nm_mapel ?? 'Tidak Ditemukan' }}</p>
+    <p>Kode Mata Pelajaran: {{ $absensi->mapel->kd_mapel ?? 'Tidak Ditemukan' }}</p>
+    <p>Kelas: {{ $absensi->kelas->nm_kelas ?? 'Tidak Ditemukan' }}</p>
+    <p>Guru: {{ $absensi->guru->nama ?? 'Tidak Ditemukan' }}</p>
+    <p>Tahun Pelajaran: {{ $absensi->tahpel->th_pelajaran ?? 'Tidak Ditemukan' }}</p>
+    <p>Tanggal: {{ $absensi->tanggal }}</p>
+    <p>Jam: {{ $absensi->jam }}</p>
+
     <table>
-        <!-- Table header dan data -->
-        <tr>
-            <th>No Absen</th>
-            <th>Nama</th>
-            <th>NIS</th>
-            <th>Status Kehadiran</th>
-            <th>Catatan</th>
-        </tr>
-        @foreach ($siswas as $siswa)
-        <tr>
-            <td>{{ $siswa->no_absen }}</td>
-            <td>{{ $siswa->nama }}</td>
-            <td>{{ $siswa->nis }}</td>
-            <td>
-                @foreach ($absensiDetails as $detail)
-                @if ($detail->id_siswa == $siswa->id_siswa)
-                {{ $detail->stts_kehadiran }}
-                @endif
-                @endforeach
-            </td>
-            <td>
-                @foreach ($absensiDetails as $detail)
-                @if ($detail->id_siswa == $siswa->id_siswa)
-                {{ $detail->catatan }}
-                @endif
-                @endforeach
-            </td>
-        </tr>
-        @endforeach
+        <thead>
+            <tr class="header">
+                <th>No Absen</th>
+                <th>Nama</th>
+                <th>NIS</th>
+                <th>Status Kehadiran</th>
+                <th>Catatan</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($absensiDetails as $detail)
+            <tr>
+                <td>{{ $detail->siswa->no_absen ?? '-' }}</td>
+                <td>{{ $detail->siswa->nama ?? '-' }}</td>
+                <td>{{ $detail->siswa->nis ?? '-' }}</td>
+                <td>{{ $detail->stts_kehadiran }}</td>
+                <td>{{ $detail->catatan }}</td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
 </body>
 
