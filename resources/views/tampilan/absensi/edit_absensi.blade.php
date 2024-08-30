@@ -10,7 +10,8 @@
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house-door-fill"></i></a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]) }}">Absensi</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]) }}">Absensi</a></li>
                 <li class="breadcrumb-item"><a href="#">Edit Absensi</a></li>
             </ol>
         </nav>
@@ -31,7 +32,7 @@
                 <!-- Form untuk memperbarui absensi -->
                 <form action="{{ route('absensi.update', $absensi->id_absensi) }}" method="POST">
                     @csrf
-                    
+
                     <input type="hidden" name="id_mapel" value="{{ $absensi->id_mapel }}">
                     <input type="hidden" name="id_kelas" value="{{ $absensi->id_kelas }}">
                     <input type="hidden" name="id_guru" value="{{ $absensi->id_guru }}">
@@ -112,20 +113,24 @@
                                         <td>{{ $siswa->nis }}</td>
                                         <td>
                                             <select name="stts_kehadiran[{{ $siswa->id_siswa }}]" class="form-select">
+                                                <option value=""
+                                                    {{ ($absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran ?? '') == '' ? 'selected' : '' }}>
+                                                    Pilih Status Kehadiran</option>
                                                 <option value="hadir"
-                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'hadir' ? 'selected' : '' }}>
+                                                    {{ ($absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran ?? '') == 'hadir' ? 'selected' : '' }}>
                                                     Hadir</option>
                                                 <option value="ijin"
-                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'ijin' ? 'selected' : '' }}>
+                                                    {{ ($absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran ?? '') == 'ijin' ? 'selected' : '' }}>
                                                     Ijin</option>
                                                 <option value="sakit"
-                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'sakit' ? 'selected' : '' }}>
+                                                    {{ ($absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran ?? '') == 'sakit' ? 'selected' : '' }}>
                                                     Sakit</option>
                                                 <option value="alpa"
-                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'alpa' ? 'selected' : '' }}>
+                                                    {{ ($absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran ?? '') == 'alpa' ? 'selected' : '' }}>
                                                     Alpa</option>
                                             </select>
                                         </td>
+
                                         <td>
                                             <textarea name="catatan[{{ $siswa->id_siswa }}]" class="form-control"
                                                 rows="2"
