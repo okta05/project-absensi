@@ -165,24 +165,25 @@ class AbsensiController extends Controller
 
         public function absensiUpdate(Request $request, $id)
         {
+            $validateData = $request->validate([
+                'stts_kehadiran.*' => 'required|in:ijin,sakit,alpa,hadir',
+            ]);
+        
             // Ambil data absensi berdasarkan ID absensi yang akan diperbarui
             $absensi = Absensi::findOrFail($id);
         
             // Loop melalui input status kehadiran dan catatan untuk setiap siswa
-            foreach ($request->input('stts_kehadiran', []) as $siswa_id => $status) {
-                // Cek jika status tidak kosong dan valid (hadir, ijin, sakit, alpa)
-                if (in_array($status, ['ijin', 'sakit', 'alpa', 'hadir'])) {
-                    // Perbarui data absensi untuk setiap siswa berdasarkan id_siswa
-                    Absensi::where('id_mapel', $absensi->id_mapel)
-                        ->where('id_kelas', $absensi->id_kelas)
-                        ->where('tanggal', $absensi->tanggal)
-                        ->where('jam', $absensi->jam)
-                        ->where('id_siswa', $siswa_id)
-                        ->update([
-                            'stts_kehadiran' => $status,
-                            'catatan' => $request->input('catatan')[$siswa_id] ?? null,
-                        ]);
-                }
+            foreach ($request->input('stts_kehadiran') as $siswa_id => $status) {
+                // Perbarui data absensi untuk setiap siswa berdasarkan id_siswa
+                Absensi::where('id_mapel', $absensi->id_mapel)
+                    ->where('id_kelas', $absensi->id_kelas)
+                    ->where('tanggal', $absensi->tanggal)
+                    ->where('jam', $absensi->jam)
+                    ->where('id_siswa', $siswa_id)
+                    ->update([
+                        'stts_kehadiran' => $status,
+                        'catatan' => $request->input('catatan')[$siswa_id] ?? null,
+                    ]);
             }
         
             return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel])
