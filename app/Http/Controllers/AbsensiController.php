@@ -248,8 +248,16 @@ class AbsensiController extends Controller
             return $pdf->download('Laporan-Absensi.pdf');
         }
 
-        public function unduhPerbulan() {
-            return view('tampilan.absensi.pilih_unduh_perbulan');        
+        public function unduhPerbulan()
+        {
+            // Mengambil bulan yang ada data absensinya, menggunakan format tahun-bulan
+            $bulanAbsensi = Absensi::selectRaw('DISTINCT MONTH(tanggal) as bulan, YEAR(tanggal) as tahun')
+                ->orderBy('tahun', 'desc')
+                ->orderBy('bulan', 'desc')
+                ->get();
+        
+            return view('tampilan.absensi.pilih_unduh_perbulan', compact('bulanAbsensi'));
         }
+        
        
 }
