@@ -21,8 +21,7 @@
 
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
-                        <form action="#" method="GET"
-                            class="d-flex align-items-center">
+                        <form action="{{route('unduh.perbulan.pdf')}}" method="GET" class="d-flex align-items-center">
                             <!-- Dropdown Bulan -->
                             <select class="form-select me-2" name="bulan" style="width: 300px;" required>
                                 <option value="" disabled selected>Pilih Bulan</option>

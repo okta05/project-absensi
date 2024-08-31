@@ -258,6 +258,23 @@ class AbsensiController extends Controller
         
             return view('tampilan.absensi.pilih_unduh_perbulan', compact('bulanAbsensi'));
         }
+
+        public function unduhPerbulanPDF(Request $request)
+        {
+            $bulan = $request->input('bulan'); // Mendapatkan nilai bulan yang dipilih, misal: '2024-08'
+            
+            // Pisahkan tahun dan bulan dari format 'tahun-bulan'
+            list($tahun, $bulan) = explode('-', $bulan);
         
+            // Ambil absensi berdasarkan bulan dan tahun yang dipilih
+            $absensi = Absensi::whereYear('tanggal', $tahun)
+                ->whereMonth('tanggal', $bulan)
+                ->with('siswa')
+                ->get()
+                ->groupBy('tanggal');
+        
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'bulan'));
+            return $pdf->download('Laporan-Absensi-' . $bulan . '.pdf');
+        }
        
 }
