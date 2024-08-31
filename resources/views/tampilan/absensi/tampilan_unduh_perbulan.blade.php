@@ -41,23 +41,22 @@
             <tr>
                 <th>Siswa</th>
                 <th>NIS</th>
-                @foreach($absensi->keys() as $tanggal)
+                @foreach($absensi->first()->keys() as $tanggal)
                 <th>{{ $tanggal }}</th>
                 @endforeach
             </tr>
         </thead>
         <tbody>
-            @foreach($absensi->flatMap(function($items) { return $items->groupBy('id_siswa'); }) as $siswa_id =>
-            $absensiSiswa)
+            @foreach($absensi as $siswa_id => $absensiSiswa)
             @php
-            $siswa = $absensiSiswa->first()->siswa;
+            $siswa = $absensiSiswa->first()->first()->siswa;
             @endphp
             <tr>
                 <td>{{ $siswa->nama }}</td>
                 <td>{{ $siswa->nis }}</td>
-                @foreach($absensi->keys() as $tanggal)
+                @foreach($absensi->first()->keys() as $tanggal)
                 @php
-                $absensiItem = $absensiSiswa->where('tanggal', $tanggal)->first();
+                $absensiItem = $absensiSiswa->get($tanggal)->first();
                 $status = $absensiItem ? $absensiItem->stts_kehadiran : 'Tidak Hadir';
                 @endphp
                 <td>{{ $status }}</td>
