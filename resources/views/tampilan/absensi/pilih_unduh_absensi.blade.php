@@ -12,7 +12,7 @@
                 <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
                 <li class="breadcrumb-item"><a
                         href="{{ route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]) }}">Absensi</a></li>
-                <li class="breadcrumb-item"><a href="#">Detail Absensi</a></li>
+                <li class="breadcrumb-item"><a href="#">Unduh Perhari</a></li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
