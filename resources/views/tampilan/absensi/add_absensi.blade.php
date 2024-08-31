@@ -130,7 +130,7 @@
                                         <td>{{ $siswa->nis }}</td>
                                         <td>
                                             <select name="stts_kehadiran[{{ $siswa->id_siswa }}]" class="form-select">
-                                                <option selected disabled>pilih status Kehadiran</option>
+                                                <option selected disabled>Pilih Status Kehadiran</option>
                                                 <option value="hadir">Hadir</option>
                                                 <option value="ijin">Ijin</option>
                                                 <option value="sakit">Sakit</option>
