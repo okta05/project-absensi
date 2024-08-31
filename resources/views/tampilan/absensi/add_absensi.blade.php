@@ -131,10 +131,11 @@
                                         <td>
                                             <select name="stts_kehadiran[{{ $siswa->id_siswa }}]" class="form-select">
                                                 <option selected disabled>Pilih Status Kehadiran</option>
-                                                <option value="hadir">Hadir</option>
-                                                <option value="ijin">Ijin</option>
-                                                <option value="sakit">Sakit</option>
-                                                <option value="alpa">Alpa</option>
+                                                <option value="Belum Hadir">Belum Hadir</option>
+                                                <option value="Hadir">Hadir</option>
+                                                <option value="Ijin">Ijin</option>
+                                                <option value="Sakit">Sakit</option>
+                                                <option value="Alpa">Alpa</option>
                                             </select>
                                         </td>
                                         <td>

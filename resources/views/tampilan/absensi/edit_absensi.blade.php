@@ -113,17 +113,20 @@
                                         <td>{{ $siswa->nis }}</td>
                                         <td>
                                             <select name="stts_kehadiran[{{ $siswa->id_siswa }}]" class="form-select">
-                                                <option value="hadir"
-                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'hadir' ? 'selected' : '' }}>
+                                                <option value="Hadir"
+                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'Hadir' ? 'selected' : '' }}>
                                                     Hadir</option>
-                                                <option value="ijin"
-                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'ijin' ? 'selected' : '' }}>
+                                                    <option value="Belum Hadir"
+                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'Belum Hadir' ? 'selected' : '' }}>
+                                                    Belum Hadir</option>
+                                                <option value="Ijin"
+                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'Ijin' ? 'selected' : '' }}>
                                                     Ijin</option>
-                                                <option value="sakit"
-                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'sakit' ? 'selected' : '' }}>
+                                                <option value="Sakit"
+                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'Sakit' ? 'selected' : '' }}>
                                                     Sakit</option>
-                                                <option value="alpa"
-                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'alpa' ? 'selected' : '' }}>
+                                                <option value="Alpa"
+                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'Alpa' ? 'selected' : '' }}>
                                                     Alpa</option>
                                             </select>
                                         </td>

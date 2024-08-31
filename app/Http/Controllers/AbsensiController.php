@@ -104,7 +104,7 @@ class AbsensiController extends Controller
 
         public function absensiStore(Request $request) {
             $validateData = $request->validate([
-                'stts_kehadiran.*' => 'required|in:ijin,sakit,alpa,hadir',
+                'stts_kehadiran.*' => 'required|in:Ijin,Sakit,Alpa,Hadir,Belum Hadir',
             ]);
         
             $mapel_id = $request->input('id_mapel');
@@ -166,7 +166,7 @@ class AbsensiController extends Controller
         public function absensiUpdate(Request $request, $id)
         {
             $validateData = $request->validate([
-                'stts_kehadiran.*' => 'required|in:ijin,sakit,alpa,hadir',
+                'stts_kehadiran.*' => 'required|in:Ijin,Sakit,Alpa,Hadir,Belum Hadir',
             ]);
         
             // Ambil data absensi berdasarkan ID absensi yang akan diperbarui
