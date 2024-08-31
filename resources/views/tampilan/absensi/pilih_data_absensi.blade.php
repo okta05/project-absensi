@@ -69,8 +69,14 @@
                 @if(auth('admin')->check() || auth('bk')->check() || auth('wakel')->check() || auth('guru')->check())
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
-                        <a href="{{ route('add.absensi', ['id_mapel' => $mapel->id_mapel]) }}" class="btn btn-success">
+                        <a href="{{ route('add.absensi', ['id_mapel' => $mapel->id_mapel]) }}"
+                            class="btn btn-success me-2">
                             <i class="bi bi-journal-plus"></i> Tambah
+                        </a>
+
+
+                        <a href="{{ route('absensi.perbulan') }}" class="btn btn-primary">
+                            <i class="bi bi-download"></i> Unduh Per Bulan
                         </a>
                     </div>
                 </div>
@@ -102,7 +108,8 @@
                                         @if(auth('admin')->check() || auth('kepsek')->check() || auth('bk')->check() ||
                                         auth('wakel')->check() || auth('guru')->check())
                                         <div class="dropdown">
-                                            @if(auth('admin')->check() || auth('bk')->check() || auth('wakel')->check() || auth('guru')->check())
+                                            @if(auth('admin')->check() || auth('bk')->check() || auth('wakel')->check()
+                                            || auth('guru')->check())
                                             <a class="btn btn-primary"
                                                 href="{{ route('absensi.detail', $absen->id_absensi) }}">
                                                 <i class="bi bi-eye"></i>
