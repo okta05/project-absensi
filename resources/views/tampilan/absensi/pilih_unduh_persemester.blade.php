@@ -1,1 +1,4 @@
-ini halaman unduh persemster
+@extends('tampilan.index_master')
+@section('tampilan')
+
+@endsection
