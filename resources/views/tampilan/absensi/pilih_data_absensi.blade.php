@@ -74,8 +74,12 @@
                             <i class="bi bi-journal-plus"></i> Tambah
                         </a>
 
-                        <a href="{{ route('absensi.perbulan') }}" class="btn btn-primary">
+                        <a href="{{ route('absensi.perbulan') }}" class="btn btn-primary me-2">
                             <i class="bi bi-download"></i> Unduh Per Bulan
+                        </a>
+
+                        <a href="{{ route('absensi.persemester') }}" class="btn btn-primary">
+                            <i class="bi bi-download"></i> Unduh Per Semester
                         </a>
                     </div>
                 </div>

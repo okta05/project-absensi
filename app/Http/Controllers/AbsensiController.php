@@ -282,5 +282,9 @@ class AbsensiController extends Controller
             return $pdf->download('Laporan-Absensi-' . $bulan . '.pdf');
         }
 
+        public function unduhPersemester() {
+            return view ('tampilan.absensi.pilih_unduh_persemester');
+         }
+
        
 }
