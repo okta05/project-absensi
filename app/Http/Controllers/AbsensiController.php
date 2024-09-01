@@ -255,8 +255,10 @@ class AbsensiController extends Controller
                 ->orderBy('tahun', 'desc')
                 ->orderBy('bulan', 'desc')
                 ->get();
+
+                $absensi = Absensi::first();
         
-            return view('tampilan.absensi.pilih_unduh_perbulan', compact('bulanAbsensi'));
+            return view('tampilan.absensi.pilih_unduh_perbulan', compact('bulanAbsensi', 'absensi'));
         }
 
         public function unduhPerbulanPDF(Request $request)
