@@ -6,36 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Absensi Semester {{ $semester }}</title>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        font-size: 12px;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
 
-    th,
-    td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
 
-    th {
-        background-color: #f2f2f2;
-    }
+        th {
+            background-color: #f2f2f2;
+        }
 
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            margin-top: 20px;
+        }
     </style>
 </head>
 
 <body>
     <h2>Laporan Absensi Semester {{ $semester }}</h2>
+
+    @foreach($mapelData as $mapel)
+        <h3>Detail Mata Pelajaran</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Mata Pelajaran</th>
+                    <th>Kode Mata Pelajaran</th>
+                    <th>Kelas</th>
+                    <th>Nama Guru</th>
+                    <th>Semester</th>
+                    <th>Tahun Pelajaran</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $mapel['nama_mapel'] }}</td>
+                    <td>{{ $mapel['kode_mapel'] }}</td>
+                    <td>{{ $mapel['kelas'] }}</td>
+                    <td>{{ $mapel['guru'] }}</td>
+                    <td>{{ $mapel['semester'] }}</td>
+                    <td>{{ $mapel['tahun_pelajaran'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    @endforeach
 
     <h3>Jumlah Status Kehadiran</h3>
     <table>
@@ -71,22 +101,12 @@
         <tbody>
             @foreach($absensi as $siswa_id => $absensiSiswa)
             @php
-            $siswa = $absensiSiswa->first()->siswa;
-            $jumlahHadir = $absensiSiswa->filter(function ($item) {
-            return $item->stts_kehadiran === 'Hadir';
-            })->count();
-            $jumlahBelumHadir = $absensiSiswa->filter(function ($item) {
-            return $item->stts_kehadiran === 'Belum Hadir';
-            })->count();
-            $jumlahIjin = $absensiSiswa->filter(function ($item) {
-            return $item->stts_kehadiran === 'Ijin';
-            })->count();
-            $jumlahSakit = $absensiSiswa->filter(function ($item) {
-            return $item->stts_kehadiran === 'Sakit';
-            })->count();
-            $jumlahAlpa = $absensiSiswa->filter(function ($item) {
-            return $item->stts_kehadiran === 'Alpa';
-            })->count();
+                $siswa = $absensiSiswa->first()->siswa;
+                $jumlahHadir = $absensiSiswa->filter(fn($item) => $item->stts_kehadiran === 'Hadir')->count();
+                $jumlahBelumHadir = $absensiSiswa->filter(fn($item) => $item->stts_kehadiran === 'Belum Hadir')->count();
+                $jumlahIjin = $absensiSiswa->filter(fn($item) => $item->stts_kehadiran === 'Ijin')->count();
+                $jumlahSakit = $absensiSiswa->filter(fn($item) => $item->stts_kehadiran === 'Sakit')->count();
+                $jumlahAlpa = $absensiSiswa->filter(fn($item) => $item->stts_kehadiran === 'Alpa')->count();
             @endphp
             <tr>
                 <td>{{ $siswa->nama }}</td>
