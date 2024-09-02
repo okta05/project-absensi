@@ -297,24 +297,35 @@ class AbsensiController extends Controller
         }
 
         public function unduhPersemesterPDF(Request $request)
-        {
-            // Mendapatkan semester yang dipilih dari input
-            $semester = $request->input('semester');
-        
-            // Mengambil data absensi yang terkait dengan semester yang dipilih
-            $absensi = Absensi::whereHas('mapel', function ($query) use ($semester) {
-                $query->where('semester', $semester); // Sesuaikan dengan kolom yang menyimpan informasi semester
-            })
-            ->with('siswa', 'mapel') // Memuat relasi siswa dan mapel
-            ->get()
-            ->groupBy('id_siswa'); // Mengelompokkan data berdasarkan siswa
-        
-            // Buat PDF dari data absensi
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('absensi', 'semester'));
-        
-            // Mengunduh file PDF dengan nama file yang sesuai
-            return $pdf->download("Laporan-Absensi-$semester.pdf");
-        }
-        
+{
+    $semester = $request->input('semester');
+
+    // Ambil data absensi untuk semester yang dipilih
+    $absensi = Absensi::whereHas('mapel', function ($query) use ($semester) {
+        $query->where('semester', $semester);
+    })
+    ->with('siswa', 'mapel')
+    ->get()
+    ->groupBy('id_siswa');
+
+    // Get all unique dates (or other keys) across all absensi items
+    $dates = $absensi->flatMap(function ($items) {
+        return $items->pluck('tanggal')->unique();
+    })->sort();
+
+    // Debugging: Log the number of students and check data
+    Log::info("Jumlah siswa dalam data absensi: " . $absensi->count());
+    foreach ($absensi as $siswa_id => $data) {
+        Log::info("ID Siswa: $siswa_id - Jumlah absensi: " . $data->count());
+    }
+
+    // Generate PDF from the view
+    $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('absensi', 'semester', 'dates'));
+
+    // Download PDF
+    return $pdf->download("Laporan-Absensi-Semester-$semester.pdf");
+}
+
+
        
 }
