@@ -1,37 +1,33 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Models;
 
-return new class extends Migration
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Mapel extends Model
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    use HasFactory;
+    protected $primaryKey = "id_mapel";
+
+    public function tahpel()
     {
-        Schema::create('mapels', function (Blueprint $table) {
-            $table->id('id_mapel');
-            $table->string('nm_mapel')->nullable();
-            $table->string('kd_mapel')->nullable();
-            $table->unsignedBigInteger('id_guru')->nullable();
-            $table->unsignedBigInteger('id_kelas')->nullable();
-            $table->unsignedBigInteger('id_tahpel')->nullable();
-            $table->timestamps();
-            
-            // Tambahkan foreign key constraint jika diperlukan
-            $table->foreign('id_guru')->references('id_guru')->on('gurus')->onDelete('set null');
-            $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onDelete('set null');
-            $table->foreign('id_tahpel')->references('id_tahpel')->on('tahpels')->onDelete('set null');
-        });
+        return $this->belongsTo(Tahpel::class, 'id_tahpel');
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function guru()
     {
-        Schema::dropIfExists('mapels');
+        return $this->belongsTo(Guru::class, 'id_guru', 'id_guru');
     }
-};
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_kelas');
+    }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_mapel', 'id_mapel');
+    }
+}
+
