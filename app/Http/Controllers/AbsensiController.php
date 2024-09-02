@@ -289,9 +289,11 @@ class AbsensiController extends Controller
                 ->distinct()
                 ->orderBy('semester', 'asc')
                 ->get();
+
+                $absensi = Absensi::first();
         
             // Kirim data semester ke view
-            return view('tampilan.absensi.pilih_unduh_persemester', compact('semesters'));
+            return view('tampilan.absensi.pilih_unduh_persemester', compact('semesters', 'absensi'));
         }
 
         public function unduhPersemesterPDF(Request $request)
