@@ -68,9 +68,9 @@
                 <th>NIS</th>
                 <th>Hadir</th>
                 <th>Belum Hadir</th>
-                <th>Alpa</th>
                 <th>Ijin</th>
                 <th>Sakit</th>
+                <th>Alpa</th>
             </tr>
         </thead>
         <tbody>
@@ -83,14 +83,14 @@
             $jumlahBelumHadir = $absensiSiswa->flatten()->filter(function($absensi) {
             return $absensi->stts_kehadiran === 'Belum Hadir';
             })->count();
-            $jumlahAlpa = $absensiSiswa->flatten()->filter(function($absensi) {
-            return $absensi->stts_kehadiran === 'Alpa';
-            })->count();
             $jumlahIjin = $absensiSiswa->flatten()->filter(function($absensi) {
             return $absensi->stts_kehadiran === 'Ijin';
             })->count();
             $jumlahSakit = $absensiSiswa->flatten()->filter(function($absensi) {
             return $absensi->stts_kehadiran === 'Sakit';
+            })->count();
+            $jumlahAlpa = $absensiSiswa->flatten()->filter(function($absensi) {
+            return $absensi->stts_kehadiran === 'Alpa';
             })->count();
             @endphp
             <tr>
@@ -98,9 +98,9 @@
                 <td>{{ $siswa->nis }}</td>
                 <td>{{ $jumlahHadir }}</td>
                 <td>{{ $jumlahBelumHadir }}</td>
-                <td>{{ $jumlahAlpa }}</td>
                 <td>{{ $jumlahIjin }}</td>
                 <td>{{ $jumlahSakit }}</td>
+                <td>{{ $jumlahAlpa }}</td>
             </tr>
             @endforeach
         </tbody>

@@ -36,6 +36,26 @@
 
 <body>
     <h2>Laporan Absensi Semester {{ $semester }}</h2>
+
+    <h3>Jumlah Status Kehadiran</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Status Kehadiran</th>
+                <th>Jumlah</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($kehadiranPerSemester as $status => $jumlah)
+            <tr>
+                <td>{{ $status }}</td>
+                <td>{{ $jumlah }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Jumlah Kehadiran Per Siswa</h3>
     <table>
         <thead>
             <tr>
@@ -44,6 +64,7 @@
                 <th>Hadir</th>
                 <th>Belum Hadir</th>
                 <th>Ijin</th>
+                <th>Sakit</th>
                 <th>Alpa</th>
             </tr>
         </thead>
@@ -52,16 +73,19 @@
             @php
             $siswa = $absensiSiswa->first()->siswa;
             $jumlahHadir = $absensiSiswa->filter(function ($item) {
-                return $item->stts_kehadiran === 'Hadir';
+            return $item->stts_kehadiran === 'Hadir';
             })->count();
             $jumlahBelumHadir = $absensiSiswa->filter(function ($item) {
-                return $item->stts_kehadiran === 'Belum Hadir';
+            return $item->stts_kehadiran === 'Belum Hadir';
             })->count();
             $jumlahIjin = $absensiSiswa->filter(function ($item) {
-                return $item->stts_kehadiran === 'Ijin';
+            return $item->stts_kehadiran === 'Ijin';
+            })->count();
+            $jumlahSakit = $absensiSiswa->filter(function ($item) {
+            return $item->stts_kehadiran === 'Sakit';
             })->count();
             $jumlahAlpa = $absensiSiswa->filter(function ($item) {
-                return $item->stts_kehadiran === 'Alpa';
+            return $item->stts_kehadiran === 'Alpa';
             })->count();
             @endphp
             <tr>
@@ -70,6 +94,7 @@
                 <td>{{ $jumlahHadir }}</td>
                 <td>{{ $jumlahBelumHadir }}</td>
                 <td>{{ $jumlahIjin }}</td>
+                <td>{{ $jumlahSakit }}</td>
                 <td>{{ $jumlahAlpa }}</td>
             </tr>
             @endforeach

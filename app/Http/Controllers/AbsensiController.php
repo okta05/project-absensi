@@ -329,6 +329,18 @@ class AbsensiController extends Controller
                 return $items->pluck('tanggal')->unique();
             })->sort();
 
+            // Hitung jumlah setiap status kehadiran per semester
+            $kehadiranPerSemester = Absensi::selectRaw('YEAR(tanggal) as tahun, stts_kehadiran, COUNT(*) as jumlah')
+                ->whereHas('mapel', function ($query) use ($semester) {
+                    $query->where('semester', $semester);
+                })
+                ->groupBy('stts_kehadiran', 'tahun')
+                ->get()
+                ->groupBy('stts_kehadiran')
+                ->map(function ($group) {
+                    return $group->sum('jumlah');
+                });
+
             // Debugging: Log the number of students and check data
             Log::info("Jumlah siswa dalam data absensi: " . $absensi->count());
             foreach ($absensi as $siswa_id => $data) {
@@ -336,10 +348,11 @@ class AbsensiController extends Controller
             }
 
             // Generate PDF from the view
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('absensi', 'semester', 'dates'));
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('absensi', 'semester', 'dates', 'kehadiranPerSemester'));
 
             // Download PDF
             return $pdf->download("Laporan-Absensi-Semester-$semester.pdf");
-}
+        }
+
        
 }
