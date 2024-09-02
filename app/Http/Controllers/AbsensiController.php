@@ -325,7 +325,5 @@ class AbsensiController extends Controller
     // Download PDF
     return $pdf->download("Laporan-Absensi-Semester-$semester.pdf");
 }
-
-
        
 }

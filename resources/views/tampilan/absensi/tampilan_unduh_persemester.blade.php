@@ -41,26 +41,36 @@
             <tr>
                 <th>Siswa</th>
                 <th>NIS</th>
-                @foreach($dates as $tanggal)
-                <th>{{ $tanggal }}</th>
-                @endforeach
+                <th>Hadir</th>
+                <th>Belum Hadir</th>
+                <th>Ijin</th>
+                <th>Alpa</th>
             </tr>
         </thead>
         <tbody>
             @foreach($absensi as $siswa_id => $absensiSiswa)
             @php
             $siswa = $absensiSiswa->first()->siswa;
+            $jumlahHadir = $absensiSiswa->filter(function ($item) {
+                return $item->stts_kehadiran === 'Hadir';
+            })->count();
+            $jumlahBelumHadir = $absensiSiswa->filter(function ($item) {
+                return $item->stts_kehadiran === 'Belum Hadir';
+            })->count();
+            $jumlahIjin = $absensiSiswa->filter(function ($item) {
+                return $item->stts_kehadiran === 'Ijin';
+            })->count();
+            $jumlahAlpa = $absensiSiswa->filter(function ($item) {
+                return $item->stts_kehadiran === 'Alpa';
+            })->count();
             @endphp
             <tr>
                 <td>{{ $siswa->nama }}</td>
                 <td>{{ $siswa->nis }}</td>
-                @foreach($dates as $tanggal)
-                @php
-                $absensiItem = $absensiSiswa->firstWhere('tanggal', $tanggal);
-                $status = $absensiItem ? $absensiItem->stts_kehadiran : 'Tidak Hadir';
-                @endphp
-                <td>{{ $status }}</td>
-                @endforeach
+                <td>{{ $jumlahHadir }}</td>
+                <td>{{ $jumlahBelumHadir }}</td>
+                <td>{{ $jumlahIjin }}</td>
+                <td>{{ $jumlahAlpa }}</td>
             </tr>
             @endforeach
         </tbody>
