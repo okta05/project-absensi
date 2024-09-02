@@ -89,6 +89,7 @@ class KepsekController extends Controller
         if ($request->filled('password')) {
             $data->password = bcrypt($request->password);
         }
+        
         $data->save();
 
         return redirect()->route('kepsek.view');

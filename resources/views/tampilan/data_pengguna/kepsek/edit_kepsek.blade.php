@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Ubah Kepala Sekolah</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('kepsek.update', $editDataKepsek->id)}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('kepsek.update', $editDataKepsek->id_kepsek)}}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row mb-3">

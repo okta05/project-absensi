@@ -52,14 +52,14 @@
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-primary"
-                                                href="{{ route('kepsek.detail', $kepsek->id) }}"><i
+                                                href="{{ route('kepsek.detail', $kepsek->id_kepsek) }}"><i
                                                     class="bi bi-eye"></i></a>
 
-                                            <a class="btn btn-warning" href="{{ route('kepsek.edit', $kepsek->id) }}"><i
+                                            <a class="btn btn-warning" href="{{ route('kepsek.edit', $kepsek->id_kepsek) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
                                             <a class="btn btn-danger" id="delete"
-                                                href="{{ route('kepsek.delete', $kepsek->id) }}">
+                                                href="{{ route('kepsek.delete', $kepsek->id_kepsek) }}">
                                                 <i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>

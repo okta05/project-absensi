@@ -18,7 +18,7 @@ class Kepsek extends Authenticatable
     use TwoFactorAuthenticatable;
 
     protected $tabel = "kepseks";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_kepsek";
    
     protected $fillable = [
         'nama',
