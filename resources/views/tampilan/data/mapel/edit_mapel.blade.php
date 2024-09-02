@@ -37,6 +37,17 @@
                     </div>
                 </div>
 
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Guru</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" name="text_semester" id="text_semester"
+                            aria-label="Default select example">
+                            <option selected disabled>Pilih Guru</option>
+                            <option value="Ganjil" {{($editDataMapel->semester==="Ganjil"? "selected":"")}}>Ganjil</option>
+                            <option value="Genap" {{($editDataMapel->semester==="Genap"? "selected":"")}}>Genap</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Guru</label>

@@ -36,6 +36,7 @@ class MapelController extends Controller
         $data = new Mapel();
         $data->nm_mapel=$request->textNM_Mapel;
         $data->kd_mapel=$request->textKd_Mapel;
+        $data->semester=$request->text_semester;
         $data->id_guru=$request->text_id_guru;
         $data->id_kelas=$request->text_id_kelas;
         $data->id_tahpel=$request->text_id_tahpel;
@@ -63,6 +64,7 @@ class MapelController extends Controller
         $data = Mapel::find($id);
         $data->nm_mapel=$request->textNM_Mapel;
         $data->kd_mapel=$request->textKd_Mapel;
+        $data->semester=$request->text_semester;
         $data->id_guru=$request->text_id_guru;
         $data->id_kelas=$request->text_id_kelas;
         $data->id_tahpel=$request->text_id_tahpel;

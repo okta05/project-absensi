@@ -33,6 +33,7 @@
                                     <th>No</th>
                                     <th>Mata Pejaran</th>
                                     <th>Kode</th>
+                                    <th>Semester</th>
                                     <th>Guru</th>
                                     <th>Kelas</th>
                                     <th>Tahun Pelajaran</th>
@@ -47,6 +48,7 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$mapel->nm_mapel}}</td>
                                     <td>{{$mapel->kd_mapel}}</td>
+                                    <td>{{$mapel->semester}}</td>
                                     <td>{{$mapel->guru->nama ?? 'Tidak Ditemukan'}}</td>
                                     <td>{{$mapel->kelas->nm_kelas ?? 'Tidak Ditemukan'}}</td>
                                     <td>{{$mapel->tahpel->th_pelajaran ?? 'Tidak Ditemukan'}}</td>
