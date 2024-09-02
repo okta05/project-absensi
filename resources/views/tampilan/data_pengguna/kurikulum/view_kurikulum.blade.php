@@ -51,13 +51,13 @@
                                     <td>{{$kurikulum->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('kurikulum.detail', $kurikulum->id) }}"><i
+                                            <a class="btn btn-primary" href="{{ route('kurikulum.detail', $kurikulum->id_kurikulum) }}"><i
                                                     class="bi bi-eye"></i></a>
 
-                                            <a class="btn btn-warning" href="{{ route('kurikulum.edit', $kurikulum->id) }}"><i
+                                            <a class="btn btn-warning" href="{{ route('kurikulum.edit', $kurikulum->id_kurikulum) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" id="delete" href="{{ route('kurikulum.delete', $kurikulum->id) }}"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('kurikulum.delete', $kurikulum->id_kurikulum) }}"><i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

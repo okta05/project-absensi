@@ -18,7 +18,7 @@ class Kurikulum extends Authenticatable
     use TwoFactorAuthenticatable;
 
     protected $tabel = "kurikulums";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_kurikulum";
    
     protected $fillable = [
         'nama',

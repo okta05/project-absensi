@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Ubah Kurikulum</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('kurikulum.update', $editDataKurikulum->id)}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('kurikulum.update', $editDataKurikulum->id_kurikulum)}}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row mb-3">
