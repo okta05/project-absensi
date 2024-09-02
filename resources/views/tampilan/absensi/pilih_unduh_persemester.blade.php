@@ -10,7 +10,8 @@
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house-door-fill"></i></a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
-                <li class="breadcrumb-item"><a href="#">Absensi</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]) }}">Absensi</a></li>
                 <li class="breadcrumb-item"><a href="#">Unduh Per Semester</a></li>
             </ol>
         </nav>
@@ -22,12 +23,14 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
-                        <form action="#" method="GET" class="d-flex align-items-center">
+                        <form action="{{ route('absensi.unduhPersemesterPDF') }}" method="post"
+                            class="d-flex align-items-center">
+                            @csrf
                             <!-- Dropdown Semester -->
                             <select class="form-select me-2" name="semester" style="width: 300px;" required>
                                 <option value="" disabled selected>Pilih Semester</option>
                                 @foreach($semesters as $semester)
-                                    <option value="{{ $semester->semester }}">{{ $semester->semester }}</option>
+                                <option value="{{ $semester->semester }}">{{ $semester->semester }}</option>
                                 @endforeach
                             </select>
                             <!-- Tombol Unduh -->

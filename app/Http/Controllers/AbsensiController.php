@@ -293,5 +293,26 @@ class AbsensiController extends Controller
             // Kirim data semester ke view
             return view('tampilan.absensi.pilih_unduh_persemester', compact('semesters'));
         }
+
+        public function unduhPersemesterPDF(Request $request)
+        {
+            // Mendapatkan semester yang dipilih dari input
+            $semester = $request->input('semester');
+        
+            // Mengambil data absensi yang terkait dengan semester yang dipilih
+            $absensi = Absensi::whereHas('mapel', function ($query) use ($semester) {
+                $query->where('semester', $semester); // Sesuaikan dengan kolom yang menyimpan informasi semester
+            })
+            ->with('siswa', 'mapel') // Memuat relasi siswa dan mapel
+            ->get()
+            ->groupBy('id_siswa'); // Mengelompokkan data berdasarkan siswa
+        
+            // Buat PDF dari data absensi
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('absensi', 'semester'));
+        
+            // Mengunduh file PDF dengan nama file yang sesuai
+            return $pdf->download("Laporan-Absensi-$semester.pdf");
+        }
+        
        
 }
