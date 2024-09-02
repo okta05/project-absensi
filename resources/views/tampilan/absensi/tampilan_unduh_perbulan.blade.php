@@ -4,43 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Absensi Bulan {{ $bulan }}</title>
+    <title>Laporan Absensi Bulan {{ $bulan }} Tahun {{ $tahun }}</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
 
-        th {
-            background-color: #f2f2f2;
-        }
+    th {
+        background-color: #f2f2f2;
+    }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-        .header-table {
-            margin-bottom: 0;
-        }
+    .header-table {
+        margin-bottom: 0;
+    }
     </style>
 </head>
 
 <body>
-    <h2>Laporan Absensi Bulan {{ $bulan }}</h2>
+    <h2>Laporan Absensi Bulan {{ $bulan }} Tahun {{ $tahun }}</h2>
 
     <h3>Informasi Mata Pelajaran</h3>
     <table class="header-table">
@@ -102,19 +102,19 @@
             @php
             $siswa = $absensiSiswa->first()->first()->siswa;
             $jumlahHadir = $absensiSiswa->flatten()->filter(function($absensi) {
-                return $absensi->stts_kehadiran === 'Hadir';
+            return $absensi->stts_kehadiran === 'Hadir';
             })->count();
             $jumlahBelumHadir = $absensiSiswa->flatten()->filter(function($absensi) {
-                return $absensi->stts_kehadiran === 'Belum Hadir';
+            return $absensi->stts_kehadiran === 'Belum Hadir';
             })->count();
             $jumlahIjin = $absensiSiswa->flatten()->filter(function($absensi) {
-                return $absensi->stts_kehadiran === 'Ijin';
+            return $absensi->stts_kehadiran === 'Ijin';
             })->count();
             $jumlahSakit = $absensiSiswa->flatten()->filter(function($absensi) {
-                return $absensi->stts_kehadiran === 'Sakit';
+            return $absensi->stts_kehadiran === 'Sakit';
             })->count();
             $jumlahAlpa = $absensiSiswa->flatten()->filter(function($absensi) {
-                return $absensi->stts_kehadiran === 'Alpa';
+            return $absensi->stts_kehadiran === 'Alpa';
             })->count();
             @endphp
             <tr>

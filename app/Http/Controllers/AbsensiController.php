@@ -308,10 +308,12 @@ class AbsensiController extends Controller
                     return $group->sum('jumlah');
                 });
         
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'bulan', 'kehadiranPerBulan', 'mapelData'));
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'bulan', 'tahun', 'kehadiranPerBulan', 'mapelData'));
         
-            return $pdf->download('Laporan-Absensi-' . $bulan . '.pdf');
+            return $pdf->download('Laporan-Absensi-' . $bulan . '-' . $tahun . '.pdf');
         }
+        
+
         
         public function unduhPersemester(Request $request)
         {
