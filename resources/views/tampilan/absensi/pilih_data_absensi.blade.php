@@ -95,6 +95,7 @@
                                     <th>Tanggal</th>
                                     <th>Mata Pelajaran</th>
                                     <th>Kode Mata Pelajaran</th>
+                                    <th>Semester</th>
                                     <th>Jam</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -106,11 +107,14 @@
                                     <td>{{ $absen->tanggal }}</td>
                                     <td>{{ $absen->mapel->nm_mapel ?? 'tidak ditemukan' }}</td>
                                     <td>{{ $absen->mapel->kd_mapel ?? 'tidak ditemukan' }}</td>
+                                    <td>{{ $absen->mapel->semester ?? 'tidak ditemukan' }}</td>
                                     <td>{{ $absen->jam }}</td>
+                                    <td>
                                     <td>
                                         @if(auth('admin')->check() || auth('kepsek')->check() || auth('bk')->check() ||
                                         auth('wakel')->check() || auth('guru')->check())
-                                        <div class="dropdown">
+                                        <div class="d-flex gap-2">
+                                            <!-- Tambahkan class d-flex dan gap-2 -->
                                             @if(auth('admin')->check() || auth('bk')->check() || auth('wakel')->check()
                                             || auth('guru')->check())
                                             <a class="btn btn-primary"
