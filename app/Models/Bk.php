@@ -18,7 +18,7 @@ class Bk extends Authenticatable
     use TwoFactorAuthenticatable;
 
     protected $tabel = "bks";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_bk";
    
     protected $fillable = [
         'nama',
@@ -31,7 +31,6 @@ class Bk extends Authenticatable
         'password',
     ];
 
-   
     protected $hidden = [
         'password',
         'remember_token',
