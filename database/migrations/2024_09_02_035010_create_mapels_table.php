@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_guru')->nullable();
             $table->unsignedBigInteger('id_kelas')->nullable();
             $table->unsignedBigInteger('id_tahpel')->nullable();
+            $table->string('semester')->nullable();
             $table->timestamps();
             
             // Tambahkan foreign key constraint jika diperlukan
