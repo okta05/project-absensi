@@ -30,5 +30,3 @@ class Mapel extends Model
         return $this->hasMany(Absensi::class, 'id_mapel', 'id_mapel');
     }
 }
-
-
