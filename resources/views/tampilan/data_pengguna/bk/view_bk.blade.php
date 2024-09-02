@@ -50,14 +50,14 @@
                                     <td>{{$bk->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('bk.detail', $bk->id) }}"><i
+                                            <a class="btn btn-primary" href="{{ route('bk.detail', $bk->id_bk) }}"><i
                                                     class="bi bi-eye"></i></a>
 
-                                            <a class="btn btn-warning" href="{{ route('bk.edit', $bk->id) }}"><i
+                                            <a class="btn btn-warning" href="{{ route('bk.edit', $bk->id_bk) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
                                             <a class="btn btn-danger" id="delete"
-                                                href="{{ route('bk.delete', $bk->id) }}"><i class="bi bi-trash"></i></a>
+                                                href="{{ route('bk.delete', $bk->id_bk) }}"><i class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
