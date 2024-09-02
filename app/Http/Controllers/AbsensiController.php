@@ -12,6 +12,7 @@ use App\Models\Guru;
 use App\Models\Mapel;
 use App\Helpers\TelegramHelper;
 use Barryvdh\DomPDF\Facade\Pdf;
+use DateTime;
 
 class AbsensiController extends Controller
 {
@@ -268,6 +269,9 @@ class AbsensiController extends Controller
             // Pisahkan tahun dan bulan dari format 'tahun-bulan'
             list($tahun, $bulan) = explode('-', $bulan);
         
+            // Convert numeric month to full month name
+            $monthName = DateTime::createFromFormat('!m', $bulan)->format('F');
+        
             // Ambil absensi berdasarkan bulan dan tahun yang dipilih
             $absensi = Absensi::whereYear('tanggal', $tahun)
                 ->whereMonth('tanggal', $bulan)
@@ -308,12 +312,11 @@ class AbsensiController extends Controller
                     return $group->sum('jumlah');
                 });
         
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'bulan', 'tahun', 'kehadiranPerBulan', 'mapelData'));
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'bulan', 'tahun', 'kehadiranPerBulan', 'mapelData', 'monthName'));
         
-            return $pdf->download('Laporan-Absensi-' . $bulan . '-' . $tahun . '.pdf');
+            return $pdf->download('Laporan-Absensi-' . $monthName . '-' . $tahun . '.pdf');
         }
-        
-
+           
         
         public function unduhPersemester(Request $request)
         {

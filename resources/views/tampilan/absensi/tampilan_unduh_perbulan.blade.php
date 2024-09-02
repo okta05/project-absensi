@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Absensi Bulan {{ $bulan }} Tahun {{ $tahun }}</title>
+    <title>Laporan Absensi Bulan {{ $monthName }} Tahun {{ $tahun }}</title>
     <style>
     body {
         font-family: Arial, sans-serif;
@@ -40,7 +40,7 @@
 </head>
 
 <body>
-    <h2>Laporan Absensi Bulan {{ $bulan }} Tahun {{ $tahun }}</h2>
+    <h2>Laporan Absensi Bulan {{ $monthName }} Tahun {{ $tahun }}</h2>
 
     <h3>Informasi Mata Pelajaran</h3>
     <table class="header-table">
