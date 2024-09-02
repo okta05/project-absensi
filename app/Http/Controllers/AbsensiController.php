@@ -268,9 +268,28 @@ class AbsensiController extends Controller
             
             // Pisahkan tahun dan bulan dari format 'tahun-bulan'
             list($tahun, $bulan) = explode('-', $bulan);
+            
+            // Convert numeric month to full month name in English
+            $monthNameInEnglish = DateTime::createFromFormat('!m', $bulan)->format('F');
+            
+            // Map English month names to Indonesian
+            $monthNamesInIndonesian = [
+                'January' => 'Januari',
+                'February' => 'Februari',
+                'March' => 'Maret',
+                'April' => 'April',
+                'May' => 'Mei',
+                'June' => 'Juni',
+                'July' => 'Juli',
+                'August' => 'Agustus',
+                'September' => 'September',
+                'October' => 'Oktober',
+                'November' => 'November',
+                'December' => 'Desember',
+            ];
         
-            // Convert numeric month to full month name
-            $monthName = DateTime::createFromFormat('!m', $bulan)->format('F');
+            // Get the month name in Indonesian
+            $monthName = $monthNamesInIndonesian[$monthNameInEnglish];
         
             // Ambil absensi berdasarkan bulan dan tahun yang dipilih
             $absensi = Absensi::whereYear('tanggal', $tahun)
@@ -316,6 +335,7 @@ class AbsensiController extends Controller
         
             return $pdf->download('Laporan-Absensi-' . $monthName . '-' . $tahun . '.pdf');
         }
+        
            
         
         public function unduhPersemester(Request $request)
