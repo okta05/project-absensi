@@ -271,13 +271,31 @@ class AbsensiController extends Controller
             // Ambil absensi berdasarkan bulan dan tahun yang dipilih
             $absensi = Absensi::whereYear('tanggal', $tahun)
                 ->whereMonth('tanggal', $bulan)
-                ->with('siswa')
+                ->with('siswa', 'mapel') // Load mapel juga
                 ->get()
                 ->groupBy('id_siswa') // Kelompokkan berdasarkan id_siswa
                 ->map(function ($absensiSiswa) {
                     return $absensiSiswa->groupBy('tanggal'); // Kelompokkan lebih lanjut berdasarkan tanggal
                 });
-                
+        
+            // Ambil data mapel untuk bulan dan tahun yang dipilih
+            $mapelData = Absensi::whereYear('tanggal', $tahun)
+                ->whereMonth('tanggal', $bulan)
+                ->distinct('id_mapel')
+                ->with('mapel')
+                ->get()
+                ->map(function ($absensi) {
+                    $mapel = $absensi->mapel;
+                    return [
+                        'nama_mapel' => $mapel->nm_mapel,
+                        'kode_mapel' => $mapel->kd_mapel,
+                        'kelas' => $mapel->kelas->nm_kelas,
+                        'guru' => $mapel->guru->nama,
+                        'semester' => $mapel->semester,
+                        'tahun_pelajaran' => $mapel->tahpel->th_pelajaran
+                    ];
+                })
+                ->first(); // Ambil data mapel yang pertama
         
             // Hitung jumlah setiap status kehadiran per bulan
             $kehadiranPerBulan = Absensi::selectRaw('MONTH(tanggal) as bulan, YEAR(tanggal) as tahun, stts_kehadiran, COUNT(*) as jumlah')
@@ -290,13 +308,11 @@ class AbsensiController extends Controller
                     return $group->sum('jumlah');
                 });
         
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'bulan', 'kehadiranPerBulan'));
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'bulan', 'kehadiranPerBulan', 'mapelData'));
         
             return $pdf->download('Laporan-Absensi-' . $bulan . '.pdf');
         }
         
-
-
         public function unduhPersemester(Request $request)
         {
             // Query untuk mengambil semester yang terkait dengan mapel
