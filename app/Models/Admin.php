@@ -18,7 +18,7 @@ class Admin extends Authenticatable
     use TwoFactorAuthenticatable;
 
     protected $tabel = "admins";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_admin";
    
     protected $fillable = [
         'name',

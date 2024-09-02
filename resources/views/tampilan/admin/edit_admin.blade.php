@@ -18,7 +18,7 @@
             <h5 class="card-title">Form Ubah Admin</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('admin.update', $editDataAdmin->id)}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('admin.update', $editDataAdmin->id_admin)}}" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
                     <label for="textNama" class="col-sm-2 col-form-label">Nama</label>

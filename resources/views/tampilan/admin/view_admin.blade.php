@@ -51,13 +51,13 @@
                                     <td>{{$admin->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('admin.detail', $admin->id) }}">
+                                            <a class="btn btn-primary" href="{{ route('admin.detail', $admin->id_admin) }}">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a class="btn btn-warning" href="{{ route('admin.edit', $admin->id) }}">
+                                            <a class="btn btn-warning" href="{{ route('admin.edit', $admin->id_admin) }}">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a class="btn btn-danger" id="delete" href="{{ route('admin.delete', $admin->id) }}">
+                                            <a class="btn btn-danger" id="delete" href="{{ route('admin.delete', $admin->id_admin) }}">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </div>

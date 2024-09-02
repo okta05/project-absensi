@@ -39,7 +39,7 @@ Route::middleware(['auth:kepsek,admin,kurikulum,bk,wakel,guru', 'verified'] )->g
 });
 
 // Semua route untuk mengelola data admin
-Route::middleware(['auth:admin', 'verified'])->group(function () {
+Route::middleware(['auth:admin,kepsek', 'verified'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/view', [AdminController::class, 'adminView'])->name('admin.view');
         Route::get('/detail/{id}', [AdminController::class, 'adminDetail'])->name('admin.detail');
