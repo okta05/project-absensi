@@ -281,10 +281,17 @@ class AbsensiController extends Controller
             $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'bulan'));
             return $pdf->download('Laporan-Absensi-' . $bulan . '.pdf');
         }
-
-        public function unduhPersemester() {
-            return view ('tampilan.absensi.pilih_unduh_persemester');
-         }
-
+        public function unduhPersemester(Request $request)
+        {
+            // Query untuk mengambil semester yang terkait dengan mapel
+            // Sesuaikan query ini dengan struktur tabel Anda
+            $semesters = Mapel::select('semester')
+                ->distinct()
+                ->orderBy('semester', 'asc')
+                ->get();
+        
+            // Kirim data semester ke view
+            return view('tampilan.absensi.pilih_unduh_persemester', compact('semesters'));
+        }
        
 }

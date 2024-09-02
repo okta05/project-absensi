@@ -4,14 +4,14 @@
 
 <section class="section dashboard">
     <div class="pagetitle">
-        <h1>Unduh Perbulan</h1>
+        <h1>Unduh Per Semester</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house-door-fill"></i></a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
                 <li class="breadcrumb-item"><a href="#">Absensi</a></li>
-                <li class="breadcrumb-item"><a href="#">Unduh Persemster</a></li>
+                <li class="breadcrumb-item"><a href="#">Unduh Per Semester</a></li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -20,13 +20,15 @@
         <!-- Default Card -->
         <div class="card" style="height: auto; padding: 10px;">
             <div class="card-body">
-
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
                         <form action="#" method="GET" class="d-flex align-items-center">
-                            <!-- Dropdown Bulan -->
-                            <select class="form-select me-2" name="bulan" style="width: 300px;" required>
+                            <!-- Dropdown Semester -->
+                            <select class="form-select me-2" name="semester" style="width: 300px;" required>
                                 <option value="" disabled selected>Pilih Semester</option>
+                                @foreach($semesters as $semester)
+                                    <option value="{{ $semester->semester }}">{{ $semester->semester }}</option>
+                                @endforeach
                             </select>
                             <!-- Tombol Unduh -->
                             <button type="submit" class="btn btn-primary">
@@ -35,11 +37,9 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div><!-- End Default Card -->
     </div>
-
 </section>
 
 @endsection
