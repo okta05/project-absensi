@@ -267,7 +267,7 @@ class AbsensiController extends Controller
             
             // Pisahkan tahun dan bulan dari format 'tahun-bulan'
             list($tahun, $bulan) = explode('-', $bulan);
-
+        
             // Ambil absensi berdasarkan bulan dan tahun yang dipilih
             $absensi = Absensi::whereYear('tanggal', $tahun)
                 ->whereMonth('tanggal', $bulan)
@@ -277,10 +277,26 @@ class AbsensiController extends Controller
                 ->map(function ($absensiSiswa) {
                     return $absensiSiswa->groupBy('tanggal'); // Kelompokkan lebih lanjut berdasarkan tanggal
                 });
-
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'bulan'));
+                
+        
+            // Hitung jumlah setiap status kehadiran per bulan
+            $kehadiranPerBulan = Absensi::selectRaw('MONTH(tanggal) as bulan, YEAR(tanggal) as tahun, stts_kehadiran, COUNT(*) as jumlah')
+                ->whereYear('tanggal', $tahun)
+                ->whereMonth('tanggal', $bulan)
+                ->groupBy('stts_kehadiran', 'bulan', 'tahun')
+                ->get()
+                ->groupBy('stts_kehadiran')
+                ->map(function ($group) {
+                    return $group->sum('jumlah');
+                });
+        
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'bulan', 'kehadiranPerBulan'));
+        
             return $pdf->download('Laporan-Absensi-' . $bulan . '.pdf');
         }
+        
+
+
         public function unduhPersemester(Request $request)
         {
             // Query untuk mengambil semester yang terkait dengan mapel
@@ -297,33 +313,33 @@ class AbsensiController extends Controller
         }
 
         public function unduhPersemesterPDF(Request $request)
-{
-    $semester = $request->input('semester');
+        {
+            $semester = $request->input('semester');
 
-    // Ambil data absensi untuk semester yang dipilih
-    $absensi = Absensi::whereHas('mapel', function ($query) use ($semester) {
-        $query->where('semester', $semester);
-    })
-    ->with('siswa', 'mapel')
-    ->get()
-    ->groupBy('id_siswa');
+            // Ambil data absensi untuk semester yang dipilih
+            $absensi = Absensi::whereHas('mapel', function ($query) use ($semester) {
+                $query->where('semester', $semester);
+            })
+            ->with('siswa', 'mapel')
+            ->get()
+            ->groupBy('id_siswa');
 
-    // Get all unique dates (or other keys) across all absensi items
-    $dates = $absensi->flatMap(function ($items) {
-        return $items->pluck('tanggal')->unique();
-    })->sort();
+            // Get all unique dates (or other keys) across all absensi items
+            $dates = $absensi->flatMap(function ($items) {
+                return $items->pluck('tanggal')->unique();
+            })->sort();
 
-    // Debugging: Log the number of students and check data
-    Log::info("Jumlah siswa dalam data absensi: " . $absensi->count());
-    foreach ($absensi as $siswa_id => $data) {
-        Log::info("ID Siswa: $siswa_id - Jumlah absensi: " . $data->count());
-    }
+            // Debugging: Log the number of students and check data
+            Log::info("Jumlah siswa dalam data absensi: " . $absensi->count());
+            foreach ($absensi as $siswa_id => $data) {
+                Log::info("ID Siswa: $siswa_id - Jumlah absensi: " . $data->count());
+            }
 
-    // Generate PDF from the view
-    $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('absensi', 'semester', 'dates'));
+            // Generate PDF from the view
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('absensi', 'semester', 'dates'));
 
-    // Download PDF
-    return $pdf->download("Laporan-Absensi-Semester-$semester.pdf");
+            // Download PDF
+            return $pdf->download("Laporan-Absensi-Semester-$semester.pdf");
 }
        
 }

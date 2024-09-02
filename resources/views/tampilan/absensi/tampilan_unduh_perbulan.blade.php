@@ -21,6 +21,7 @@
     td {
         border: 1px solid #ddd;
         padding: 8px;
+        text-align: center;
     }
 
     th {
@@ -31,36 +32,75 @@
         text-align: center;
         margin-bottom: 20px;
     }
+
+    .header-table {
+        margin-bottom: 0;
+    }
     </style>
 </head>
 
 <body>
     <h2>Laporan Absensi Bulan {{ $bulan }}</h2>
+
+    <h3>Jumlah Status Kehadiran</h3>
+    <table class="header-table">
+        <thead>
+            <tr>
+                <th>Status Kehadiran</th>
+                <th>Jumlah</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($kehadiranPerBulan as $status => $jumlah)
+            <tr>
+                <td>{{ $status }}</td>
+                <td>{{ $jumlah }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Jumlah Kehadiran Per Siswa</h3>
     <table>
         <thead>
             <tr>
                 <th>Siswa</th>
                 <th>NIS</th>
-                @foreach($absensi->first()->keys() as $tanggal)
-                <th>{{ $tanggal }}</th>
-                @endforeach
+                <th>Hadir</th>
+                <th>Belum Hadir</th>
+                <th>Alpa</th>
+                <th>Ijin</th>
+                <th>Sakit</th>
             </tr>
         </thead>
         <tbody>
             @foreach($absensi as $siswa_id => $absensiSiswa)
             @php
             $siswa = $absensiSiswa->first()->first()->siswa;
+            $jumlahHadir = $absensiSiswa->flatten()->filter(function($absensi) {
+            return $absensi->stts_kehadiran === 'Hadir';
+            })->count();
+            $jumlahBelumHadir = $absensiSiswa->flatten()->filter(function($absensi) {
+            return $absensi->stts_kehadiran === 'Belum Hadir';
+            })->count();
+            $jumlahAlpa = $absensiSiswa->flatten()->filter(function($absensi) {
+            return $absensi->stts_kehadiran === 'Alpa';
+            })->count();
+            $jumlahIjin = $absensiSiswa->flatten()->filter(function($absensi) {
+            return $absensi->stts_kehadiran === 'Ijin';
+            })->count();
+            $jumlahSakit = $absensiSiswa->flatten()->filter(function($absensi) {
+            return $absensi->stts_kehadiran === 'Sakit';
+            })->count();
             @endphp
             <tr>
                 <td>{{ $siswa->nama }}</td>
                 <td>{{ $siswa->nis }}</td>
-                @foreach($absensi->first()->keys() as $tanggal)
-                @php
-                $absensiItem = $absensiSiswa->get($tanggal)->first();
-                $status = $absensiItem ? $absensiItem->stts_kehadiran : 'Tidak Hadir';
-                @endphp
-                <td>{{ $status }}</td>
-                @endforeach
+                <td>{{ $jumlahHadir }}</td>
+                <td>{{ $jumlahBelumHadir }}</td>
+                <td>{{ $jumlahAlpa }}</td>
+                <td>{{ $jumlahIjin }}</td>
+                <td>{{ $jumlahSakit }}</td>
             </tr>
             @endforeach
         </tbody>
