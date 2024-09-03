@@ -65,6 +65,11 @@
             <h2>{{ $mapel->nm_mapel }}</h2>
             <p>Bulan: {{ DateTime::createFromFormat('!m', substr(request()->input('bulan'), 5, 2))->format('F') }}
                 {{ substr(request()->input('bulan'), 0, 4) }}</p>
+            <p>Nama Guru: {{ $guru->nama }}</p>
+            <p>Kelas: {{ $kelas->nm_kelas }}</p>
+            <p>Kode Mata Pelajaran: {{ $mapel->kd_mapel }}</p>
+            <p>Semester: {{ $semester }}</p>
+            <p>Tahun Pelajaran: {{ $tahunPelajaran }}</p>
         </div>
 
         <table class="table">
