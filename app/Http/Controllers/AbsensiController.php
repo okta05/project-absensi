@@ -372,15 +372,15 @@ class AbsensiController extends Controller
         {
             // Simpan URL sebelumnya dalam session
             session()->put('previous_url', url()->previous());
-
+        
             // Ambil id_mapel dan semester dari request
             $mapel_id = $request->input('id_mapel');
             $semester = $request->input('semester');
-
+        
             if (!$mapel_id || !$semester) {
                 return redirect()->route('absensi.persemester')->with('error', 'ID Mata Pelajaran atau Semester tidak ditemukan.');
             }
-
+        
             // Ambil data absensi berdasarkan id_mapel dan semester
             $absensi = Absensi::where('id_mapel', $mapel_id)
                 ->whereHas('mapel', function ($query) use ($semester) {
@@ -388,7 +388,7 @@ class AbsensiController extends Controller
                 })
                 ->with('siswa')
                 ->get();
-
+        
             // Menghitung jumlah kehadiran dan ketidakhadiran per siswa
             $siswaAbsensi = $absensi->groupBy('id_siswa')->map(function ($items) {
                 return [
@@ -401,26 +401,30 @@ class AbsensiController extends Controller
                     'alpa' => $items->where('stts_kehadiran', 'Alpa')->count(),
                 ];
             });
-
+        
+            // Mengurutkan siswa berdasarkan no_absen
+            $siswaAbsensi = $siswaAbsensi->sortBy('no_absen');
+        
             // Menghitung total jumlah kehadiran per status
             $totalHadir = $siswaAbsensi->sum('hadir');
             $totalBelumHadir = $siswaAbsensi->sum('belum hadir');
             $totalIjin = $siswaAbsensi->sum('ijin');
             $totalSakit = $siswaAbsensi->sum('sakit');
             $totalAlpa = $siswaAbsensi->sum('alpa');
-
+        
             $mapel = Mapel::find($mapel_id);
-
+        
             // Mendapatkan data tambahan
             $guru = Guru::find($mapel->id_guru);
             $kelas = Kelas::find($mapel->id_kelas);
             $tahunPelajaran = $mapel->tahpel->th_pelajaran;
-
+        
             // Generate PDF
             $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('siswaAbsensi', 'mapel', 'totalHadir', 'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));
-
+        
             return $pdf->download('Laporan-Absensi-Per-Semester.pdf');
         }
+        
 
        
 }
