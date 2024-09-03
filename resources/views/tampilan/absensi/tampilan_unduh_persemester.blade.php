@@ -1,68 +1,120 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Absensi Per Semester</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 100%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header, .footer {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            margin: 0;
-        }
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        .table th, .table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-        }
-        .table th {
-            background-color: #f2f2f2;
-        }
-        .summary {
-            margin-top: 20px;
-        }
-        .summary table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .summary table th, .summary table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-        }
-        .summary table th {
-            background-color: #f2f2f2;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .header,
+    .footer {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        margin: 0;
+    }
+
+    .info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .info-table th,
+    .info-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .info-table th {
+        background-color: #f2f2f2;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .summary {
+        margin-top: 20px;
+    }
+
+    .summary table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .summary table th,
+    .summary table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .summary table th {
+        background-color: #f2f2f2;
+    }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <h1>Laporan Absensi Per Semester</h1>
-            <p>Mata Pelajaran: {{ $mapel->nm_mapel }}</p>
-            <p>Guru: {{ $guru->nama }}</p>
-            <p>Kelas: {{ $kelas->nm_kelas }}</p>
-            <p>Tahun Pelajaran: {{ $tahunPelajaran }}</p>
-            <p>Semester: {{ $semester }}</p>
         </div>
-        
+
+        <!-- Info Table -->
+        <table class="info-table">
+            <tr>
+                <th>Mata Pelajaran</th>
+                <td>{{ $mapel->nm_mapel }}</td>
+            </tr>
+            <tr>
+                <th>Guru</th>
+                <td>{{ $guru->nama }}</td>
+            </tr>
+            <tr>
+                <th>Kelas</th>
+                <td>{{ $kelas->nm_kelas }}</td>
+            </tr>
+            <tr>
+                <th>Tahun Pelajaran</th>
+                <td>{{ $tahunPelajaran }}</td>
+            </tr>
+            <tr>
+                <th>Semester</th>
+                <td>{{ $semester }}</td>
+            </tr>
+        </table>
+
+        <!-- Siswa Absensi Table -->
         <table class="table">
             <thead>
                 <tr>
@@ -77,19 +129,20 @@
             </thead>
             <tbody>
                 @foreach ($siswaAbsensi as $index => $siswa)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $siswa['nama'] }}</td>
-                        <td>{{ $siswa['hadir'] }}</td>
-                        <td>{{ $siswa['belum hadir'] }}</td>
-                        <td>{{ $siswa['ijin'] }}</td>
-                        <td>{{ $siswa['sakit'] }}</td>
-                        <td>{{ $siswa['alpa'] }}</td>
-                    </tr>
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $siswa['nama'] }}</td>
+                    <td>{{ $siswa['hadir'] }}</td>
+                    <td>{{ $siswa['belum hadir'] }}</td>
+                    <td>{{ $siswa['ijin'] }}</td>
+                    <td>{{ $siswa['sakit'] }}</td>
+                    <td>{{ $siswa['alpa'] }}</td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
 
+        <!-- Summary Table -->
         <div class="summary">
             <h2>Total Status Kehadiran</h2>
             <table>
@@ -115,7 +168,7 @@
                 </tr>
             </table>
         </div>
-
     </div>
 </body>
+
 </html>
