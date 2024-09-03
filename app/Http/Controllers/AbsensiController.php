@@ -17,25 +17,42 @@ use DateTime;
 class AbsensiController extends Controller
 {
     //
-        public function pilihMapel() {
-            $user = Auth::user();
-            Log::info('User yang login: ' . $user->id_guru);
-        
-            $guru = Guru::where('id_guru', $user->id_guru)->first();
-            
-            if ($guru) {
-                Log::info('Guru ditemukan: ' . $guru->id_guru);
-        
-                // Ambil mata pelajaran yang dipegang guru yang login
-                $mapels = Mapel::where('id_guru', $guru->id_guru)->with('kelas', 'guru')->get();
-                Log::info('Mapel yang diambil: ' . $mapels->pluck('nm_mapel')->toJson());
-            } else {
-                Log::info('Guru tidak ditemukan, mengambil semua mapel');
-                $mapels = Mapel::with('kelas')->get();
-            }
-        
-            return view("tampilan.absensi.pilih_mapel_absensi", compact('mapels'));
+    public function pilihMapel(Request $request)
+    {
+        // Ambil input filter dari request
+        $nama_mapel = $request->input('nama_mapel');
+        $nama_kelas = $request->input('nama_kelas');
+        $nama_guru = $request->input('nama_guru');
+    
+        // Query dasar untuk mengambil data mata pelajaran
+        $query = Mapel::query()->with('guru', 'kelas');
+    
+        // Filter berdasarkan nama mapel jika ada
+        if ($nama_mapel) {
+            $query->where('nm_mapel', 'like', '%' . $nama_mapel . '%');
         }
+    
+        // Filter berdasarkan nama kelas jika ada
+        if ($nama_kelas) {
+            $query->whereHas('kelas', function ($q) use ($nama_kelas) {
+                $q->where('nm_kelas', 'like', '%' . $nama_kelas . '%');
+            });
+        }
+    
+        // Filter berdasarkan nama guru jika ada
+        if ($nama_guru) {
+            $query->whereHas('guru', function ($q) use ($nama_guru) {
+                $q->where('nama', 'like', '%' . $nama_guru . '%');
+            });
+        }
+    
+        // Dapatkan data mapel setelah filter
+        $mapels = $query->get();
+    
+        // Kirim data ke tampilan dengan data yang difilter
+        return view('tampilan.absensi.pilih_mapel_absensi', compact('mapels'));
+    }
+    
 
         public function pilihDataAbsensi(Request $request) {
             // Ambil id_mapel dari request atau session
