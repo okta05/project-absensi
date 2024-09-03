@@ -118,7 +118,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th>No Absen</th>
                     <th>Nama Siswa</th>
                     <th>Hadir</th>
                     <th>Belum Hadir</th>
@@ -130,7 +130,7 @@
             <tbody>
                 @foreach ($siswaAbsensi as $index => $siswa)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $siswa['no_absen'] }}</td> <!-- Update kolom ini sesuai dengan data no absensi -->
                     <td>{{ $siswa['nama'] }}</td>
                     <td>{{ $siswa['hadir'] }}</td>
                     <td>{{ $siswa['belum hadir'] }}</td>
