@@ -30,7 +30,7 @@
                                 <option value="" disabled selected>Pilih Bulan</option>
                                 @foreach($months as $month)
                                 <option value="{{ $month->year }}-{{ str_pad($month->month, 2, '0', STR_PAD_LEFT) }}">
-                                    {{ DateTime::createFromFormat('!m', $month->month)->format('F') }}
+                                    {{ \Carbon\Carbon::createFromFormat('m', $month->month)->translatedFormat('F') }}
                                     {{ $month->year }}
                                 </option>
                                 @endforeach
