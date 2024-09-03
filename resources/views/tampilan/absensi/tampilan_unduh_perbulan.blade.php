@@ -101,21 +101,16 @@
             @foreach($absensi as $siswa_id => $absensiSiswa)
             @php
             $siswa = $absensiSiswa->first()->first()->siswa;
-            $jumlahHadir = $absensiSiswa->flatten()->filter(function($absensi) {
-            return $absensi->stts_kehadiran === 'Hadir';
-            })->count();
-            $jumlahBelumHadir = $absensiSiswa->flatten()->filter(function($absensi) {
-            return $absensi->stts_kehadiran === 'Belum Hadir';
-            })->count();
-            $jumlahIjin = $absensiSiswa->flatten()->filter(function($absensi) {
-            return $absensi->stts_kehadiran === 'Ijin';
-            })->count();
-            $jumlahSakit = $absensiSiswa->flatten()->filter(function($absensi) {
-            return $absensi->stts_kehadiran === 'Sakit';
-            })->count();
-            $jumlahAlpa = $absensiSiswa->flatten()->filter(function($absensi) {
-            return $absensi->stts_kehadiran === 'Alpa';
-            })->count();
+            $jumlahHadir = $absensiSiswa->flatten()->filter(fn($absensi) => $absensi->stts_kehadiran ===
+            'Hadir')->count();
+            $jumlahBelumHadir = $absensiSiswa->flatten()->filter(fn($absensi) => $absensi->stts_kehadiran === 'Belum
+            Hadir')->count();
+            $jumlahIjin = $absensiSiswa->flatten()->filter(fn($absensi) => $absensi->stts_kehadiran ===
+            'Ijin')->count();
+            $jumlahSakit = $absensiSiswa->flatten()->filter(fn($absensi) => $absensi->stts_kehadiran ===
+            'Sakit')->count();
+            $jumlahAlpa = $absensiSiswa->flatten()->filter(fn($absensi) => $absensi->stts_kehadiran ===
+            'Alpa')->count();
             @endphp
             <tr>
                 <td>{{ $siswa->nama }}</td>
