@@ -267,26 +267,23 @@ class AbsensiController extends Controller
         }
 
         public function unduhPerbulan(Request $request)
-{
-    $id_mapel = $request->input('id_mapel'); // Mendapatkan ID mapel dari request
+        {
+            $id_mapel = $request->input('id_mapel'); // Mendapatkan ID mapel dari request
 
-    if (!$id_mapel) {
-        return redirect()->back()->with('error', 'Pilih mapel terlebih dahulu.');
-    }
+            if (!$id_mapel) {
+                return redirect()->back()->with('error', 'Pilih mapel terlebih dahulu.');
+            }
 
-    // Ambil bulan dan tahun dari absensi berdasarkan ID mapel
-    $bulanAbsensi = Absensi::where('id_mapel', $id_mapel)
-        ->selectRaw('DISTINCT MONTH(tanggal) as bulan, YEAR(tanggal) as tahun')
-        ->orderBy('tahun', 'desc')
-        ->orderBy('bulan', 'desc')
-        ->get();
+            // Ambil bulan dan tahun dari absensi berdasarkan ID mapel
+            $bulanAbsensi = Absensi::where('id_mapel', $id_mapel)
+                ->selectRaw('DISTINCT MONTH(tanggal) as bulan, YEAR(tanggal) as tahun')
+                ->orderBy('tahun', 'desc')
+                ->orderBy('bulan', 'desc')
+                ->get();
 
-    // Mengirim data ke view
-    return view('tampilan.absensi.pilih_unduh_perbulan', compact('bulanAbsensi', 'id_mapel'));
-}
-
-        
-
+            // Mengirim data ke view
+            return view('tampilan.absensi.pilih_unduh_perbulan', compact('bulanAbsensi', 'id_mapel'));
+        }
 
         public function unduhPerbulanPDF(Request $request)
         {
