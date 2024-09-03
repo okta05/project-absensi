@@ -267,29 +267,29 @@ class AbsensiController extends Controller
         }
 
         public function unduhPerbulan(Request $request)
-{
-    // Mendapatkan id_mapel dari request, misalnya dari dropdown atau parameter
-    $id_mapel = $request->input('id_mapel'); // pastikan request ini dikirim saat form di-submit
+        {
+            // Mendapatkan id_mapel dari request, misalnya dari dropdown atau parameter
+            $id_mapel = $request->input('id_mapel'); // pastikan request ini dikirim saat form di-submit
 
-    // Memastikan id_mapel tersedia
-    if (!$id_mapel) {
-        // Jika mapel belum dipilih, arahkan kembali atau tampilkan pesan error sesuai kebutuhan
-        return redirect()->back()->with('error', 'Pilih mapel terlebih dahulu.');
-    }
+            // Memastikan id_mapel tersedia
+            if (!$id_mapel) {
+                // Jika mapel belum dipilih, arahkan kembali atau tampilkan pesan error sesuai kebutuhan
+                return redirect()->back()->with('error', 'Pilih mapel terlebih dahulu.');
+            }
 
-    // Mengambil bulan absensi yang hanya terkait dengan mapel yang dipilih, dengan format tahun-bulan
-    $bulanAbsensi = Absensi::where('id_mapel', $id_mapel)
-        ->selectRaw('DISTINCT MONTH(tanggal) as bulan, YEAR(tanggal) as tahun')
-        ->orderBy('tahun', 'desc')
-        ->orderBy('bulan', 'desc')
-        ->get();
+            // Mengambil bulan absensi yang hanya terkait dengan mapel yang dipilih, dengan format tahun-bulan
+            $bulanAbsensi = Absensi::where('id_mapel', $id_mapel)
+                ->selectRaw('DISTINCT MONTH(tanggal) as bulan, YEAR(tanggal) as tahun')
+                ->orderBy('tahun', 'desc')
+                ->orderBy('bulan', 'desc')
+                ->get();
 
-    // Mengambil data absensi pertama sebagai contoh (bisa disesuaikan dengan kebutuhan)
-    $absensi = Absensi::where('id_mapel', $id_mapel)->first();
+            // Mengambil data absensi pertama sebagai contoh (bisa disesuaikan dengan kebutuhan)
+            $absensi = Absensi::where('id_mapel', $id_mapel)->first();
 
-    // Mengirim data ke view
-    return view('tampilan.absensi.pilih_unduh_perbulan', compact('bulanAbsensi', 'absensi', 'id_mapel'));
-}
+            // Mengirim data ke view
+            return view('tampilan.absensi.pilih_unduh_perbulan', compact('bulanAbsensi', 'absensi', 'id_mapel'));
+        }
 
 
         public function unduhPerbulanPDF(Request $request)
