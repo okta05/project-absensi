@@ -74,7 +74,7 @@
                             <i class="bi bi-journal-plus"></i> Tambah
                         </a>
 
-                        <a href="{{ route('absensi.perbulan', ['id_mapel' => $mapel->id_mapel]) }}" class="btn btn-primary me-2">
+                        <a href="{{ route('absensi.perbulan') }}" class="btn btn-primary me-2">
                             <i class="bi bi-download"></i> Unduh Per Bulan
                         </a>
 
