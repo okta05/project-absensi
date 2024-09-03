@@ -10,10 +10,35 @@ use Illuminate\Support\Facades\Storage;
 class SiswaController extends Controller
 {
     //
-    public function siswaView() {
-        $data['allDataSiswa']=Siswa::with('kelas')->get();
+    public function siswaView(Request $request) {
+        // Membuat query dasar untuk mengambil data siswa dengan relasi kelas
+        $query = Siswa::with('kelas');
+    
+        // Menambahkan filter jika nama diisi
+        if ($request->filled('nama')) {
+            $query->where('nama', 'like', '%' . $request->input('nama') . '%');
+        }
+    
+        // Menambahkan filter jika kelas diisi
+        if ($request->filled('kelas')) {
+            $query->where('id_kelas', $request->input('kelas'));
+        }
+    
+        // Menambahkan filter jika jenis kelamin diisi
+        if ($request->filled('jns_kelamin')) {
+            $query->where('jns_kelamin', $request->input('jns_kelamin'));
+        }
+    
+        // Mengambil data yang telah difilter
+        $data['allDataSiswa'] = $query->get();
+    
+        // Mengambil semua data kelas untuk keperluan dropdown filter
+        $data['kelas'] = Kelas::all();
+    
+        // Mengembalikan view dengan data siswa dan kelas
         return view('tampilan.siswa.view_siswa', $data);
     }
+    
 
     public function siswaDetail($id) {
         $viewDataSiswa = Siswa::find($id);
