@@ -178,6 +178,7 @@ Route::middleware(['auth:admin,kepsek,bk,wakel,guru', 'verified'])->group(functi
         Route::get('/pilih-unduh-absensi/{id}', [AbsensiController::class, 'unduhPilihan'])->name('pilih.unduhan');
         Route::get('/unduh/{id}', [AbsensiController::class, 'unduhAbsensiPilihanPDF'])->name('absensi.unduh.pdf');
         Route::get('/unduh-perbulan', [AbsensiController::class, 'unduhPerbulan'])->name('absensi.perbulan');
+        Route::get('/unduh-absensi-perbulan', [AbsensiController::class, 'unduhAbsensiPerBulan'])->name('unduh_absensi_perbulan');
         Route::get('/unduh-persemester', [AbsensiController::class, 'unduhPersemester'])->name('absensi.persemester');
     });
 });
