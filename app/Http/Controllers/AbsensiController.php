@@ -266,12 +266,34 @@ class AbsensiController extends Controller
             return $pdf->download('Laporan-Absensi.pdf');
         }
 
-        public function unduhPerbulan(){
-            return view('tampilan.absensi.pilih_unduh_perbulan');
+        public function unduhPerbulan(Request $request)
+        {
+            // Simpan URL sebelumnya dalam session
+            session()->put('previous_url', url()->previous());
+
+            // Ambil id_mapel dari request
+            $mapel_id = $request->input('id_mapel');
+
+            if (!$mapel_id) {
+                return redirect()->route('mapel.absensi')->with('error', 'ID Mata Pelajaran tidak ditemukan.');
+            }
+
+            // Ambil bulan-bulan unik dari tanggal absensi berdasarkan id_mapel
+            $months = Absensi::select(DB::raw('MONTH(tanggal) as month'), DB::raw('YEAR(tanggal) as year'))
+                ->where('id_mapel', $mapel_id)
+                ->groupBy('month', 'year')
+                ->orderBy('year', 'desc')
+                ->orderBy('month', 'desc')
+                ->get();
+
+            // Ambil mata pelajaran berdasarkan id_mapel
+            $mapel = Mapel::find($mapel_id);
+
+            return view('tampilan.absensi.pilih_unduh_perbulan', compact('months', 'mapel'));
         }
 
-        public function unduhPersemester(){
-            return view('tampilan.absensi.pilih_unduh_persemester');
+       public function unduhPersemester(){
+                    return view('tampilan.absensi.pilih_unduh_persemester');
         }
        
 }
