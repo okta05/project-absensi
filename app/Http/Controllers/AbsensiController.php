@@ -316,7 +316,6 @@ class AbsensiController extends Controller
     $siswaAbsensi = $absensi->groupBy('id_siswa')->map(function ($items) {
         return [
             'nama' => $items->first()->siswa->nama,
-            'total' => $items->count(),
             'hadir' => $items->where('stts_kehadiran', 'Hadir')->count(),
             'belum hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->count(),
             'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),
@@ -325,15 +324,20 @@ class AbsensiController extends Controller
         ];
     });
 
+    // Menghitung total jumlah kehadiran per status
+    $totalHadir = $siswaAbsensi->sum('hadir');
+    $totalBelumHadir = $siswaAbsensi->sum('belum hadir');
+    $totalIjin = $siswaAbsensi->sum('ijin');
+    $totalSakit = $siswaAbsensi->sum('sakit');
+    $totalAlpa = $siswaAbsensi->sum('alpa');
+
     $mapel = Mapel::find($mapel_id);
 
     // Generate PDF
-    $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('siswaAbsensi', 'mapel'));
+    $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('siswaAbsensi', 'mapel', 'totalHadir', 'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa'));
 
     return $pdf->download('Laporan-Absensi-Perbulan.pdf');
 }
-
-
 
        public function unduhPersemester(){
                     return view('tampilan.absensi.pilih_unduh_persemester');

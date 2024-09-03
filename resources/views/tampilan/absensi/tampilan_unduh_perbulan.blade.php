@@ -39,6 +39,22 @@
     .table th {
         background-color: #f2f2f2;
     }
+
+    .summary-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .summary-table th,
+    .summary-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .summary-table th {
+        background-color: #f2f2f2;
+    }
     </style>
 </head>
 
@@ -75,6 +91,38 @@
                     <td>{{ $item['alpa'] }}</td>
                 </tr>
                 @endforeach
+            </tbody>
+        </table>
+
+        <h3>Total Kehadiran per Status:</h3>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hadir</td>
+                    <td>{{ $totalHadir }}</td>
+                </tr>
+                <tr>
+                    <td>Belum Hadir</td>
+                    <td>{{ $totalBelumHadir }}</td>
+                </tr>
+                <tr>
+                    <td>Ijin</td>
+                    <td>{{ $totalIjin }}</td>
+                </tr>
+                <tr>
+                    <td>Sakit</td>
+                    <td>{{ $totalSakit }}</td>
+                </tr>
+                <tr>
+                    <td>Alpa</td>
+                    <td>{{ $totalAlpa }}</td>
+                </tr>
             </tbody>
         </table>
     </div>
