@@ -56,17 +56,23 @@
                 <tr>
                     <th>No</th>
                     <th>Nama Siswa</th>
-                    <th>Status Kehadiran</th>
-                    <th>Catatan</th>
+                    <th>Hadir</th>
+                    <th>Belum Hadir</th>
+                    <th>Ijin</th>
+                    <th>Sakit</th>
+                    <th>Alpa</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($absensi as $index => $item)
+                @foreach($siswaAbsensi as $index => $item)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $item->siswa->nama }}</td>
-                    <td>{{ $item->stts_kehadiran }}</td>
-                    <td>{{ $item->catatan }}</td>
+                    <td>{{ $item['nama'] }}</td>
+                    <td>{{ $item['hadir'] }}</td>
+                    <td>{{ $item['belum hadir'] }}</td>
+                    <td>{{ $item['ijin'] }}</td>
+                    <td>{{ $item['sakit'] }}</td>
+                    <td>{{ $item['alpa'] }}</td>
                 </tr>
                 @endforeach
             </tbody>

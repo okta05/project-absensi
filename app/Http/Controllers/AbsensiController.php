@@ -293,32 +293,46 @@ class AbsensiController extends Controller
         }
 
         public function unduhAbsensiPerBulan(Request $request)
-        {
-            // Simpan URL sebelumnya dalam session
-            session()->put('previous_url', url()->previous());
+{
+    // Simpan URL sebelumnya dalam session
+    session()->put('previous_url', url()->previous());
 
-            // Ambil id_mapel dan bulan dari request
-            $mapel_id = $request->input('id_mapel');
-            $bulan = $request->input('bulan');
+    // Ambil id_mapel dan bulan dari request
+    $mapel_id = $request->input('id_mapel');
+    $bulan = $request->input('bulan');
 
-            if (!$mapel_id || !$bulan) {
-                return redirect()->route('absensi.perbulan')->with('error', 'ID Mata Pelajaran atau Bulan tidak ditemukan.');
-            }
+    if (!$mapel_id || !$bulan) {
+        return redirect()->route('absensi.perbulan')->with('error', 'ID Mata Pelajaran atau Bulan tidak ditemukan.');
+    }
 
-            // Ambil data absensi berdasarkan id_mapel dan bulan
-            $absensi = Absensi::where('id_mapel', $mapel_id)
-                ->whereYear('tanggal', substr($bulan, 0, 4))
-                ->whereMonth('tanggal', substr($bulan, 5, 2))
-                ->with('siswa', 'mapel')
-                ->get();
+    // Ambil data absensi berdasarkan id_mapel dan bulan
+    $absensi = Absensi::where('id_mapel', $mapel_id)
+        ->whereYear('tanggal', substr($bulan, 0, 4))
+        ->whereMonth('tanggal', substr($bulan, 5, 2))
+        ->with('siswa')
+        ->get();
 
-            $mapel = Mapel::find($mapel_id);
+    // Menghitung jumlah kehadiran dan ketidakhadiran per siswa
+    $siswaAbsensi = $absensi->groupBy('id_siswa')->map(function ($items) {
+        return [
+            'nama' => $items->first()->siswa->nama,
+            'total' => $items->count(),
+            'hadir' => $items->where('stts_kehadiran', 'Hadir')->count(),
+            'belum hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->count(),
+            'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),
+            'sakit' => $items->where('stts_kehadiran', 'Sakit')->count(),
+            'alpa' => $items->where('stts_kehadiran', 'Alpa')->count(),
+        ];
+    });
 
-            // Generate PDF
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('absensi', 'mapel'));
+    $mapel = Mapel::find($mapel_id);
 
-            return $pdf->download('Laporan-Absensi-Perbulan.pdf');
-        }
+    // Generate PDF
+    $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('siswaAbsensi', 'mapel'));
+
+    return $pdf->download('Laporan-Absensi-Perbulan.pdf');
+}
+
 
 
        public function unduhPersemester(){
