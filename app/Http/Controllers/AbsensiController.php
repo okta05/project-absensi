@@ -338,7 +338,7 @@ class AbsensiController extends Controller
             $guru = Guru::find($mapel->id_guru);
             $kelas = Kelas::find($mapel->id_kelas);
             $semester = $mapel->semester;
-            $tahunPelajaran = $mapel->th_pelajaran;
+            $tahunPelajaran = $mapel->tahpel->th_pelajaran;
         
             // Generate PDF
             $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('siswaAbsensi', 'mapel', 'totalHadir', 'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));

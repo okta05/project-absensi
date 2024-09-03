@@ -24,36 +24,32 @@
         margin: 0;
     }
 
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-    }
-
-    .table th,
-    .table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    .table th {
-        background-color: #f2f2f2;
-    }
-
+    .table,
+    .info-table,
     .summary-table {
         width: 100%;
         border-collapse: collapse;
         margin-bottom: 20px;
     }
 
+    .table th,
+    .info-table th,
     .summary-table th,
+    .table td,
+    .info-table td,
     .summary-table td {
         border: 1px solid #ddd;
         padding: 8px;
     }
 
+    .table th,
+    .info-table th,
     .summary-table th {
         background-color: #f2f2f2;
+    }
+
+    .info-table {
+        margin-bottom: 30px;
     }
     </style>
 </head>
@@ -65,13 +61,32 @@
             <h2>{{ $mapel->nm_mapel }}</h2>
             <p>Bulan: {{ DateTime::createFromFormat('!m', substr(request()->input('bulan'), 5, 2))->format('F') }}
                 {{ substr(request()->input('bulan'), 0, 4) }}</p>
-            <p>Nama Guru: {{ $guru->nama }}</p>
-            <p>Kelas: {{ $kelas->nm_kelas }}</p>
-            <p>Kode Mata Pelajaran: {{ $mapel->kd_mapel }}</p>
-            <p>Semester: {{ $semester }}</p>
-            <p>Tahun Pelajaran: {{ $tahunPelajaran }}</p>
         </div>
 
+        <!-- Tabel Informasi -->
+        <h3>Informasi Mata Pelajaran dan Kelas</h3>
+        <table class="info-table">
+            <thead>
+                <tr>
+                    <th>Nama Guru</th>
+                    <th>Kelas</th>
+                    <th>Kode Mata Pelajaran</th>
+                    <th>Semester</th>
+                    <th>Tahun Pelajaran</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $guru->nama }}</td>
+                    <td>{{ $kelas->nm_kelas }}</td>
+                    <td>{{ $mapel->kd_mapel }}</td>
+                    <td>{{ $semester }}</td>
+                    <td>{{ $tahunPelajaran }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Tabel Absensi Siswa -->
         <table class="table">
             <thead>
                 <tr>
@@ -99,6 +114,7 @@
             </tbody>
         </table>
 
+        <!-- Tabel Total Kehadiran -->
         <h3>Total Kehadiran per Status:</h3>
         <table class="summary-table">
             <thead>
