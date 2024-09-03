@@ -10,8 +10,7 @@
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house-door-fill"></i></a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
-                <li class="breadcrumb-item"><a
-                        href="#">Absensi</a></li>
+                <li class="breadcrumb-item"><a href="{{ session('previous_url', route('mapel.absensi')) }}">Absensi</a></li>
                 <li class="breadcrumb-item"><a href="#">Unduh Per Semester</a></li>
             </ol>
         </nav>
@@ -23,12 +22,18 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
-                        <form action="#" method="post"
-                            class="d-flex align-items-center">
-                           
+                        <form action="#" method="post" class="d-flex align-items-center">
+                            @csrf
+                            <!-- Hidden field untuk id_mapel -->
+                            <input type="hidden" name="id_mapel" value="{{ $mapel_id }}">
+
                             <!-- Dropdown Semester -->
                             <select class="form-select me-2" name="semester" style="width: 300px;" required>
-                               
+                                @if($semester)
+                                <option value="{{ $semester }}">{{ $semester }}</option>
+                                @else
+                                <option value="">Semester tidak tersedia</option>
+                                @endif
                             </select>
                             <!-- Tombol Unduh -->
                             <button type="submit" class="btn btn-primary">

@@ -79,7 +79,7 @@
                             <i class="bi bi-download"></i> Unduh Per Bulan
                         </a>
 
-                        <a href="{{ route('absensi.persemester') }}" class="btn btn-primary">
+                        <a href="{{ route('absensi.persemester', ['id_mapel' => $mapel->id_mapel]) }}" class="btn btn-primary">
                             <i class="bi bi-download"></i> Unduh Per Semester
                         </a>
                     </div>

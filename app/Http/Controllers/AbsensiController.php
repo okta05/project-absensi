@@ -347,8 +347,25 @@ class AbsensiController extends Controller
         }
         
 
-       public function unduhPersemester(){
-                    return view('tampilan.absensi.pilih_unduh_persemester');
+        public function unduhPersemester(Request $request)
+        {
+            // Simpan URL sebelumnya dalam session
+            session()->put('previous_url', url()->previous());
+        
+            // Ambil id_mapel dari request
+            $mapel_id = $request->input('id_mapel');
+        
+            if (!$mapel_id) {
+                return redirect()->route('mapel.absensi')->with('error', 'ID Mata Pelajaran tidak ditemukan.');
+            }
+        
+            // Ambil data mata pelajaran berdasarkan id_mapel
+            $mapel = Mapel::find($mapel_id);
+        
+            // Ambil semester dari mata pelajaran
+            $semester = $mapel ? $mapel->semester : null;
+        
+            return view('tampilan.absensi.pilih_unduh_persemester', compact('mapel_id', 'semester'));
         }
        
 }
