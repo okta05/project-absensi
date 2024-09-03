@@ -317,6 +317,7 @@ class AbsensiController extends Controller
             $siswaAbsensi = $absensi->groupBy('id_siswa')->map(function ($items) {
                 return [
                     'nama' => $items->first()->siswa->nama,
+                    'no_absen' => $items->first()->siswa->no_absen,
                     'hadir' => $items->where('stts_kehadiran', 'Hadir')->count(),
                     'belum hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->count(),
                     'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),
@@ -324,6 +325,9 @@ class AbsensiController extends Controller
                     'alpa' => $items->where('stts_kehadiran', 'Alpa')->count(),
                 ];
             });
+
+            // Mengurutkan siswa berdasarkan no_absen
+            $siswaAbsensi = $siswaAbsensi->sortBy('no_absen');
         
             // Menghitung total jumlah kehadiran per status
             $totalHadir = $siswaAbsensi->sum('hadir');

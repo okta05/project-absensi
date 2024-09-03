@@ -102,7 +102,7 @@
             <tbody>
                 @foreach($siswaAbsensi as $index => $item)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $item['no_absen'] }}</td>
                     <td>{{ $item['nama'] }}</td>
                     <td>{{ $item['hadir'] }}</td>
                     <td>{{ $item['belum hadir'] }}</td>
