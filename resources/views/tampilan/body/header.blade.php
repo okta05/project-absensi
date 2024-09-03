@@ -3,7 +3,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{ route('dashboard') }}" class="logo d-flex align-items-center">
-            <img src="{{ asset('assets/img/logo-rev1.png') }}" alt="" style="height: 200px;">
+            <img src="{{ asset('assets/img/logo_smp.png') }}" alt="" style="height: 200px;">
             <span class="d-none d-lg-block">Absensi SMPN 2 SEMPU</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>

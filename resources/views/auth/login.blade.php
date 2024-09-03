@@ -58,7 +58,7 @@
 
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <img src="{{asset('assets/img/logo-rev1.png')}}" alt="Logo"
+                                    <img src="{{asset('assets/img/logo_smp.png')}}" alt="Logo"
                                         class="logo-login d-flex align-items-center">
 
                                     <div class="pt-4 pb-2">
