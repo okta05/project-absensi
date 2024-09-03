@@ -22,8 +22,8 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
-                        <form action="#" method="post" class="d-flex align-items-center">
-                            @csrf
+                        <form action="{{route('unduh_absensi.persemester')}}" method="get" class="d-flex align-items-center">
+
                             <!-- Hidden field untuk id_mapel -->
                             <input type="hidden" name="id_mapel" value="{{ $mapel_id }}">
 

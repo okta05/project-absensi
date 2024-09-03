@@ -180,6 +180,7 @@ Route::middleware(['auth:admin,kepsek,bk,wakel,guru', 'verified'])->group(functi
         Route::get('/unduh-perbulan', [AbsensiController::class, 'unduhPerbulan'])->name('absensi.perbulan');
         Route::get('/unduh-absensi-perbulan', [AbsensiController::class, 'unduhAbsensiPerBulan'])->name('unduh_absensi_perbulan');
         Route::get('/unduh-persemester', [AbsensiController::class, 'unduhPersemester'])->name('absensi.persemester');
+        Route::get('/unduh-absensi-persemester', [AbsensiController::class, 'unduhAbsensiPerSemester'])->name('unduh_absensi.persemester');
     });
 });
 
