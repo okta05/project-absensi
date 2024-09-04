@@ -24,9 +24,18 @@ class AbsensiController extends Controller
         $nama_mapel = $request->input('nama_mapel');
         $nama_kelas = $request->input('nama_kelas');
         $nama_guru = $request->input('nama_guru');
-    
+        
         // Query dasar untuk mengambil data mata pelajaran
         $query = Mapel::query()->with('guru', 'kelas');
+    
+        // Cek apakah user yang login adalah guru
+        $user = auth()->user();
+        $guru = Guru::where('email', $user->email)->first(); // Misalkan cek berdasarkan email
+    
+        // Jika user adalah guru, filter mapel yang diampu guru tersebut
+        if ($guru) {
+            $query->where('id_guru', $guru->id_guru); // Sesuaikan dengan foreign key dari guru
+        }
     
         // Filter berdasarkan nama mapel jika ada
         if ($nama_mapel) {
@@ -52,7 +61,7 @@ class AbsensiController extends Controller
     
         // Kirim data ke tampilan dengan data yang difilter
         return view('tampilan.absensi.pilih_mapel_absensi', compact('mapels'));
-        }
+    }    
     
         public function pilihDataAbsensi(Request $request) {
             // Ambil id_mapel dari request atau session
