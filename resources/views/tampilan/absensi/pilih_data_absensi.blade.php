@@ -106,7 +106,7 @@
                                     <th>Semester</th>
                                     <th>Jam</th>
                                     @if(auth('admin')->check() || auth('kepsek')->check() || auth('bk')->check() ||
-                                    auth('wakel')->check())
+                                    auth('wakel')->check() || auth('guru')->check() )
                                     <th>Aksi</th>
                                     @endif
                                 </tr>
@@ -123,9 +123,10 @@
                                     <td>
 
                                         @if(auth('admin')->check() || auth('kepsek')->check() || auth('bk')->check() ||
-                                        auth('wakel')->check())
+                                        auth('wakel')->check() || auth('guru')->check())
                                         <div class="d-flex gap-2">
-                                            @if(auth('admin')->check() || auth('bk')->check() || auth('wakel')->check())
+                                            @if(auth('admin')->check() || auth('bk')->check() || auth('wakel')->check()
+                                            || auth('guru')->check())
                                             <a class="btn btn-primary"
                                                 href="{{ route('absensi.detail', $absen->id_absensi) }}">
                                                 <i class="bi bi-eye"></i>
