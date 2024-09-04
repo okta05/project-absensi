@@ -49,6 +49,7 @@
 
     </main><!-- End #main -->
 
+    @include('tampilan.body.footer')
 
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
@@ -228,7 +229,7 @@
     });
     </script>
 
-<script>
+    <script>
     const inputFoto_profile = document.querySelector('#foto_profile');
     const previewFoto_profile = document.querySelector('#previewFoto_profile');
 
