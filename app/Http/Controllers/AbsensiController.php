@@ -52,9 +52,8 @@ class AbsensiController extends Controller
     
         // Kirim data ke tampilan dengan data yang difilter
         return view('tampilan.absensi.pilih_mapel_absensi', compact('mapels'));
-    }
+        }
     
-
         public function pilihDataAbsensi(Request $request) {
             // Ambil id_mapel dari request atau session
             $mapel_id = $request->input('id_mapel') ?? session('current_mapel_id');
@@ -67,7 +66,6 @@ class AbsensiController extends Controller
                 ->groupBy('id_mapel', 'tanggal', 'jam')
                 ->get();
 
-        
                 // Mengambil data mapel berdasarkan id_mapel
                 $data['mapel'] = Mapel::find($mapel_id);
             } else {
@@ -98,8 +96,6 @@ class AbsensiController extends Controller
             
             return view('tampilan.absensi.detail_absensi', compact('absensi', 'absensiDetails', 'siswas'));
         }
-        
-        
 
         public function absensiAdd(Request $request) {
             $mapel_id = $request->input('id_mapel');
@@ -208,7 +204,6 @@ class AbsensiController extends Controller
             return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel])
                 ->with('success', 'Absensi berhasil diperbarui');
         }
-        
         
         public function absensiDelete($id)
             {
@@ -350,7 +345,6 @@ class AbsensiController extends Controller
             return $pdf->download('Laporan-Absensi-Perbulan.pdf');
         }
         
-
         public function unduhPersemester(Request $request)
         {
             // Simpan URL sebelumnya dalam session
@@ -429,6 +423,4 @@ class AbsensiController extends Controller
             return $pdf->download('Laporan-Absensi-Per-Semester.pdf');
         }
         
-
-       
 }
