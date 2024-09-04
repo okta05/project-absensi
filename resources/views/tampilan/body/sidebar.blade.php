@@ -48,7 +48,7 @@
             </li><!-- End Icons Nav -->
             @endif
 
-            @if(auth('admin')->check() || auth('kepsek')->check() )
+            @if(auth('admin')->check())
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('admin.view')}}">
                     <i class="bi bi-person-fill"></i>
