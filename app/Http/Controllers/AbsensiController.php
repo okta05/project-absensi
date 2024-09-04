@@ -382,7 +382,7 @@ class AbsensiController extends Controller
             $semester = $request->input('semester');
         
             if (!$mapel_id || !$semester) {
-                return redirect()->route('absensi.persemester')->with('error', 'ID Mata Pelajaran atau Semester tidak ditemukan.');
+                return redirect()->route('absensi.persemester');
             }
         
             // Ambil data absensi berdasarkan id_mapel dan semester

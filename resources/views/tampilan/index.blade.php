@@ -14,7 +14,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><i class="bi bi-people-fill"></i> {{ $siswaCount }}</h5>
                                     <p class="card-text">Data Siswa</p>
-                                    <a href="#" class="btn btn-light">Lihat detail →</a>
+                                    <a href="{{route('siswa.view')}}" class="btn btn-light">Lihat detail →</a>
                                 </div>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><i class="bi bi-person-fill"></i> {{ $adminCount }}</h5>
                                     <p class="card-text">Data Admin</p>
-                                    <a href="#" class="btn btn-light">Lihat detail →</a>
+                                    <a href="{{route('admin.view')}}" class="btn btn-light">Lihat detail →</a>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><i class="bi bi-person-fill"></i> {{ $kepsekCount }}</h5>
                                     <p class="card-text">Data Kepala Sekolah</p>
-                                    <a href="#" class="btn btn-light">Lihat detail →</a>
+                                    <a href="{{route('kepsek.view')}}" class="btn btn-light">Lihat detail →</a>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                                 <div class="card-body">
                                 <h5 class="card-title"><i class="bi bi-person-fill"></i> {{ $kurikulumCount }}</h5>
                                     <p class="card-text">Data Kurikulum</p>
-                                    <a href="#" class="btn btn-light">Lihat detail →</a>
+                                    <a href="{{route('kurikulum.view')}}" class="btn btn-light">Lihat detail →</a>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                                 <div class="card-body">
                                 <h5 class="card-title"><i class="bi bi-person-fill"></i> {{ $bkCount }}</h5>
                                     <p class="card-text">Data BK</p>
-                                    <a href="#" class="btn btn-light">Lihat detail →</a>
+                                    <a href="{{route('bk.view')}}" class="btn btn-light">Lihat detail →</a>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 <div class="card-body">
                                 <h5 class="card-title"><i class="bi bi-people-fill"></i> {{ $wakelCount }}</h5>
                                     <p class="card-text">Data Wali Kelas</p>
-                                    <a href="#" class="btn btn-light">Lihat detail →</a>
+                                    <a href="{{route('wakel.view')}}" class="btn btn-light">Lihat detail →</a>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                                 <div class="card-body">
                                 <h5 class="card-title"><i class="bi bi-people-fill"></i> {{ $guruCount }}</h5>
                                     <p class="card-text">Data Guru</p>
-                                    <a href="#" class="btn btn-light">Lihat detail →</a>
+                                    <a href="{{route('guru.view')}}" class="btn btn-light">Lihat detail →</a>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                                 <div class="card-body">
                                 <h5 class="card-title"><i class="bi bi-door-open-fill"></i> {{ $kelasCount }}</h5>
                                     <p class="card-text">Data Kelas</p>
-                                    <a href="#" class="btn btn-light">Lihat detail →</a>
+                                    <a href="{{route('kelas.view')}}" class="btn btn-light">Lihat detail →</a>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                                 <div class="card-body">
                                 <h5 class="card-title"><i class="bi bi-book-fill"></i> {{ $mapelCount }}</h5>
                                     <p class="card-text">Data Mata Pelajaran</p>
-                                    <a href="#" class="btn btn-light">Lihat detail →</a>
+                                    <a href="{{route('mapel.view')}}" class="btn btn-light">Lihat detail →</a>
                                 </div>
                             </div>
                         </div>
