@@ -63,4 +63,9 @@ class Guru extends Authenticatable
     {
         return $this->hasMany(Absensi::class, 'id_guru', 'id_guru');
     }
+
+    public function mapel()
+    {
+        return $this->hasMany(Mapel::class, 'id_guru', 'id_guru');
+    }
 }
