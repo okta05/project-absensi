@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="foto_wakel" class="col-sm-2 col-form-label">Preview</label>
+                    <label for="foto_wakel" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
                         <img id="previewFoto_wakel" src="#" alt="Preview Foto" style="max-width: 200px;">
                     </div>
