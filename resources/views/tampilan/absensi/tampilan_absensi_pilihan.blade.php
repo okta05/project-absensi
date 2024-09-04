@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Detail Absensi</title>
+    <title>Unduh Absensi</title>
     <style>
     table {
         width: 100%;
