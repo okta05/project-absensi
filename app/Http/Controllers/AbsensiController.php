@@ -249,15 +249,14 @@ class AbsensiController extends Controller
             $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
                 ->findOrFail($id);
 
-            $siswas = $absensi->kelas->siswa->sortBy('no_absen');
-
             $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
                 ->where('tanggal', $absensi->tanggal)
                 ->where('jam', $absensi->jam)
                 ->with('siswa')
-                ->get();
+                ->get()
+                ->sortBy('siswa.no_absen'); // Urutkan berdasarkan no_absen
 
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_absensi_pilihan', compact('absensi', 'absensiDetails', 'siswas'));
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_absensi_pilihan', compact('absensi', 'absensiDetails'));
 
             return $pdf->download('Laporan-Absensi.pdf');
         }

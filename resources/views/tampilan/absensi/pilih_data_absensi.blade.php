@@ -143,6 +143,10 @@
                                             @endif
 
                                             @if(auth('kepsek')->check())
+                                            <a class="btn btn-primary"
+                                                href="{{ route('absensi.detail', $absen->id_absensi) }}">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
                                             <a class="btn btn-secondary"
                                                 href="{{ route('pilih.unduhan', $absen->id_absensi) }}">
                                                 <i class="bi bi-download"></i>
