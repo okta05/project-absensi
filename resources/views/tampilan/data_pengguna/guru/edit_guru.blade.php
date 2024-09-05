@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="email" class="col-sm-2 col-form-label">Username</label>
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
                         <input type="email" name="email" value="{{$editDataGuru->email}}" id="email"
                             class="form-control" placeholder="Masukkan username">
