@@ -18,7 +18,7 @@
 
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img src="{{asset('storage/'. $viewDataKepsek->foto_kepsek)}}" alt="Profile" class="rounded-circle">
+                    <img src="{{asset('storage/'. $viewDataKepsek->foto)}}" alt="Profile" class="rounded-circle">
                     <h2>{{$viewDataKepsek->nama}}</h2>
                 </div>
             </div>
