@@ -19,49 +19,49 @@ class AbsensiController extends Controller
 {
     //
     public function pilihMapel(Request $request)
-    {
-        // Ambil input filter dari request
-        $nama_mapel = $request->input('nama_mapel');
-        $nama_kelas = $request->input('nama_kelas');
-        $nama_guru = $request->input('nama_guru');
-        
-        // Query dasar untuk mengambil data mata pelajaran
-        $query = Mapel::query()->with('guru', 'kelas');
-    
-        // Cek apakah user yang login adalah guru
-        $user = auth()->user();
-        $guru = Guru::where('email', $user->email)->first(); // Misalkan cek berdasarkan email
-    
-        // Jika user adalah guru, filter mapel yang diampu guru tersebut
-        if ($guru) {
-            $query->where('id_guru', $guru->id_guru); // Sesuaikan dengan foreign key dari guru
-        }
-    
-        // Filter berdasarkan nama mapel jika ada
-        if ($nama_mapel) {
-            $query->where('nm_mapel', 'like', '%' . $nama_mapel . '%');
-        }
-    
-        // Filter berdasarkan nama kelas jika ada
-        if ($nama_kelas) {
-            $query->whereHas('kelas', function ($q) use ($nama_kelas) {
-                $q->where('nm_kelas', 'like', '%' . $nama_kelas . '%');
-            });
-        }
-    
-        // Filter berdasarkan nama guru jika ada
-        if ($nama_guru) {
-            $query->whereHas('guru', function ($q) use ($nama_guru) {
-                $q->where('nama', 'like', '%' . $nama_guru . '%');
-            });
-        }
-    
-        // Dapatkan data mapel setelah filter
-        $mapels = $query->get();
-    
-        // Kirim data ke tampilan dengan data yang difilter
-        return view('tampilan.absensi.pilih_mapel_absensi', compact('mapels'));
-    }    
+{
+    // Ambil input filter dari request
+    $nama_mapel = $request->input('nama_mapel');
+    $nama_kelas = $request->input('nama_kelas');
+    $nama_guru = $request->input('nama_guru');
+
+    // Query dasar untuk mengambil data mata pelajaran
+    $query = Mapel::query()->with('guru', 'kelas');
+
+    // Cek apakah user yang login adalah guru
+    $user = Auth::user(); // Pastikan menggunakan auth dengan benar
+    $guru = Guru::where('email', $user->email)->first(); // Misalkan cek berdasarkan email
+
+    // Jika user adalah guru, filter mapel yang diampu guru tersebut
+    if ($guru) {
+        $query->where('id_guru', $guru->id_guru); // Sesuaikan dengan foreign key dari guru
+    }
+
+    // Filter berdasarkan nama mapel jika ada
+    if ($nama_mapel) {
+        $query->where('nm_mapel', 'like', '%' . $nama_mapel . '%');
+    }
+
+    // Filter berdasarkan nama kelas jika ada
+    if ($nama_kelas) {
+        $query->whereHas('kelas', function ($q) use ($nama_kelas) {
+            $q->where('nm_kelas', 'like', '%' . $nama_kelas . '%');
+        });
+    }
+
+    // Filter berdasarkan nama guru jika ada
+    if ($nama_guru) {
+        $query->whereHas('guru', function ($q) use ($nama_guru) {
+            $q->where('nama', 'like', '%' . $nama_guru . '%');
+        });
+    }
+
+    // Dapatkan data mapel setelah filter
+    $mapels = $query->get();
+
+    // Kirim data ke tampilan dengan data yang difilter
+    return view('tampilan.absensi.pilih_mapel_absensi', compact('mapels'));
+}
     
         public function pilihDataAbsensi(Request $request) {
             // Ambil id_mapel dari request atau session
