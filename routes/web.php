@@ -103,6 +103,7 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
     });
 });
 
+// Semua route untuk mengelola data wakel
 Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::prefix('data-pengguna/wali-kelas')->group(function () {
         Route::get('/view', [WakelController::class, 'wakelView'])->name('wakel.view');

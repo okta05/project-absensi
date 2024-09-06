@@ -6,7 +6,8 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route("dashboard")}}"><i class="bi bi-house-door-fill"></i></a></li>
-            <li class="breadcrumb-item"><a href="#">Profile</a></li>
+            <li class="breadcrumb-item"><a href="{{route('profile.view')}}">Profile</a></li>
+            <li class="breadcrumb-item"><a href="#">Ubah Profile</a></li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
