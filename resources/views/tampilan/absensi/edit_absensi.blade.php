@@ -4,7 +4,7 @@
 <section class="section dashboard">
 
     <div class="pagetitle">
-        <h1>Edit Absensi</h1>
+        <h1>Ubah Absensi</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house-door-fill"></i></a>
