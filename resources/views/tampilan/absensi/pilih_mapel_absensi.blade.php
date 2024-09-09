@@ -4,7 +4,7 @@
 <section class="section dashboard">
 
     <div class="pagetitle">
-        <h1>Absensi</h1>
+        <h1>Pilih Mata Pelajaran</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
