@@ -120,6 +120,7 @@
                 <tr>
                     <th>No Absen</th>
                     <th>Nama Siswa</th>
+                    <th>NIS</th>
                     <th>Hadir</th>
                     <th>Belum Hadir</th>
                     <th>Ijin</th>
@@ -132,6 +133,7 @@
                 <tr>
                     <td>{{ $siswa['no_absen'] }}</td> <!-- Update kolom ini sesuai dengan data no absensi -->
                     <td>{{ $siswa['nama'] }}</td>
+                    <td>{{ $siswa['nis'] }}</td>
                     <td>{{ $siswa['hadir'] }}</td>
                     <td>{{ $siswa['belum hadir'] }}</td>
                     <td>{{ $siswa['ijin'] }}</td>
