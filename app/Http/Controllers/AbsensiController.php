@@ -321,6 +321,7 @@ class AbsensiController extends Controller
                 return [
                     'nama' => $items->first()->siswa->nama,
                     'no_absen' => $items->first()->siswa->no_absen,
+                    'nis' => $items->first()->siswa->nis,
                     'hadir' => $items->where('stts_kehadiran', 'Hadir')->count(),
                     'belum hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->count(),
                     'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),

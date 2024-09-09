@@ -104,6 +104,7 @@
                 <tr>
                     <td>{{ $item['no_absen'] }}</td>
                     <td>{{ $item['nama'] }}</td>
+                    <td>{{ $item['nis'] }}</td>
                     <td>{{ $item['hadir'] }}</td>
                     <td>{{ $item['belum hadir'] }}</td>
                     <td>{{ $item['ijin'] }}</td>
