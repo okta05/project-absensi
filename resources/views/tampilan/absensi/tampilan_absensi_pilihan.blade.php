@@ -29,9 +29,9 @@
 </head>
 
 <body>
-    <h1 class="title">Laporan Absensi Per Hari</h1> <!-- Tambahkan judul laporan di tengah -->
+    <h1 class="title">Laporan Absensi</h1> <!-- Tambahkan judul laporan di tengah -->
 
-    <h2>Detail</h2>
+    <h2>Detail Absen</h2>
     <p>Mata Pelajaran: {{ $absensi->mapel->nm_mapel ?? 'Tidak Ditemukan' }}</p>
     <p>Kode Mata Pelajaran: {{ $absensi->mapel->kd_mapel ?? 'Tidak Ditemukan' }}</p>
     <p>Kelas: {{ $absensi->kelas->nm_kelas ?? 'Tidak Ditemukan' }}</p>
