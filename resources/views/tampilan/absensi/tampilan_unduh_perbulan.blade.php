@@ -92,6 +92,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nama Siswa</th>
+                    <th>NIS</th>
                     <th>Hadir</th>
                     <th>Belum Hadir</th>
                     <th>Ijin</th>
