@@ -21,7 +21,7 @@ class AbsensiController extends Controller
     public function pilihMapel(Request $request)
 {
     // Ambil input filter dari request
-    $nama_mapel = $request->input('nama_mapel');
+    $nama_mapel = $request->input('nama_mapel'); //nama_mapel untuk name di filter
     $nama_kelas = $request->input('nama_kelas');
     $nama_guru = $request->input('nama_guru');
 
@@ -32,7 +32,7 @@ class AbsensiController extends Controller
     $user = Auth::user();
     $guru = Guru::where('email', $user->email)->first(); // cek guru berdasarkan email
 
-    // Jika yang login adalah 
+    // Jika yang login adalah guru, ambil mapel yang di ampu
     if ($guru) {
         $query->where('id_guru', $guru->id_guru); // menyesuiakan dengan fk guru
     }
