@@ -170,8 +170,7 @@
             </div>
         </div><!-- End Default Card -->
     </div>
-    @else
-    <p>Silakan pilih mata pelajaran terlebih dahulu.</p>
+
     @endif
 
 </section>
