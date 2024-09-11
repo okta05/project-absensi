@@ -100,8 +100,6 @@ public function pilihDataAbsensi(Request $request)
     return view("tampilan.absensi.pilih_data_absensi", $data);
 }
 
-
-
     public function absensiDetail($id) 
     {
         $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
@@ -289,7 +287,7 @@ public function pilihDataAbsensi(Request $request)
             $mapel_id = $request->input('id_mapel');
 
             if (!$mapel_id) {
-                return redirect()->route('mapel.absensi')->with('error', 'ID Mata Pelajaran tidak ditemukan.');
+                return redirect()->route('mapel.absensi');
             }
 
             // Ambil bulan-bulan unik dari tanggal absensi berdasarkan id_mapel
@@ -316,7 +314,7 @@ public function pilihDataAbsensi(Request $request)
             $bulan = $request->input('bulan');
         
             if (!$mapel_id || !$bulan) {
-                return redirect()->route('absensi.perbulan')->with('error', 'ID Mata Pelajaran atau Bulan tidak ditemukan.');
+                return redirect()->route('absensi.perbulan');
             }
         
             // Ambil data absensi berdasarkan id_mapel dan bulan
@@ -359,7 +357,8 @@ public function pilihDataAbsensi(Request $request)
             $tahunPelajaran = $mapel->tahpel->th_pelajaran;
         
             // Generate PDF
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('siswaAbsensi', 'mapel', 'totalHadir', 'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_perbulan', compact('siswaAbsensi', 'mapel', 'totalHadir', 
+            'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));
         
             return $pdf->download('Laporan-Absensi-Perbulan.pdf');
         }
@@ -373,7 +372,7 @@ public function pilihDataAbsensi(Request $request)
             $mapel_id = $request->input('id_mapel');
         
             if (!$mapel_id) {
-                return redirect()->route('mapel.absensi')->with('error', 'ID Mata Pelajaran tidak ditemukan.');
+                return redirect()->route('mapel.absensi');
             }
         
             // Ambil data mata pelajaran berdasarkan id_mapel
@@ -438,7 +437,8 @@ public function pilihDataAbsensi(Request $request)
             $tahunPelajaran = $mapel->tahpel->th_pelajaran;
         
             // Generate PDF
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('siswaAbsensi', 'mapel', 'totalHadir', 'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));
+            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('siswaAbsensi', 'mapel',
+            'totalHadir', 'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));
         
             return $pdf->download('Laporan-Absensi-Per-Semester.pdf');
         }
