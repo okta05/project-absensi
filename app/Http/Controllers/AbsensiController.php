@@ -183,73 +183,73 @@ public function pilihDataAbsensi(Request $request)
         return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id]);
     }
         
-        public function absensiEdit($id)
-        {
-            // Ambil data absensi berdasarkan ID
-            $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
-                ->findOrFail($id);
+    public function absensiEdit($id)
+    {
+        // Ambil data absensi berdasarkan ID
+        $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
+            ->findOrFail($id);
 
-            // Ambil data absensi yang sesuai dengan tanggal dan jam untuk ditampilkan di form edit
-            $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
+        // Ambil data absensi yang sesuai dengan tanggal dan jam untuk ditampilkan di form edit
+        $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
+            ->where('tanggal', $absensi->tanggal)
+            ->where('jam', $absensi->jam)
+            ->get();
+
+        // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
+        $siswas = $absensi->kelas->siswa->sortBy('no_absen');
+
+        return view('tampilan.absensi.edit_absensi', compact('absensi', 'absensiDetails', 'siswas'));
+    }
+
+
+    public function absensiUpdate(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'stts_kehadiran.*' => 'required|in:Ijin,Sakit,Alpa,Hadir,Belum Hadir',
+        ]);
+        
+        // Ambil data absensi berdasarkan ID absensi yang akan diperbarui
+        $absensi = Absensi::findOrFail($id);
+        
+        // Loop melalui input status kehadiran dan catatan untuk setiap siswa
+        foreach ($request->input('stts_kehadiran') as $siswa_id => $status) {
+            // Perbarui data absensi untuk setiap siswa berdasarkan id_siswa
+            Absensi::where('id_mapel', $absensi->id_mapel)
+                ->where('id_kelas', $absensi->id_kelas)
                 ->where('tanggal', $absensi->tanggal)
                 ->where('jam', $absensi->jam)
-                ->get();
-
-            // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
-            $siswas = $absensi->kelas->siswa->sortBy('no_absen');
-
-            return view('tampilan.absensi.edit_absensi', compact('absensi', 'absensiDetails', 'siswas'));
+                ->where('id_siswa', $siswa_id)
+                ->update([
+                    'stts_kehadiran' => $status,
+                    'catatan' => $request->input('catatan')[$siswa_id] ?? null,
+                ]);
         }
-
-
-        public function absensiUpdate(Request $request, $id)
+        
+        return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]);
+    }
+        
+    public function absensiDelete($id)
         {
-            $validateData = $request->validate([
-                'stts_kehadiran.*' => 'required|in:Ijin,Sakit,Alpa,Hadir,Belum Hadir',
-            ]);
-        
-            // Ambil data absensi berdasarkan ID absensi yang akan diperbarui
+            // Temukan data absensi berdasarkan ID
             $absensi = Absensi::findOrFail($id);
-        
-            // Loop melalui input status kehadiran dan catatan untuk setiap siswa
-            foreach ($request->input('stts_kehadiran') as $siswa_id => $status) {
-                // Perbarui data absensi untuk setiap siswa berdasarkan id_siswa
-                Absensi::where('id_mapel', $absensi->id_mapel)
-                    ->where('id_kelas', $absensi->id_kelas)
-                    ->where('tanggal', $absensi->tanggal)
-                    ->where('jam', $absensi->jam)
-                    ->where('id_siswa', $siswa_id)
-                    ->update([
-                        'stts_kehadiran' => $status,
-                        'catatan' => $request->input('catatan')[$siswa_id] ?? null,
-                    ]);
-            }
-        
+            
+            // Ambil tanggal dan jam dari data absensi
+            $tanggal = $absensi->tanggal;
+            $jam = $absensi->jam;
+
+            // Hapus semua data absensi yang memiliki tanggal dan jam yang sama
+            Absensi::where('tanggal', $tanggal)
+                ->where('jam', $jam)
+                ->delete();
+                
+            // Redirect dengan pesan sukses
             return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]);
         }
-        
-        public function absensiDelete($id)
-            {
-                // Temukan data absensi berdasarkan ID
-                $absensi = Absensi::findOrFail($id);
-                
-                // Ambil tanggal dan jam dari data absensi
-                $tanggal = $absensi->tanggal;
-                $jam = $absensi->jam;
 
-                // Hapus semua data absensi yang memiliki tanggal dan jam yang sama
-                Absensi::where('tanggal', $tanggal)
-                    ->where('jam', $jam)
-                    ->delete();
-                
-                // Redirect dengan pesan sukses
-                return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]);
-            }
-
-        public function unduhPilihan ($id) {
-
-            $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
-            ->findOrFail($id);
+    public function unduhPilihan ($id) 
+    {
+        $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
+        ->findOrFail($id);
     
         // Ambil data absensi yang sesuai dengan tanggal dan jam
         $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
@@ -261,27 +261,25 @@ public function pilihDataAbsensi(Request $request)
         // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
         $siswas = $absensi->kelas->siswa->sortBy('no_absen');
 
-            return view('tampilan.absensi.pilih_unduh_absensi', compact('absensi', 'absensiDetails', 'siswas'));
-        }
+        return view('tampilan.absensi.pilih_unduh_absensi', compact('absensi', 'absensiDetails', 'siswas'));
+    }
 
-        public function unduhAbsensiPilihanPDF($id)
-        {
-            Log::info("Metode unduhAbsensiPilihanPDF dipanggil dengan ID: " . $id);
-            
-            $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
-                ->findOrFail($id);
+    public function unduhAbsensiPilihanPDF($id)
+    {
+        $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
+            ->findOrFail($id);
 
-            $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
-                ->where('tanggal', $absensi->tanggal)
-                ->where('jam', $absensi->jam)
-                ->with('siswa')
-                ->get()
-                ->sortBy('siswa.no_absen'); // Urutkan berdasarkan no_absen
+        $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
+            ->where('tanggal', $absensi->tanggal)
+            ->where('jam', $absensi->jam)
+            ->with('siswa')
+            ->get()
+            ->sortBy('siswa.no_absen'); // Urutkan berdasarkan no_absen
 
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_absensi_pilihan', compact('absensi', 'absensiDetails'));
+        $pdf = Pdf::loadView('tampilan.absensi.tampilan_absensi_pilihan', compact('absensi', 'absensiDetails'));
 
-            return $pdf->download('Laporan-Absensi.pdf');
-        }
+        return $pdf->download('Laporan-Absensi.pdf');
+    }
 
         public function unduhPerbulan(Request $request)
         {
