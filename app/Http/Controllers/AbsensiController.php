@@ -59,30 +59,49 @@ class AbsensiController extends Controller
     return view('tampilan.absensi.pilih_mapel_absensi', compact('mapels'));
 }
     
-    public function pilihDataAbsensi(Request $request) 
-    {
-        // Ambil id_mapel dari sesi
-        $mapel_id = $request->input('id_mapel') ?? session('current_mapel_id');
-        
-        if ($mapel_id) {
-            // Mengambil data absensi berdasarkan id_mapel dan menampilkan semua entri dengan tanggal dan jam yang sama
-            $data['allDataAbsensi'] = Absensi::select('id_mapel', 'tanggal', 'jam', DB::raw('MAX(id_absensi) as id_absensi'))
+public function pilihDataAbsensi(Request $request)
+{
+    // Ambil id_mapel dari sesi atau input
+    $mapel_id = $request->input('id_mapel') ?? session('current_mapel_id');
+
+    // Cek jika tombol reset ditekan
+    if ($request->has('reset')) {
+        session()->forget('filter_tanggal');
+        $tanggal = null;
+    } else {
+        // Ambil filter tanggal dari request atau sesi
+        $tanggal = $request->input('tanggal') ?? session('filter_tanggal');
+
+        // Simpan filter tanggal dalam sesi jika ada input tanggal
+        if ($request->has('tanggal')) {
+            session(['filter_tanggal' => $tanggal]);
+        }
+    }
+
+    if ($mapel_id) {
+        $query = Absensi::select('id_mapel', 'tanggal', 'jam', DB::raw('MAX(id_absensi) as id_absensi'))
             ->where('id_mapel', $mapel_id)
             ->with('guru', 'kelas', 'tahpel', 'mapel')
-            ->groupBy('id_mapel', 'tanggal', 'jam')
-            ->get();
+            ->groupBy('id_mapel', 'tanggal', 'jam');
 
-            // Mengambil data mapel berdasarkan id_mapel
-            $data['mapel'] = Mapel::find($mapel_id);
-        } else {
-            $data['allDataAbsensi'] = Absensi::with('guru', 'kelas', 'tahpel', 'mapel')
-                ->get(); 
-        
-            $data['mapel'] = null;
-        } 
+        // Filter data berdasarkan tanggal jika ada filter
+        if ($tanggal) {
+            $query->whereDate('tanggal', $tanggal);
+        }
 
-        return view("tampilan.absensi.pilih_data_absensi", $data);
+        $data['allDataAbsensi'] = $query->get();
+
+        // Mengambil data mapel berdasarkan id_mapel
+        $data['mapel'] = Mapel::find($mapel_id);
+    } else {
+        $data['allDataAbsensi'] = Absensi::with('guru', 'kelas', 'tahpel', 'mapel')->get();
+        $data['mapel'] = null;
     }
+
+    return view("tampilan.absensi.pilih_data_absensi", $data);
+}
+
+
 
     public function absensiDetail($id) 
     {
