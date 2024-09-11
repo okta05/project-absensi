@@ -154,16 +154,14 @@ class AbsensiController extends Controller
             // Kirim pesan ke Telegram setelah menyimpan absensi
             $siswa = $absensi->siswa;
             $chatId = $siswa->id_tel_ortu;
-            $message = "Absensi: {$siswa->nama}\nTanggal: {$absensi->tanggal}\nJam: {$absensi->jam}\nStatus Kehadiran: {$absensi->stts_kehadiran}\n
-            Catatan: {$absensi->catatan}";
+            $message = "Absensi: {$siswa->nama}\nTanggal: {$absensi->tanggal}\nJam: {$absensi->jam}\nStatus Kehadiran: {$absensi->stts_kehadiran}\nCatatan: {$absensi->catatan}";
         
             if ($chatId) {
                 TelegramHelper::sendMessage($chatId, $message);
             }
         }
         
-            return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id])
-                ->with('success', 'Absensi berhasil disimpan');
+        return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id]);
     }
         
         public function absensiEdit($id)
