@@ -23,7 +23,6 @@ class AbsensiController extends Controller
     $nama_kelas = $request->input('nama_kelas');
     $nama_guru = $request->input('nama_guru');
 
-    // Query dasar untuk mengambil data mata pelajaran
     $query = Mapel::query()->with('guru', 'kelas');
 
     // Cek apakah user yang login adalah guru
