@@ -225,8 +225,7 @@ public function pilihDataAbsensi(Request $request)
                     ]);
             }
         
-            return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel])
-                ->with('success', 'Absensi berhasil diperbarui');
+            return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]);
         }
         
         public function absensiDelete($id)
@@ -244,8 +243,7 @@ public function pilihDataAbsensi(Request $request)
                     ->delete();
                 
                 // Redirect dengan pesan sukses
-                return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel])
-                    ->with('success', 'Semua absensi pada tanggal dan jam tersebut berhasil dihapus');
+                return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]);
             }
 
         public function unduhPilihan ($id) {
