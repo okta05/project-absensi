@@ -10,6 +10,7 @@ use App\Models\Absensi;
 use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Kelas;
+use App\Models\Siswa;
 use App\Helpers\TelegramHelper;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -139,46 +140,54 @@ public function pilihDataAbsensi(Request $request)
         
     }
 
-    public function absensiStore(Request $request) {
-        $validateData = $request->validate([
-            'stts_kehadiran.*' => 'required|in:Ijin,Sakit,Alpa,Hadir,Belum Hadir',
+    public function absensiStore(Request $request)
+{
+    $validateData = $request->validate([
+        'stts_kehadiran.*' => 'nullable|in:Ijin,Sakit,Alpa,Hadir,Belum Hadir',
+    ]);
+
+    $mapel_id = $request->input('id_mapel');
+    $kelas_id = $request->input('id_kelas');
+    $tahpel_id = $request->input('id_tahpel');
+    $guru_id = $request->input('id_guru');
+    $tanggal = $request->input('tanggal');
+    $jam = $request->input('jam');
+
+    $kehadiran = $request->input('stts_kehadiran', []);
+    $catatan = $request->input('catatan', []);
+
+    // Ambil semua siswa dari kelas yang sedang diabsen
+    $siswas = Siswa::where('id_kelas', $kelas_id)->get();
+
+    foreach ($siswas as $siswa) {
+        // Set status kehadiran default menjadi 'Belum Hadir' jika tidak dipilih
+        $status = $kehadiran[$siswa->id_siswa] ?? 'Belum Hadir';
+        $note = $catatan[$siswa->id_siswa] ?? null;
+
+        $absensi = Absensi::create([
+            'id_siswa' => $siswa->id_siswa,
+            'id_mapel' => $mapel_id,
+            'id_kelas' => $kelas_id,
+            'id_tahpel' => $tahpel_id,
+            'id_guru' => $guru_id,
+            'tanggal' => $tanggal,
+            'jam' => $jam,
+            'stts_kehadiran' => $status,
+            'catatan' => $note,
         ]);
-        
-        $mapel_id = $request->input('id_mapel');
-        $kelas_id = $request->input('id_kelas');
-        $tahpel_id = $request->input('id_tahpel');
-        $guru_id = $request->input('id_guru');
-        $tanggal = $request->input('tanggal');
-        $jam = $request->input('jam');
-        
-        $kehadiran = $request->input('stts_kehadiran');
-        $catatan = $request->input('catatan') ?? [];
-        
-        foreach ($kehadiran as $siswa_id => $status) {
-            $absensi = Absensi::create([
-                'id_siswa' => $siswa_id,
-                'id_mapel' => $mapel_id,
-                'id_kelas' => $kelas_id,
-                'id_tahpel' => $tahpel_id,
-                'id_guru' => $guru_id,
-                'tanggal' => $tanggal,
-                'jam' => $jam,
-                'stts_kehadiran' => $status,
-                'catatan' => $catatan[$siswa_id] ?? null,
-            ]);
-        
-            // Kirim pesan ke Telegram setelah menyimpan absensi
-            $siswa = $absensi->siswa;
-            $chatId = $siswa->id_tel_ortu;
-            $message = "Absensi: {$siswa->nama}\nTanggal: {$absensi->tanggal}\nJam: {$absensi->jam}\nStatus Kehadiran: {$absensi->stts_kehadiran}\nCatatan: {$absensi->catatan}";
-        
-            if ($chatId) {
-                TelegramHelper::sendMessage($chatId, $message);
-            }
+
+        // Kirim pesan ke Telegram setelah menyimpan absensi
+        $chatId = $siswa->id_tel_ortu;
+        $message = "Absensi: {$siswa->nama}\nTanggal: {$absensi->tanggal}\nJam: {$absensi->jam}\nStatus Kehadiran: {$absensi->stts_kehadiran}\nCatatan: {$absensi->catatan}";
+
+        if ($chatId) {
+            TelegramHelper::sendMessage($chatId, $message);
         }
-        
-        return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id]);
     }
+
+    return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id]);
+}
+
         
     public function absensiEdit($id)
     {
