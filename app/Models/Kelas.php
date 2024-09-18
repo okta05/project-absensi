@@ -11,6 +11,9 @@ class Kelas extends Model
 
     protected $primaryKey = 'id_kelas';
 
+        // Tentukan kolom yang dapat diisi
+    protected $fillable = ['nm_kelas'];
+
     public function wakel()
     {
         return $this->belongsTo(Wakel::class, 'id_wakel');
