@@ -153,6 +153,9 @@ class SiswaController extends Controller
         'file' => 'required|mimes:xls,xlsx',
     ]);
 
+    // Ambil semua kelas dari database untuk mapping nama ke ID
+    $kelasMap = Kelas::pluck('id_kelas', 'nm_kelas')->toArray();
+
     // Baca file Excel
     $path = $request->file('file')->getRealPath();
     $spreadsheet = IOFactory::load($path);
@@ -166,17 +169,22 @@ class SiswaController extends Controller
             continue;
         }
 
-        // Simpan data ke database
-        Siswa::create([
-            'nama' => $row[0],
-            'nis' => $row[1],
-            'id_kelas' => $row[2],
-            'alamat' => $row[3],
-            'jns_kelamin' => $row[4],
-        ]);
+        // Mapping nama kelas ke ID kelas
+        $idKelas = $kelasMap[$row[2]] ?? null;
+
+        // Simpan data ke database hanya jika ID kelas valid
+        if ($idKelas) {
+            Siswa::create([
+                'nama' => $row[0],
+                'nis' => $row[1],
+                'id_kelas' => $idKelas,
+                'alamat' => $row[3],
+                'jns_kelamin' => $row[4],
+            ]);
+        }
     }
 
-    return redirect()->route('siswa.view')->with('success', 'Data Siswa berhasil diimport.');
+    return redirect()->route('siswa.view');
 }
 
 }   
