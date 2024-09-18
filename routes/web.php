@@ -61,6 +61,7 @@ Route::middleware(['auth:admin,kepsek,kurikulum,bk,wakel,guru', 'verified'])->gr
         Route::get('/edit/{id}', [SiswaController::class, 'siswaEdit'])->name('siswa.edit');
         Route::post('/update/{id}', [SiswaController::class, 'siswaUpdate'])->name('siswa.update');
         Route::get('/delete/{id}', [SiswaController::class, 'siswaDelete'])->name('siswa.delete');
+        Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswa.import');
     });
 });
 

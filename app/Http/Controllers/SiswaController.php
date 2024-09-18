@@ -5,6 +5,7 @@ use App\Models\Siswa;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
 class SiswaController extends Controller
@@ -144,5 +145,38 @@ class SiswaController extends Controller
         return redirect()->route('siswa.view');
     } 
     }
+
+    public function import(Request $request)
+{
+    // Validasi file
+    $request->validate([
+        'file' => 'required|mimes:xls,xlsx',
+    ]);
+
+    // Baca file Excel
+    $path = $request->file('file')->getRealPath();
+    $spreadsheet = IOFactory::load($path);
+    $sheet = $spreadsheet->getActiveSheet();
+    $rows = $sheet->toArray();
+
+    // Proses setiap baris dari Excel
+    foreach ($rows as $key => $row) {
+        // Lewati header (baris pertama)
+        if ($key == 0) {
+            continue;
+        }
+
+        // Simpan data ke database
+        Siswa::create([
+            'nama' => $row[0],
+            'nis' => $row[1],
+            'id_kelas' => $row[2],
+            'alamat' => $row[3],
+            'jns_kelamin' => $row[4],
+        ]);
+    }
+
+    return redirect()->route('siswa.view')->with('success', 'Data Siswa berhasil diimport.');
+}
 
 }   

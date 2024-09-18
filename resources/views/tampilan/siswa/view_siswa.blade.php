@@ -19,6 +19,12 @@
         <a href="{{ route('siswa.add') }}" class="btn btn-success">
             <i class="bi bi-person-plus"></i> Tambah
         </a>
+
+        <form action="{{ route('siswa.import') }}" method="POST" enctype="multipart/form-data" class="ms-3">
+            @csrf
+            <input type="file" name="file" class="form-control d-inline" style="width: auto;">
+            <button type="submit" class="btn btn-primary ms-2">Import Excel</button>
+        </form>
     </div>
 </div>
 @endif
