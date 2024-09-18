@@ -96,7 +96,7 @@
                     <!-- Button to set all students to "Hadir" -->
                     <div class="row mb-3">
                         <div class="col-12 d-flex justify-content-end">
-                            <button type="button" id="setHadirButton" class="btn btn-warning">
+                            <button type="button" id="setHadirButton" class="btn btn-primary">
                                 Hadir Semua
                             </button>
                         </div>
