@@ -169,6 +169,11 @@ class SiswaController extends Controller
                 continue;
             }
     
+            // Filter baris kosong
+            if (empty(array_filter($row))) {
+                continue;
+            }
+    
             // Mapping nama kelas ke ID kelas
             $idKelas = $kelasMap[$row[2]] ?? null;
     
@@ -193,6 +198,7 @@ class SiswaController extends Controller
     
         return redirect()->route('siswa.view')->with('success', 'Data Siswa berhasil diimport.');
     }
+    
     
 
 }   
