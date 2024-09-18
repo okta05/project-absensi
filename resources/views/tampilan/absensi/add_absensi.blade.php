@@ -93,6 +93,15 @@
 
                     <hr class="my-4">
 
+                    <!-- Button to set all students to "Hadir" -->
+                    <div class="row mb-3">
+                        <div class="col-12 d-flex justify-content-end">
+                            <button type="button" id="setHadirButton" class="btn btn-warning">
+                                Hadir Semua
+                            </button>
+                        </div>
+                    </div>
+
                     <!-- Input Tanggal -->
                     <div class="row mb-3">
                         <label for="tanggal" class="col-lg-4 col-md-5 col-form-label">Tanggal</label>
@@ -129,7 +138,8 @@
                                         <td>{{ $siswa->nama }}</td>
                                         <td>{{ $siswa->nis }}</td>
                                         <td>
-                                            <select name="stts_kehadiran[{{ $siswa->id_siswa }}]" class="form-select">
+                                            <select name="stts_kehadiran[{{ $siswa->id_siswa }}]"
+                                                class="form-select status-kehadiran">
                                                 <option selected disabled>Pilih Status Kehadiran</option>
                                                 <option value="Belum Hadir">Belum Hadir</option>
                                                 <option value="Hadir">Hadir</option>
@@ -152,7 +162,7 @@
                     <div class="row mb-2">
                         <div class="col-12 d-flex justify-content-start">
                             <button type="submit" class="btn btn-primary">
-                                 Simpan
+                                Simpan
                             </button>
                         </div>
                     </div>

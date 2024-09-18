@@ -245,6 +245,14 @@
     });
     </script>
 
+    <script>
+    document.getElementById('setHadirButton').addEventListener('click', function() {
+        let statusSelects = document.querySelectorAll('.status-kehadiran');
+        statusSelects.forEach(function(select) {
+            select.value = 'Hadir';
+        });
+    });
+    </script>
 
 
 </body>
