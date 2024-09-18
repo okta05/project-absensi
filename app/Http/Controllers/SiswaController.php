@@ -143,48 +143,48 @@ class SiswaController extends Controller
         $deleteDataSiswa->delete();
 
         return redirect()->route('siswa.view');
-    } 
+        } 
     }
 
     public function import(Request $request)
-{
-    // Validasi file
-    $request->validate([
-        'file' => 'required|mimes:xls,xlsx',
-    ]);
+    {
+        // Validasi file
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx',
+        ]);
 
-    // Ambil semua kelas dari database untuk mapping nama ke ID
-    $kelasMap = Kelas::pluck('id_kelas', 'nm_kelas')->toArray();
+        // Ambil semua kelas dari database untuk mapping nama ke ID
+        $kelasMap = Kelas::pluck('id_kelas', 'nm_kelas')->toArray();
 
-    // Baca file Excel
-    $path = $request->file('file')->getRealPath();
-    $spreadsheet = IOFactory::load($path);
-    $sheet = $spreadsheet->getActiveSheet();
-    $rows = $sheet->toArray();
+        // Baca file Excel
+        $path = $request->file('file')->getRealPath();
+        $spreadsheet = IOFactory::load($path);
+        $sheet = $spreadsheet->getActiveSheet();
+        $rows = $sheet->toArray();
 
-    // Proses setiap baris dari Excel
-    foreach ($rows as $key => $row) {
-        // Lewati header (baris pertama)
-        if ($key == 0) {
-            continue;
+        // Proses setiap baris dari Excel
+        foreach ($rows as $key => $row) {
+            // Lewati header (baris pertama)
+            if ($key == 0) {
+                continue;
+            }
+
+            // Mapping nama kelas ke ID kelas
+            $idKelas = $kelasMap[$row[2]] ?? null;
+
+            // Simpan data ke database hanya jika ID kelas valid
+            if ($idKelas) {
+                Siswa::create([
+                    'nama' => $row[0],
+                    'nis' => $row[1],
+                    'id_kelas' => $idKelas,
+                    'alamat' => $row[3],
+                    'jns_kelamin' => $row[4],
+                ]);
+            }
         }
 
-        // Mapping nama kelas ke ID kelas
-        $idKelas = $kelasMap[$row[2]] ?? null;
-
-        // Simpan data ke database hanya jika ID kelas valid
-        if ($idKelas) {
-            Siswa::create([
-                'nama' => $row[0],
-                'nis' => $row[1],
-                'id_kelas' => $idKelas,
-                'alamat' => $row[3],
-                'jns_kelamin' => $row[4],
-            ]);
-        }
+        return redirect()->route('siswa.view');
     }
-
-    return redirect()->route('siswa.view');
-}
 
 }   
