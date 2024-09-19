@@ -289,31 +289,78 @@ public function pilihDataAbsensi(Request $request)
         return $pdf->download('Laporan-Absensi.pdf');
     }
 
-        public function unduhPerbulan(Request $request)
-        {
-            // Simpan URL sebelumnya dalam session
-            session()->put('previous_url', url()->previous());
-
-            // Ambil id_mapel dari request
-            $mapel_id = $request->input('id_mapel');
-
-            if (!$mapel_id) {
-                return redirect()->route('mapel.absensi');
-            }
-
-            // Ambil bulan-bulan unik dari tanggal absensi berdasarkan id_mapel
-            $months = Absensi::select(DB::raw('MONTH(tanggal) as month'), DB::raw('YEAR(tanggal) as year'))
-                ->where('id_mapel', $mapel_id)
-                ->groupBy('month', 'year')
-                ->orderBy('year', 'desc')
-                ->orderBy('month', 'desc')
-                ->get();
-
-            // Ambil mata pelajaran berdasarkan id_mapel
-            $mapel = Mapel::find($mapel_id);
-
-            return view('tampilan.absensi.pilih_unduh_perbulan', compact('months', 'mapel'));
+    public function unduhPerbulan(Request $request)
+    {
+        // Simpan URL sebelumnya dalam session
+        session()->put('previous_url', url()->previous());
+    
+        // Ambil id_mapel dan bulan dari request
+        $mapel_id = $request->input('id_mapel');
+        $selected_month = $request->input('bulan');
+    
+        if (!$mapel_id) {
+            return redirect()->route('mapel.absensi');
         }
+    
+        // Ambil bulan-bulan unik dari tanggal absensi berdasarkan id_mapel
+        $months = Absensi::select(DB::raw('MONTH(tanggal) as month'), DB::raw('YEAR(tanggal) as year'))
+            ->where('id_mapel', $mapel_id)
+            ->groupBy('month', 'year')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+    
+        // Ambil mata pelajaran berdasarkan id_mapel
+        $mapel = Mapel::find($mapel_id);
+    
+        // Jika bulan dipilih, ambil data absensi berdasarkan bulan yang dipilih
+        $absensi = [];
+        if ($selected_month) {
+            $absensi = Absensi::where('id_mapel', $mapel_id)
+                ->whereYear('tanggal', substr($selected_month, 0, 4))  // Ambil tahun dari 'YYYY-MM'
+                ->whereMonth('tanggal', substr($selected_month, 5, 2)) // Ambil bulan dari 'YYYY-MM'
+                ->with('siswa') // Eager load relasi siswa
+                ->get();
+        }
+    
+        return view('tampilan.absensi.pilih_unduh_perbulan', compact('months', 'mapel', 'absensi', 'selected_month'));
+    }
+
+    public function tampilkanPerbulan(Request $request)
+{
+    // Ambil id_mapel dan bulan dari request
+    $mapel_id = $request->input('id_mapel');
+    $selected_month = $request->input('bulan');
+
+    if (!$mapel_id) {
+        return redirect()->route('mapel.absensi');
+    }
+
+    // Ambil bulan-bulan unik dari tanggal absensi berdasarkan id_mapel
+    $months = Absensi::select(DB::raw('MONTH(tanggal) as month'), DB::raw('YEAR(tanggal) as year'))
+        ->where('id_mapel', $mapel_id)
+        ->groupBy('month', 'year')
+        ->orderBy('year', 'desc')
+        ->orderBy('month', 'desc')
+        ->get();
+
+    // Ambil mata pelajaran berdasarkan id_mapel
+    $mapel = Mapel::find($mapel_id);
+
+    // Ambil data absensi berdasarkan bulan yang dipilih
+    $absensi = [];
+    if ($selected_month) {
+        $absensi = Absensi::where('id_mapel', $mapel_id)
+            ->whereYear('tanggal', substr($selected_month, 0, 4))  // Ambil tahun dari 'YYYY-MM'
+            ->whereMonth('tanggal', substr($selected_month, 5, 2)) // Ambil bulan dari 'YYYY-MM'
+            ->with('siswa') // Eager load relasi siswa
+            ->get();
+    }
+
+    return view('tampilan.absensi.pilih_unduh_perbulan', compact('months', 'mapel', 'absensi', 'selected_month'));
+}
+
+    
 
         public function unduhAbsensiPerBulan(Request $request)
         {

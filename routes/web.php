@@ -183,6 +183,8 @@ Route::middleware(['auth:admin,kepsek,bk,wakel,guru', 'verified'])->group(functi
         Route::get('/unduh-absensi-perbulan', [AbsensiController::class, 'unduhAbsensiPerBulan'])->name('unduh_absensi_perbulan');
         Route::get('/unduh-persemester', [AbsensiController::class, 'unduhPersemester'])->name('absensi.persemester');
         Route::get('/unduh-absensi-persemester', [AbsensiController::class, 'unduhAbsensiPerSemester'])->name('unduh_absensi.persemester');
+        // Route untuk menampilkan data absensi berdasarkan bulan
+        Route::get('/absensi/perbulan', [AbsensiController::class, 'tampilkanPerbulan'])->name('tampilkan_absensi_perbulan');
     });
 });
 
