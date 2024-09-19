@@ -16,14 +16,14 @@
 
     <!-- Form Filter -->
     <form action="{{ route('pilih_data.absensi') }}" method="GET">
+        <input type="hidden" name="id_mapel" value="{{ $mapel->id_mapel ?? old('id_mapel') }}">
         <div class="row mb-3">
             <div class="col-md-4">
                 <input type="date" name="tanggal" class="form-control" placeholder="Tanggal" value="{{ request('tanggal', session('filter_tanggal')) }}">
             </div>
             <div class="col-md-12 mt-2">
                 <button type="submit" class="btn btn-primary">Filter</button>
-                <a href="{{ route('pilih_data.absensi', ['reset' => true]) }}" class="btn btn-secondary">Reset</a>
-
+                <button type="submit" name="reset" value="true" class="btn btn-secondary">Reset</button>
             </div>
         </div>
     </form>
