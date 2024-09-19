@@ -55,30 +55,37 @@
             </div>
 
             <!-- Tampilkan Data Absensi Jika Ada -->
-            @if(!empty($absensi))
+            @if(!empty($grouped_absensi))
             <div class="card-body mt-3">
                 <div class="table-responsive">
                     <!-- Table with stripped rows -->
                     <table class="table table-striped datatable">
                         <thead>
                             <tr>
-                                <th>No Absen</th>
-                                <th>Nama</th>
-                                <th>NIS</th>
-                                <th>Status Kehadiran</th>
-                                <th>Catatan</th>
+                                <th>Tanggal</th>
+                                <th>Jam</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($absensi as $data)
+                            @foreach($grouped_absensi as $tanggal => $absensiByTime)
+                            @foreach($absensiByTime as $jam => $absensiItems)
+                            @foreach($absensiItems as $absensi)
                             <tr>
-                                <td>{{ $data->siswa->no_absen }}</td>
-                                <td>{{ $data->siswa->nama }}</td>
-                                <td>{{ $data->siswa->nis }}</td>
-                                <td>{{ $data->stts_kehadiran }}</td>
-                                <td>{{ $data->catatan }}</td>
+                                <td>{{ \Carbon\Carbon::parse($tanggal)->format('d-m-Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($jam)->format('H:i') }}</td>
+                                <td>
+                                    <a href="{{ route('absensi.detail', $absensi->id_absensi) }}"
+                                        class="btn btn-info btn-sm">
+
+                                        <i class="bi bi-eye"></i> Lihat Detail
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach
+                            @endforeach
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>

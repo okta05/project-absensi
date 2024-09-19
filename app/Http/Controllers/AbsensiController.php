@@ -13,6 +13,7 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Helpers\TelegramHelper;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class AbsensiController extends Controller
 {
@@ -327,39 +328,46 @@ public function pilihDataAbsensi(Request $request)
     }
 
     public function tampilkanPerbulan(Request $request)
-{
-    // Ambil id_mapel dan bulan dari request
-    $mapel_id = $request->input('id_mapel');
-    $selected_month = $request->input('bulan');
-
-    if (!$mapel_id) {
-        return redirect()->route('mapel.absensi');
-    }
-
-    // Ambil bulan-bulan unik dari tanggal absensi berdasarkan id_mapel
-    $months = Absensi::select(DB::raw('MONTH(tanggal) as month'), DB::raw('YEAR(tanggal) as year'))
-        ->where('id_mapel', $mapel_id)
-        ->groupBy('month', 'year')
-        ->orderBy('year', 'desc')
-        ->orderBy('month', 'desc')
-        ->get();
-
-    // Ambil mata pelajaran berdasarkan id_mapel
-    $mapel = Mapel::find($mapel_id);
-
-    // Ambil data absensi berdasarkan bulan yang dipilih
-    $absensi = [];
-    if ($selected_month) {
-        $absensi = Absensi::where('id_mapel', $mapel_id)
-            ->whereYear('tanggal', substr($selected_month, 0, 4))  // Ambil tahun dari 'YYYY-MM'
-            ->whereMonth('tanggal', substr($selected_month, 5, 2)) // Ambil bulan dari 'YYYY-MM'
-            ->with('siswa') // Eager load relasi siswa
+    {
+        // Ambil id_mapel dan bulan dari request
+        $mapel_id = $request->input('id_mapel');
+        $selected_month = $request->input('bulan');
+    
+        if (!$mapel_id) {
+            return redirect()->route('mapel.absensi');
+        }
+    
+        // Ambil bulan-bulan unik dari tanggal absensi berdasarkan id_mapel
+        $months = Absensi::select(DB::raw('MONTH(tanggal) as month'), DB::raw('YEAR(tanggal) as year'))
+            ->where('id_mapel', $mapel_id)
+            ->groupBy('month', 'year', 'tanggal')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
             ->get();
+    
+        // Ambil mata pelajaran berdasarkan id_mapel
+        $mapel = Mapel::find($mapel_id);
+    
+        // Ambil data absensi berdasarkan bulan yang dipilih
+        $grouped_absensi = [];
+        if ($selected_month) {
+            $absensi = Absensi::where('id_mapel', $mapel_id)
+                ->whereYear('tanggal', substr($selected_month, 0, 4))  // Ambil tahun dari 'YYYY-MM'
+                ->whereMonth('tanggal', substr($selected_month, 5, 2)) // Ambil bulan dari 'YYYY-MM'
+                ->with('siswa') // Eager load relasi siswa
+                ->get();
+    
+            // Kelompokkan data absensi berdasarkan tanggal dan jam
+            foreach ($absensi as $data) {
+                $tanggal = Carbon::parse($data->tanggal)->format('d-m-Y');
+                $jam = Carbon::parse($data->tanggal)->format('H:i');
+            
+                $grouped_absensi[$tanggal][$jam][] = $data;
+            }
+        }
+    
+        return view('tampilan.absensi.pilih_unduh_perbulan', compact('months', 'mapel', 'grouped_absensi', 'selected_month'));
     }
-
-    return view('tampilan.absensi.pilih_unduh_perbulan', compact('months', 'mapel', 'absensi', 'selected_month'));
-}
-
     
 
         public function unduhAbsensiPerBulan(Request $request)

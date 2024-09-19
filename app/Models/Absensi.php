@@ -10,6 +10,9 @@ class Absensi extends Model
     use HasFactory;
     protected $primaryKey = "id_absensi";
 
+    protected $dates = ['tanggal'];
+
+
     protected $fillable = [
         'id_mapel',
         'id_kelas',
