@@ -340,9 +340,10 @@ public function pilihDataAbsensi(Request $request)
         // Ambil bulan-bulan unik dari tanggal absensi berdasarkan id_mapel
         $months = Absensi::select(DB::raw('MONTH(tanggal) as month'), DB::raw('YEAR(tanggal) as year'))
             ->where('id_mapel', $mapel_id)
-            ->groupBy('month', 'year', 'tanggal')
+            ->groupBy('month', 'year')  // Hanya group berdasarkan bulan dan tahun
             ->orderBy('year', 'desc')
             ->orderBy('month', 'desc')
+            ->distinct()  // Pastikan hasilnya unik
             ->get();
     
         // Ambil mata pelajaran berdasarkan id_mapel
@@ -368,6 +369,7 @@ public function pilihDataAbsensi(Request $request)
     
         return view('tampilan.absensi.pilih_unduh_perbulan', compact('months', 'mapel', 'grouped_absensi', 'selected_month'));
     }
+    
     
 
         public function unduhAbsensiPerBulan(Request $request)

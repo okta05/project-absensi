@@ -29,7 +29,7 @@
                             <select class="form-select me-2" name="bulan" style="width: 300px;" required
                                 onchange="document.getElementById('filterForm').submit();">
                                 <option value="" disabled selected>Pilih Bulan</option>
-                                @foreach($months as $month)
+                                @foreach($months->unique('month', 'year') as $month)
                                 <option value="{{ $month->year }}-{{ str_pad($month->month, 2, '0', STR_PAD_LEFT) }}"
                                     @if($selected_month==$month->year.'-'.str_pad($month->month, 2, '0', STR_PAD_LEFT))
                                     selected @endif>
@@ -70,22 +70,23 @@
                         <tbody>
                             @foreach($grouped_absensi as $tanggal => $absensiByTime)
                             @foreach($absensiByTime as $jam => $absensiItems)
-                            @foreach($absensiItems as $absensi)
                             <tr>
-                                <td>{{ \Carbon\Carbon::parse($tanggal)->format('d-m-Y') }}</td>
-                                <td>{{ \Carbon\Carbon::parse($jam)->format('H:i') }}</td>
+                                <!-- Tampilkan tanggal hanya sekali per tanggal -->
+                                @if($loop->first)
+                                <td rowspan="{{ count($absensiByTime) }}">
+                                    {{ \Carbon\Carbon::parse($tanggal)->format('d-m-Y') }}
+                                </td>
+                                @endif
+                                <td>{{ $jam }}</td>
                                 <td>
-                                    <a href="{{ route('absensi.detail', $absensi->id_absensi) }}"
+                                    <a href="{{ route('absensi.detail', $absensiItems[0]->id_absensi) }}"
                                         class="btn btn-info btn-sm">
-
                                         <i class="bi bi-eye"></i> Lihat Detail
                                     </a>
                                 </td>
                             </tr>
                             @endforeach
                             @endforeach
-                            @endforeach
-
                         </tbody>
                     </table>
                 </div>
