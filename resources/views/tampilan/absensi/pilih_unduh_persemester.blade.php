@@ -15,29 +15,19 @@
                 <li class="breadcrumb-item"><a href="#">Unduh Per Semester</a></li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
+    </div>
 
     <div class="row align-items-top">
-        <!-- Default Card -->
         <div class="card" style="height: auto; padding: 10px;">
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-12 d-flex justify-content-start">
-                        <form action="{{route('unduh_absensi.persemester')}}" method="get"
+                        <form action="{{ route('unduh_absensi.persemester') }}" method="get"
                             class="d-flex align-items-center">
-
-                            <!-- Hidden field untuk id_mapel -->
                             <input type="hidden" name="id_mapel" value="{{ $mapel_id }}">
-
-                            <!-- Dropdown Semester -->
                             <select class="form-select me-2" name="semester" style="width: 300px;" required>
-                                @if($semester)
                                 <option value="{{ $semester }}">{{ $semester }}</option>
-                                @else
-                                <option value="">Semester tidak tersedia</option>
-                                @endif
                             </select>
-                            <!-- Tombol Unduh -->
                             <button type="submit" class="btn btn-primary">
                                 <i class="bi bi-download"></i> Unduh
                             </button>
@@ -48,7 +38,6 @@
 
             <div class="card-body mt-3">
                 <div class="table-responsive">
-                    <!-- Table with stripped rows -->
                     <table class="table table-striped datatable">
                         <thead>
                             <tr>
@@ -58,27 +47,27 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($absensi as $data)
                             <tr>
-                                <!-- Tampilkan tanggal hanya sekali per tanggal -->
-
-                                <td>
-
-                                </td>
-
-                                <td></td>
+                                <td>{{ $data->tanggal }}</td>
+                                <td>{{ $data->jam }}</td>
                                 <td>
                                     <a href="#" class="btn btn-info btn-sm">
                                         <i class="bi bi-eye"></i> Lihat Detail
                                     </a>
                                 </td>
                             </tr>
-
+                            @endforeach
+                            @if($absensi->isEmpty())
+                            <tr>
+                                <td colspan="3" class="text-center">Tidak ada data absensi untuk semester ini.</td>
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div><!-- End Default Card -->
+        </div>
     </div>
 </section>
 
