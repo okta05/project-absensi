@@ -135,7 +135,7 @@
                     <td>{{ $siswa['nama'] }}</td>
                     <td>{{ $siswa['nis'] }}</td>
                     <td>{{ $siswa['hadir'] }}</td>
-                    <td>{{ $siswa['belum hadir'] }}</td>
+                    <td>{{ $siswa['belum_hadir'] }}</td>
                     <td>{{ $siswa['ijin'] }}</td>
                     <td>{{ $siswa['sakit'] }}</td>
                     <td>{{ $siswa['alpa'] }}</td>
@@ -145,7 +145,10 @@
         </table>
 
         <!-- Siswa Absensi Tanggal Table -->
+        <!-- Siswa Absensi Tanggal Table -->
         <h2>Detail Kehadiran Siswa</h2>
+        @foreach ($siswaAbsensiBulan as $bulan => $siswaPerBulan)
+        <h3>Bulan: {{ $bulan }}</h3>
         <table class="table">
             <thead>
                 <tr>
@@ -159,7 +162,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($siswaAbsensi as $siswa)
+                @if(isset($siswaAbsensiBulan) && !empty($siswaAbsensiBulan))
+                @foreach ($siswaAbsensiBulan as $bulan => $siswaPerBulan)
                 <tr>
                     <td>{{ $siswa['nama'] }}</td>
                     <td>{{ $siswa['nis'] }}</td>
@@ -170,8 +174,15 @@
                     <td>{{ implode(', ', $siswa['tanggal_alpa']) }}</td>
                 </tr>
                 @endforeach
+                @else
+                <tr>
+                    <td colspan="7">Tidak ada data untuk bulan ini.</td>
+                </tr>
+                @endif
             </tbody>
         </table>
+        @endforeach
+
 
         <!-- Summary Table -->
         <div class="summary">

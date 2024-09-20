@@ -494,7 +494,7 @@ class AbsensiController extends Controller
                 'no_absen' => $items->first()->siswa->no_absen,
                 'nis' => $items->first()->siswa->nis,
                 'hadir' => $items->where('stts_kehadiran', 'Hadir')->count(),
-                'belum hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->count(),
+                'belum_hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->count(), // Pastikan key ini konsisten
                 'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),
                 'sakit' => $items->where('stts_kehadiran', 'Sakit')->count(),
                 'alpa' => $items->where('stts_kehadiran', 'Alpa')->count(),
@@ -506,6 +506,55 @@ class AbsensiController extends Controller
             ];
         });
         
+    
+       // Memastikan ada data untuk bulan yang bersangkutan
+$siswaAbsensiBulan = [];
+foreach ($absensi as $item) {
+    $bulan = \Carbon\Carbon::parse($item->tanggal)->format('F Y'); // Mengambil bulan dan tahun
+    $siswaId = $item->id_siswa;
+
+    // Inisialisasi array untuk bulan dan siswa jika belum ada
+    if (!isset($siswaAbsensiBulan[$bulan])) {
+        $siswaAbsensiBulan[$bulan] = [];
+    }
+    
+    if (!isset($siswaAbsensiBulan[$bulan][$siswaId])) {
+        $siswaAbsensiBulan[$bulan][$siswaId] = [
+            'nama' => $item->siswa->nama,
+            'nis' => $item->siswa->nis,
+            'tanggal_hadir' => [],
+            'tanggal_belum_hadir' => [],
+            'tanggal_ijin' => [],
+            'tanggal_sakit' => [],
+            'tanggal_alpa' => [],
+        ];
+    }
+
+    // Menambahkan tanggal ke kategori yang sesuai
+    switch ($item->stts_kehadiran) {
+        case 'Hadir':
+            $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_hadir'][] = $item->tanggal;
+            break;
+        case 'Belum Hadir':
+            $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_belum_hadir'][] = $item->tanggal;
+            break;
+        case 'Ijin':
+            $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_ijin'][] = $item->tanggal;
+            break;
+        case 'Sakit':
+            $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_sakit'][] = $item->tanggal;
+            break;
+        case 'Alpa':
+            $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_alpa'][] = $item->tanggal;
+            break;
+    }
+}
+
+// Memastikan bahwa hasilnya adalah array siswa
+foreach ($siswaAbsensiBulan as $bulan => $siswaData) {
+    $siswaAbsensiBulan[$bulan] = array_values($siswaData);
+}
+
         
         // Mengurutkan siswa berdasarkan no_absen
         $siswaAbsensi = $siswaAbsensi->sortBy('no_absen');
@@ -525,7 +574,7 @@ class AbsensiController extends Controller
         $tahunPelajaran = $mapel->tahpel->th_pelajaran;
         
         // Generate PDF
-        $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('siswaAbsensi', 'mapel',
+        $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('siswaAbsensi', 'siswaAbsensiBulan', 'mapel',
         'totalHadir', 'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));
         
         return $pdf->download('Laporan-Absensi-Per-Semester.pdf');
