@@ -14,6 +14,7 @@ use App\Models\Siswa;
 use App\Helpers\TelegramHelper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class AbsensiController extends Controller
 {
@@ -591,5 +592,103 @@ class AbsensiController extends Controller
         
         return $pdf->download('Laporan-Absensi-Per-Semester.pdf');
     }
-        
+ 
+    public function importExcel(Request $request)
+    {
+        // Validasi file
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+    
+        // Ambil file dari request
+        $file = $request->file('file');
+    
+        // Membaca file Excel
+        $spreadsheet = IOFactory::load($file->getRealPath());
+        $worksheet = $spreadsheet->getActiveSheet();
+        $rows = $worksheet->toArray();
+    
+        $id_mapel_valid = null; // Untuk menyimpan ID mapel yang valid
+        $processed_rows = 0; // Counter untuk mengecek berapa baris yang diproses
+    
+        // Looping data
+        foreach ($rows as $key => $row) {
+            // Lewati header jika ada
+            if ($key == 0) {
+                continue;
+            }
+    
+            // Debugging: cek setiap baris yang sedang diproses
+            Log::info("Memproses baris ke-{$key} dengan data: ", $row);
+    
+            // Proses data siswa dan absensi
+            $nis = $row[9]; // Asumsi kolom ke-10 berisi NIS siswa
+            $status_kehadiran = $row[10]; // Asumsi kolom ke-12 berisi status kehadiran
+            $tanggal = $row[5]; // Asumsi kolom ke-7 berisi tanggal
+            $jam = $row[6]; // Asumsi kolom ke-8 berisi jam
+    
+            // Cari nama guru, kelas, mapel dari excel
+            $nama_guru = $row[3]; // Asumsi kolom ke-4 berisi nama guru
+            $nama_kelas = $row[2]; // Asumsi kolom ke-3 berisi nama kelas
+            $nama_mapel = $row[0]; // Asumsi kolom ke-1 berisi nama mata pelajaran
+    
+            // Cari ID guru, kelas, mapel berdasarkan nama
+            $guru = Guru::where('nama', $nama_guru)->first();
+            $kelas = Kelas::where('nm_kelas', $nama_kelas)->first();
+            $mapel = Mapel::where('nm_mapel', $nama_mapel)->first();
+    
+            // Debugging: Cek apakah guru, kelas, atau mapel ditemukan
+            if (!$guru) {
+                Log::warning("Guru '{$nama_guru}' tidak ditemukan.");
+            }
+            if (!$kelas) {
+                Log::warning("Kelas '{$nama_kelas}' tidak ditemukan.");
+            }
+            if (!$mapel) {
+                Log::warning("Mapel '{$nama_mapel}' tidak ditemukan.");
+            }
+    
+            // Jika tidak ditemukan guru, kelas, atau mapel, lewati baris ini
+            if (!$guru || !$kelas || !$mapel) {
+                continue;
+            }
+    
+            // Simpan ID mapel yang valid
+            $id_mapel_valid = $mapel->id_mapel;
+    
+            // Cari siswa berdasarkan NIS
+            $siswa = Siswa::where('nis', $nis)->first();
+    
+            // Jika siswa ditemukan, simpan data absensi
+            if ($siswa) {
+                Absensi::create([
+                    'id_siswa' => $siswa->id_siswa,
+                    'id_mapel' => $mapel->id_mapel, // Gunakan ID mapel yang ditemukan
+                    'id_kelas' => $kelas->id_kelas, // Gunakan ID kelas yang ditemukan
+                    'id_tahpel' => $request->id_tahpel, // Anda bisa menambahkan logika untuk mendapatkan id_tahpel
+                    'id_guru' => $guru->id_guru, // Gunakan ID guru yang ditemukan
+                    'tanggal' => $tanggal,
+                    'jam' => $jam,
+                    'stts_kehadiran' => $status_kehadiran,
+                    'catatan' => $row[11], // Asumsi kolom ke-13 berisi catatan
+                ]);
+    
+                // Debugging: Beri log saat data berhasil dibuat
+                Log::info("Data absensi untuk siswa '{$siswa->nama}' berhasil disimpan.");
+                $processed_rows++; // Tambah counter untuk baris yang berhasil diproses
+            } else {
+                Log::warning("Siswa dengan NIS '{$nis}' tidak ditemukan.");
+            }
+        }
+    
+        // Jika ID mapel valid, lakukan redirect, jika tidak, berikan pesan kesalahan
+        if ($id_mapel_valid) {
+            return redirect()->route('pilih_data.absensi', ['id_mapel' => $id_mapel_valid])
+                             ->with('success', "Data absensi berhasil diimport. {$processed_rows} baris berhasil diproses.");
+        } else {
+            return redirect()->back()->with('error', 'Data mapel tidak ditemukan dalam file.');
+        }
+    }
+    
+    
 }
