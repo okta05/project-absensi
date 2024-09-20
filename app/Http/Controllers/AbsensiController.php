@@ -17,7 +17,7 @@ use Carbon\Carbon;
 
 class AbsensiController extends Controller
 {
-    //
+    
     public function pilihMapel(Request $request)
 {
     // Ambil input filter dari request
@@ -58,50 +58,50 @@ class AbsensiController extends Controller
     $mapels = $query->get();
 
     return view('tampilan.absensi.pilih_mapel_absensi', compact('mapels'));
-}
-    
-public function pilihDataAbsensi(Request $request)
-{
-    // Ambil id_mapel dari sesi atau input
-    $mapel_id = $request->input('id_mapel') ?? session('current_mapel_id');
-    
-    // Jika id_mapel tidak ada, arahkan kembali ke halaman pemilihan mapel
-    if (!$mapel_id) {
-        return redirect()->route('mapel.absensi');
     }
-
-    // Cek jika tombol reset ditekan
-    if ($request->has('reset')) {
-        session()->forget('filter_tanggal'); // Hapus filter tanggal dari sesi
-        $tanggal = null; // Atur tanggal filter menjadi null
-    } else {
-        // Ambil filter tanggal dari request atau sesi
-        $tanggal = $request->input('tanggal') ?? session('filter_tanggal');
-
-        // Simpan filter tanggal dalam sesi jika ada input tanggal
-        if ($request->has('tanggal')) {
-            session(['filter_tanggal' => $tanggal]);
+    
+    public function pilihDataAbsensi(Request $request)
+    {
+        // Ambil id_mapel dari sesi atau input
+        $mapel_id = $request->input('id_mapel') ?? session('current_mapel_id');
+        
+        // Jika id_mapel tidak ada, arahkan kembali ke halaman pemilihan mapel
+        if (!$mapel_id) {
+            return redirect()->route('mapel.absensi');
         }
+
+        // Cek jika tombol reset ditekan
+        if ($request->has('reset')) {
+            session()->forget('filter_tanggal'); // Hapus filter tanggal dari sesi
+            $tanggal = null; // Atur tanggal filter menjadi null
+        } else {
+            // Ambil filter tanggal dari request atau sesi
+            $tanggal = $request->input('tanggal') ?? session('filter_tanggal');
+
+            // Simpan filter tanggal dalam sesi jika ada input tanggal
+            if ($request->has('tanggal')) {
+                session(['filter_tanggal' => $tanggal]);
+            }
+        }
+
+        // Query untuk mengambil data absensi
+        $query = Absensi::select('id_mapel', 'tanggal', 'jam', DB::raw('MAX(id_absensi) as id_absensi'))
+            ->where('id_mapel', $mapel_id)
+            ->with('guru', 'kelas', 'tahpel', 'mapel')
+            ->groupBy('id_mapel', 'tanggal', 'jam');
+
+        // Filter data berdasarkan tanggal jika ada filter
+        if ($tanggal) {
+            $query->whereDate('tanggal', $tanggal);
+        }
+
+        $data['allDataAbsensi'] = $query->get();
+
+        // Mengambil data mapel berdasarkan id_mapel
+        $data['mapel'] = Mapel::find($mapel_id);
+
+        return view("tampilan.absensi.pilih_data_absensi", $data);
     }
-
-    // Query untuk mengambil data absensi
-    $query = Absensi::select('id_mapel', 'tanggal', 'jam', DB::raw('MAX(id_absensi) as id_absensi'))
-        ->where('id_mapel', $mapel_id)
-        ->with('guru', 'kelas', 'tahpel', 'mapel')
-        ->groupBy('id_mapel', 'tanggal', 'jam');
-
-    // Filter data berdasarkan tanggal jika ada filter
-    if ($tanggal) {
-        $query->whereDate('tanggal', $tanggal);
-    }
-
-    $data['allDataAbsensi'] = $query->get();
-
-    // Mengambil data mapel berdasarkan id_mapel
-    $data['mapel'] = Mapel::find($mapel_id);
-
-    return view("tampilan.absensi.pilih_data_absensi", $data);
-}
 
 
     public function absensiDetail($id) 
@@ -189,7 +189,7 @@ public function pilihDataAbsensi(Request $request)
     }
 
     return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id]);
-}
+    }
 
         
     public function absensiEdit($id)
@@ -238,22 +238,22 @@ public function pilihDataAbsensi(Request $request)
     }
         
     public function absensiDelete($id)
-        {
-            // Temukan data absensi berdasarkan ID
-            $absensi = Absensi::findOrFail($id);
+    {
+        // Temukan data absensi berdasarkan ID
+        $absensi = Absensi::findOrFail($id);
             
             // Ambil tanggal dan jam dari data absensi
-            $tanggal = $absensi->tanggal;
-            $jam = $absensi->jam;
+        $tanggal = $absensi->tanggal;
+        $jam = $absensi->jam;
 
-            // Hapus semua data absensi yang memiliki tanggal dan jam yang sama
-            Absensi::where('tanggal', $tanggal)
-                ->where('jam', $jam)
-                ->delete();
+        // Hapus semua data absensi yang memiliki tanggal dan jam yang sama
+        Absensi::where('tanggal', $tanggal)
+            ->where('jam', $jam)
+            ->delete();
                 
-            // Redirect dengan pesan sukses
-            return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]);
-        }
+        // Redirect dengan pesan sukses
+        return redirect()->route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]);
+    }
 
     public function unduhPilihan ($id) 
     {
@@ -431,95 +431,94 @@ public function pilihDataAbsensi(Request $request)
             return $pdf->download('Laporan-Absensi-Perbulan.pdf');
         }
         
-        public function unduhPersemester(Request $request)
-        {
-            session()->put('previous_url', url()->previous());
+    public function unduhPersemester(Request $request)
+    {
+        session()->put('previous_url', url()->previous());
             
-            $mapel_id = $request->input('id_mapel');
+        $mapel_id = $request->input('id_mapel');
             
-            if (!$mapel_id) {
-                return redirect()->route('mapel.absensi');
-            }
+        if (!$mapel_id) {
+            return redirect()->route('mapel.absensi');
+        }
             
-            // Ambil data mata pelajaran berdasarkan id_mapel
-            $mapel = Mapel::find($mapel_id);
+        // Ambil data mata pelajaran berdasarkan id_mapel
+        $mapel = Mapel::find($mapel_id);
             
-            // Ambil semester dari mata pelajaran
-            $semester = $mapel ? $mapel->semester : null;
+        // Ambil semester dari mata pelajaran
+        $semester = $mapel ? $mapel->semester : null;
             
-            // Ambil data absensi berdasarkan id_mapel, dikelompokkan berdasarkan tanggal dan jam
-            $absensi = Absensi::where('id_mapel', $mapel_id)
-                ->select('tanggal', 'jam')
-                ->groupBy('tanggal', 'jam')
-                ->get();
+        // Ambil data absensi berdasarkan id_mapel, dikelompokkan berdasarkan tanggal dan jam
+        $absensi = Absensi::where('id_mapel', $mapel_id)
+            ->select('tanggal', 'jam')
+            ->groupBy('tanggal', 'jam')
+            ->get();
         
-            // Fetch the unique ids for each group to pass to the view
-            $absensiIds = Absensi::where('id_mapel', $mapel_id)
-                ->whereIn('tanggal', $absensi->pluck('tanggal'))
-                ->whereIn('jam', $absensi->pluck('jam'))
-                ->get(['id_absensi', 'tanggal', 'jam']);
+        // Fetch the unique ids for each group to pass to the view
+        $absensiIds = Absensi::where('id_mapel', $mapel_id)
+            ->whereIn('tanggal', $absensi->pluck('tanggal'))
+            ->whereIn('jam', $absensi->pluck('jam'))
+            ->get(['id_absensi', 'tanggal', 'jam']);
         
-            return view('tampilan.absensi.pilih_unduh_persemester', compact('mapel_id', 'semester', 'absensi', 'absensiIds'));
+        return view('tampilan.absensi.pilih_unduh_persemester', compact('mapel_id', 'semester', 'absensi', 'absensiIds'));
+    }
+        
+        
+    public function unduhAbsensiPerSemester(Request $request)
+    {
+        // Simpan URL sebelumnya dalam session
+        session()->put('previous_url', url()->previous());
+        
+        // Ambil id_mapel dan semester dari request
+        $mapel_id = $request->input('id_mapel');
+        $semester = $request->input('semester');
+        
+        if (!$mapel_id || !$semester) {
+            return redirect()->route('absensi.persemester');
         }
         
-        
-        public function unduhAbsensiPerSemester(Request $request)
-        {
-            // Simpan URL sebelumnya dalam session
-            session()->put('previous_url', url()->previous());
-        
-            // Ambil id_mapel dan semester dari request
-            $mapel_id = $request->input('id_mapel');
-            $semester = $request->input('semester');
-        
-            if (!$mapel_id || !$semester) {
-                return redirect()->route('absensi.persemester');
-            }
-        
-            // Ambil data absensi berdasarkan id_mapel dan semester
             $absensi = Absensi::where('id_mapel', $mapel_id)
-                ->whereHas('mapel', function ($query) use ($semester) {
-                    $query->where('semester', $semester);
-                })
-                ->with('siswa')
-                ->get();
+            ->whereHas('mapel', function ($query) use ($semester) {
+                $query->where('semester', $semester);
+            })
+            ->with('siswa')
+            ->get();
         
-            // Menghitung jumlah kehadiran dan ketidakhadiran per siswa
-            $siswaAbsensi = $absensi->groupBy('id_siswa')->map(function ($items) {
-                return [
-                    'nama' => $items->first()->siswa->nama,
-                    'no_absen' => $items->first()->siswa->no_absen,
-                    'nis' => $items->first()->siswa->nis,
-                    'hadir' => $items->where('stts_kehadiran', 'Hadir')->count(),
-                    'belum hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->count(),
-                    'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),
-                    'sakit' => $items->where('stts_kehadiran', 'Sakit')->count(),
-                    'alpa' => $items->where('stts_kehadiran', 'Alpa')->count(),
-                ];
-            });
+        // Menghitung jumlah kehadiran dan ketidakhadiran per siswa
+        $siswaAbsensi = $absensi->groupBy('id_siswa')->map(function ($items) {
+            return [
+                'nama' => $items->first()->siswa->nama,
+                'no_absen' => $items->first()->siswa->no_absen,
+                'nis' => $items->first()->siswa->nis,
+                'hadir' => $items->where('stts_kehadiran', 'Hadir')->count(),
+                'belum hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->count(),
+                'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),
+                'sakit' => $items->where('stts_kehadiran', 'Sakit')->count(),
+                'alpa' => $items->where('stts_kehadiran', 'Alpa')->count(),
+            ];
+        });
         
-            // Mengurutkan siswa berdasarkan no_absen
-            $siswaAbsensi = $siswaAbsensi->sortBy('no_absen');
+        // Mengurutkan siswa berdasarkan no_absen
+        $siswaAbsensi = $siswaAbsensi->sortBy('no_absen');
         
-            // Menghitung total jumlah kehadiran per status
-            $totalHadir = $siswaAbsensi->sum('hadir');
-            $totalBelumHadir = $siswaAbsensi->sum('belum hadir');
-            $totalIjin = $siswaAbsensi->sum('ijin');
-            $totalSakit = $siswaAbsensi->sum('sakit');
-            $totalAlpa = $siswaAbsensi->sum('alpa');
+        // Menghitung total jumlah kehadiran per status
+        $totalHadir = $siswaAbsensi->sum('hadir');
+        $totalBelumHadir = $siswaAbsensi->sum('belum hadir');
+        $totalIjin = $siswaAbsensi->sum('ijin');
+        $totalSakit = $siswaAbsensi->sum('sakit');
+        $totalAlpa = $siswaAbsensi->sum('alpa');
         
-            $mapel = Mapel::find($mapel_id);
+        $mapel = Mapel::find($mapel_id);
         
-            // Mendapatkan data tambahan
-            $guru = Guru::find($mapel->id_guru);
-            $kelas = Kelas::find($mapel->id_kelas);
-            $tahunPelajaran = $mapel->tahpel->th_pelajaran;
+        // Mendapatkan data tambahan
+        $guru = Guru::find($mapel->id_guru);
+        $kelas = Kelas::find($mapel->id_kelas);
+        $tahunPelajaran = $mapel->tahpel->th_pelajaran;
         
-            // Generate PDF
-            $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('siswaAbsensi', 'mapel',
-            'totalHadir', 'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));
+        // Generate PDF
+        $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('siswaAbsensi', 'mapel',
+        'totalHadir', 'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));
         
-            return $pdf->download('Laporan-Absensi-Per-Semester.pdf');
-        }
+        return $pdf->download('Laporan-Absensi-Per-Semester.pdf');
+    }
         
 }
