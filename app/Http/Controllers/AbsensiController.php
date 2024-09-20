@@ -564,7 +564,7 @@ class AbsensiController extends Controller
         
         // Menghitung total jumlah kehadiran per status
         $totalHadir = $siswaAbsensi->sum('hadir');
-        $totalBelumHadir = $siswaAbsensi->sum('belum hadir');
+        $totalBelumHadir = $siswaAbsensi->sum('belum_hadir');
         $totalIjin = $siswaAbsensi->sum('ijin');
         $totalSakit = $siswaAbsensi->sum('sakit');
         $totalAlpa = $siswaAbsensi->sum('alpa');
