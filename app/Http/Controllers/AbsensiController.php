@@ -144,53 +144,52 @@ class AbsensiController extends Controller
     }
 
     public function absensiStore(Request $request)
-{
-    $validateData = $request->validate([
-        'stts_kehadiran.*' => 'nullable|in:Ijin,Sakit,Alpa,Hadir,Belum Hadir',
-    ]);
-
-    $mapel_id = $request->input('id_mapel');
-    $kelas_id = $request->input('id_kelas');
-    $tahpel_id = $request->input('id_tahpel');
-    $guru_id = $request->input('id_guru');
-    $tanggal = $request->input('tanggal');
-    $jam = $request->input('jam');
-
-    $kehadiran = $request->input('stts_kehadiran', []);
-    $catatan = $request->input('catatan', []);
-
-    // Ambil semua siswa dari kelas yang sedang diabsen
-    $siswas = Siswa::where('id_kelas', $kelas_id)->get();
-
-    foreach ($siswas as $siswa) {
-        // Set status kehadiran default menjadi 'Belum Hadir' jika tidak dipilih
-        $status = $kehadiran[$siswa->id_siswa] ?? 'Belum Hadir';
-        $note = $catatan[$siswa->id_siswa] ?? null;
-
-        $absensi = Absensi::create([
-            'id_siswa' => $siswa->id_siswa,
-            'id_mapel' => $mapel_id,
-            'id_kelas' => $kelas_id,
-            'id_tahpel' => $tahpel_id,
-            'id_guru' => $guru_id,
-            'tanggal' => $tanggal,
-            'jam' => $jam,
-            'stts_kehadiran' => $status,
-            'catatan' => $note,
+    {
+        $validateData = $request->validate([
+            'stts_kehadiran.*' => 'nullable|in:Ijin,Sakit,Alpa,Hadir,Belum Hadir',
         ]);
 
-        // Kirim pesan ke Telegram setelah menyimpan absensi
-        $chatId = $siswa->id_tel_ortu;
-        $message = "Absensi: {$siswa->nama}\nTanggal: {$absensi->tanggal}\nJam: {$absensi->jam}\nStatus Kehadiran: {$absensi->stts_kehadiran}\nCatatan: {$absensi->catatan}";
+        $mapel_id = $request->input('id_mapel');
+        $kelas_id = $request->input('id_kelas');
+        $tahpel_id = $request->input('id_tahpel');
+        $guru_id = $request->input('id_guru');
+        $tanggal = $request->input('tanggal');
+        $jam = $request->input('jam');
 
-        if ($chatId) {
-            TelegramHelper::sendMessage($chatId, $message);
+        $kehadiran = $request->input('stts_kehadiran', []);
+        $catatan = $request->input('catatan', []);
+
+        // Ambil semua siswa dari kelas yang sedang diabsen
+        $siswas = Siswa::where('id_kelas', $kelas_id)->get();
+
+        foreach ($siswas as $siswa) {
+            // Set status kehadiran default menjadi 'Belum Hadir' jika tidak dipilih
+            $status = $kehadiran[$siswa->id_siswa] ?? 'Belum Hadir';
+            $note = $catatan[$siswa->id_siswa] ?? null;
+
+            $absensi = Absensi::create([
+                'id_siswa' => $siswa->id_siswa,
+                'id_mapel' => $mapel_id,
+                'id_kelas' => $kelas_id,
+                'id_tahpel' => $tahpel_id,
+                'id_guru' => $guru_id,
+                'tanggal' => $tanggal,
+                'jam' => $jam,
+                'stts_kehadiran' => $status,
+                'catatan' => $note,
+            ]);
+
+            // Kirim pesan ke Telegram setelah menyimpan absensi
+            $chatId = $siswa->id_tel_ortu;
+            $message = "Absensi: {$siswa->nama}\nTanggal: {$absensi->tanggal}\nJam: {$absensi->jam}\nStatus Kehadiran: {$absensi->stts_kehadiran}\nCatatan: {$absensi->catatan}";
+
+            if ($chatId) {
+                TelegramHelper::sendMessage($chatId, $message);
+            }
         }
-    }
 
-    return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id]);
-    }
-
+        return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id]);
+        }
         
     public function absensiEdit($id)
     {
@@ -209,7 +208,6 @@ class AbsensiController extends Controller
 
         return view('tampilan.absensi.edit_absensi', compact('absensi', 'absensiDetails', 'siswas'));
     }
-
 
     public function absensiUpdate(Request $request, $id)
     {
@@ -464,8 +462,7 @@ class AbsensiController extends Controller
         
         return view('tampilan.absensi.pilih_unduh_persemester', compact('mapel_id', 'semester', 'absensi', 'absensiIds'));
     }
-        
-        
+             
     public function unduhAbsensiPerSemester(Request $request)
     {
         // Simpan URL sebelumnya dalam session
