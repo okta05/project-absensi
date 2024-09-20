@@ -369,10 +369,8 @@ class AbsensiController extends Controller
     
         return view('tampilan.absensi.pilih_unduh_perbulan', compact('months', 'mapel', 'grouped_absensi', 'selected_month'));
     }
-    
-    
 
-        public function unduhAbsensiPerBulan(Request $request)
+    public function unduhAbsensiPerBulan(Request $request)
         {
             // Simpan URL sebelumnya dalam session
             session()->put('previous_url', url()->previous());
@@ -429,7 +427,7 @@ class AbsensiController extends Controller
             'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));
         
             return $pdf->download('Laporan-Absensi-Perbulan.pdf');
-        }
+    }
         
     public function unduhPersemester(Request $request)
     {
