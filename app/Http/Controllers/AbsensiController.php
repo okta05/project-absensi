@@ -103,7 +103,6 @@ class AbsensiController extends Controller
         return view("tampilan.absensi.pilih_data_absensi", $data);
     }
 
-
     public function absensiDetail($id) 
     {
         $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
@@ -189,7 +188,7 @@ class AbsensiController extends Controller
         }
 
         return redirect()->route('pilih_data.absensi', ['id_mapel' => $mapel_id]);
-        }
+    }
         
     public function absensiEdit($id)
     {
