@@ -35,6 +35,18 @@
         <!-- Default Card -->
         <div class="card" style="height: auto; padding: 10px;">
             <div class="card-body">
+                <!-- Tombol untuk upload Excel -->
+                <form action="{{ route('import.absensi') }}" method="POST" enctype="multipart/form-data"
+                    class="d-inline">
+                    @csrf
+                    <input type="hidden" name="id_mapel" value="{{ $mapel->id_mapel }}">
+                    <input type="hidden" name="tanggal" value="{{ request('tanggal', session('filter_tanggal')) }}">
+                    <input type="file" name="file" accept=".xlsx, .xls" class="form-control-file me-2" required>
+                    <button type="submit" class="btn btn-info">
+                        <i class="bi bi-upload"></i> Upload Excel
+                    </button>
+                </form>
+
                 <div class="col-8 border border-3 p-3 mt-3 rounded shadow-sm">
                     <div class="tab-content pt-1">
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -104,19 +116,6 @@
                             class="btn btn-primary">
                             <i class="bi bi-download"></i> Unduh Per Semester
                         </a>
-
-                        <!-- Tombol untuk upload Excel -->
-                        <form action="{{ route('import.absensi') }}" method="POST" enctype="multipart/form-data"
-                            class="d-inline">
-                            @csrf
-                            <input type="hidden" name="id_mapel" value="{{ $mapel->id_mapel }}">
-                            <input type="hidden" name="tanggal"
-                                value="{{ request('tanggal', session('filter_tanggal')) }}">
-                            <input type="file" name="file" accept=".xlsx, .xls" class="form-control-file me-2" required>
-                            <button type="submit" class="btn btn-info">
-                                <i class="bi bi-upload"></i> Upload Excel
-                            </button>
-                        </form>
                     </div>
                 </div>
 
