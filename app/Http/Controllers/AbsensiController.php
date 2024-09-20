@@ -19,45 +19,45 @@ class AbsensiController extends Controller
 {
     
     public function pilihMapel(Request $request)
-{
-    // Ambil input filter dari request
-    $nama_mapel = $request->input('nama_mapel'); //nama_mapel untuk name di filter
-    $nama_kelas = $request->input('nama_kelas');
-    $nama_guru = $request->input('nama_guru');
+    {
+        // Ambil input filter dari request
+        $nama_mapel = $request->input('nama_mapel'); //nama_mapel untuk name di filter
+        $nama_kelas = $request->input('nama_kelas');
+        $nama_guru = $request->input('nama_guru');
 
-    $query = Mapel::query()->with('guru', 'kelas');
+        $query = Mapel::query()->with('guru', 'kelas');
 
-    // Cek apakah user yang login adalah guru
-    $user = Auth::user();
-    $guru = Guru::where('email', $user->email)->first(); // cek guru berdasarkan email
+        // Cek apakah user yang login adalah guru
+        $user = Auth::user();
+        $guru = Guru::where('email', $user->email)->first(); // cek guru berdasarkan email
 
-    // Jika yang login adalah guru, ambil mapel yang di ampu
-    if ($guru) {
-        $query->where('id_guru', $guru->id_guru); // menyesuiakan dengan fk guru
-    }
+        // Jika yang login adalah guru, ambil mapel yang di ampu
+        if ($guru) {
+            $query->where('id_guru', $guru->id_guru); // menyesuiakan dengan fk guru
+        }
 
-    // Filter berdasarkan nama mapel jika ada
-    if ($nama_mapel) {
-        $query->where('nm_mapel', 'like', '%' . $nama_mapel . '%');
-    }
+        // Filter berdasarkan nama mapel jika ada
+        if ($nama_mapel) {
+            $query->where('nm_mapel', 'like', '%' . $nama_mapel . '%');
+        }
 
-    // Filter berdasarkan nama kelas jika ada
-    if ($nama_kelas) {
-        $query->whereHas('kelas', function ($q) use ($nama_kelas) {
-            $q->where('nm_kelas', 'like', '%' . $nama_kelas . '%');
-        });
-    }
+        // Filter berdasarkan nama kelas jika ada
+        if ($nama_kelas) {
+            $query->whereHas('kelas', function ($q) use ($nama_kelas) {
+                $q->where('nm_kelas', 'like', '%' . $nama_kelas . '%');
+            });
+        }
 
-    // Filter berdasarkan nama guru jika ada
-    if ($nama_guru) {
-        $query->whereHas('guru', function ($q) use ($nama_guru) {
-            $q->where('nama', 'like', '%' . $nama_guru . '%');
-        });
-    }
+        // Filter berdasarkan nama guru jika ada
+        if ($nama_guru) {
+            $query->whereHas('guru', function ($q) use ($nama_guru) {
+                $q->where('nama', 'like', '%' . $nama_guru . '%');
+            });
+        }
 
-    $mapels = $query->get();
+        $mapels = $query->get();
 
-    return view('tampilan.absensi.pilih_mapel_absensi', compact('mapels'));
+        return view('tampilan.absensi.pilih_mapel_absensi', compact('mapels'));
     }
     
     public function pilihDataAbsensi(Request $request)
