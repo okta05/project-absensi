@@ -162,8 +162,8 @@
                 </tr>
             </thead>
             <tbody>
-                @if(isset($siswaAbsensiBulan) && !empty($siswaAbsensiBulan))
-                @foreach ($siswaAbsensiBulan as $bulan => $siswaPerBulan)
+                @if(!empty($siswaPerBulan))
+                @foreach ($siswaPerBulan as $siswa)
                 <tr>
                     <td>{{ $siswa['nama'] }}</td>
                     <td>{{ $siswa['nis'] }}</td>
@@ -182,6 +182,7 @@
             </tbody>
         </table>
         @endforeach
+
 
 
         <!-- Summary Table -->

@@ -306,9 +306,9 @@ class AbsensiController extends Controller
         // Ambil bulan-bulan unik dari tanggal absensi berdasarkan id_mapel
         $months = Absensi::select(DB::raw('MONTH(tanggal) as month'), DB::raw('YEAR(tanggal) as year'))
             ->where('id_mapel', $mapel_id)
-            ->groupBy('month', 'year')
             ->orderBy('year', 'desc')
             ->orderBy('month', 'desc')
+            ->distinct() // Pastikan hasilnya unik
             ->get();
     
         // Ambil mata pelajaran berdasarkan id_mapel
@@ -339,13 +339,12 @@ class AbsensiController extends Controller
     
         // Ambil bulan-bulan unik dari tanggal absensi berdasarkan id_mapel
         $months = Absensi::select(DB::raw('MONTH(tanggal) as month'), DB::raw('YEAR(tanggal) as year'))
-            ->where('id_mapel', $mapel_id)
-            ->groupBy('month', 'year')  // Hanya group berdasarkan bulan dan tahun
-            ->orderBy('year', 'desc')
-            ->orderBy('month', 'desc')
-            ->distinct()  // Pastikan hasilnya unik
-            ->get();
-    
+        ->where('id_mapel', $mapel_id)
+        ->orderBy('year', 'desc')
+        ->orderBy('month', 'desc')
+        ->distinct() // Pastikan hasilnya unik
+        ->get();
+        
         // Ambil mata pelajaran berdasarkan id_mapel
         $mapel = Mapel::find($mapel_id);
     
@@ -508,52 +507,56 @@ class AbsensiController extends Controller
         
     
        // Memastikan ada data untuk bulan yang bersangkutan
-$siswaAbsensiBulan = [];
-foreach ($absensi as $item) {
-    $bulan = \Carbon\Carbon::parse($item->tanggal)->format('F Y'); // Mengambil bulan dan tahun
-    $siswaId = $item->id_siswa;
+        $siswaAbsensiBulan = [];
+        foreach ($absensi as $item) {
+            $bulan = \Carbon\Carbon::parse($item->tanggal)->format('F Y'); // Mengambil bulan dan tahun
+            $siswaId = $item->id_siswa;
 
-    // Inisialisasi array untuk bulan dan siswa jika belum ada
-    if (!isset($siswaAbsensiBulan[$bulan])) {
-        $siswaAbsensiBulan[$bulan] = [];
-    }
-    
-    if (!isset($siswaAbsensiBulan[$bulan][$siswaId])) {
-        $siswaAbsensiBulan[$bulan][$siswaId] = [
-            'nama' => $item->siswa->nama,
-            'nis' => $item->siswa->nis,
-            'tanggal_hadir' => [],
-            'tanggal_belum_hadir' => [],
-            'tanggal_ijin' => [],
-            'tanggal_sakit' => [],
-            'tanggal_alpa' => [],
-        ];
-    }
+            // Inisialisasi array untuk bulan dan siswa jika belum ada
+            if (!isset($siswaAbsensiBulan[$bulan])) {
+                $siswaAbsensiBulan[$bulan] = [];
+            }
+            
+            if (!isset($siswaAbsensiBulan[$bulan][$siswaId])) {
+                $siswaAbsensiBulan[$bulan][$siswaId] = [
+                    'nama' => $item->siswa->nama,
+                    'nis' => $item->siswa->nis,
+                    'tanggal_hadir' => [],
+                    'tanggal_belum_hadir' => [],
+                    'tanggal_ijin' => [],
+                    'tanggal_sakit' => [],
+                    'tanggal_alpa' => [],
+                ];
+            }
 
-    // Menambahkan tanggal ke kategori yang sesuai
-    switch ($item->stts_kehadiran) {
-        case 'Hadir':
-            $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_hadir'][] = $item->tanggal;
-            break;
-        case 'Belum Hadir':
-            $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_belum_hadir'][] = $item->tanggal;
-            break;
-        case 'Ijin':
-            $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_ijin'][] = $item->tanggal;
-            break;
-        case 'Sakit':
-            $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_sakit'][] = $item->tanggal;
-            break;
-        case 'Alpa':
-            $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_alpa'][] = $item->tanggal;
-            break;
-    }
-}
+            // Menambahkan tanggal ke kategori yang sesuai
+            switch ($item->stts_kehadiran) {
+                case 'Hadir':
+                    $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_hadir'][] = \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y');
+                    break;
+                case 'Belum Hadir':
+                    $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_belum_hadir'][] = \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y');
 
-// Memastikan bahwa hasilnya adalah array siswa
-foreach ($siswaAbsensiBulan as $bulan => $siswaData) {
-    $siswaAbsensiBulan[$bulan] = array_values($siswaData);
-}
+                    break;
+                case 'Ijin':
+                    $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_ijin'][] = \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y');
+
+                    break;
+                case 'Sakit':
+                    $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_sakit'][] = \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y');
+
+                    break;
+                case 'Alpa':
+                    $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_alpa'][] = \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y');
+
+                    break;
+            }
+        }
+
+        // Memastikan bahwa hasilnya adalah array siswa
+        foreach ($siswaAbsensiBulan as $bulan => $siswaData) {
+            $siswaAbsensiBulan[$bulan] = array_values($siswaData);
+        }
 
         
         // Mengurutkan siswa berdasarkan no_absen
@@ -574,8 +577,21 @@ foreach ($siswaAbsensiBulan as $bulan => $siswaData) {
         $tahunPelajaran = $mapel->tahpel->th_pelajaran;
         
         // Generate PDF
-        $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact('siswaAbsensi', 'siswaAbsensiBulan', 'mapel',
-        'totalHadir', 'totalBelumHadir', 'totalIjin', 'totalSakit', 'totalAlpa', 'guru', 'kelas', 'semester', 'tahunPelajaran'));
+        $pdf = Pdf::loadView('tampilan.absensi.tampilan_unduh_persemester', compact(
+            'siswaAbsensi', 
+            'siswaAbsensiBulan', 
+            'mapel',
+            'totalHadir', 
+            'totalBelumHadir', 
+            'totalIjin', 
+            'totalSakit', 
+            'totalAlpa', 
+            'guru', 
+            'kelas', 
+            'semester', 
+            'tahunPelajaran'
+        ));
+        
         
         return $pdf->download('Laporan-Absensi-Per-Semester.pdf');
     }

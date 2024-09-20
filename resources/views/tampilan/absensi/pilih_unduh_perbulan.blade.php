@@ -29,9 +29,10 @@
                             <select class="form-select me-2" name="bulan" style="width: 300px;" required
                                 onchange="document.getElementById('filterForm').submit();">
                                 <option value="" disabled selected>Pilih Bulan</option>
-                                @foreach($months->unique('month', 'year') as $month)
+                                @foreach($months as $month)
                                 <option value="{{ $month->year }}-{{ str_pad($month->month, 2, '0', STR_PAD_LEFT) }}"
-                                    @if($selected_month==$month->year.'-'.str_pad($month->month, 2, '0', STR_PAD_LEFT))
+                                    @if($selected_month==$month->year . '-' . str_pad($month->month, 2, '0',
+                                    STR_PAD_LEFT))
                                     selected @endif>
                                     {{ \Carbon\Carbon::createFromFormat('m', $month->month)->translatedFormat('F') }}
                                     {{ $month->year }}
