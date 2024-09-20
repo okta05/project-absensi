@@ -361,7 +361,7 @@ public function pilihDataAbsensi(Request $request)
             // Kelompokkan data absensi berdasarkan tanggal dan jam
             foreach ($absensi as $data) {
                 $tanggal = Carbon::parse($data->tanggal)->format('d-m-Y');
-                $jam = Carbon::parse($data->tanggal)->format('H:i');
+                $jam = Carbon::parse($data->jam)->format('H:i');
             
                 $grouped_absensi[$tanggal][$jam][] = $data;
             }
