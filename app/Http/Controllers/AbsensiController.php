@@ -434,31 +434,35 @@ public function pilihDataAbsensi(Request $request)
         public function unduhPersemester(Request $request)
         {
             session()->put('previous_url', url()->previous());
-        
+            
             $mapel_id = $request->input('id_mapel');
-        
+            
             if (!$mapel_id) {
                 return redirect()->route('mapel.absensi');
             }
-        
+            
             // Ambil data mata pelajaran berdasarkan id_mapel
             $mapel = Mapel::find($mapel_id);
-        
+            
             // Ambil semester dari mata pelajaran
             $semester = $mapel ? $mapel->semester : null;
-        
-            // Ambil data absensi berdasarkan id_mapel, dikelompokkan berdasarkan tanggal
+            
+            // Ambil data absensi berdasarkan id_mapel, dikelompokkan berdasarkan tanggal dan jam
             $absensi = Absensi::where('id_mapel', $mapel_id)
-                              ->select('tanggal', 'jam')
-                              ->groupBy('tanggal', 'jam')
-                              ->get();
+                ->select('tanggal', 'jam', DB::raw('count(id_siswa) as total_siswa'))
+                ->groupBy('tanggal', 'jam')
+                ->get();
         
-            return view('tampilan.absensi.pilih_unduh_persemester', compact('mapel_id', 'semester', 'absensi'));
+            // Fetch the unique ids for each group to pass to the view
+            $absensiIds = Absensi::where('id_mapel', $mapel_id)
+                ->whereIn('tanggal', $absensi->pluck('tanggal'))
+                ->whereIn('jam', $absensi->pluck('jam'))
+                ->get(['id_absensi', 'tanggal', 'jam']);
+        
+            return view('tampilan.absensi.pilih_unduh_persemester', compact('mapel_id', 'semester', 'absensi', 'absensiIds'));
         }
         
-
         
-
         public function unduhAbsensiPerSemester(Request $request)
         {
             // Simpan URL sebelumnya dalam session

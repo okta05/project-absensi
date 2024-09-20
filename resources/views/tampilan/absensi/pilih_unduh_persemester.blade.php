@@ -43,6 +43,7 @@
                             <tr>
                                 <th>Tanggal</th>
                                 <th>Jam</th>
+                                <th>Total Siswa</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -51,8 +52,15 @@
                             <tr>
                                 <td>{{ $data->tanggal }}</td>
                                 <td>{{ $data->jam }}</td>
+                                <td>{{ $data->total_siswa }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-info btn-sm">
+                                    @php
+                                    // Get the first id_absensi for this group
+                                    $id_absensi = $absensiIds->where('tanggal', $data->tanggal)->where('jam',
+                                    $data->jam)->first()->id_absensi ?? null;
+                                    @endphp
+                                    <a href="{{ route('absensi.detail', ['id' => $id_absensi]) }}"
+                                        class="btn btn-info btn-sm">
                                         <i class="bi bi-eye"></i> Lihat Detail
                                     </a>
                                 </td>
@@ -60,10 +68,11 @@
                             @endforeach
                             @if($absensi->isEmpty())
                             <tr>
-                                <td colspan="3" class="text-center">Tidak ada data absensi untuk semester ini.</td>
+                                <td colspan="4" class="text-center">Tidak ada data absensi untuk semester ini.</td>
                             </tr>
                             @endif
                         </tbody>
+
                     </table>
                 </div>
 
