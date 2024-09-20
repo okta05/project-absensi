@@ -11,6 +11,7 @@ use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Tahpel;
 use App\Helpers\TelegramHelper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -626,6 +627,7 @@ class AbsensiController extends Controller
             $status_kehadiran = $row[10]; // Asumsi kolom ke-12 berisi status kehadiran
             $tanggal = $row[5]; // Asumsi kolom ke-7 berisi tanggal
             $jam = $row[6]; // Asumsi kolom ke-8 berisi jam
+            $tahpel = $row[4]; // Asumsi kolom ke-8 berisi jam
     
             // Cari nama guru, kelas, mapel dari excel
             $nama_guru = $row[3]; // Asumsi kolom ke-4 berisi nama guru
@@ -635,7 +637,8 @@ class AbsensiController extends Controller
             // Cari ID guru, kelas, mapel berdasarkan nama
             $guru = Guru::where('nama', $nama_guru)->first();
             $kelas = Kelas::where('nm_kelas', $nama_kelas)->first();
-            $mapel = Mapel::where('nm_mapel', $nama_mapel)->first();
+            $mapel = Mapel::where('nm_mapel', operator: $nama_mapel)->first();
+            $tahun_pelajaran = Tahpel::where('th_pelajaran', $tahpel)->first();
     
             // Debugging: Cek apakah guru, kelas, atau mapel ditemukan
             if (!$guru) {
@@ -665,7 +668,7 @@ class AbsensiController extends Controller
                     'id_siswa' => $siswa->id_siswa,
                     'id_mapel' => $mapel->id_mapel, // Gunakan ID mapel yang ditemukan
                     'id_kelas' => $kelas->id_kelas, // Gunakan ID kelas yang ditemukan
-                    'id_tahpel' => $request->id_tahpel, // Anda bisa menambahkan logika untuk mendapatkan id_tahpel
+                    'id_tahpel' => $tahun_pelajaran->id_tahpel, // Anda bisa menambahkan logika untuk mendapatkan id_tahpel
                     'id_guru' => $guru->id_guru, // Gunakan ID guru yang ditemukan
                     'tanggal' => $tanggal,
                     'jam' => $jam,
