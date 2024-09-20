@@ -391,6 +391,7 @@ class AbsensiController extends Controller
                 ->get();
         
             // Menghitung jumlah kehadiran dan ketidakhadiran per siswa
+            // Menghitung jumlah kehadiran dan ketidakhadiran per siswa
             $siswaAbsensi = $absensi->groupBy('id_siswa')->map(function ($items) {
                 return [
                     'nama' => $items->first()->siswa->nama,
@@ -401,6 +402,11 @@ class AbsensiController extends Controller
                     'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),
                     'sakit' => $items->where('stts_kehadiran', 'Sakit')->count(),
                     'alpa' => $items->where('stts_kehadiran', 'Alpa')->count(),
+                    'tanggal_hadir' => $items->where('stts_kehadiran', 'Hadir')->pluck('tanggal')->toArray(),
+                    'tanggal_belum_hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->pluck('tanggal')->toArray(),
+                    'tanggal_ijin' => $items->where('stts_kehadiran', 'Ijin')->pluck('tanggal')->toArray(),
+                    'tanggal_sakit' => $items->where('stts_kehadiran', 'Sakit')->pluck('tanggal')->toArray(),
+                    'tanggal_alpa' => $items->where('stts_kehadiran', 'Alpa')->pluck('tanggal')->toArray(),
                 ];
             });
 

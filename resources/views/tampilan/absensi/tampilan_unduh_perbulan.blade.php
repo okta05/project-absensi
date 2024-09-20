@@ -116,6 +116,49 @@
             </tbody>
         </table>
 
+        <!-- Tabel Absensi Siswa -->
+        <h3>Rincian Kehadiran Siswa</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No Absen</th>
+                    <th>Nama Siswa</th>
+                    <th>NIS</th>
+                    <th>Tanggal Hadir</th>
+                    <th>Tanggal Belum Hadir</th>
+                    <th>Tanggal Ijin</th>
+                    <th>Tanggal Sakit</th>
+                    <th>Tanggal Alpa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($siswaAbsensi as $item)
+                <tr>
+                    <td>{{ $item['no_absen'] }}</td>
+                    <td>{{ $item['nama'] }}</td>
+                    <td>{{ $item['nis'] }}</td>
+                    <td>{{ implode(', ', array_map(function($date) {
+                return \Carbon\Carbon::parse($date)->format('d');
+            }, $item['tanggal_hadir'])) }}</td>
+                    <td>{{ implode(', ', array_map(function($date) {
+                return \Carbon\Carbon::parse($date)->format('d');
+            }, $item['tanggal_belum_hadir'])) }}</td>
+                    <td>{{ implode(', ', array_map(function($date) {
+                return \Carbon\Carbon::parse($date)->format('d');
+            }, $item['tanggal_ijin'])) }}</td>
+                    <td>{{ implode(', ', array_map(function($date) {
+                return \Carbon\Carbon::parse($date)->format('d');
+            }, $item['tanggal_sakit'])) }}</td>
+                    <td>{{ implode(', ', array_map(function($date) {
+                return \Carbon\Carbon::parse($date)->format('d');
+            }, $item['tanggal_alpa'])) }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+
+
         <!-- Tabel Total Kehadiran -->
         <h3>Total Kehadiran per Status:</h3>
         <table class="summary-table">
