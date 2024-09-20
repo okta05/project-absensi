@@ -449,7 +449,7 @@ public function pilihDataAbsensi(Request $request)
             
             // Ambil data absensi berdasarkan id_mapel, dikelompokkan berdasarkan tanggal dan jam
             $absensi = Absensi::where('id_mapel', $mapel_id)
-                ->select('tanggal', 'jam', DB::raw('count(id_siswa) as total_siswa'))
+                ->select('tanggal', 'jam')
                 ->groupBy('tanggal', 'jam')
                 ->get();
         

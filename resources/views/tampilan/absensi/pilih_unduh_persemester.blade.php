@@ -43,7 +43,6 @@
                             <tr>
                                 <th>Tanggal</th>
                                 <th>Jam</th>
-                                <th>Total Siswa</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -52,7 +51,6 @@
                             <tr>
                                 <td>{{ $data->tanggal }}</td>
                                 <td>{{ $data->jam }}</td>
-                                <td>{{ $data->total_siswa }}</td>
                                 <td>
                                     @php
                                     // Get the first id_absensi for this group
