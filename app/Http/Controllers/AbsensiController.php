@@ -498,8 +498,14 @@ class AbsensiController extends Controller
                 'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),
                 'sakit' => $items->where('stts_kehadiran', 'Sakit')->count(),
                 'alpa' => $items->where('stts_kehadiran', 'Alpa')->count(),
+                'tanggal_hadir' => $items->where('stts_kehadiran', 'Hadir')->pluck('tanggal')->toArray(),
+                'tanggal_belum_hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->pluck('tanggal')->toArray(),
+                'tanggal_ijin' => $items->where('stts_kehadiran', 'Ijin')->pluck('tanggal')->toArray(),
+                'tanggal_sakit' => $items->where('stts_kehadiran', 'Sakit')->pluck('tanggal')->toArray(),
+                'tanggal_alpa' => $items->where('stts_kehadiran', 'Alpa')->pluck('tanggal')->toArray(),
             ];
         });
+        
         
         // Mengurutkan siswa berdasarkan no_absen
         $siswaAbsensi = $siswaAbsensi->sortBy('no_absen');

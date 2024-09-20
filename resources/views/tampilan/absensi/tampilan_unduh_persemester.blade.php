@@ -144,6 +144,35 @@
             </tbody>
         </table>
 
+        <!-- Siswa Absensi Tanggal Table -->
+        <h2>Detail Kehadiran Siswa</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nama Siswa</th>
+                    <th>NIS</th>
+                    <th>Tanggal Hadir</th>
+                    <th>Tanggal Belum Hadir</th>
+                    <th>Tanggal Ijin</th>
+                    <th>Tanggal Sakit</th>
+                    <th>Tanggal Alpa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($siswaAbsensi as $siswa)
+                <tr>
+                    <td>{{ $siswa['nama'] }}</td>
+                    <td>{{ $siswa['nis'] }}</td>
+                    <td>{{ implode(', ', $siswa['tanggal_hadir']) }}</td>
+                    <td>{{ implode(', ', $siswa['tanggal_belum_hadir']) }}</td>
+                    <td>{{ implode(', ', $siswa['tanggal_ijin']) }}</td>
+                    <td>{{ implode(', ', $siswa['tanggal_sakit']) }}</td>
+                    <td>{{ implode(', ', $siswa['tanggal_alpa']) }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
         <!-- Summary Table -->
         <div class="summary">
             <h2>Total Status Kehadiran</h2>
