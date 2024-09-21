@@ -47,6 +47,7 @@
                     class="stretched-link"></a>
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ $mapel->nm_mapel }}</h5> <!-- Nama mata pelajaran -->
+                    <h5 class="card-title">{{ $mapel->semester }}</h5> <!-- Nama mata pelajaran -->
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                             <i class="bi bi-book-half"></i>
