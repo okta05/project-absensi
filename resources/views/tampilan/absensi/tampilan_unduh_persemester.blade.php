@@ -6,81 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Absensi Per Semester</title>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    .container {
-        width: 100%;
-        margin: 0 auto;
-        padding: 20px;
-    }
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    .header,
-    .footer {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+        .header,
+        .footer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    .header h1 {
-        margin: 0;
-    }
+        .header h1 {
+            margin: 0;
+        }
 
-    .info-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-    }
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
 
-    .info-table th,
-    .info-table td {
-        border: 1px solid #000;
-        padding: 8px;
-        text-align: left;
-    }
+        .info-table th,
+        .info-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
 
-    .info-table th {
-        background-color: #f2f2f2;
-    }
+        .info-table th {
+            background-color: #f2f2f2;
+        }
 
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-    }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
 
-    .table th,
-    .table td {
-        border: 1px solid #000;
-        padding: 8px;
-        text-align: left;
-    }
+        .table th,
+        .table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
 
-    .table th {
-        background-color: #f2f2f2;
-    }
+        .table th {
+            background-color: #f2f2f2;
+        }
 
-    .summary {
-        margin-top: 20px;
-    }
+        .summary {
+            margin-top: 20px;
+        }
 
-    .summary table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+        .summary table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-    .summary table th,
-    .summary table td {
-        border: 1px solid #000;
-        padding: 8px;
-        text-align: left;
-    }
+        .summary table th,
+        .summary table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
 
-    .summary table th {
-        background-color: #f2f2f2;
-    }
+        .summary table th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 
@@ -167,11 +167,16 @@
                 <tr>
                     <td>{{ $siswa['nama'] }}</td>
                     <td>{{ $siswa['nis'] }}</td>
-                    <td>{{ implode(', ', $siswa['tanggal_hadir']) }}</td>
-                    <td>{{ implode(', ', $siswa['tanggal_belum_hadir']) }}</td>
-                    <td>{{ implode(', ', $siswa['tanggal_ijin']) }}</td>
-                    <td>{{ implode(', ', $siswa['tanggal_sakit']) }}</td>
-                    <td>{{ implode(', ', $siswa['tanggal_alpa']) }}</td>
+                    <td>{{ implode(', ', array_map(fn($tanggal) => \Carbon\Carbon::parse($tanggal)->format('d'), $siswa['tanggal_hadir'])) }}
+                    </td>
+                    <td>{{ implode(', ', array_map(fn($tanggal) => \Carbon\Carbon::parse($tanggal)->format('d'), $siswa['tanggal_belum_hadir'])) }}
+                    </td>
+                    <td>{{ implode(', ', array_map(fn($tanggal) => \Carbon\Carbon::parse($tanggal)->format('d'), $siswa['tanggal_ijin'])) }}
+                    </td>
+                    <td>{{ implode(', ', array_map(fn($tanggal) => \Carbon\Carbon::parse($tanggal)->format('d'), $siswa['tanggal_sakit'])) }}
+                    </td>
+                    <td>{{ implode(', ', array_map(fn($tanggal) => \Carbon\Carbon::parse($tanggal)->format('d'), $siswa['tanggal_alpa'])) }}
+                    </td>
                 </tr>
                 @endforeach
                 @else
