@@ -10,10 +10,11 @@
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house-door-fill"></i></a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
-                <li class="breadcrumb-item"><a href="{{ session('previous_url', route('mapel.absensi')) }}">Absensi</a>
-                </li>
+                <li class="breadcrumb-item"><a
+                        href="{{ route('pilih_data.absensi', ['id_mapel' => $mapel->id_mapel]) }}">Absensi</a></li>
                 <li class="breadcrumb-item"><a href="#">Unduh Perbulan</a></li>
             </ol>
+
         </nav>
     </div><!-- End Page Title -->
 
