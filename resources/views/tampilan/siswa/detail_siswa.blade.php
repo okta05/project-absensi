@@ -64,6 +64,12 @@
                                 <div class="col-lg-9 col-md-8">{{$viewDataSiswa->kelas->nm_kelas}}</div>
                             </div>
 
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">No Absen</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->no_absen}}</div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Tahun Masuk</div>
                                 <div class="col-lg-9 col-md-8">{{$viewDataSiswa->th_masuk}}</div>
@@ -71,7 +77,9 @@
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Tempat, Tanggal Lahir</div>
-                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->tpt_lahir}}, {{$viewDataSiswa->tgl_lahir}}</div>
+                                <div class="col-lg-9 col-md-8">{{$viewDataSiswa->tpt_lahir}},
+                                    {{$viewDataSiswa->tgl_lahir}}
+                                </div>
                             </div>
 
                             <div class="row">
