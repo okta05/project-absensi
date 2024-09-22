@@ -12,7 +12,7 @@
                 <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
                 <li class="breadcrumb-item"><a href="{{ session('previous_url', route('mapel.absensi')) }}">Absensi</a>
                 </li>
-                <li class="breadcrumb-item"><a href="#">Lihat Absensi</a></li>
+                <li class="breadcrumb-item"><a href="#">Unduh Perbulan</a></li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -80,7 +80,7 @@
                                 @endif
                                 <td>{{ $jam }}</td>
                                 <td>
-                                    <a href="{{ route('absensi.detail', $absensiItems[0]->id_absensi) }}"
+                                    <a href="{{ route('detail.unduh.perbulan', $absensiItems[0]->id_absensi) }}"
                                         class="btn btn-info btn-sm">
                                         <i class="bi bi-eye"></i> Lihat Detail
                                     </a>

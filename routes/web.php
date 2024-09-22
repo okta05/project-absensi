@@ -185,6 +185,7 @@ Route::middleware(['auth:admin,kepsek,bk,wakel,guru', 'verified'])->group(functi
         Route::get('/unduh-absensi-persemester', [AbsensiController::class, 'unduhAbsensiPerSemester'])->name('unduh_absensi.persemester');
         Route::get('/absensi/perbulan', [AbsensiController::class, 'tampilkanPerbulan'])->name('tampilkan_absensi_perbulan');
         Route::post('/import-absensi', [AbsensiController::class, 'importExcel'])->name('import.absensi');
+        Route::get('/detail/unduh-perbulan/{id}', [AbsensiController::class, 'detailUnduhPerbulan'])->name('detail.unduh.perbulan');
     });
 });
 

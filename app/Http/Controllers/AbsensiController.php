@@ -702,4 +702,24 @@ class AbsensiController extends Controller
             return redirect()->back()->with('error', 'Data mapel tidak ditemukan dalam file.');
         }
     }
+
+    public function detailUnduhPerbulan($id)
+    {
+        session()->put('previous_url', url()->previous());
+
+        $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
+            ->findOrFail($id);
+
+        // Ambil data absensi yang sesuai dengan tanggal dan jam
+        $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
+            ->where('tanggal', $absensi->tanggal)
+            ->where('jam', $absensi->jam)
+            ->with('siswa')
+            ->get();
+
+        // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
+        $siswas = $absensi->kelas->siswa->sortBy('no_absen');
+
+        return view('tampilan.absensi.detail_unduh_perbulan', compact('absensi', 'absensiDetails', 'siswas'));
+    }
 }
