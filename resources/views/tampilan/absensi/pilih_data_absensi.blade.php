@@ -154,8 +154,8 @@
                                                         <i class="bi bi-pencil-square"></i>
                                                     </a>
                                                     <!-- <a class="btn btn-danger" id="delete" href="{{ route('absensi.delete', $absen->id_absensi) }}">
-                                                                <i class="bi bi-trash"></i>
-                                                            </a> -->
+                                                                        <i class="bi bi-trash"></i>
+                                                                    </a> -->
                                                     <a class="btn btn-secondary"
                                                         href="{{ route('pilih.unduhan', $absen->id_absensi) }}">
                                                         <i class="bi bi-download"></i>
