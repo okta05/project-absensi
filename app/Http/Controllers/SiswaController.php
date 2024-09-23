@@ -182,7 +182,7 @@ class SiswaController extends Controller
             }
 
             // Mapping nama kelas ke ID kelas
-            $idKelas = $kelasMap[$row[2]] ?? null;
+            $idKelas = $kelasMap[$row[3]] ?? null;
 
             // Jika ID kelas tidak ditemukan, tambahkan kelas baru
             if (!$idKelas) {
