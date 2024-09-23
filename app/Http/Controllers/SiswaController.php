@@ -188,25 +188,26 @@ class SiswaController extends Controller
             if (!$idKelas) {
                 // Tambah kelas baru
                 $kelasBaru = Kelas::create([
-                    'nm_kelas' => $row[2], // Nama kelas dari file Excel
+                    'nm_kelas' => $row[3], // Nama kelas dari file Excel
                 ]);
                 $idKelas = $kelasBaru->id_kelas;
             }
 
             // Proses jenis kelamin (L = Laki-laki, P = Perempuan)
             $jenisKelamin = null;
-            if (strtoupper($row[4]) == 'L') {
+            if (strtoupper($row[5]) == 'L') {
                 $jenisKelamin = 'Laki-laki';
-            } elseif (strtoupper($row[4]) == 'P') {
+            } elseif (strtoupper($row[5]) == 'P') {
                 $jenisKelamin = 'Perempuan';
             }
 
             // Simpan data ke database
             Siswa::create([
-                'nama' => $row[0],
-                'nis' => $row[1],
+                'no_absen' => $row[0],
+                'nama' => $row[1],
+                'nis' => $row[2],
                 'id_kelas' => $idKelas,
-                'alamat' => $row[3],
+                'alamat' => $row[4],
                 'jns_kelamin' => $jenisKelamin, // Hasil mapping jenis kelamin
             ]);
         }
