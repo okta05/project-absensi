@@ -34,7 +34,7 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth:kepsek,admin,kurikulum,bk,wakel,guru', 'verified'] )->group(function () {
+Route::middleware(['auth:kepsek,admin,kurikulum,bk,wakel,guru', 'verified'])->group(function () {
     Route::get('/dashboard', [BerandaController::class, 'index'])->name('dashboard');
 });
 

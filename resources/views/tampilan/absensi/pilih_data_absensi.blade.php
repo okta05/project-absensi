@@ -31,148 +31,148 @@
     </form>
 
     @if($mapel)
-    <div class="row align-items-top">
-        <!-- Default Card -->
-        <div class="card" style="height: auto; padding: 10px;">
-            <div class="card-body">
-                <!-- Tombol untuk upload Excel -->
-                <form action="{{ route('import.absensi') }}" method="POST" enctype="multipart/form-data"
-                    class="d-inline">
-                    @csrf
-                    <input type="hidden" name="id_mapel" value="{{ $mapel->id_mapel }}">
-                    <input type="hidden" name="tanggal" value="{{ request('tanggal', session('filter_tanggal')) }}">
-                    <input type="file" name="file" accept=".xlsx, .xls" class="form-control-file me-2" required>
-                    <button type="submit" class="btn btn-info">
-                        <i class="bi bi-upload"></i> Upload Excel
-                    </button>
-                </form>
+        <div class="row align-items-top">
+            <!-- Default Card -->
+            <div class="card" style="height: auto; padding: 10px;">
+                <div class="card-body">
+                    <!-- Tombol untuk upload Excel -->
+                    <form action="{{ route('import.absensi') }}" method="POST" enctype="multipart/form-data"
+                        class="d-inline">
+                        @csrf
+                        <input type="hidden" name="id_mapel" value="{{ $mapel->id_mapel }}">
+                        <input type="hidden" name="tanggal" value="{{ request('tanggal', session('filter_tanggal')) }}">
+                        <input type="file" name="file" accept=".xlsx, .xls" class="form-control-file me-2" required>
+                        <button type="submit" class="btn btn-info">
+                            <i class="bi bi-upload"></i> Upload Excel
+                        </button>
+                    </form>
 
-                <div class="col-8 border border-3 p-3 mt-3 rounded shadow-sm">
-                    <div class="tab-content pt-1">
-                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
-                                    <span class="text-nowrap">Mata Pelajaran</span>
-                                    <span class="text-nowrap">:</span>
+                    <div class="col-8 border border-3 p-3 mt-3 rounded shadow-sm">
+                        <div class="tab-content pt-1">
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                        <span class="text-nowrap">Mata Pelajaran</span>
+                                        <span class="text-nowrap">:</span>
+                                    </div>
+                                    <div class="col-lg-8 col-md-7">
+                                        {{ $mapel->nm_mapel ?? 'Mata Pelajaran Tidak Ditemukan' }}
+                                    </div>
                                 </div>
-                                <div class="col-lg-8 col-md-7">
-                                    {{ $mapel->nm_mapel ?? 'Mata Pelajaran Tidak Ditemukan' }}
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                        <span class="text-nowrap">Kode Mata Pelajaran</span>
+                                        <span class="text-nowrap">:</span>
+                                    </div>
+                                    <div class="col-lg-8 col-md-7">
+                                        {{ $mapel->kd_mapel ?? 'Kode Tidak Ditemukan' }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
-                                    <span class="text-nowrap">Kode Mata Pelajaran</span>
-                                    <span class="text-nowrap">:</span>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                        <span class="text-nowrap">Kelas</span>
+                                        <span class="text-nowrap">:</span>
+                                    </div>
+                                    <div class="col-lg-8 col-md-7">
+                                        {{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }}
+                                    </div>
                                 </div>
-                                <div class="col-lg-8 col-md-7">
-                                    {{ $mapel->kd_mapel ?? 'Kode Tidak Ditemukan' }}
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                        <span class="text-nowrap">Guru</span>
+                                        <span class="text-nowrap">:</span>
+                                    </div>
+                                    <div class="col-lg-8 col-md-7">
+                                        {{ $mapel->guru->nama ?? 'Guru Tidak Ditemukan' }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
-                                    <span class="text-nowrap">Kelas</span>
-                                    <span class="text-nowrap">:</span>
-                                </div>
-                                <div class="col-lg-8 col-md-7">
-                                    {{ $mapel->kelas->nm_kelas ?? 'Kelas Tidak Ditemukan' }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
-                                    <span class="text-nowrap">Guru</span>
-                                    <span class="text-nowrap">:</span>
-                                </div>
-                                <div class="col-lg-8 col-md-7">
-                                    {{ $mapel->guru->nama ?? 'Guru Tidak Ditemukan' }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-5 d-flex justify-content-between">
-                                    <span class="text-nowrap">Tahun Pelajaran</span>
-                                    <span class="text-nowrap">:</span>
-                                </div>
-                                <div class="col-lg-8 col-md-7">
-                                    {{ $mapel->tahpel->th_pelajaran ?? 'Tahun Pelajaran Tidak Ditemukan' }}
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-5 d-flex justify-content-between">
+                                        <span class="text-nowrap">Tahun Pelajaran</span>
+                                        <span class="text-nowrap">:</span>
+                                    </div>
+                                    <div class="col-lg-8 col-md-7">
+                                        {{ $mapel->tahpel->th_pelajaran ?? 'Tahun Pelajaran Tidak Ditemukan' }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <hr class="my-4">
+                    <hr class="my-4">
 
-                <!-- Action Buttons -->
-                <div class="row mb-2">
-                    <div class="col-12 d-flex justify-content-start">
-                        <a href="{{ route('add.absensi', ['id_mapel' => $mapel->id_mapel]) }}"
-                            class="btn btn-success me-2">
-                            <i class="bi bi-journal-plus"></i> Tambah
-                        </a>
-                        <a href="{{ route('absensi.perbulan', ['id_mapel' => $mapel->id_mapel]) }}"
-                            class="btn btn-primary me-2">
-                            <i class="bi bi-download"></i> Unduh Per Bulan
-                        </a>
-                        <a href="{{ route('absensi.persemester', ['id_mapel' => $mapel->id_mapel]) }}"
-                            class="btn btn-primary">
-                            <i class="bi bi-download"></i> Unduh Per Semester
-                        </a>
+                    <!-- Action Buttons -->
+                    <div class="row mb-2">
+                        <div class="col-12 d-flex justify-content-start">
+                            <a href="{{ route('add.absensi', ['id_mapel' => $mapel->id_mapel]) }}"
+                                class="btn btn-success me-2">
+                                <i class="bi bi-journal-plus"></i> Tambah
+                            </a>
+                            <a href="{{ route('absensi.perbulan', ['id_mapel' => $mapel->id_mapel]) }}"
+                                class="btn btn-primary me-2">
+                                <i class="bi bi-download"></i> Unduh Per Bulan
+                            </a>
+                            <a href="{{ route('absensi.persemester', ['id_mapel' => $mapel->id_mapel]) }}"
+                                class="btn btn-primary">
+                                <i class="bi bi-download"></i> Unduh Per Semester
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Display Filtered Absensi Data -->
+                    <div class="card-body mt-3">
+                        <div class="table-responsive">
+                            <table class="table table-striped datatable">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Mata Pelajaran</th>
+                                        <th>Kode Mata Pelajaran</th>
+                                        <th>Semester</th>
+                                        <th>Jam</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($allDataAbsensi as $key => $absen)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($absen->tanggal)->translatedFormat('d F Y') }}</td>
+                                            <td>{{ $absen->mapel->nm_mapel ?? 'tidak ditemukan' }}</td>
+                                            <td>{{ $absen->mapel->kd_mapel ?? 'tidak ditemukan' }}</td>
+                                            <td>{{ $absen->mapel->semester ?? 'tidak ditemukan' }}</td>
+                                            <td>{{ $absen->jam }}</td>
+                                            <td>
+                                                <div class="d-flex gap-2">
+                                                    <a class="btn btn-primary"
+                                                        href="{{ route('absensi.detail', $absen->id_absensi) }}">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>
+                                                    <a class="btn btn-warning"
+                                                        href="{{ route('absensi.edit', $absen->id_absensi) }}">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </a>
+                                                    <!-- <a class="btn btn-danger" id="delete" href="{{ route('absensi.delete', $absen->id_absensi) }}">
+                                                                <i class="bi bi-trash"></i>
+                                                            </a> -->
+                                                    <a class="btn btn-secondary"
+                                                        href="{{ route('pilih.unduhan', $absen->id_absensi) }}">
+                                                        <i class="bi bi-download"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Display Filtered Absensi Data -->
-                <div class="card-body mt-3">
-                    <div class="table-responsive">
-                        <table class="table table-striped datatable">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Tanggal</th>
-                                    <th>Mata Pelajaran</th>
-                                    <th>Kode Mata Pelajaran</th>
-                                    <th>Semester</th>
-                                    <th>Jam</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($allDataAbsensi as $key => $absen)
-                                <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($absen->tanggal)->translatedFormat('d F Y') }}</td>
-                                    <td>{{ $absen->mapel->nm_mapel ?? 'tidak ditemukan' }}</td>
-                                    <td>{{ $absen->mapel->kd_mapel ?? 'tidak ditemukan' }}</td>
-                                    <td>{{ $absen->mapel->semester ?? 'tidak ditemukan' }}</td>
-                                    <td>{{ $absen->jam }}</td>
-                                    <td>
-                                        <div class="d-flex gap-2">
-                                            <a class="btn btn-primary"
-                                                href="{{ route('absensi.detail', $absen->id_absensi) }}">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a class="btn btn-warning"
-                                                href="{{ route('absensi.edit', $absen->id_absensi) }}">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </a>
-                                            <!-- <a class="btn btn-danger" id="delete" href="{{ route('absensi.delete', $absen->id_absensi) }}">
-                                                <i class="bi bi-trash"></i>
-                                            </a> -->
-                                            <a class="btn btn-secondary"
-                                                href="{{ route('pilih.unduhan', $absen->id_absensi) }}">
-                                                <i class="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div><!-- End Default Card -->
-    </div>
+            </div><!-- End Default Card -->
+        </div>
     @else
-    <p>Silakan pilih mata pelajaran terlebih dahulu.</p>
+        <p>Silakan pilih mata pelajaran terlebih dahulu.</p>
     @endif
 
 </section>
