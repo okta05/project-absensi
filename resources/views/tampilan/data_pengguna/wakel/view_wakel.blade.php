@@ -32,7 +32,6 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>NIP</th>
-                                    <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
                                     <th>Nomor Telepon</th>
                                     <th>Aksi</th>
@@ -46,17 +45,20 @@
                                     <td>{{$wakel->nama}}</td>
                                     <td>{{$wakel->nip}}</td>
                                     <td>{{$wakel->jns_kelamin}}</td>
-                                    <td>{{$wakel->alamat}}</td>
                                     <td>{{$wakel->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('wakel.detail', $wakel->id_wakel) }}"><i
+                                            <a class="btn btn-primary"
+                                                href="{{ route('wakel.detail', $wakel->id_wakel) }}"><i
                                                     class="bi bi-eye"></i></a>
 
-                                            <a class="btn btn-warning" href="{{ route('wakel.edit', $wakel->id_wakel) }}"><i
+                                            <a class="btn btn-warning"
+                                                href="{{ route('wakel.edit', $wakel->id_wakel) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" id="delete" href="{{ route('wakel.delete', $wakel->id_wakel) }}"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete"
+                                                href="{{ route('wakel.delete', $wakel->id_wakel) }}"><i
+                                                    class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
