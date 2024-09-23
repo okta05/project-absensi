@@ -78,7 +78,7 @@
                                     <th>No Absen</th>
                                     <th>Nama</th>
                                     <th>Kelas</th>
-                                    <th>NIS</th>
+                                    <th>NISN/NIS</th>
                                     <th>Alamat</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Aksi</th>
@@ -95,9 +95,11 @@
                                     <td>{{ $siswa->alamat }}</td>
                                     <td>{{ $siswa->jns_kelamin }}</td>
                                     <td>
-                                        @if(auth('admin')->check() || auth('kepsek')->check() ||
+                                        @if(
+                                        auth('admin')->check() || auth('kepsek')->check() ||
                                         auth('kurikulum')->check() || auth('bk')->check() || auth('wakel')->check() ||
-                                        auth('guru')->check())
+                                        auth('guru')->check()
+                                        )
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button"
                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -116,8 +118,10 @@
                                                         id="delete">Hapus</a></li>
                                                 @endif
 
-                                                @if(auth('kepsek')->check() || auth('kurikulum')->check() ||
-                                                auth('bk')->check() || auth('wakel')->check() || auth('guru')->check())
+                                                @if(
+                                                auth('kepsek')->check() || auth('kurikulum')->check() ||
+                                                auth('bk')->check() || auth('wakel')->check() || auth('guru')->check()
+                                                )
                                                 <li><a class="dropdown-item text-primary"
                                                         href="{{ route('siswa.detail', $siswa->id_siswa) }}">Detail</a>
                                                 </li>
