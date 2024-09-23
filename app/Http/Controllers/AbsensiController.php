@@ -471,7 +471,7 @@ class AbsensiController extends Controller
             ->whereIn('jam', $absensi->pluck('jam'))
             ->get(['id_absensi', 'tanggal', 'jam']);
 
-        return view('tampilan.absensi.pilih_unduh_persemester', compact('mapel_id', 'semester', 'absensi', 'absensiIds'));
+        return view('tampilan.absensi.pilih_unduh_persemester', compact('mapel_id', 'mapel', 'semester', 'absensi', 'absensiIds'));
     }
 
     public function unduhAbsensiPerSemester(Request $request)
@@ -721,5 +721,25 @@ class AbsensiController extends Controller
         $siswas = $absensi->kelas->siswa->sortBy('no_absen');
 
         return view('tampilan.absensi.detail_unduh_perbulan', compact('absensi', 'absensiDetails', 'siswas'));
+    }
+
+    public function detailUnduhPersemester($id)
+    {
+        session()->put('previous_url', url()->previous());
+
+        $absensi = Absensi::with('mapel', 'kelas.siswa', 'guru', 'tahpel', 'siswa')
+            ->findOrFail($id);
+
+        // Ambil data absensi yang sesuai dengan tanggal dan jam
+        $absensiDetails = Absensi::where('id_mapel', $absensi->id_mapel)
+            ->where('tanggal', $absensi->tanggal)
+            ->where('jam', $absensi->jam)
+            ->with('siswa')
+            ->get();
+
+        // Ambil data siswa berdasarkan kelas yang terkait dengan absensi
+        $siswas = $absensi->kelas->siswa->sortBy('no_absen');
+
+        return view('tampilan.absensi.detail_unduh_persemester', compact('absensi', 'absensiDetails', 'siswas'));
     }
 }

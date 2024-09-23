@@ -10,8 +10,8 @@
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house-door-fill"></i></a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
-                <li class="breadcrumb-item"><a href="{{ session('previous_url', route('mapel.absensi')) }}">Absensi</a>
-                </li>
+                <li class="breadcrumb-item"><a
+                        href="{{ route('pilih_data.absensi', ['id_mapel' => $mapel->id_mapel]) }}">Absensi</a></li>
                 <li class="breadcrumb-item"><a href="#">Unduh Per Semester</a></li>
             </ol>
         </nav>
@@ -48,26 +48,28 @@
                         </thead>
                         <tbody>
                             @foreach($absensi as $data)
-                            <tr>
-                                <td>{{ $data->tanggal }}</td>
-                                <td>{{ $data->jam }}</td>
-                                <td>
-                                    @php
-                                    // Get the first id_absensi for this group
-                                    $id_absensi = $absensiIds->where('tanggal', $data->tanggal)->where('jam',
-                                    $data->jam)->first()->id_absensi ?? null;
-                                    @endphp
-                                    <a href="{{ route('absensi.detail', ['id' => $id_absensi]) }}"
-                                        class="btn btn-info btn-sm">
-                                        <i class="bi bi-eye"></i> Lihat Detail
-                                    </a>
-                                </td>
-                            </tr>
+                                                        <tr>
+                                                            <td>{{ $data->tanggal }}</td>
+                                                            <td>{{ $data->jam }}</td>
+                                                            <td>
+                                                                @php
+                                                                    // Get the first id_absensi for this group
+                                                                    $id_absensi = $absensiIds->where('tanggal', $data->tanggal)->where(
+                                                                        'jam',
+                                                                        $data->jam
+                                                                    )->first()->id_absensi ?? null;
+                                                                @endphp
+                                                                <a href="{{ route('detail.unduh.persemester', ['id' => $id_absensi]) }}"
+                                                                    class="btn btn-info btn-sm">
+                                                                    <i class="bi bi-eye"></i> Lihat Detail
+                                                                </a>
+                                                            </td>
+                                                        </tr>
                             @endforeach
                             @if($absensi->isEmpty())
-                            <tr>
-                                <td colspan="4" class="text-center">Tidak ada data absensi untuk semester ini.</td>
-                            </tr>
+                                <tr>
+                                    <td colspan="4" class="text-center">Tidak ada data absensi untuk semester ini.</td>
+                                </tr>
                             @endif
                         </tbody>
 
