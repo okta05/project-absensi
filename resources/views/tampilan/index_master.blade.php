@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{asset('assets/img/logo-rev1.png')}}" rel="icon">
-    <link href="{{asset('assets/img/logo-rev1.png')}}" rel="apple-touch-icon">
+    <link href="{{asset('assets/img/logo_smp.png')}}" rel="icon">
+    <link href="{{asset('assets/img/logo_smp.png')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -72,186 +72,186 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('#delete').forEach(function(button) {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                const url = this.getAttribute('href');
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "btn btn-danger"
-                    },
-                    buttonsStyling: false
-                });
-                swalWithBootstrapButtons.fire({
-                    title: "Apakah anda yakin?",
-                    text: "Data tidak akan dikembalikan setelah dihapus!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Ya, hapus data!",
-                    cancelButtonText: "Tidak, batalkan!",
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = url;
-                        swalWithBootstrapButtons.fire({
-                            title: 'Terhapus!',
-                            text: "Data berhasil dihapus.",
-                            icon: "success"
-                        });
-                    } else if (
-                        /* Read more about handling dismissals below */
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        swalWithBootstrapButtons.fire({
-                            title: "Dibatalkan",
-                            text: "Data kembali disimpan",
-                            icon: "error"
-                        });
-                    }
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('#delete').forEach(function (button) {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const url = this.getAttribute('href');
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: "btn btn-success",
+                            cancelButton: "btn btn-danger"
+                        },
+                        buttonsStyling: false
+                    });
+                    swalWithBootstrapButtons.fire({
+                        title: "Apakah anda yakin?",
+                        text: "Data tidak akan dikembalikan setelah dihapus!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Ya, hapus data!",
+                        cancelButtonText: "Tidak, batalkan!",
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = url;
+                            swalWithBootstrapButtons.fire({
+                                title: 'Terhapus!',
+                                text: "Data berhasil dihapus.",
+                                icon: "success"
+                            });
+                        } else if (
+                            /* Read more about handling dismissals below */
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons.fire({
+                                title: "Dibatalkan",
+                                text: "Data kembali disimpan",
+                                icon: "error"
+                            });
+                        }
+                    });
                 });
             });
         });
-    });
     </script>
 
     <script>
-    const inputFoto_siswa = document.querySelector('#foto_siswa');
-    const previewFoto_siswa = document.querySelector('#previewFoto_siswa');
+        const inputFoto_siswa = document.querySelector('#foto_siswa');
+        const previewFoto_siswa = document.querySelector('#previewFoto_siswa');
 
-    inputFoto_siswa.addEventListener('change', function() {
-        const file = inputFoto_siswa.files[0];
-        const reader = new FileReader();
+        inputFoto_siswa.addEventListener('change', function () {
+            const file = inputFoto_siswa.files[0];
+            const reader = new FileReader();
 
-        reader.onload = function(e) {
-            previewFoto_siswa.src = e.target.result;
-        }
+            reader.onload = function (e) {
+                previewFoto_siswa.src = e.target.result;
+            }
 
-        reader.readAsDataURL(file);
-    });
-    </script>
-
-    <script>
-    const inputFoto_admin = document.querySelector('#foto_admin');
-    const previewFoto_admin = document.querySelector('#previewFoto_admin');
-
-    inputFoto_admin.addEventListener('change', function() {
-        const file = inputFoto_admin.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            previewFoto_admin.src = e.target.result;
-        }
-
-        reader.readAsDataURL(file);
-    });
-    </script>
-
-
-    <script>
-    const inputFoto_kepsek = document.querySelector('#foto_kepsek');
-    const previewFoto_kepsek = document.querySelector('#previewFoto_kepsek');
-
-    inputFoto_kepsek.addEventListener('change', function() {
-        const file = inputFoto_kepsek.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            previewFoto_kepsek.src = e.target.result;
-        }
-
-        reader.readAsDataURL(file);
-    });
-    </script>
-
-    <script>
-    const inputFoto_kurikulum = document.querySelector('#foto_kurikulum');
-    const previewFoto_kurikulum = document.querySelector('#previewFoto_kurikulum');
-
-    inputFoto_kurikulum.addEventListener('change', function() {
-        const file = inputFoto_kurikulum.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            previewFoto_kurikulum.src = e.target.result;
-        }
-
-        reader.readAsDataURL(file);
-    });
-    </script>
-
-    <script>
-    const inputFoto_bk = document.querySelector('#foto_bk');
-    const previewFoto_bk = document.querySelector('#previewFoto_bk');
-
-    inputFoto_bk.addEventListener('change', function() {
-        const file = inputFoto_bk.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            previewFoto_bk.src = e.target.result;
-        }
-
-        reader.readAsDataURL(file);
-    });
-    </script>
-
-    <script>
-    const inputFoto_wakel = document.querySelector('#foto_wakel');
-    const previewFoto_wakel = document.querySelector('#previewFoto_wakel');
-
-    inputFoto_wakel.addEventListener('change', function() {
-        const file = inputFoto_wakel.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            previewFoto_wakel.src = e.target.result;
-        }
-
-        reader.readAsDataURL(file);
-    });
-    </script>
-
-    <script>
-    const inputFoto_guru = document.querySelector('#foto_guru');
-    const previewFoto_guru = document.querySelector('#previewFoto_guru');
-
-    inputFoto_guru.addEventListener('change', function() {
-        const file = inputFoto_guru.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            previewFoto_guru.src = e.target.result;
-        }
-
-        reader.readAsDataURL(file);
-    });
-    </script>
-
-    <script>
-    const inputFoto_profile = document.querySelector('#foto_profile');
-    const previewFoto_profile = document.querySelector('#previewFoto_profile');
-
-    inputFoto_profile.addEventListener('change', function() {
-        const file = inputFoto_profile.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            previewFoto_profile.src = e.target.result;
-        }
-
-        reader.readAsDataURL(file);
-    });
-    </script>
-
-    <script>
-    document.getElementById('setHadirButton').addEventListener('click', function() {
-        let statusSelects = document.querySelectorAll('.status-kehadiran');
-        statusSelects.forEach(function(select) {
-            select.value = 'Hadir';
+            reader.readAsDataURL(file);
         });
-    });
+    </script>
+
+    <script>
+        const inputFoto_admin = document.querySelector('#foto_admin');
+        const previewFoto_admin = document.querySelector('#previewFoto_admin');
+
+        inputFoto_admin.addEventListener('change', function () {
+            const file = inputFoto_admin.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewFoto_admin.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+
+    <script>
+        const inputFoto_kepsek = document.querySelector('#foto_kepsek');
+        const previewFoto_kepsek = document.querySelector('#previewFoto_kepsek');
+
+        inputFoto_kepsek.addEventListener('change', function () {
+            const file = inputFoto_kepsek.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewFoto_kepsek.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+    <script>
+        const inputFoto_kurikulum = document.querySelector('#foto_kurikulum');
+        const previewFoto_kurikulum = document.querySelector('#previewFoto_kurikulum');
+
+        inputFoto_kurikulum.addEventListener('change', function () {
+            const file = inputFoto_kurikulum.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewFoto_kurikulum.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+    <script>
+        const inputFoto_bk = document.querySelector('#foto_bk');
+        const previewFoto_bk = document.querySelector('#previewFoto_bk');
+
+        inputFoto_bk.addEventListener('change', function () {
+            const file = inputFoto_bk.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewFoto_bk.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+    <script>
+        const inputFoto_wakel = document.querySelector('#foto_wakel');
+        const previewFoto_wakel = document.querySelector('#previewFoto_wakel');
+
+        inputFoto_wakel.addEventListener('change', function () {
+            const file = inputFoto_wakel.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewFoto_wakel.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+    <script>
+        const inputFoto_guru = document.querySelector('#foto_guru');
+        const previewFoto_guru = document.querySelector('#previewFoto_guru');
+
+        inputFoto_guru.addEventListener('change', function () {
+            const file = inputFoto_guru.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewFoto_guru.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+    <script>
+        const inputFoto_profile = document.querySelector('#foto_profile');
+        const previewFoto_profile = document.querySelector('#previewFoto_profile');
+
+        inputFoto_profile.addEventListener('change', function () {
+            const file = inputFoto_profile.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewFoto_profile.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+    <script>
+        document.getElementById('setHadirButton').addEventListener('click', function () {
+            let statusSelects = document.querySelectorAll('.status-kehadiran');
+            statusSelects.forEach(function (select) {
+                select.value = 'Hadir';
+            });
+        });
     </script>
 
 
