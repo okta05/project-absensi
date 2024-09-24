@@ -629,9 +629,6 @@ class AbsensiController extends Controller
                 continue;
             }
 
-            // Debugging: cek setiap baris yang sedang diproses
-            Log::info("Memproses baris ke-{$key} dengan data: ", $row);
-
             // Proses data siswa dan absensi
             $nis = $row[9]; // Asumsi kolom ke-10 berisi NIS siswa
             $status_kehadiran = $row[10]; // Asumsi kolom ke-12 berisi status kehadiran
@@ -642,7 +639,6 @@ class AbsensiController extends Controller
                 // Parsing tanggal ke format 'Y-m-d'
                 $tanggal = Carbon::parse($tanggal_string)->format('Y-m-d');
             } catch (\Exception $e) {
-                Log::error("Gagal memparsing tanggal pada baris {$key}: {$tanggal_string}");
                 continue; // Lewati baris jika terjadi error
             }
 
@@ -659,22 +655,6 @@ class AbsensiController extends Controller
             $kelas = Kelas::where('nm_kelas', $nama_kelas)->first();
             $mapel = Mapel::where('nm_mapel', operator: $nama_mapel)->first();
             $tahun_pelajaran = Tahpel::where('th_pelajaran', $tahpel)->first();
-
-            // Debugging: Cek apakah guru, kelas, atau mapel ditemukan
-            if (!$guru) {
-                Log::warning("Guru '{$nama_guru}' tidak ditemukan.");
-            }
-            if (!$kelas) {
-                Log::warning("Kelas '{$nama_kelas}' tidak ditemukan.");
-            }
-            if (!$mapel) {
-                Log::warning("Mapel '{$nama_mapel}' tidak ditemukan.");
-            }
-
-            // Jika tidak ditemukan guru, kelas, atau mapel, lewati baris ini
-            if (!$guru || !$kelas || !$mapel) {
-                continue;
-            }
 
             // Simpan ID mapel yang valid
             $id_mapel_valid = $mapel->id_mapel;
