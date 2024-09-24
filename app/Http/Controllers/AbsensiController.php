@@ -635,7 +635,17 @@ class AbsensiController extends Controller
             // Proses data siswa dan absensi
             $nis = $row[9]; // Asumsi kolom ke-10 berisi NIS siswa
             $status_kehadiran = $row[10]; // Asumsi kolom ke-12 berisi status kehadiran
-            $tanggal = $row[5]; // Asumsi kolom ke-7 berisi tanggal
+            $tanggal_string = $row[5]; // Asumsi kolom ke-7 berisi tanggal
+
+            // Parsing tanggal menggunakan Carbon
+            try {
+                // Parsing tanggal ke format 'Y-m-d'
+                $tanggal = Carbon::parse($tanggal_string)->format('Y-m-d');
+            } catch (\Exception $e) {
+                Log::error("Gagal memparsing tanggal pada baris {$key}: {$tanggal_string}");
+                continue; // Lewati baris jika terjadi error
+            }
+
             $jam = $row[6]; // Asumsi kolom ke-8 berisi jam
             $tahpel = $row[4]; // Asumsi kolom ke-8 berisi jam
 
