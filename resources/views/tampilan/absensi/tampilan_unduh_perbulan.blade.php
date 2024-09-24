@@ -5,52 +5,52 @@
     <meta charset="utf-8">
     <title>Laporan Absensi Perbulan</title>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    .container {
-        padding: 20px;
-    }
+        .container {
+            padding: 20px;
+        }
 
-    .header {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    .header h1 {
-        margin: 0;
-    }
+        .header h1 {
+            margin: 0;
+        }
 
-    .table,
-    .info-table,
-    .summary-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-    }
+        .table,
+        .info-table,
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
 
-    .table th,
-    .info-table th,
-    .summary-table th,
-    .table td,
-    .info-table td,
-    .summary-table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
+        .table th,
+        .info-table th,
+        .summary-table th,
+        .table td,
+        .info-table td,
+        .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
 
-    .table th,
-    .info-table th,
-    .summary-table th {
-        background-color: #f2f2f2;
-    }
+        .table th,
+        .info-table th,
+        .summary-table th {
+            background-color: #f2f2f2;
+        }
 
-    .info-table {
-        margin-bottom: 30px;
-    }
+        .info-table {
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 
@@ -60,7 +60,8 @@
             <h1>Laporan Absensi Perbulan</h1>
             <h2>{{ $mapel->nm_mapel }}</h2>
             <p>Bulan: {{ DateTime::createFromFormat('!m', substr(request()->input('bulan'), 5, 2))->format('F') }}
-                {{ substr(request()->input('bulan'), 0, 4) }}</p>
+                {{ substr(request()->input('bulan'), 0, 4) }}
+            </p>
         </div>
 
         <!-- Tabel Informasi -->
@@ -102,16 +103,16 @@
             </thead>
             <tbody>
                 @foreach($siswaAbsensi as $index => $item)
-                <tr>
-                    <td>{{ $item['no_absen'] }}</td>
-                    <td>{{ $item['nama'] }}</td>
-                    <td>{{ $item['nis'] }}</td>
-                    <td>{{ $item['hadir'] }}</td>
-                    <td>{{ $item['belum hadir'] }}</td>
-                    <td>{{ $item['ijin'] }}</td>
-                    <td>{{ $item['sakit'] }}</td>
-                    <td>{{ $item['alpa'] }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ $item['no_absen'] }}</td>
+                        <td>{{ $item['nama'] }}</td>
+                        <td>{{ $item['nis'] }}</td>
+                        <td>{{ $item['hadir'] }}</td>
+                        <td>{{ $item['belum hadir'] }}</td>
+                        <td>{{ $item['izin'] }}</td>
+                        <td>{{ $item['sakit'] }}</td>
+                        <td>{{ $item['alpa'] }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
@@ -126,33 +127,33 @@
                     <th>NIS</th>
                     <th>Tanggal Hadir</th>
                     <th>Tanggal Belum Hadir</th>
-                    <th>Tanggal Ijin</th>
+                    <th>Tanggal Izin</th>
                     <th>Tanggal Sakit</th>
                     <th>Tanggal Alpa</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($siswaAbsensi as $item)
-                <tr>
-                    <td>{{ $item['no_absen'] }}</td>
-                    <td>{{ $item['nama'] }}</td>
-                    <td>{{ $item['nis'] }}</td>
-                    <td>{{ implode(', ', array_map(function($date) {
-                return \Carbon\Carbon::parse($date)->format('d');
-            }, $item['tanggal_hadir'])) }}</td>
-                    <td>{{ implode(', ', array_map(function($date) {
-                return \Carbon\Carbon::parse($date)->format('d');
-            }, $item['tanggal_belum_hadir'])) }}</td>
-                    <td>{{ implode(', ', array_map(function($date) {
-                return \Carbon\Carbon::parse($date)->format('d');
-            }, $item['tanggal_ijin'])) }}</td>
-                    <td>{{ implode(', ', array_map(function($date) {
-                return \Carbon\Carbon::parse($date)->format('d');
-            }, $item['tanggal_sakit'])) }}</td>
-                    <td>{{ implode(', ', array_map(function($date) {
-                return \Carbon\Carbon::parse($date)->format('d');
-            }, $item['tanggal_alpa'])) }}</td>
-                </tr>
+                                <tr>
+                                    <td>{{ $item['no_absen'] }}</td>
+                                    <td>{{ $item['nama'] }}</td>
+                                    <td>{{ $item['nis'] }}</td>
+                                    <td>{{ implode(', ', array_map(function ($date) {
+                        return \Carbon\Carbon::parse($date)->format('d');
+                    }, $item['tanggal_hadir'])) }}</td>
+                                    <td>{{ implode(', ', array_map(function ($date) {
+                        return \Carbon\Carbon::parse($date)->format('d');
+                    }, $item['tanggal_belum_hadir'])) }}</td>
+                                    <td>{{ implode(', ', array_map(function ($date) {
+                        return \Carbon\Carbon::parse($date)->format('d');
+                    }, $item['tanggal_izin'])) }}</td>
+                                    <td>{{ implode(', ', array_map(function ($date) {
+                        return \Carbon\Carbon::parse($date)->format('d');
+                    }, $item['tanggal_sakit'])) }}</td>
+                                    <td>{{ implode(', ', array_map(function ($date) {
+                        return \Carbon\Carbon::parse($date)->format('d');
+                    }, $item['tanggal_alpa'])) }}</td>
+                                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -179,7 +180,7 @@
                 </tr>
                 <tr>
                     <td>Ijin</td>
-                    <td>{{ $totalIjin }}</td>
+                    <td>{{ $totalIzin }}</td>
                 </tr>
                 <tr>
                     <td>Sakit</td>

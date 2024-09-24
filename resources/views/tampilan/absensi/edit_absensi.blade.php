@@ -116,11 +116,11 @@
                                                 <option value="Hadir"
                                                     {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'Hadir' ? 'selected' : '' }}>
                                                     Hadir</option>
-                                                    <option value="Belum Hadir"
+                                                <option value="Belum Hadir"
                                                     {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'Belum Hadir' ? 'selected' : '' }}>
                                                     Belum Hadir</option>
-                                                <option value="Ijin"
-                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'Ijin' ? 'selected' : '' }}>
+                                                <option value="Izin"
+                                                    {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'Izin' ? 'selected' : '' }}>
                                                     Ijin</option>
                                                 <option value="Sakit"
                                                     {{ $absensiDetails->where('id_siswa', $siswa->id_siswa)->first()->stts_kehadiran == 'Sakit' ? 'selected' : '' }}>

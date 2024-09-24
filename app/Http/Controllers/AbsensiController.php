@@ -396,12 +396,12 @@ class AbsensiController extends Controller
                 'nis' => $items->first()->siswa->nis,
                 'hadir' => $items->where('stts_kehadiran', 'Hadir')->count(),
                 'belum hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->count(),
-                'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),
+                'izin' => $items->where('stts_kehadiran', 'Izin')->count(),
                 'sakit' => $items->where('stts_kehadiran', 'Sakit')->count(),
                 'alpa' => $items->where('stts_kehadiran', 'Alpa')->count(),
                 'tanggal_hadir' => $items->where('stts_kehadiran', 'Hadir')->pluck('tanggal')->toArray(),
                 'tanggal_belum_hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->pluck('tanggal')->toArray(),
-                'tanggal_ijin' => $items->where('stts_kehadiran', 'Ijin')->pluck('tanggal')->toArray(),
+                'tanggal_izin' => $items->where('stts_kehadiran', 'Izin')->pluck('tanggal')->toArray(),
                 'tanggal_sakit' => $items->where('stts_kehadiran', 'Sakit')->pluck('tanggal')->toArray(),
                 'tanggal_alpa' => $items->where('stts_kehadiran', 'Alpa')->pluck('tanggal')->toArray(),
             ];
@@ -413,7 +413,7 @@ class AbsensiController extends Controller
         // Menghitung total jumlah kehadiran per status
         $totalHadir = $siswaAbsensi->sum('hadir');
         $totalBelumHadir = $siswaAbsensi->sum('belum hadir');
-        $totalIjin = $siswaAbsensi->sum('ijin');
+        $totalIzin = $siswaAbsensi->sum('izin');
         $totalSakit = $siswaAbsensi->sum('sakit');
         $totalAlpa = $siswaAbsensi->sum('alpa');
 
@@ -431,7 +431,7 @@ class AbsensiController extends Controller
             'mapel',
             'totalHadir',
             'totalBelumHadir',
-            'totalIjin',
+            'totalIzin',
             'totalSakit',
             'totalAlpa',
             'guru',
@@ -502,12 +502,12 @@ class AbsensiController extends Controller
                 'nis' => $items->first()->siswa->nis,
                 'hadir' => $items->where('stts_kehadiran', 'Hadir')->count(),
                 'belum_hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->count(), // Pastikan key ini konsisten
-                'ijin' => $items->where('stts_kehadiran', 'Ijin')->count(),
+                'izin' => $items->where('stts_kehadiran', 'Izin')->count(),
                 'sakit' => $items->where('stts_kehadiran', 'Sakit')->count(),
                 'alpa' => $items->where('stts_kehadiran', 'Alpa')->count(),
                 'tanggal_hadir' => $items->where('stts_kehadiran', 'Hadir')->pluck('tanggal')->toArray(),
                 'tanggal_belum_hadir' => $items->where('stts_kehadiran', 'Belum Hadir')->pluck('tanggal')->toArray(),
-                'tanggal_ijin' => $items->where('stts_kehadiran', 'Ijin')->pluck('tanggal')->toArray(),
+                'tanggal_izin' => $items->where('stts_kehadiran', 'Izin')->pluck('tanggal')->toArray(),
                 'tanggal_sakit' => $items->where('stts_kehadiran', 'Sakit')->pluck('tanggal')->toArray(),
                 'tanggal_alpa' => $items->where('stts_kehadiran', 'Alpa')->pluck('tanggal')->toArray(),
             ];
@@ -531,7 +531,7 @@ class AbsensiController extends Controller
                     'nis' => $item->siswa->nis,
                     'tanggal_hadir' => [],
                     'tanggal_belum_hadir' => [],
-                    'tanggal_ijin' => [],
+                    'tanggal_izin' => [],
                     'tanggal_sakit' => [],
                     'tanggal_alpa' => [],
                 ];
@@ -546,8 +546,8 @@ class AbsensiController extends Controller
                     $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_belum_hadir'][] = \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y');
 
                     break;
-                case 'Ijin':
-                    $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_ijin'][] = \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y');
+                case 'Izin':
+                    $siswaAbsensiBulan[$bulan][$siswaId]['tanggal_izin'][] = \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y');
 
                     break;
                 case 'Sakit':
@@ -573,7 +573,7 @@ class AbsensiController extends Controller
         // Menghitung total jumlah kehadiran per status
         $totalHadir = $siswaAbsensi->sum('hadir');
         $totalBelumHadir = $siswaAbsensi->sum('belum_hadir');
-        $totalIjin = $siswaAbsensi->sum('ijin');
+        $totalIzin = $siswaAbsensi->sum('izin');
         $totalSakit = $siswaAbsensi->sum('sakit');
         $totalAlpa = $siswaAbsensi->sum('alpa');
 
@@ -591,7 +591,7 @@ class AbsensiController extends Controller
             'mapel',
             'totalHadir',
             'totalBelumHadir',
-            'totalIjin',
+            'totalIzin',
             'totalSakit',
             'totalAlpa',
             'guru',
@@ -643,7 +643,7 @@ class AbsensiController extends Controller
             }
 
             $jam = $row[6]; // Asumsi kolom ke-8 berisi jam
-            $tahpel = $row[4]; // Asumsi kolom ke-8 berisi jam
+            $tahpel = $row[4]; // Asumsi kolom ke-8 berisi tahun pelajaran
 
             // Cari nama guru, kelas, mapel dari excel
             $nama_guru = $row[3]; // Asumsi kolom ke-4 berisi nama guru
@@ -653,7 +653,7 @@ class AbsensiController extends Controller
             // Cari ID guru, kelas, mapel berdasarkan nama
             $guru = Guru::where('nama', $nama_guru)->first();
             $kelas = Kelas::where('nm_kelas', $nama_kelas)->first();
-            $mapel = Mapel::where('nm_mapel', operator: $nama_mapel)->first();
+            $mapel = Mapel::where('nm_mapel', $nama_mapel)->first();
             $tahun_pelajaran = Tahpel::where('th_pelajaran', $tahpel)->first();
 
             // Simpan ID mapel yang valid
@@ -661,6 +661,25 @@ class AbsensiController extends Controller
 
             // Cari siswa berdasarkan NIS
             $siswa = Siswa::where('nis', $nis)->first();
+
+            // Ubah status kehadiran menjadi format yang lebih deskriptif
+            switch (strtolower(trim($status_kehadiran))) {
+                case 'h':
+                    $status_kehadiran = 'Hadir';
+                    break;
+                case 'a':
+                    $status_kehadiran = 'Alpa';
+                    break;
+                case 'i':
+                    $status_kehadiran = 'Izin';
+                    break;
+                case 's':
+                    $status_kehadiran = 'Sakit';
+                    break;
+                default:
+                    $status_kehadiran = 'Belum Hadir';
+                    break;
+            }
 
             // Jika siswa ditemukan, simpan data absensi
             if ($siswa) {
@@ -692,6 +711,7 @@ class AbsensiController extends Controller
             return redirect()->back()->with('error', 'Data mapel tidak ditemukan dalam file.');
         }
     }
+
 
     public function detailUnduhPerbulan($id)
     {
