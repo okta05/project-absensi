@@ -39,9 +39,9 @@
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
-                                @foreach ($allDataWakel as $key => $wakel )
+                                @foreach ($allDataWakel as $key => $wakel)
                                 <tr>
-                                    <td>{{$key+1}}</td>
+                                    <td>{{$key + 1}}</td>
                                     <td>{{$wakel->nama}}</td>
                                     <td>{{$wakel->nip}}</td>
                                     <td>{{$wakel->jns_kelamin}}</td>
