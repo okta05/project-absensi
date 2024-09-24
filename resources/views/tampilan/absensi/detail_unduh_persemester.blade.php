@@ -12,7 +12,7 @@
                 <li class="breadcrumb-item"><a href="{{ route('mapel.absensi') }}">Pilih Mapel</a></li>
                 <li class="breadcrumb-item"><a
                         href="{{ route('pilih_data.absensi', ['id_mapel' => $absensi->id_mapel]) }}">Absensi</a></li>
-                <li class="breadcrumb-item"><a href="{{session('previous_url', route ('absensi.persemester'))}}">Unduh
+                <li class="breadcrumb-item"><a href="{{session('previous_url', route('absensi.persemester'))}}">Unduh
                         Persemester</a>
                 </li>
                 <li class="breadcrumb-item"><a href="#">Detail Unduh Persemester</a></li>
@@ -82,7 +82,7 @@
                     <label for="tanggal" class="col-lg-4 col-md-5 col-form-label">Tanggal</label>
                     <div class="col-lg-8 col-md-7">
                         <input type="text" name="tanggal" id="tanggal" class="form-control"
-                            value="{{ $absensi->tanggal }}" disabled>
+                            value="{{ \Carbon\Carbon::parse($absensi->tanggal)->translatedFormat('d F Y') }}" disabled>
                     </div>
                 </div>
 

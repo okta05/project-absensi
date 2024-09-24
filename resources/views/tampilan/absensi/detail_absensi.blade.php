@@ -79,7 +79,7 @@
                     <label for="tanggal" class="col-lg-4 col-md-5 col-form-label">Tanggal</label>
                     <div class="col-lg-8 col-md-7">
                         <input type="text" name="tanggal" id="tanggal" class="form-control"
-                            value="{{ $absensi->tanggal }}" disabled>
+                            value="{{ \Carbon\Carbon::parse($absensi->tanggal)->translatedFormat('d F Y') }}" disabled>
                     </div>
                 </div>
 
