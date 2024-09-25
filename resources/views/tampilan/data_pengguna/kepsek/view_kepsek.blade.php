@@ -32,30 +32,27 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>NIP</th>
-                                    <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
-                                    <th>Nomor Telepon</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
                                 @foreach ( $allDataKepsek as $key => $kepsek )
-                                
+
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$kepsek->nama}}</td>
                                     <td>{{$kepsek->nip}}</td>
-                                    <td>{{$kepsek->jns_kelamin}}</td>
                                     <td>{{$kepsek->alamat}}</td>
-                                    <td>{{$kepsek->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-primary"
                                                 href="{{ route('kepsek.detail', $kepsek->id_kepsek) }}"><i
                                                     class="bi bi-eye"></i></a>
 
-                                            <a class="btn btn-warning" href="{{ route('kepsek.edit', $kepsek->id_kepsek) }}"><i
+                                            <a class="btn btn-warning"
+                                                href="{{ route('kepsek.edit', $kepsek->id_kepsek) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
                                             <a class="btn btn-danger" id="delete"
