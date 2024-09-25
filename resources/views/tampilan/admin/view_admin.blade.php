@@ -32,32 +32,31 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>NIP</th>
-                                    <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
-                                    <th>Nomor Telepon</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Data siswa ditampilkan di sini -->
-                                 @foreach ( $allDataAdmin as $key => $admin )
-                                 
+                                @foreach ( $allDataAdmin as $key => $admin )
+
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$admin->nama}}</td>
                                     <td>{{$admin->nip}}</td>
-                                    <td>{{$admin->jns_kelamin}}</td>
                                     <td>{{$admin->alamat}}</td>
-                                    <td>{{$admin->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('admin.detail', $admin->id_admin) }}">
+                                            <a class="btn btn-primary"
+                                                href="{{ route('admin.detail', $admin->id_admin) }}">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a class="btn btn-warning" href="{{ route('admin.edit', $admin->id_admin) }}">
+                                            <a class="btn btn-warning"
+                                                href="{{ route('admin.edit', $admin->id_admin) }}">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a class="btn btn-danger" id="delete" href="{{ route('admin.delete', $admin->id_admin) }}">
+                                            <a class="btn btn-danger" id="delete"
+                                                href="{{ route('admin.delete', $admin->id_admin) }}">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </div>
