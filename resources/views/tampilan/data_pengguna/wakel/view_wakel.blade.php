@@ -33,7 +33,6 @@
                                     <th>Nama</th>
                                     <th>NIP</th>
                                     <th>Alamat</th>
-                                    <th>Nomor Telepon</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -44,8 +43,7 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{$wakel->nama}}</td>
                                     <td>{{$wakel->nip}}</td>
-                                    <td>{{$wakel->jns_kelamin}}</td>
-                                    <td>{{$wakel->no_telp}}</td>
+                                    <td>{{$wakel->alamat}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-primary"
