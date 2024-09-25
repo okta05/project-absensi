@@ -18,7 +18,8 @@
             <h5 class="card-title">Form Ubah Data Siswa</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="{{route('siswa.update', $editDataSiswa->id_siswa)}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('siswa.update', $editDataSiswa->id_siswa)}}"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
                     <label for="textNama" class="col-sm-2 col-form-label">Nama Siswa</label>
@@ -29,7 +30,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="textNIS" class="col-sm-2 col-form-label">NIS</label>
+                    <label for="textNIS" class="col-sm-2 col-form-label">NISN/NIS</label>
                     <div class="col-sm-10">
                         <input type="text" name="textNIS" id="textNIS" value="{{$editDataSiswa->nis}}"
                             class="form-control" placeholder="Masukkan NIS">
@@ -100,7 +101,7 @@
                     <label for="text_no_absen" class="col-sm-2 col-form-label">Masukan No Absen</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" name="text_no_absen" id="text_no_absen"
-                        value="{{$editDataSiswa->no_absen}}" placeholder="Masukkan no absen">
+                            value="{{$editDataSiswa->no_absen}}" placeholder="Masukkan no absen">
                     </div>
                 </div>
 
