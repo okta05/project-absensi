@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="textNIS" class="col-sm-2 col-form-label">NIS</label>
+                    <label for="textNIS" class="col-sm-2 col-form-label">NISN/NIS</label>
                     <div class="col-sm-10">
                         <input type="text" name="textNIS" id="textNIS" class="form-control" placeholder="Masukkan NIS">
                     </div>
@@ -111,7 +111,7 @@
                             <option selected disabled>pilih kelas</option>
 
                             @foreach($idKelas as $kelas)
-                            <option value="{{$kelas->id_kelas}}">{{$kelas->nm_kelas}}</option>
+                                <option value="{{$kelas->id_kelas}}">{{$kelas->nm_kelas}}</option>
                             @endforeach
 
                         </select>
