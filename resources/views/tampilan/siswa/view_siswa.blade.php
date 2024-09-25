@@ -80,7 +80,6 @@
                                     <th>Kelas</th>
                                     <th>NISN/NIS</th>
                                     <th>Alamat</th>
-                                    <th>Jenis Kelamin</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -93,7 +92,6 @@
                                     <td>{{ $siswa->kelas->nm_kelas ?? 'Tidak Ditemukan' }}</td>
                                     <td>{{ $siswa->nis }}</td>
                                     <td>{{ $siswa->alamat }}</td>
-                                    <td>{{ $siswa->jns_kelamin }}</td>
                                     <td>
                                         @if(
                                         auth('admin')->check() || auth('kepsek')->check() ||
