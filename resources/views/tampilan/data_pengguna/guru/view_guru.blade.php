@@ -32,9 +32,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>NIP</th>
-                                    <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
-                                    <th>Nomor Telepon</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -46,18 +44,20 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$guru->nama}}</td>
                                     <td>{{$guru->nip}}</td>
-                                    <td>{{$guru->jns_kelamin}}</td>
                                     <td>{{$guru->alamat}}</td>
-                                    <td>{{$guru->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="{{ route('guru.detail', $guru->id_guru) }}"><i
+                                            <a class="btn btn-primary"
+                                                href="{{ route('guru.detail', $guru->id_guru) }}"><i
                                                     class="bi bi-eye"></i></a>
 
-                                            <a class="btn btn-warning" href="{{ route('guru.edit', $guru->id_guru) }}"><i
+                                            <a class="btn btn-warning"
+                                                href="{{ route('guru.edit', $guru->id_guru) }}"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <a class="btn btn-danger" id="delete" href="{{ route('guru.delete', $guru->id_guru) }}"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete"
+                                                href="{{ route('guru.delete', $guru->id_guru) }}"><i
+                                                    class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
