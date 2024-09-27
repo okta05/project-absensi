@@ -32,9 +32,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>NIP</th>
-                                    <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
-                                    <th>Nomor Telepon</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -45,9 +43,7 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$bk->nama}}</td>
                                     <td>{{$bk->nip}}</td>
-                                    <td>{{$bk->jns_kelamin}}</td>
                                     <td>{{$bk->alamat}}</td>
-                                    <td>{{$bk->no_telp}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-primary" href="{{ route('bk.detail', $bk->id_bk) }}"><i
@@ -57,7 +53,8 @@
                                                     class="bi bi-pencil-square"></i></a>
 
                                             <a class="btn btn-danger" id="delete"
-                                                href="{{ route('bk.delete', $bk->id_bk) }}"><i class="bi bi-trash"></i></a>
+                                                href="{{ route('bk.delete', $bk->id_bk) }}"><i
+                                                    class="bi bi-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
