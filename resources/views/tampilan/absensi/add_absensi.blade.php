@@ -121,7 +121,7 @@
                     <div class="card-body mt-3">
                         <div class="table-responsive">
                             <!-- Table with stripped rows -->
-                            <table class="table table-striped datatable">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>No Absen</th>
@@ -133,26 +133,26 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($siswas as $key => $siswa)
-                                    <tr>
-                                        <td>{{ $siswa->no_absen }}</td>
-                                        <td>{{ $siswa->nama }}</td>
-                                        <td>{{ $siswa->nis }}</td>
-                                        <td>
-                                            <select name="stts_kehadiran[{{ $siswa->id_siswa }}]"
-                                                class="form-select status-kehadiran">
-                                                <option selected disabled>Pilih Status Kehadiran</option>
-                                                <option value="Belum Hadir">Belum Hadir</option>
-                                                <option value="Hadir">Hadir</option>
-                                                <option value="Izin">Ijin</option>
-                                                <option value="Sakit">Sakit</option>
-                                                <option value="Alpa">Alpa</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <textarea name="catatan[{{ $siswa->id_siswa }}]" class="form-control"
-                                                rows="2" placeholder="Masukkan catatan"></textarea>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{ $siswa->no_absen }}</td>
+                                            <td>{{ $siswa->nama }}</td>
+                                            <td>{{ $siswa->nis }}</td>
+                                            <td>
+                                                <select name="stts_kehadiran[{{ $siswa->id_siswa }}]"
+                                                    class="form-select status-kehadiran">
+                                                    <option selected disabled>Pilih Status Kehadiran</option>
+                                                    <option value="Belum Hadir">Belum Hadir</option>
+                                                    <option value="Hadir">Hadir</option>
+                                                    <option value="Izin">Ijin</option>
+                                                    <option value="Sakit">Sakit</option>
+                                                    <option value="Alpa">Alpa</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <textarea name="catatan[{{ $siswa->id_siswa }}]" class="form-control"
+                                                    rows="2" placeholder="Masukkan catatan"></textarea>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
