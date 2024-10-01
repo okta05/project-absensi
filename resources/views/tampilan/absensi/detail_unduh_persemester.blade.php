@@ -97,7 +97,7 @@
                 <div class="card-body mt-3">
                     <div class="table-responsive">
                         <!-- Table with stripped rows -->
-                        <table class="table table-striped datatable">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>No Absen</th>
@@ -109,25 +109,25 @@
                             </thead>
                             <tbody>
                                 @foreach ($siswas as $siswa)
-                                <tr>
-                                    <td>{{ $siswa->no_absen }}</td>
-                                    <td>{{ $siswa->nama }}</td>
-                                    <td>{{ $siswa->nis }}</td>
-                                    <td>
-                                        @foreach ($absensiDetails as $detail)
-                                        @if ($detail->id_siswa == $siswa->id_siswa)
-                                        {{ $detail->stts_kehadiran }}
-                                        @endif
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                        @foreach ($absensiDetails as $detail)
-                                        @if ($detail->id_siswa == $siswa->id_siswa)
-                                        {{ $detail->catatan }}
-                                        @endif
-                                        @endforeach
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $siswa->no_absen }}</td>
+                                        <td>{{ $siswa->nama }}</td>
+                                        <td>{{ $siswa->nis }}</td>
+                                        <td>
+                                            @foreach ($absensiDetails as $detail)
+                                                @if ($detail->id_siswa == $siswa->id_siswa)
+                                                    {{ $detail->stts_kehadiran }}
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($absensiDetails as $detail)
+                                                @if ($detail->id_siswa == $siswa->id_siswa)
+                                                    {{ $detail->catatan }}
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
