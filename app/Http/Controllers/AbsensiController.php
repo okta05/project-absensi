@@ -185,6 +185,7 @@ class AbsensiController extends Controller
 
             if ($chatId) {
                 TelegramHelper::sendMessage($chatId, $message);
+                sleep(10); // Tambahkan jeda 10 detik setelah mengirim pesan
             }
         }
 
